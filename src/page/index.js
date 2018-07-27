@@ -36,7 +36,6 @@ export class IndexPage extends React.Component {
                             offset: 6
                         }}>
                         <Header/>
-                        <Nav/>
                     </Col>
                 </Row>
             </BgColorNoneLayout>
