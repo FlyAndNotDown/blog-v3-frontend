@@ -6,7 +6,7 @@ import { CssTool } from "../../tool/css";
  * 带有主体背景颜色的 Layout
  * @props className - css类名
  */
-export class BgColorMainLayout extends React.Component {
+export class BgColorNoneLayout extends React.Component {
 
     static defaultClassName = 'bg-color-main';
 
@@ -23,7 +23,7 @@ export class BgColorMainLayout extends React.Component {
         return (
             <Layout
                 className={CssTool.combClassName(
-                    BgColorMainLayout.defaultClassName,
+                    BgColorNoneLayout.defaultClassName,
                     this.props.className
                 )}
                 style={this.props.style}>

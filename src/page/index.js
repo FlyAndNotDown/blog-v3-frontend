@@ -1,4 +1,6 @@
 import React from 'react';
+import { Layout } from 'antd';
+import { Header } from "../component/nav/header";
 
 /**
  * 页面组件 - /
@@ -6,11 +8,13 @@ import React from 'react';
 export class IndexPage extends React.Component {
 
     render() {
+
         return (
-            <div>
-                Hello World!
-            </div>
+            <Layout>
+                <Header/>
+            </Layout>
         );
+
     }
 
 }
