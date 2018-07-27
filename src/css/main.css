@@ -18,13 +18,21 @@ body {
     background-color: rgba(255, 255, 255, 0);
 }
 
-.color-text {
+.color-second {
     color: #8590a6;
+}
+
+.color-grey {
+    color: grey;
 }
 
 /****************************   文字   ****************************/
 .text-align-center {
     text-align: center;
+}
+
+.font-size-18px {
+    font-size: 18px;
 }
 
 /****************************   对齐   ****************************/
@@ -46,6 +54,10 @@ body {
 
 .mb-0 {
     margin-bottom: 0;
+}
+
+.mb-15px {
+    margin-bottom: 15px;
 }
 
 /****************************   布局   ****************************/
