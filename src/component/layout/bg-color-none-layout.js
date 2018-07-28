@@ -8,8 +8,13 @@ import { CssTool } from "../../tool/css";
  */
 export class BgColorNoneLayout extends React.Component {
 
+    // 默认类名
     static defaultClassName = 'bg-color-main';
 
+    /**
+     * 构造
+     * @param props - 属性
+     */
     constructor(props) {
 
         super(props);
@@ -18,6 +23,10 @@ export class BgColorNoneLayout extends React.Component {
 
     }
 
+    /**
+     * 渲染
+     * @returns {*}
+     */
     render() {
 
         return (

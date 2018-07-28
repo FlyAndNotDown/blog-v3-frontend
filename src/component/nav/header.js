@@ -1,10 +1,14 @@
 import React from 'react';
 
 /**
- * 导航
+ * 页头组件
  */
 export class Header extends React.Component {
 
+    /**
+     * 属性
+     * @param props
+     */
     constructor(props) {
 
         super(props);
@@ -13,6 +17,10 @@ export class Header extends React.Component {
 
     }
 
+    /**
+     * 渲染
+     * @returns {null}
+     */
     render() {
 
         return (
