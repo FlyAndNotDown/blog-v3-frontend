@@ -9,7 +9,7 @@ import { CssTool } from "../../tool/css";
 export class BgColorNoneLayout extends React.Component {
 
     // 默认类名
-    static defaultClassName = 'bg-color-main';
+    static __defaultClassName = 'bg-color-main w-100';
 
     /**
      * 构造
@@ -32,7 +32,7 @@ export class BgColorNoneLayout extends React.Component {
         return (
             <Layout
                 className={CssTool.combClassName(
-                    BgColorNoneLayout.defaultClassName,
+                    BgColorNoneLayout.__defaultClassName,
                     this.props.className
                 )}
                 style={this.props.style}>

@@ -26,6 +26,14 @@ body {
     color: grey;
 }
 
+.color-white {
+    color: white;
+}
+
+.color-f6 {
+    color: #f6f6f6;
+}
+
 /****************************   文字   ****************************/
 .text-align-center {
     text-align: center;
@@ -33,6 +41,14 @@ body {
 
 .font-size-18px {
     font-size: 18px;
+}
+
+.font-size-25px {
+    font-size: 25px;
+}
+
+.font-size-35px {
+    font-size: 35px;
 }
 
 /****************************   对齐   ****************************/
