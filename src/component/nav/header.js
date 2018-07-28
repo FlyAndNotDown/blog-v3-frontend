@@ -36,7 +36,7 @@ export class Header extends React.Component {
                 style={{
                     backgroundImage: `url(${this.props.bg})`,
                     backgroundRepeat: 'no-repeat',
-                    backgroundSize: '100%',
+                    backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     height: this.props.height
                 }}
