@@ -1,6 +1,7 @@
 import React from 'react';
 import { BgColorNoneLayout } from "../layout/bg-color-none-layout";
 import { Row, Col, Avatar } from 'antd';
+import { Link } from 'react-router-dom';
 import avatarImg from '../../img/avatar.jpg';
 import QueueAnim from 'rc-queue-anim';
 
@@ -42,25 +43,40 @@ export class Header extends React.Component {
                     height: this.props.height
                 }}
                 className={'shadow-little'}>
-                <Row className={'mt-60px'}>
+                <Row className={'mt-20px'}>
+                    <QueueAnim delay={300}>
+                        <span
+                            key={'nav-l'}
+                            className={'float-left'}>
+                            <Link
+                                to={'#'}
+                                className={'ml-20px color-white font-weight-bold font-size-15px'}>
+                                Kindem's Blog
+                            </Link>
+                        </span>
+                        <span
+                            key={'nav-r'}
+                            className={'float-right'}>
+                            <Link
+                                to={'#'}
+                                className={'mr-20px color-white font-weight-bold font-size-15px'}>
+                                关于
+                            </Link>
+                        </span>
+                    </QueueAnim>
+                </Row>
+                <Row className={'mt-50px'}>
                     <Col>
                         <QueueAnim delay={500}>
                             <div
-                                key={'line1'}
-                                className={'text-align-center'}>
-                                <Avatar
-                                    src={avatarImg}
-                                    className={'w-100px h-100px'}/>
-                            </div>
-                            <div
                                 key={'line2'}
-                                className={'text-align-center color-white font-size-35px mb-0'}>
-                                John Kindem
+                                className={'text-align-center color-white font-size-45px mb-0'}>
+                                離開世界前，壹切都是過程
                             </div>
                             <div
                                 key={'line3'}
                                 className={'text-align-center color-f6 font-size-25px'}>
-                                简单快乐的前端狗子
+                                壹只奮鬥中的前端狗
                             </div>
                         </QueueAnim>
                     </Col>

@@ -34,13 +34,25 @@ body {
     color: #f6f6f6;
 }
 
+.hover-color-white:hover {
+    color: white;
+}
+
+.hover-color-red:hover {
+    color: red;
+}
+
 /****************************   文字   ****************************/
 .text-align-center {
     text-align: center;
 }
 
-.font-size-18px {
-    font-size: 18px;
+.font-size-15px {
+    font-size: 15px;
+}
+
+.font-size-20px {
+    font-size: 20px;
 }
 
 .font-size-25px {
@@ -49,6 +61,30 @@ body {
 
 .font-size-35px {
     font-size: 35px;
+}
+
+.font-size-40px {
+    font-size: 40px;
+}
+
+.font-size-45px {
+    font-size: 45px;
+}
+
+.font-size-50px {
+    font-size: 50px;
+}
+
+.font-size-55px {
+    font-size: 55px;
+}
+
+.font-size-60px {
+    font-size: 60px;
+}
+
+.font-weight-bold {
+    font-weight: bold;
 }
 
 /****************************   对齐   ****************************/
@@ -64,6 +100,14 @@ body {
     margin-top: 0;
 }
 
+.mt-20px {
+    margin-top: 20px;
+}
+
+.mt-50px {
+    margin-top: 50px;
+}
+
 .mt-60px {
     margin-top: 60px;
 }
@@ -76,7 +120,15 @@ body {
     margin-bottom: 15px;
 }
 
-/****************************   布局   ****************************/
+.ml-20px {
+    margin-left: 20px;
+}
+
+.mr-20px {
+    margin-right: 20px;
+}
+
+/****************************   长宽   ****************************/
 .w-100 {
     width: 100%;
 }
@@ -91,6 +143,15 @@ body {
 
 .h-100px {
     height: 100px;
+}
+
+/****************************   布局   ****************************/
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
 }
 
 /****************************   杂项   ****************************/
