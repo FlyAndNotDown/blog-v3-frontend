@@ -2,6 +2,7 @@ import React from 'react';
 import { BgColorNoneLayout } from "../layout/bg-color-none-layout";
 import { Row, Col, Avatar } from 'antd';
 import avatarImg from '../../img/avatar.jpg';
+import QueueAnim from 'rc-queue-anim';
 
 /**
  * 页头组件
@@ -43,17 +44,25 @@ export class Header extends React.Component {
                 className={'shadow-little'}>
                 <Row className={'mt-60px'}>
                     <Col>
-                        <div className={'text-align-center'}>
-                            <Avatar
-                                src={avatarImg}
-                                className={'w-100px h-100px'}/>
-                        </div>
-                        <h1 className={'text-align-center color-white font-size-35px mb-0'}>
-                            John Kindem
-                        </h1>
-                        <h2 className={'text-align-center color-f6 font-size-25px'}>
-                            简单快乐的前端狗子
-                        </h2>
+                        <QueueAnim delay={500}>
+                            <div
+                                key={'line1'}
+                                className={'text-align-center'}>
+                                <Avatar
+                                    src={avatarImg}
+                                    className={'w-100px h-100px'}/>
+                            </div>
+                            <div
+                                key={'line2'}
+                                className={'text-align-center color-white font-size-35px mb-0'}>
+                                John Kindem
+                            </div>
+                            <div
+                                key={'line3'}
+                                className={'text-align-center color-f6 font-size-25px'}>
+                                简单快乐的前端狗子
+                            </div>
+                        </QueueAnim>
                     </Col>
                 </Row>
             </BgColorNoneLayout>
