@@ -9,7 +9,7 @@ import QueueAnimation from 'rc-queue-anim';
  * 页头组件
  * @props bg - 背景图
  */
-export class Header extends React.Component {
+export class IndexHeader extends React.Component {
 
     static defaultProps = {
         height: '350px'

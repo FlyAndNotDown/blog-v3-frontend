@@ -1,8 +1,9 @@
 import React from 'react';
 import { BgColorNoneLayout } from "../component/layout/bg-color-none-layout";
-import { Row, Col } from 'antd';
-import { Header } from "../component/nav/header";
+import { Row, Col, Avatar } from 'antd';
+import { IndexHeader } from "../component/nav/index-header";
 import headerBg from '../img/header-bg.jpg';
+import avatar from '../img/avatar.jpg';
 import QueueAnimation from 'rc-queue-anim';
 
 /**
@@ -29,9 +30,18 @@ export class IndexPage extends React.Component {
 
         // 侧栏
         let side = (
-            <Row>
+            <Row
+                className={'mt-20px ml-10px mr-10px'}>
                 <Col>
-                    <br/><br/><br/>
+                    <div className={'text-align-center'}>
+                        <Avatar
+                            src={avatar}
+                            shape={'square'}
+                            className={'w-70 h-auto shadow-little'}/>
+                    </div>
+                    <div className={'mt-10px color-second font-size-30px text-align-center font-weight-bold'}>
+                        Kindem
+                    </div>
                 </Col>
             </Row>
         );
@@ -47,7 +57,7 @@ export class IndexPage extends React.Component {
         return (
             <BgColorNoneLayout>
                 <QueueAnimation delay={300}>
-                    <Header
+                    <IndexHeader
                         key={'header'}
                         bg={headerBg}/>
                     <BgColorNoneLayout
@@ -88,8 +98,7 @@ export class IndexPage extends React.Component {
                                         lg={{
                                             span: 16,
                                             offset: 8
-                                        }}
-                                        className={'bg-color-yellow'}>
+                                        }}>
                                         {side}
                                     </Col>
                                 </Row>
@@ -129,8 +138,7 @@ export class IndexPage extends React.Component {
                                         lg={{
                                             span: 20,
                                             offset: 0
-                                        }}
-                                        className={'bg-color-red'}>
+                                        }}>
                                         {main}
                                     </Col>
                                 </Row>
@@ -138,22 +146,21 @@ export class IndexPage extends React.Component {
                             <Col
                                 ley={'col-3'}
                                 xs={{
-                                    span: 24,
-                                    offset: 0
+                                    span: 12,
+                                    offset: 6
                                 }}
                                 sm={{
-                                    span: 24,
-                                    offset: 0
+                                    span: 8,
+                                    offset: 8
                                 }}
                                 md={{
-                                    span: 22,
-                                    offset: 1
+                                    span: 6,
+                                    offset: 9
                                 }}
                                 lg={{
                                     span: 0,
                                     offset: 0
-                                }}
-                                className={'bg-color-yellow'}>
+                                }}>
                                 {side}
                             </Col>
                         </Row>
