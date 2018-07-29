@@ -3,7 +3,7 @@ import { BgColorNoneLayout } from "../layout/bg-color-none-layout";
 import { Row, Col, Avatar } from 'antd';
 import { Link } from 'react-router-dom';
 import avatarImg from '../../img/avatar.jpg';
-import QueueAnim from 'rc-queue-anim';
+import QueueAnimation from 'rc-queue-anim';
 
 /**
  * 页头组件
@@ -44,7 +44,7 @@ export class Header extends React.Component {
                 }}
                 className={'shadow-little'}>
                 <Row className={'mt-20px'}>
-                    <QueueAnim delay={300}>
+                    <QueueAnimation delay={300}>
                         <span
                             key={'nav-l'}
                             className={'float-left'}>
@@ -63,11 +63,11 @@ export class Header extends React.Component {
                                 关于
                             </Link>
                         </span>
-                    </QueueAnim>
+                    </QueueAnimation>
                 </Row>
                 <Row className={'mt-50px'}>
                     <Col>
-                        <QueueAnim delay={500}>
+                        <QueueAnimation delay={500}>
                             <div
                                 key={'line2'}
                                 className={'text-align-center color-white font-size-45px mb-0'}>
@@ -78,7 +78,7 @@ export class Header extends React.Component {
                                 className={'text-align-center color-f6 font-size-25px'}>
                                 壹只奮鬥中的前端狗
                             </div>
-                        </QueueAnim>
+                        </QueueAnimation>
                     </Col>
                 </Row>
             </BgColorNoneLayout>
