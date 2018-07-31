@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
  */
 export class HostInfo extends React.Component {
 
-    static defaultClassName = 'w-200px mt-40px';
+    static defaultClassName = 'w-200px';
 
     constructor(props) {
 
@@ -31,7 +31,7 @@ export class HostInfo extends React.Component {
                             shape={'square'}
                             className={'w-100 h-auto'}/>
                     </div>
-                    <div className={'text-align-center font-size-30px mt-10px font-weight-bold'}>
+                    <div className={'color-primary text-align-center font-size-30px mt-10px font-weight-bold'}>
                         John Kindem
                     </div>
                     <div className={'text-align-center font-size-20px pt-0 color-grey font-weight-bold'}>
@@ -39,53 +39,53 @@ export class HostInfo extends React.Component {
                     </div>
                     <Divider/>
                     <div className={'text-align-center font-size-20px'}>
-                        <Link to={'#'} className={'color-grey'}>
+                        <Link to={'#'} className={'color-grey text-decoration-none'}>
                             作品
                         </Link>
                         &nbsp;|&nbsp;
-                        <Link to={'#'} className={'color-grey'}>
+                        <Link to={'#'} className={'color-grey text-decoration-none'}>
                             计划
                         </Link>
                         &nbsp;|&nbsp;
-                        <Link to={'#'} className={'color-grey'}>
+                        <Link to={'#'} className={'color-grey text-decoration-none'}>
                             关于我
                         </Link>
                     </div>
                     <Divider/>
                     <div className={'text-align-center font-size-20px'}>
-                        <Link to={'#'} className={'color-grey'}>
+                        <Link to={'#'} className={'color-grey text-decoration-none'}>
                             归档
                         </Link>
                         &nbsp;|&nbsp;
-                        <Link to={'#'} className={'color-grey'}>
+                        <Link to={'#'} className={'color-grey text-decoration-none'}>
                             标签
                         </Link>
                         &nbsp;|&nbsp;
-                        <Link to={'#'} className={'color-grey'}>
+                        <Link to={'#'} className={'color-grey text-decoration-none'}>
                             时间轴
                         </Link>
                     </div>
                     <Divider/>
                     <div className={'text-align-center font-size-30px'}>
-                        <Link to={'#'} className={'color-grey'}>
+                        <Link to={'#'} className={'color-grey text-decoration-none'}>
                             <Icon type={'github'}/>
                         </Link>
                         &nbsp;&nbsp;
-                        <Link to={'#'} className={'color-grey'}>
+                        <Link to={'#'} className={'color-grey text-decoration-none'}>
                             <Icon type={'mail'}/>
                         </Link>
                         &nbsp;&nbsp;
-                        <Link to={'#'} className={'color-grey'}>
+                        <Link to={'#'} className={'color-grey text-decoration-none'}>
                             <Icon type={'zhihu'}/>
                         </Link>
                         &nbsp;&nbsp;
-                        <Link to={'#'} className={'color-grey'}>
+                        <Link to={'#'} className={'color-grey text-decoration-none'}>
                             <Icon type={'alipay-circle'}/>
                         </Link>
                     </div>
                     <Divider/>
                     <div className={'text-align-center color-grey font-size-15px'}>
-                        <Link to={'#'} className={'color-grey'}>
+                        <Link to={'#'} className={'color-grey text-decoration-none'}>
                             Ant-Design
                         </Link>&nbsp;强力驱动
                     </div>

@@ -55,7 +55,7 @@ export class Header extends React.Component {
                         {this.props.leftLink ?
                             <Link
                                 to={this.props.leftLink.to}
-                                className={'ml-20px color-white font-weight-bold font-size-15px'}>
+                                className={'text-decoration-none ml-20px color-white font-weight-bold font-size-15px'}>
                                 {this.props.leftLink.name}
                             </Link> : null
                         }
@@ -66,7 +66,7 @@ export class Header extends React.Component {
                         {this.props.rightLink ?
                             <Link
                                 to={this.props.rightLink.to}
-                                className={'mr-20px color-white font-weight-bold font-size-15px'}>
+                                className={'text-decoration-none mr-20px color-white font-weight-bold font-size-15px'}>
                                 {this.props.rightLink.name}
                             </Link> : null
                         }

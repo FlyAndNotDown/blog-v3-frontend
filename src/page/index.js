@@ -5,6 +5,7 @@ import { Header } from "../component/block/header";
 import headerBg from '../img/header-bg.jpg';
 import QueueAnimation from 'rc-queue-anim';
 import { HostInfo } from "../component/block/host-info";
+import {PostList} from "../component/block/post-list";
 
 /**
  * 页面组件 - /
@@ -52,13 +53,13 @@ export class IndexPage extends React.Component {
                         }}/>
                     <BgColorNoneLayout
                         key={'context'}>
-                        <Row>
+                        <Row className={'mt-40px'}>
                             <Col
                                 xs={{ span: 0, offset: 0 }}
                                 sm={{ span: 0, offset: 0 }}
                                 md={{ span: 0, offset: 0 }}
                                 lg={{ span: 0, offset: 0 }}
-                                xl={{ span: 6, offset: 0 }}>
+                                xl={{ span: 7, offset: 0 }}>
                                 <HostInfo className={'float-right mr-20px'}/>
                             </Col>
                             <Col
@@ -66,9 +67,8 @@ export class IndexPage extends React.Component {
                                 sm={{ span: 0, offset: 0 }}
                                 md={{ span: 0, offset: 0 }}
                                 lg={{ span: 0, offset: 0 }}
-                                xl={{ span: 16, offset: 0 }}
-                                className={'bg-color-red'}>
-
+                                xl={{ span: 12, offset: 0 }}>
+                                <PostList className={'ml-10px'}/>
                             </Col>
                         </Row>
                     </BgColorNoneLayout>

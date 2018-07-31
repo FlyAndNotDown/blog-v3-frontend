@@ -18,6 +18,10 @@ body {
     background-color: rgba(255, 255, 255, 0);
 }
 
+.color-primary {
+    color: #23394d;
+}
+
 .color-second {
     color: #8590a6;
 }
@@ -53,6 +57,10 @@ body {
 /****************************   文字   ****************************/
 .text-align-center {
     text-align: center;
+}
+
+.text-decoration-none {
+    text-decoration: none;
 }
 
 .font-size-15px {
