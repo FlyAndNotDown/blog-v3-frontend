@@ -1,7 +1,7 @@
 import React from 'react';
 import { BgColorNoneLayout } from "../component/layout/bg-color-none-layout";
 import { Row, Col, Avatar } from 'antd';
-import { IndexHeader } from "../component/nav/index-header";
+import { Header } from "../component/block/header";
 import headerBg from '../img/header-bg.jpg';
 import avatar from '../img/avatar.jpg';
 import QueueAnimation from 'rc-queue-anim';
@@ -28,140 +28,36 @@ export class IndexPage extends React.Component {
      */
     render() {
 
-        // 侧栏
-        let side = (
-            <Row
-                className={'mt-20px ml-10px mr-10px'}>
-                <Col>
-                    <div className={'text-align-center'}>
-                        <Avatar
-                            src={avatar}
-                            shape={'square'}
-                            className={'w-70 h-auto shadow-little'}/>
-                    </div>
-                    <div className={'mt-10px color-second font-size-30px text-align-center font-weight-bold'}>
-                        Kindem
-                    </div>
-                </Col>
-            </Row>
-        );
-        // 主内容
-        let main = (
-            <Row>
-                <Col>
-                    <br/><br/><br/>
-                </Col>
-            </Row>
-        );
-
         return (
             <BgColorNoneLayout>
                 <QueueAnimation delay={300}>
-                    <IndexHeader
+                    <Header
                         key={'header'}
-                        bg={headerBg}/>
+                        bg={headerBg}
+                        leftLink={{
+                            to: '#',
+                            name: 'Kindem的博客'
+                        }}
+                        rightLink={{
+                            to: '#',
+                            name: '关于'
+                        }}
+                        main={{
+                            mt: '80px',
+                            lines: [(
+                                <div className={'text-align-center color-white font-size-50px font-weight-bold'}>
+                                    离开世界前，一切都是过程
+                                </div>
+                            ), (
+                                <div className={'text-align-center color-white font-size-35px'}>
+                                    岁月寻常，负码前端行
+                                </div>
+                            )]
+                        }}/>
                     <BgColorNoneLayout
                         key={'context'}>
                         <Row>
-                            <Col
-                                key={'col-1'}
-                                xs={{
-                                    span: 0,
-                                    offset: 0
-                                }}
-                                sm={{
-                                    span: 0,
-                                    offset: 0
-                                }}
-                                md={{
-                                    span: 0,
-                                    offset: 0
-                                }}
-                                lg={{
-                                    span: 8,
-                                    offset: 0
-                                }}>
-                                <Row>
-                                    <Col
-                                        xs={{
-                                            span: 0,
-                                            offset: 0
-                                        }}
-                                        sm={{
-                                            span: 0,
-                                            offset: 0
-                                        }}
-                                        md={{
-                                            span: 0,
-                                            offset: 0
-                                        }}
-                                        lg={{
-                                            span: 16,
-                                            offset: 8
-                                        }}>
-                                        {side}
-                                    </Col>
-                                </Row>
-                            </Col>
-                            <Col
-                                ley={'col-2'}
-                                xs={{
-                                    span: 24,
-                                    offset: 0
-                                }}
-                                sm={{
-                                    span: 24,
-                                    offset: 0
-                                }}
-                                md={{
-                                    span: 22,
-                                    offset: 1
-                                }}
-                                lg={{
-                                    span: 16,
-                                    offset: 0
-                                }}>
-                                <Row>
-                                    <Col
-                                        xs={{
-                                            span: 24,
-                                            offset: 0
-                                        }}
-                                        sm={{
-                                            span: 24,
-                                            offset: 0
-                                        }}
-                                        md={{
-                                            span: 24,
-                                            offset: 0
-                                        }}
-                                        lg={{
-                                            span: 20,
-                                            offset: 0
-                                        }}>
-                                        {main}
-                                    </Col>
-                                </Row>
-                            </Col>
-                            <Col
-                                ley={'col-3'}
-                                xs={{
-                                    span: 12,
-                                    offset: 6
-                                }}
-                                sm={{
-                                    span: 8,
-                                    offset: 8
-                                }}
-                                md={{
-                                    span: 6,
-                                    offset: 9
-                                }}
-                                lg={{
-                                    span: 0,
-                                    offset: 0
-                                }}>
-                                {side}
+                            <Col>
                             </Col>
                         </Row>
                     </BgColorNoneLayout>
