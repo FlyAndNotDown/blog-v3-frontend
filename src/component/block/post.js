@@ -38,11 +38,23 @@ export class Post extends React.Component {
                         <ReactMarkdown
                             className={'md-description'}
                             source={
+                                '# 测试标题1\n' +
+                                'hell world\n' +
+                                '# 概述\n' +
                                 '```js\n' +
                                 'function main() {\n' +
-                                '   return 0;\n' +
+                                '   return  0;\n' +
                                 '}\n' +
-                                '```\n'
+                                '```\n' +
+                                '> 这是一段引用\n' +
+                                '\n' +
+                                '[hello](#)\n' +
+                                '\n' +
+                                '| Feature | Support |\n' +
+                                '| ------ | ----------- |\n' +
+                                '| tables | ✔ |\n' +
+                                '| alignment | ✔ |\n' +
+                                '| wewt | ✔ |'
                             }/>
                     </div>
                 </Col>

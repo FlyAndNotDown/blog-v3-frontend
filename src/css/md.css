@@ -1,34 +1,103 @@
 /**************************** Markdown - 描述 ****************************/
 div.md-description {
     color: grey;
-    font-size: 17px;
+    font-size: 20px;
+}
+
+
+div.md-description a {
+    color: grey;
+}
+
+div.md-description a:hover {
+    color: #40a9ff;
+}
+
+div.md-description p {
+    color: grey;
+    font-size: 20px;
+    margin-bottom: 5px;
 }
 
 div.md-description h1 {
     color: grey;
     font-size: 30px;
+    margin-bottom: 5px;
 }
 
 div.md-description h2 {
     color: grey;
     font-size: 25px;
+    margin-bottom: 5px;
 }
 
 div.md-description h3 {
     color: grey;
     font-size: 20px;
+    margin-bottom: 5px;
 }
 
 div.md-description h4 {
     color: grey;
     font-size: 20px;
+    margin-bottom: 5px;
 }
 
 div.md-description h5 {
     color: grey;
     font-size: 20px;
+    margin-bottom: 5px;
 }
 
 div.md-description h6 {
+    color: grey;
     font-size: 20px;
+    margin-bottom: 5px;
+}
+
+div.md-description pre {
+    background-color: #eaeaea;
+    padding: 15px;
+    margin-bottom: 5px;
+}
+
+div.md-description code {
+    background-color: #eaeaea;
+    font-size: 18px;
+    padding: 5px 0;
+}
+
+div.md-description blockquote {
+    font-size: 20px;
+    padding: 5px 15px;
+    border-left: 3px solid #ccc;
+    background-color:#f1f1f1;
+    margin-bottom: 5px;
+}
+
+div.md-description blockquote p {
+    margin-bottom: 0;
+}
+
+div.md-description table {
+    border-collapse: collapse;
+    display: table;
+    border-spacing: 2px;
+    border-color: grey;
+}
+
+div.md-description th {
+    border: 1px solid #d4d4d4;
+    font-weight: normal;
+    padding: 5px 10px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+div.md-description td {
+    border: 1px solid #d4d4d4;
+    font-weight: normal;
+    padding: 5px 10px;
+    vertical-align: middle;
+    text-align: center;
 }
