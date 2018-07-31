@@ -5,7 +5,7 @@ import { Header } from "../component/block/header";
 import headerBg from '../img/header-bg.jpg';
 import QueueAnimation from 'rc-queue-anim';
 import { HostInfo } from "../component/block/host-info";
-import {PostList} from "../component/block/post-list";
+import {ItemList} from "../component/block/item-list";
 
 /**
  * 页面组件 - /
@@ -68,7 +68,7 @@ export class IndexPage extends React.Component {
                                 md={{ span: 0, offset: 0 }}
                                 lg={{ span: 0, offset: 0 }}
                                 xl={{ span: 12, offset: 0 }}>
-                                <PostList className={'ml-10px'}/>
+                                <ItemList className={'ml-20px'}/>
                             </Col>
                         </Row>
                     </BgColorNoneLayout>

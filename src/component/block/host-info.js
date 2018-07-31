@@ -66,6 +66,16 @@ export class HostInfo extends React.Component {
                         </Link>
                     </div>
                     <Divider/>
+                    <div className={'text-align-center font-size-20px'}>
+                        <Link to={'#'} className={'color-grey text-decoration-none'}>
+                            留言
+                        </Link>
+                        &nbsp;|&nbsp;
+                        <Link to={'#'} className={'color-grey text-decoration-none'}>
+                            朋友
+                        </Link>
+                    </div>
+                    <Divider/>
                     <div className={'text-align-center font-size-30px'}>
                         <Link to={'#'} className={'color-grey text-decoration-none'}>
                             <Icon type={'github'}/>

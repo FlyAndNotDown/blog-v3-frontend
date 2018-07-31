@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'antd';
+import { Row, Col, Icon } from 'antd';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 
@@ -38,24 +38,29 @@ export class Post extends React.Component {
                         <ReactMarkdown
                             className={'md-description'}
                             source={
-                                '# 测试标题1\n' +
-                                'hell world\n' +
-                                '# 概述\n' +
-                                '```js\n' +
-                                'function main() {\n' +
-                                '   return  0;\n' +
-                                '}\n' +
-                                '```\n' +
-                                '> 这是一段引用\n' +
-                                '\n' +
-                                '[hello](#)\n' +
-                                '\n' +
-                                '| Feature | Support |\n' +
-                                '| ------ | ----------- |\n' +
-                                '| tables | ✔ |\n' +
-                                '| alignment | ✔ |\n' +
-                                '| wewt | ✔ |'
+                                '这是测试描述哦这是测试描述哦这是测试描述哦这是测试描述哦这是测试描述哦' +
+                                '这是测试描述哦这是测试描述哦这是测试描述哦这是测试描述哦这是测试描述哦'
                             }/>
+                    </div>
+                    <div>
+                        <span className={'float-left font-size-20px color-second'}>
+                            <Icon type={'clock-circle-o'}/>
+                            &nbsp;{this.props.time}
+                        </span>
+                        <span className={'float-right font-size-20px color-second'}>
+                            {this.props.tags ? (
+                                this.props.tags.map((item, no) => {
+                                    return (
+                                        <Link
+                                            to={'#'}
+                                            className={'color-second text-decoration-none'}
+                                            key={no}>
+                                            #{item.name}
+                                        </Link>
+                                    );
+                                })
+                            ) : '没有标签'}
+                        </span>
                     </div>
                 </Col>
             </Row>

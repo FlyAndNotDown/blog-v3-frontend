@@ -112,6 +112,14 @@ body {
     padding: 0 auto;
 }
 
+.p-20px {
+    padding: 20px
+}
+
+.p-0-60px {
+    padding: 0 60px;
+}
+
 .pt-0 {
     padding-top: 0;
 }
