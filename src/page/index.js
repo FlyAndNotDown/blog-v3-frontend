@@ -1,10 +1,10 @@
 import React from 'react';
 import { BgColorNoneLayout } from "../component/layout/bg-color-none-layout";
-import { Row, Col, Avatar } from 'antd';
+import { Row, Col } from 'antd';
 import { Header } from "../component/block/header";
 import headerBg from '../img/header-bg.jpg';
-import avatar from '../img/avatar.jpg';
 import QueueAnimation from 'rc-queue-anim';
+import { HostInfo } from "../component/block/host-info";
 
 /**
  * 页面组件 - /
@@ -38,10 +38,6 @@ export class IndexPage extends React.Component {
                             to: '#',
                             name: 'Kindem的博客'
                         }}
-                        rightLink={{
-                            to: '#',
-                            name: '关于'
-                        }}
                         main={{
                             mt: '80px',
                             lines: [(
@@ -57,11 +53,42 @@ export class IndexPage extends React.Component {
                     <BgColorNoneLayout
                         key={'context'}>
                         <Row>
-                            <Col>
+                            <Col
+                                xs={{ span: 0, offset: 0 }}
+                                sm={{ span: 0, offset: 0 }}
+                                md={{ span: 0, offset: 0 }}
+                                lg={{ span: 0, offset: 0 }}
+                                xl={{ span: 6, offset: 0 }}>
+                                <HostInfo className={'float-right mr-20px'}/>
+                            </Col>
+                            <Col
+                                xs={{ span: 0, offset: 0 }}
+                                sm={{ span: 0, offset: 0 }}
+                                md={{ span: 0, offset: 0 }}
+                                lg={{ span: 0, offset: 0 }}
+                                xl={{ span: 16, offset: 0 }}
+                                className={'bg-color-red'}>
+
                             </Col>
                         </Row>
                     </BgColorNoneLayout>
                 </QueueAnimation>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
             </BgColorNoneLayout>
         );
 

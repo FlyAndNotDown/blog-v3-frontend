@@ -104,6 +104,22 @@ body {
     padding: 0 auto;
 }
 
+.pt-0 {
+    padding-top: 0;
+}
+
+.pt-10px {
+    padding-top: 10px;
+}
+
+.pb-0 {
+    padding-bottom: 0;
+}
+
+.pb-10px {
+    padding-bottom: 10px;
+}
+
 .m-0-auto {
     margin: 0 auto;
 }
@@ -118,6 +134,14 @@ body {
 
 .mt-20px {
     margin-top: 20px;
+}
+
+.mt-30px {
+    margin-top: 30px;
+}
+
+.mt-40px {
+    margin-top: 40px;
 }
 
 .mt-50px {
@@ -167,6 +191,18 @@ body {
 
 .w-100px {
     width: 100px;
+}
+
+.w-200px {
+    width: 200px;
+}
+
+.w-250px {
+    width: 250px;
+}
+
+.w-300px {
+    width: 300px;
 }
 
 .h-80 {
