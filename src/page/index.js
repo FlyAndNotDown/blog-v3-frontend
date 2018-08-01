@@ -2,7 +2,7 @@ import React from 'react';
 import { BgColorNoneLayout } from "../component/layout/bg-color-none-layout";
 import { Row, Col } from 'antd';
 import { Header } from "../component/block/header";
-import headerBg from '../img/header-bg.jpg';
+import headerBg from '../img/header-bg-1.jpeg';
 import QueueAnimation from 'rc-queue-anim';
 import { HostInfo } from "../component/block/host-info";
 import {ItemList} from "../component/block/item-list";
@@ -67,7 +67,7 @@ export class IndexPage extends React.Component {
                                 sm={{ span: 0, offset: 0 }}
                                 md={{ span: 0, offset: 0 }}
                                 lg={{ span: 0, offset: 0 }}
-                                xl={{ span: 12, offset: 0 }}>
+                                xl={{ span: 13, offset: 0 }}>
                                 <ItemList className={'ml-20px'}/>
                             </Col>
                         </Row>
