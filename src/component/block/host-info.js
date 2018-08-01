@@ -93,15 +93,6 @@ export class HostInfo extends React.Component {
                             <Icon type={'alipay-circle'}/>
                         </Link>
                     </div>
-                    <Divider/>
-                    <div className={'text-align-center color-grey font-size-15px'}>
-                        <Link to={'#'} className={'color-grey text-decoration-none'}>
-                            Ant-Design
-                        </Link>&nbsp;强力驱动
-                    </div>
-                    <div className={'text-align-center color-grey font-size-15px'}>
-                        ©&nbsp;2018&nbsp;kindemh.cn
-                    </div>
                 </Col>
             </Row>
         );

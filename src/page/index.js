@@ -6,6 +6,7 @@ import headerBg from '../img/header-bg-1.jpeg';
 import QueueAnimation from 'rc-queue-anim';
 import { HostInfo } from "../component/block/host-info";
 import {ItemList} from "../component/block/item-list";
+import {Footer} from "../component/block/footer";
 
 /**
  * 页面组件 - /
@@ -73,22 +74,7 @@ export class IndexPage extends React.Component {
                         </Row>
                     </BgColorNoneLayout>
                 </QueueAnimation>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
+                <Footer/>
             </BgColorNoneLayout>
         );
 

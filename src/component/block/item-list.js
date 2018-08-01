@@ -6,7 +6,7 @@ import { Message } from "./message";
 
 export class ItemList extends React.Component {
 
-    static defaultClassName = '';
+    static defaultClassName = 'mb-20px';
 
     constructor(props) {
 
@@ -82,6 +82,23 @@ export class ItemList extends React.Component {
                             short: 'test',
                             name: '测试'
                         }]}/>
+                    <Divider/>
+                    <Post
+                        title={'你好世界'}
+                        time={'2018.7.13'}
+                        tags={[{
+                            short: 'test',
+                            name: '测试'
+                        }]}/>
+                    <Divider/>
+                    <Post
+                        title={'你好世界'}
+                        time={'2018.7.13'}
+                        tags={[{
+                            short: 'test',
+                            name: '测试'
+                        }]}/>
+
                 </Col>
             </Row>
         );
