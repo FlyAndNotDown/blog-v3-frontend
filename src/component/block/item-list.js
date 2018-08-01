@@ -1,6 +1,6 @@
 import React from 'react';
 import { Post } from "./post";
-import { Row, Col, Divider } from 'antd';
+import { Row, Col, Divider, Pagination } from 'antd';
 import { CssTool } from "../../tool/css";
 import { Message } from "./message";
 
@@ -99,6 +99,9 @@ export class ItemList extends React.Component {
                             name: '测试'
                         }]}/>
 
+                    <div className={'text-align-center mt-40px'}>
+                        <Pagination size={'small'} total={100}/>
+                    </div>
                 </Col>
             </Row>
         );
