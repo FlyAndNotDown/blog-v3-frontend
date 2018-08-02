@@ -48,7 +48,7 @@ export class Header extends React.Component {
         // 链接行
         let linkRow = (
             <Row className={'mt-20px'}>
-                <QueueAnimation delay={300}>
+                <QueueAnimation delay={500}>
                     <span
                         key={'nav-l'}
                         className={'float-left'}>

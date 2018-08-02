@@ -32,7 +32,7 @@ export class IndexPage extends React.Component {
 
         return (
             <BgColorNoneLayout>
-                <QueueAnimation delay={300}>
+                <QueueAnimation delay={500}>
                     <Header
                         key={'header'}
                         bg={headerBg}
@@ -73,8 +73,8 @@ export class IndexPage extends React.Component {
                             </Col>
                         </Row>
                     </BgColorNoneLayout>
+                    <Footer key={'footer'}/>
                 </QueueAnimation>
-                <Footer/>
             </BgColorNoneLayout>
         );
 
