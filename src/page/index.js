@@ -1,6 +1,6 @@
 import React from 'react';
 import { BgColorNoneLayout } from "../component/layout/bg-color-none-layout";
-import { Row, Col } from 'antd';
+import { Row, Col, Divider } from 'antd';
 import { Header } from "../component/block/header";
 import headerBg from '../img/header-bg-1.jpeg';
 import QueueAnimation from 'rc-queue-anim';
@@ -59,17 +59,26 @@ export class IndexPage extends React.Component {
                                 xs={{ span: 0, offset: 0 }}
                                 sm={{ span: 0, offset: 0 }}
                                 md={{ span: 0, offset: 0 }}
-                                lg={{ span: 0, offset: 0 }}
+                                lg={{ span: 7, offset: 0 }}
                                 xl={{ span: 7, offset: 0 }}>
                                 <HostInfo className={'float-right mr-20px'}/>
                             </Col>
                             <Col
-                                xs={{ span: 0, offset: 0 }}
-                                sm={{ span: 0, offset: 0 }}
-                                md={{ span: 0, offset: 0 }}
-                                lg={{ span: 0, offset: 0 }}
+                                xs={{ span: 24, offset: 0 }}
+                                sm={{ span: 24, offset: 0 }}
+                                md={{ span: 24, offset: 0 }}
+                                lg={{ span: 13, offset: 0 }}
                                 xl={{ span: 13, offset: 0 }}>
-                                <ItemList className={'ml-20px'}/>
+                                <ItemList className={'ml-20px mr-20px'}/>
+                            </Col>
+                            <Col
+                                xs={{ span: 24, offset: 0 }}
+                                sm={{ span: 24, offset: 0 }}
+                                md={{ span: 24, offset: 0 }}
+                                lg={{ span: 0, offset: 0 }}
+                                xl={{ span: 0, offset: 0 }}>
+                                <Divider/>
+                                <HostInfo className={'m-0-auto mt-20px'}/>
                             </Col>
                         </Row>
                     </BgColorNoneLayout>
