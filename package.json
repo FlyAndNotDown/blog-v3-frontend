@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "babel-plugin-import": "^1.8.0",
+    "mockjs": "^1.0.1-beta3",
     "react-app-rewired": "^1.5.2"
   }
 }
