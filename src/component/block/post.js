@@ -29,7 +29,7 @@ export class Post extends React.Component {
         return (
             <Row>
                 <Col>
-                    <div className={'color-primary font-size-40px'}>
+                    <div className={'color-primary font-size-35px'}>
                         <Link to={'#'} className={'color-primary text-decoration-none'}>
                             {this.props.title}
                         </Link>
