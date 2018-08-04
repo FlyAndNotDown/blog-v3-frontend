@@ -30,7 +30,7 @@ export class Post extends React.Component {
             <Row>
                 <Col>
                     <div className={'color-primary font-size-40px'}>
-                        <Link to={'#'} className={'color-primary'}>
+                        <Link to={'#'} className={'color-primary text-decoration-none'}>
                             {this.props.title}
                         </Link>
                     </div>

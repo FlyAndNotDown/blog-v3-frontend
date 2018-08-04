@@ -48,7 +48,7 @@ export class IndexPage extends React.Component {
                                 </div>
                             ), (
                                 <div className={'text-align-center color-white font-size-35px'}>
-                                    岁月寻常，负码前端行
+                                    岁月寻常，负重而行
                                 </div>
                             )]
                         }}/>
