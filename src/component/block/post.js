@@ -7,7 +7,7 @@ import ReactMarkdown from 'react-markdown';
  * Post - 文章
  * @props title - 标题
  * @props description - 描述
- * @props time - 时间
+ * @props date - 时间
  * @props tags - 标签
  *      JSON arr
  *      - JSON obj
@@ -45,7 +45,7 @@ export class Post extends React.Component {
                     <div>
                         <span className={'float-left font-size-20px color-second'}>
                             <Icon type={'clock-circle-o'}/>
-                            &nbsp;{this.props.time}
+                            &nbsp;{this.props.date}
                         </span>
                         <span className={'float-right font-size-20px color-second'}>
                             {this.props.tags ? (
@@ -55,7 +55,7 @@ export class Post extends React.Component {
                                             to={'#'}
                                             className={'color-second text-decoration-none'}
                                             key={no}>
-                                            #{item.name}
+                                            #{item.name}&nbsp;
                                         </Link>
                                     );
                                 })

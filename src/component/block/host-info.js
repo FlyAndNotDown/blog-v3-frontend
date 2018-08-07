@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 
 /**
  * HostInfo - 主人信息块
+ * @props hostName: 主人名字
+ * @props description: 描述
  */
 export class HostInfo extends React.Component {
 
@@ -32,10 +34,10 @@ export class HostInfo extends React.Component {
                             className={'w-100 h-auto'}/>
                     </div>
                     <div className={'color-primary text-align-center font-size-30px mt-10px font-weight-bold'}>
-                        John Kindem
+                        {this.props.hostName}
                     </div>
                     <div className={'text-align-center font-size-20px pt-0 color-grey font-weight-bold'}>
-                        进击的前端狗
+                        {this.props.description}
                     </div>
                     <Divider/>
                     <div className={'text-align-center font-size-20px'}>

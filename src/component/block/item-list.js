@@ -4,6 +4,10 @@ import { Row, Col, Divider, Pagination } from 'antd';
 import { CssTool } from "../../tool/css";
 import { Message } from "./message";
 
+/**
+ * ItemList - 主页元素列表
+ * @props items: 各种元素
+ */
 export class ItemList extends React.Component {
 
     static defaultClassName = 'mb-20px';
@@ -21,84 +25,33 @@ export class ItemList extends React.Component {
         return (
             <Row className={CssTool.combClassName(ItemList.defaultClassName, this.props.className)}>
                 <Col>
-                    <Post
-                        title={'你好世界'}
-                        time={'2018.7.13'}
-                        tags={[{
-                            short: 'test',
-                            name: '测试'
-                        }]}/>
-                    <Divider/>
-                    <Post
-                        title={'你好世界'}
-                        time={'2018.7.13'}
-                        tags={[{
-                            short: 'test',
-                            name: '测试'
-                        }]}/>
-                    <Divider/>
-                    <Message
-                        text={
-                            '我只是觉得吧，这个世界太真实'
+                    {this.props.items.map((item, key) => {
+                        switch (item.type) {
+                            case 'post':
+                                return (
+                                    <div>
+                                        <Post
+                                            key={key}
+                                            title={item.title}
+                                            date={item.date}
+                                            tags={item.tags}/>
+                                        {key < this.props.items.length - 1 ? <Divider/> : null}
+                                    </div>
+                                );
+                            case 'message':
+                                return (
+                                    <div>
+                                        <Message
+                                            key={key}
+                                            text={item.text}
+                                            date={item.date}/>
+                                        {key < this.props.items.length - 1 ? <Divider/> : null}
+                                    </div>
+                                );
+                            default:
+                                return null;
                         }
-                        time={'2018.7.13'}/>
-                    <Divider/>
-                    <Post
-                        title={'你好世界'}
-                        time={'2018.7.13'}
-                        tags={[{
-                            short: 'test',
-                            name: '测试'
-                        }]}/>
-                    <Divider/>
-                    <Post
-                        title={'你好世界'}
-                        time={'2018.7.13'}
-                        tags={[{
-                            short: 'test',
-                            name: '测试'
-                        }]}/>
-                    <Divider/>
-                    <Post
-                        title={'你好世界'}
-                        time={'2018.7.13'}
-                        tags={[{
-                            short: 'test',
-                            name: '测试'
-                        }]}/>
-                    <Divider/>
-                    <Post
-                        title={'你好世界'}
-                        time={'2018.7.13'}
-                        tags={[{
-                            short: 'test',
-                            name: '测试'
-                        }]}/>
-                    <Divider/>
-                    <Post
-                        title={'你好世界'}
-                        time={'2018.7.13'}
-                        tags={[{
-                            short: 'test',
-                            name: '测试'
-                        }]}/>
-                    <Divider/>
-                    <Post
-                        title={'你好世界'}
-                        time={'2018.7.13'}
-                        tags={[{
-                            short: 'test',
-                            name: '测试'
-                        }]}/>
-                    <Divider/>
-                    <Post
-                        title={'你好世界'}
-                        time={'2018.7.13'}
-                        tags={[{
-                            short: 'test',
-                            name: '测试'
-                        }]}/>
-
+                    })}
                     <div className={'text-align-center mt-40px'}>
                         <Pagination size={'small'} total={100}/>
                     </div>
