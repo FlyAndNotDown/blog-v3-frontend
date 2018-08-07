@@ -36,7 +36,7 @@ export class Post extends React.Component {
                     </div>
                     <div className={'font-size-20px'}>
                         <ReactMarkdown
-                            className={'md-description'}
+                            className={'md-inline'}
                             source={
                                 '这是测试描述哦这是测试描述哦这是测试描述哦这是测试描述哦这是测试描述哦' +
                                 '这是测试描述哦这是测试描述哦这是测试描述哦这是测试描述哦这是测试描述哦'

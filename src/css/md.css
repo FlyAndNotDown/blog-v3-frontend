@@ -1,73 +1,73 @@
 /**************************** Markdown - 描述 ****************************/
-div.md-description {
+div.md-inline {
     color: grey;
     font-size: 20px;
 }
 
 
-div.md-description a {
+div.md-inline a {
     color: grey;
 }
 
-div.md-description a:hover {
+div.md-inline a:hover {
     color: #40a9ff;
 }
 
-div.md-description p {
+div.md-inline p {
     color: grey;
     font-size: 20px;
     margin-bottom: 5px;
 }
 
-div.md-description h1 {
+div.md-inline h1 {
     color: grey;
     font-size: 30px;
     margin-bottom: 5px;
 }
 
-div.md-description h2 {
+div.md-inline h2 {
     color: grey;
     font-size: 25px;
     margin-bottom: 5px;
 }
 
-div.md-description h3 {
+div.md-inline h3 {
     color: grey;
     font-size: 20px;
     margin-bottom: 5px;
 }
 
-div.md-description h4 {
+div.md-inline h4 {
     color: grey;
     font-size: 20px;
     margin-bottom: 5px;
 }
 
-div.md-description h5 {
+div.md-inline h5 {
     color: grey;
     font-size: 20px;
     margin-bottom: 5px;
 }
 
-div.md-description h6 {
+div.md-inline h6 {
     color: grey;
     font-size: 20px;
     margin-bottom: 5px;
 }
 
-div.md-description pre {
+div.md-inline pre {
     background-color: #eaeaea;
     padding: 15px;
     margin-bottom: 5px;
 }
 
-div.md-description code {
+div.md-inline code {
     background-color: #eaeaea;
     font-size: 18px;
     padding: 5px 0;
 }
 
-div.md-description blockquote {
+div.md-inline blockquote {
     font-size: 20px;
     padding: 5px 15px;
     border-left: 3px solid #ccc;
@@ -75,18 +75,18 @@ div.md-description blockquote {
     margin-bottom: 5px;
 }
 
-div.md-description blockquote p {
+div.md-inline blockquote p {
     margin-bottom: 0;
 }
 
-div.md-description table {
+div.md-inline table {
     border-collapse: collapse;
     display: table;
     border-spacing: 2px;
     border-color: grey;
 }
 
-div.md-description th {
+div.md-inline th {
     border: 1px solid #d4d4d4;
     font-weight: normal;
     padding: 5px 10px;
@@ -94,7 +94,7 @@ div.md-description th {
     text-align: center;
 }
 
-div.md-description td {
+div.md-inline td {
     border: 1px solid #d4d4d4;
     font-weight: normal;
     padding: 5px 10px;
