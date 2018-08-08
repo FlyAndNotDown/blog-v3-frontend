@@ -34,6 +34,10 @@ export class MockTool {
                         id: 2,
                         name: '运维'
                     }]
+                }, {
+                    type: 'message',
+                    text: '今天，Kindem的博客凤凰涅槃了',
+                    date: '2018.8.8'
                 }]
             }
         });

@@ -35,7 +35,7 @@ export class ItemList extends React.Component {
                                             title={item.title}
                                             date={item.date}
                                             tags={item.tags}/>
-                                        {key < this.props.items.length - 1 ? <Divider/> : null}
+                                        {key < this.props.items.length - 1 ? <Divider/> : <br/>}
                                     </div>
                                 );
                             case 'message':
@@ -45,7 +45,7 @@ export class ItemList extends React.Component {
                                             key={key}
                                             text={item.text}
                                             date={item.date}/>
-                                        {key < this.props.items.length - 1 ? <Divider/> : null}
+                                        {key < this.props.items.length - 1 ? <Divider/> : <br/>}
                                     </div>
                                 );
                             default:
