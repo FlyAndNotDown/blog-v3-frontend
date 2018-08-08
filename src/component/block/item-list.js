@@ -32,6 +32,7 @@ export class ItemList extends React.Component {
                                     <div>
                                         <Post
                                             key={key}
+                                            id={item.id}
                                             title={item.title}
                                             date={item.date}
                                             tags={item.tags}/>
@@ -43,6 +44,7 @@ export class ItemList extends React.Component {
                                     <div>
                                         <Message
                                             key={key}
+                                            id={item.id}
                                             text={item.text}
                                             date={item.date}/>
                                         {key < this.props.items.length - 1 ? <Divider/> : <br/>}

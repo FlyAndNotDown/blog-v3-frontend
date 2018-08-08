@@ -22,6 +22,7 @@ export class MockTool {
                 },
                 itemList: [{
                     type: 'post',
+                    id: 12,
                     title: '你好世界',
                     description: '这是描述这是描述这是描述这是描述这是描述这是描述这是描述这是描述这是描述' +
                         '这是描述这是描述这是描述这是描述这是描述这是描述这是描述这是描述这是描述这是描述' +
@@ -36,6 +37,7 @@ export class MockTool {
                     }]
                 }, {
                     type: 'message',
+                    id: 10,
                     text: '今天，Kindem的博客凤凰涅槃了',
                     date: '2018.8.8'
                 }]

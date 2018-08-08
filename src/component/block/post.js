@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 
 /**
  * Post - 文章
+ * @props id - 文章 id
  * @props title - 标题
  * @props description - 描述
  * @props date - 时间
@@ -30,7 +31,7 @@ export class Post extends React.Component {
             <Row>
                 <Col>
                     <div className={'color-primary font-size-35px'}>
-                        <Link to={'#'} className={'color-primary text-decoration-none'}>
+                        <Link to={`/post/${this.props.id}`} className={'color-primary text-decoration-none'}>
                             {this.props.title}
                         </Link>
                     </div>
