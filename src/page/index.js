@@ -38,7 +38,6 @@ export class IndexPage extends React.Component {
                         loadDown: true,
                         data: response.data.data
                     });
-                    console.log(this.state);
                 }
             });
 

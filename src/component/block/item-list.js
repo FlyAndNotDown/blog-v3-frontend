@@ -29,9 +29,8 @@ export class ItemList extends React.Component {
                         switch (item.type) {
                             case 'post':
                                 return (
-                                    <div>
+                                    <div key={key}>
                                         <Post
-                                            key={key}
                                             id={item.id}
                                             title={item.title}
                                             date={item.date}
@@ -41,9 +40,8 @@ export class ItemList extends React.Component {
                                 );
                             case 'message':
                                 return (
-                                    <div>
+                                    <div key={key}>
                                         <Message
-                                            key={key}
                                             id={item.id}
                                             text={item.text}
                                             date={item.date}/>
