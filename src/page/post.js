@@ -5,7 +5,8 @@ import postBg from '../img/header-bg.jpg';
 import { Header } from "../component/block/header";
 import QueueAnimation from 'rc-queue-anim';
 import { Footer } from "../component/block/footer";
-import { Icon } from 'antd';
+import { Icon, Row, Col } from 'antd';
+import ReactMarkdown from 'react-markdown';
 
 export class PostPage extends React.Component {
 
@@ -52,7 +53,16 @@ export class PostPage extends React.Component {
                             )]
                         }}/>
                     <BgColorNoneLayout key={'body'}>
-
+                        <Row className={'mt-10px'}>
+                            <Col>
+                                <ReactMarkdown
+                                    className={'md'}
+                                    source={
+                                        '#  title 1\n' +
+                                        '你好世界'
+                                    }/>
+                            </Col>
+                        </Row>
                     </BgColorNoneLayout>
                     <Footer key={'footer'}/>
                 </QueueAnimation>
