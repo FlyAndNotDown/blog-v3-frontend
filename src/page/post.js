@@ -1,5 +1,6 @@
 import React from 'react';
 import { BgColorNoneLayout } from "../component/layout/bg-color-none-layout";
+import { Link } from 'react-router-dom';
 import postBg from '../img/header-bg.jpg';
 import { Header } from "../component/block/header";
 import QueueAnimation from 'rc-queue-anim';
@@ -36,7 +37,17 @@ export class PostPage extends React.Component {
                                 </div>
                             ), (
                                 <div className={'text-align-center color-white font-size-25px'}>
-                                    #测试&nbsp;#测试&nbsp;#测试
+                                    <Link to={'#'} className={'color-white text-decoration-none'}>
+                                        #测试
+                                    </Link>
+                                    &nbsp;
+                                    <Link to={'#'} className={'color-white text-decoration-none'}>
+                                        #测试
+                                    </Link>
+                                    &nbsp;
+                                    <Link to={'#'} className={'color-white text-decoration-none'}>
+                                        #测试
+                                    </Link>
                                 </div>
                             )]
                         }}/>

@@ -4,8 +4,8 @@ div.md-inline {
     font-size: 20px;
 }
 
-
 div.md-inline a {
+    text-decoration: none;
     color: grey;
 }
 
@@ -71,7 +71,7 @@ div.md-inline blockquote {
     font-size: 20px;
     padding: 5px 15px;
     border-left: 3px solid #ccc;
-    background-color:#f1f1f1;
+    background-color: #f1f1f1;
     margin-bottom: 5px;
 }
 
@@ -95,6 +95,111 @@ div.md-inline th {
 }
 
 div.md-inline td {
+    border: 1px solid #d4d4d4;
+    font-weight: normal;
+    padding: 5px 10px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+div.md {
+    color: #34495e;
+    font-size: 20px;
+}
+
+div.md a {
+    text-decoration: none;
+    color: #42b983;
+    font-weight: 600;
+}
+
+div.md a:hover {
+    text-decoration: none;
+    color: #42b983;
+    font-weight: 600;
+}
+
+div.md p {
+    color: #34495e;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+div.md h1 {
+    color: #2c3e50;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+div.md h2 {
+    color: #2c3e50;
+    font-weight: bold;
+    font-size: 35px;
+}
+
+div.md h3 {
+    color: #2c3e50;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+div.md h4 {
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 30px;
+}
+
+div.md h5 {
+    color: #2c3e50;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+div.md h6 {
+    color: #2c3e50;
+    font-size: 25px;
+}
+
+div.md pre {
+    background-color: #eaeaea;
+    padding: 15px;
+    margin-bottom: 5px;
+}
+
+div.md code {
+    background-color: #eaeaea;
+    font-size: 18px;
+    padding: 5px 0;
+}
+
+div.md blockquote {
+    font-size: 20px;
+    padding: 5px 15px;
+    border-left: 3px solid #42b983;
+    background-color: #f1f1f1;
+    margin-bottom: 5px;
+}
+
+div.md blockquote p {
+    margin-bottom: 0;
+}
+
+div.md table {
+    border-collapse: collapse;
+    display: table;
+    border-spacing: 2px;
+    border-color: grey;
+}
+
+div.md th {
+    border: 1px solid #d4d4d4;
+    font-weight: normal;
+    padding: 5px 10px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+div.md td {
     border: 1px solid #d4d4d4;
     font-weight: normal;
     padding: 5px 10px;
