@@ -1,5 +1,6 @@
 import React from 'react';
 import { KLayout } from "./k-layout";
+import { Avatar } from 'antd';
 
 /**
  * Header 页头组件
@@ -34,9 +35,16 @@ export class Header extends React.Component {
         // 返回渲染结果
         return (
             <KLayout>
-                <img
-                    src={this.props.bgImg}
-                    className={'h-100 object-fit-cover'}/>
+                <div>
+                    <img
+                        src={this.props.bgImg}
+                        className={'position-fixed left-0 w-100 h-100 object-fit-cover'}
+                        alt={'header-bg-img'}/>
+                </div>
+                <div
+                    className={'z-index-1 m-0-auto'}>
+
+                </div>
             </KLayout>
         );
 

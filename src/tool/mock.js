@@ -7,6 +7,8 @@ export class MockTool {
      */
     static start() {
 
+        Mock.mock();
+
     }
 
 }
