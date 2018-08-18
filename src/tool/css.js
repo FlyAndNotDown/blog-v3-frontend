@@ -24,15 +24,19 @@ export class CssTool {
 
         let style = {};
 
-        for (let key in defaultStyle) {
-            if (defaultStyle.hasOwnProperty(key)) {
-                style[key] = defaultStyle[key];
+        if (defaultStyle) {
+            for (let key in defaultStyle) {
+                if (defaultStyle.hasOwnProperty(key)) {
+                    style[key] = defaultStyle[key];
+                }
             }
         }
 
-        for (let key in inputStyle) {
-            if (inputStyle.hasOwnProperty(key)) {
-                style[key] = inputStyle[key];
+        if (inputStyle) {
+            for (let key in inputStyle) {
+                if (inputStyle.hasOwnProperty(key)) {
+                    style[key] = inputStyle[key];
+                }
             }
         }
 

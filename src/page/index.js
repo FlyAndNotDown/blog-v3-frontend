@@ -1,8 +1,8 @@
-// 导入 React 框架核心
 import React from 'react';
+import { BgColorNoneLayout } from "../component/bg-color-none-layout";
 
 /**
- * IndexPage
+ * IndexPage 页面组件 - /
  */
 export class IndexPage extends React.Component {
 
@@ -26,9 +26,9 @@ export class IndexPage extends React.Component {
      */
     render() {
         return (
-            <div>
+            <BgColorNoneLayout>
 
-            </div>
+            </BgColorNoneLayout>
         );
     }
 
