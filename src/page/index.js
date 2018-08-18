@@ -1,5 +1,7 @@
 import React from 'react';
-import { BgColorNoneLayout } from "../component/bg-color-none-layout";
+import { Header } from "../component/header";
+import headerBg from '../img/header-bg-2.png';
+import { KLayout } from "../component/k-layout";
 
 /**
  * IndexPage 页面组件 - /
@@ -26,9 +28,10 @@ export class IndexPage extends React.Component {
      */
     render() {
         return (
-            <BgColorNoneLayout>
-
-            </BgColorNoneLayout>
+            <KLayout>
+                <Header
+                    bgImg={headerBg}/>
+            </KLayout>
         );
     }
 
