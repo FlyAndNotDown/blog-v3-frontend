@@ -1,7 +1,9 @@
 import React from 'react';
 import { Header } from "../component/header";
 import headerBg from '../img/header-bg-2.png';
+import avatar from '../img/avatar.jpg';
 import { KLayout } from "../component/k-layout";
+import { Avatar } from 'antd';
 
 /**
  * IndexPage 页面组件 - /
@@ -29,8 +31,16 @@ export class IndexPage extends React.Component {
     render() {
         return (
             <KLayout>
-                <Header
-                    bgImg={headerBg}/>
+                <Header bgImg={headerBg}>
+                    <div className={'text-align-center'}>
+                        <Avatar
+                            className={'w-100px h-100px'}
+                            src={avatar}/>
+                    </div>
+                    <div className={'text-align-center font-size-xl color-white mt-md'}>
+                        
+                    </div>
+                </Header>
             </KLayout>
         );
     }

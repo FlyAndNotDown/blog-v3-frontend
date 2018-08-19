@@ -261,3 +261,37 @@
 .text-align-center {
     text-align: center;
 }
+
+/* 文字大小 */
+.font-size-xxs {
+    font-size: 10px;
+}
+
+.font-size-xs {
+    font-size: 15px;
+}
+
+.font-size-sm {
+    font-size: 20px;
+}
+
+.font-size-md {
+    font-size: 25px;
+}
+
+.font-size-lg {
+    font-size: 30px;
+}
+
+.font-size-xl {
+    font-size: 35px;
+}
+
+.font-size-xxl {
+    font-size: 40px;
+}
+
+/* 颜色 */
+.color-white {
+    color: white;
+}
