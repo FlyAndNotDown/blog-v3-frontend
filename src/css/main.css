@@ -22,9 +22,25 @@
     width: 100%;
 }
 
+.w-60px {
+    width: 60px;
+}
+
+.w-100px {
+    width: 100px;
+}
+
 /* 高 */
 .h-100 {
     height: 100%;
+}
+
+.h-60px {
+    height: 60px;
+}
+
+.h-100px {
+    height: 100px;
 }
 
 /* 布局 */
@@ -126,6 +142,10 @@
 }
 .mr-xl {
     margin-right: 25px;
+}
+
+.p-0-auto {
+    padding: 0 auto;
 }
 
 .p-0 {
@@ -235,4 +255,9 @@
 
 .z-index-n1 {
     z-index: -1;
+}
+
+/* 文字布局 */
+.text-align-center {
+    text-align: center;
 }

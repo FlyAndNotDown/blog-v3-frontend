@@ -69,7 +69,7 @@ export class KLayout extends React.Component {
             case KLayout.WIDTH_FIXED:
                 CssTool.combStyle(
                     this.__style,
-                    this.props.fixedWidth | KLayout.defaultProps.fixedWidth
+                    this.props.fixedWidth || KLayout.defaultProps.fixedWidth
                 );
                 break;
         }

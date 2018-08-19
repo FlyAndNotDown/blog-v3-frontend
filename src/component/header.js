@@ -1,16 +1,22 @@
 import React from 'react';
 import { KLayout } from "./k-layout";
-import { Avatar } from 'antd';
+import { Row, Col } from 'antd';
 
 /**
  * Header 页头组件
  * @param {string} bgImg 背景图地址
  * @param {string} className css类
+ * @param {string} contextMarginTop 内容距离上边距
+ * @param {string} contextMarginBottom 内容距离下边距
  */
 export class Header extends React.Component {
 
     // 默认 css 类
-    static __defaultClassName = 'w-100';
+    static __DEFAULT_CLASS_NAME = 'w-100';
+    // 默认内容上边距
+    static __DEFAULT_CONTEXT_MARGIN_TOP = '100px';
+    // 默认内容下边距
+    static __DEFAULT_CONTEXT_MARGIN_BOTTOM = '100px';
 
     /**
      * 构造
@@ -41,10 +47,16 @@ export class Header extends React.Component {
                         className={'position-fixed left-0 w-100 h-100 object-fit-cover'}
                         alt={'header-bg-img'}/>
                 </div>
-                <div
-                    className={'z-index-1 m-0-auto'}>
-
-                </div>
+                <Row style={{
+                    marginTop: this.props.contextMarginTop || Header.__DEFAULT_CONTEXT_MARGIN_TOP,
+                    marginBottom: this.props.contextMarginBottom || Header.__DEFAULT_CONTEXT_MARGIN_BOTTOM
+                }}>
+                    <Col>
+                        <div className={'text-align-center'}>
+                            {this.props.children}
+                        </div>
+                    </Col>
+                </Row>
             </KLayout>
         );
 
