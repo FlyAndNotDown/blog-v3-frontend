@@ -38,7 +38,7 @@ export class IndexPage extends React.Component {
                             src={avatar}/>
                     </div>
                     <div className={'text-align-center font-size-xl color-white mt-md'}>
-                        
+
                     </div>
                 </Header>
             </KLayout>
