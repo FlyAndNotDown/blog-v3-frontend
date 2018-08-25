@@ -26,10 +26,6 @@ export class KLayout extends React.Component {
     static WIDTH_MODE_FULL = 1;
     static WIDTH_MODE_FIXED = 2;
 
-    /**
-     * 构造
-     * @param props 属性
-     */
     constructor(props) {
 
         // 调用父类构造函数
@@ -76,10 +72,6 @@ export class KLayout extends React.Component {
 
     }
 
-    /**
-     * 渲染函数
-     * @returns {*} jsx
-     */
     render() {
         return (
             <Layout

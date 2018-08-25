@@ -3,17 +3,14 @@ import { Header } from "../component/header";
 import headerBg from '../img/header-bg-2.png';
 import avatar from '../img/avatar.jpg';
 import { KLayout } from "../component/k-layout";
-import { Avatar } from 'antd';
+import { Avatar, Row, Col } from 'antd';
+import { Nav } from "../component/nav";
 
 /**
  * IndexPage 页面组件 - /
  */
 export class IndexPage extends React.Component {
 
-    /**
-     * 构造
-     * @param props 属性
-     */
     constructor(props) {
 
         // 调用父类构造
@@ -24,10 +21,6 @@ export class IndexPage extends React.Component {
 
     }
 
-    /**
-     * 渲染函数
-     * @returns {*} jsx
-     */
     render() {
         return (
             <KLayout>
@@ -37,10 +30,28 @@ export class IndexPage extends React.Component {
                             className={'w-100px h-100px'}
                             src={avatar}/>
                     </div>
-                    <div className={'text-align-center font-size-xl color-white mt-md'}>
-
+                    <div className={'text-align-center font-size-lg color-white mt-md'}>
+                        Frontend is Code's Expression
                     </div>
                 </Header>
+                <Nav/>
+                <Row className={'bg-color-main'}>
+                    <br/><br/><br/><br/><br/><br/>
+                    <br/><br/><br/><br/><br/><br/>
+                    <br/><br/><br/><br/><br/><br/>
+                    <br/><br/><br/><br/><br/><br/>
+                    <br/><br/><br/><br/><br/><br/>
+                    <br/><br/><br/><br/><br/><br/>
+                    <br/><br/><br/><br/><br/><br/>
+                    <br/><br/><br/><br/><br/><br/>
+                    <br/><br/><br/><br/><br/><br/>
+                    <br/><br/><br/><br/><br/><br/>
+                    <br/><br/><br/><br/><br/><br/>
+                    <br/><br/><br/><br/><br/><br/>
+                    <br/><br/><br/><br/><br/><br/>
+                    <br/><br/><br/><br/><br/><br/>
+                    <br/><br/><br/><br/><br/><br/>
+                </Row>
             </KLayout>
         );
     }

@@ -18,10 +18,6 @@ export class Header extends React.Component {
     // 默认内容下边距
     static __DEFAULT_CONTEXT_MARGIN_BOTTOM = '100px';
 
-    /**
-     * 构造
-     * @param props 组件属性
-     */
     constructor(props) {
 
         // 调用父类构造函数
@@ -32,10 +28,6 @@ export class Header extends React.Component {
 
     }
 
-    /**
-     * 渲染函数
-     * @returns {*} jsx
-     */
     render() {
 
         // 返回渲染结果
