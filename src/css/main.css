@@ -13,6 +13,10 @@ body {
     background-color: rgba(0, 0, 0, 0);
 }
 
+.bg-color-white {
+    background-color: white;
+}
+
 .bg-color-main {
     background-color: #f6f6f6;
 }
@@ -44,12 +48,29 @@ body {
     height: 100%;
 }
 
+.h-40px {
+    height: 40px;
+}
+
 .h-60px {
     height: 60px;
 }
 
+.h-64px {
+    height: 64px;
+}
+
 .h-100px {
     height: 100px;
+}
+
+/* 行高 */
+.lh-40px {
+    line-height: 40px;
+}
+
+.lh-64px {
+    line-height: 64px;
 }
 
 /* 布局 */
@@ -307,4 +328,13 @@ body {
 /* 颜色 */
 .color-white {
     color: white;
+}
+
+.color-grey {
+    color: grey
+}
+
+/* 阴影 */
+.box-shadow-little {
+    box-shadow: 0 1px 3px rgba(26,26,26,.1);
 }

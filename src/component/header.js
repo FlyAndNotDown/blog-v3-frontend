@@ -14,9 +14,9 @@ export class Header extends React.Component {
     // 默认 css 类
     static __DEFAULT_CLASS_NAME = 'w-100';
     // 默认内容上边距
-    static __DEFAULT_CONTEXT_MARGIN_TOP = '100px';
+    static __DEFAULT_CONTEXT_MARGIN_TOP = '200px';
     // 默认内容下边距
-    static __DEFAULT_CONTEXT_MARGIN_BOTTOM = '100px';
+    static __DEFAULT_CONTEXT_MARGIN_BOTTOM = '200px';
 
     constructor(props) {
 

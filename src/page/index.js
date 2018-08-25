@@ -5,6 +5,7 @@ import avatar from '../img/avatar.jpg';
 import { KLayout } from "../component/k-layout";
 import { Avatar, Row, Col } from 'antd';
 import { Nav } from "../component/nav";
+import QueueAnimation from 'rc-queue-anim';
 
 /**
  * IndexPage 页面组件 - /
@@ -25,14 +26,16 @@ export class IndexPage extends React.Component {
         return (
             <KLayout>
                 <Header bgImg={headerBg}>
-                    <div className={'text-align-center'}>
-                        <Avatar
-                            className={'w-100px h-100px'}
-                            src={avatar}/>
-                    </div>
-                    <div className={'text-align-center font-size-lg color-white mt-md'}>
-                        Frontend is Code's Expression
-                    </div>
+                    <QueueAnimation>
+                        <div key={1} className={'text-align-center'}>
+                            <Avatar
+                                className={'w-100px h-100px'}
+                                src={avatar}/>
+                        </div>
+                        <div key={2} className={'text-align-center font-size-lg color-white mt-md'}>
+                            Frontend is Code's Expression
+                        </div>
+                    </QueueAnimation>
                 </Header>
                 <Nav/>
                 <Row className={'bg-color-main'}>
