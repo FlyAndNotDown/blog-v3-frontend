@@ -19,7 +19,8 @@ export class IndexPage extends React.Component {
 
     render() {
         return (
-            <KLayout>
+            <KLayout
+                colorMode={KLayout.COLOR_MODE_NONE}>
                 <NavHeader/>
             </KLayout>
         );
