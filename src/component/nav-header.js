@@ -1,5 +1,5 @@
 import React from 'react';
-import { Affix, Row, Col } from 'antd';
+import { Row, Col } from 'antd';
 import { KLayout } from "./tool/k-layout";
 
 export class NavHeader extends React.Component {
@@ -11,13 +11,7 @@ export class NavHeader extends React.Component {
     render() {
         return (
             <KLayout>
-                <Affix offsetTop={1}>
-                    <Row>
-                        <Col>
-
-                        </Col>
-                    </Row>
-                </Affix>
+                sadas
             </KLayout>
         );
     }
