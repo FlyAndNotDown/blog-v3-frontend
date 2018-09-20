@@ -25,36 +25,7 @@ export class IndexPage extends React.Component {
     render() {
         return (
             <KLayout>
-                <Header bgImg={headerBg}>
-                    <QueueAnimation>
-                        <div key={1} className={'text-align-center'}>
-                            <Avatar
-                                className={'w-100px h-100px'}
-                                src={avatar}/>
-                        </div>
-                        <div key={2} className={'text-align-center font-size-lg color-white mt-md'}>
-                            Frontend is Code's Expression
-                        </div>
-                    </QueueAnimation>
-                </Header>
-                <Nav/>
-                <Row className={'bg-color-main'}>
-                    <br/><br/><br/><br/><br/><br/>
-                    <br/><br/><br/><br/><br/><br/>
-                    <br/><br/><br/><br/><br/><br/>
-                    <br/><br/><br/><br/><br/><br/>
-                    <br/><br/><br/><br/><br/><br/>
-                    <br/><br/><br/><br/><br/><br/>
-                    <br/><br/><br/><br/><br/><br/>
-                    <br/><br/><br/><br/><br/><br/>
-                    <br/><br/><br/><br/><br/><br/>
-                    <br/><br/><br/><br/><br/><br/>
-                    <br/><br/><br/><br/><br/><br/>
-                    <br/><br/><br/><br/><br/><br/>
-                    <br/><br/><br/><br/><br/><br/>
-                    <br/><br/><br/><br/><br/><br/>
-                    <br/><br/><br/><br/><br/><br/>
-                </Row>
+                
             </KLayout>
         );
     }
