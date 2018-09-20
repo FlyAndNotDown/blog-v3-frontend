@@ -11,8 +11,19 @@ export class NavHeader extends React.Component {
     render() {
         return (
             <KLayout
-                colorMode={KLayout.COLOR_MODE_NONE}>
-                sadsa
+                colorMode={KLayout.COLOR_MODE_NONE}
+                className={'pt-md'}>
+                <Affix
+                    offsetTop={0}
+                    onChange={(affixed) => {
+                        console.log(affixed);
+                    }}>
+                    <Row>
+                        <Col>
+                            
+                        </Col>
+                    </Row>
+                </Affix>
             </KLayout>
         );
     }
