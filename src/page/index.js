@@ -1,11 +1,6 @@
 import React from 'react';
-import { Header } from "../component/header";
-import headerBg from '../img/header-bg-2.png';
-import avatar from '../img/avatar.jpg';
-import { KLayout } from "../component/k-layout";
-import { Avatar, Row, Col } from 'antd';
-import { Nav } from "../component/nav";
-import QueueAnimation from 'rc-queue-anim';
+import { KLayout } from "../component/tool/k-layout";
+import { NavHeader } from "../component/nav-header";
 
 /**
  * IndexPage 页面组件 - /
@@ -25,7 +20,7 @@ export class IndexPage extends React.Component {
     render() {
         return (
             <KLayout>
-                
+                <NavHeader/>
             </KLayout>
         );
     }

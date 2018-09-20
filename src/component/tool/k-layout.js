@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout } from 'antd';
-import { CssTool } from "../tool/css";
+import { CssTool } from "../../tool/css";
 
 /**
  * KLayout 自定义 KLayout
