@@ -22,13 +22,10 @@ export class IndexPage extends React.Component {
             <KLayout
                 colorMode={KLayout.COLOR_MODE_NONE}>
                 <NavHeader/>
-                <br/><br/><br/><br/><br/>
-                <br/><br/><br/><br/><br/>
-                <br/><br/><br/><br/><br/>
                 <KLayout
                     colorMode={KLayout.COLOR_MODE_MAIN}
                     className={'z-index-1'} style={{ height: '1000px' }}>
-                    sadsaf
+
                 </KLayout>
             </KLayout>
         );

@@ -186,6 +186,15 @@ body {
     margin-right: 25px;
 }
 
+/* 特殊对齐 */
+.mt-slogan {
+    margin-top: 100px;
+}
+
+.mb-slogan {
+    margin-bottom: 220px;
+}
+
 .p-0-auto {
     padding: 0 auto;
 }
@@ -342,6 +351,11 @@ body {
     color: white;
 }
 
+.color-white-a, .color-white-a:link, .color-white-a:visited, .color-white-a:hover, .color-white-a:link:active {
+    color: white;
+    text-decoration: none;
+}
+
 .color-grey {
     color: grey
 }
@@ -349,4 +363,13 @@ body {
 /* 阴影 */
 .box-shadow-little {
     box-shadow: 0 1px 3px rgba(26,26,26,.1);
+}
+
+/* 浮动 */
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
 }
