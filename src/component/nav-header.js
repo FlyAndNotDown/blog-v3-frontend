@@ -22,7 +22,7 @@ export class NavHeader extends React.Component {
                     <img
                         src={navHeaderBgImg}
                         className={'position-fixed left-0 w-100 h-100 object-fit-cover'}
-                        alt={'nav-header-background-image'}/>
+                        alt={'nav-header-background'}/>
                 </div>
                 <Affix
                     offsetTop={0}
@@ -36,7 +36,7 @@ export class NavHeader extends React.Component {
                             className={'lh-nav-bar'}
                             xs={{ offset: 0, span: 0 }}
                             sm={{ offset: 0, span: 0 }}
-                            md={{ offset: 0, span: 0 }}
+                            md={{ offset: 3, span: 3 }}
                             lg={{ offset: 3, span: 3 }}>
                             <div className={'font-size-md color-white float-left'}>
                                 Kindem
@@ -45,8 +45,8 @@ export class NavHeader extends React.Component {
                         <Col
                             xs={{ offset: 0, span: 0 }}
                             sm={{ offset: 0, span: 0 }}
-                            md={{ offset: 0, span: 0 }}
-                            lg={{ offset: 11, span: 4 }}>
+                            md={{ offset: 6, span: 9 }}
+                            lg={{ offset: 9, span: 6 }}>
                             <div className={'lh-nav-bar float-right'}>
                                 <Link className={'color-white-a font-size-xs'} to={'#'}>归档</Link>
                                 &nbsp;&nbsp;
