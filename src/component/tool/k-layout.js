@@ -13,7 +13,7 @@ export class KLayout extends React.Component {
     // 提供的选项
     // 颜色
     static COLOR_MODE_NONE = 0;
-    static COLOR_MODE_NORMAL = 1;
+    static COLOR_MODE_MAIN = 1;
     // 宽度
     static WIDTH_MODE_NORMAL = 0;
     static WIDTH_MODE_FULL = 1;
@@ -34,7 +34,7 @@ export class KLayout extends React.Component {
         // 构造初始 className 和 style
         this.__className = '';
         this.__style = {};
-        switch (this.props.color) {
+        switch (this.props.colorMode) {
             default:
             case KLayout.COLOR_MODE_NONE:
                 this.__className = CssTool.combClassName(
@@ -42,14 +42,14 @@ export class KLayout extends React.Component {
                     'bg-color-none'
                 );
                 break;
-            case KLayout.COLOR_MODE_NORMAL:
+            case KLayout.COLOR_MODE_MAIN:
                 this.__className = CssTool.combClassName(
                     this.__className,
-                    'bg-color-normal'
+                    'bg-color-main'
                 );
                 break;
         }
-        switch (this.props.width) {
+        switch (this.props.widthMode) {
             default:
             case KLayout.WIDTH_MODE_NORMAL:
                 break;

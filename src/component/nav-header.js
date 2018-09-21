@@ -40,6 +40,11 @@ export class NavHeader extends React.Component {
                         </Col>
                     </Row>
                 </Affix>
+                <Row>
+                    <Col>
+                        
+                    </Col>
+                </Row>
             </KLayout>
         );
     }
