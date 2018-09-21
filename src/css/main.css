@@ -374,3 +374,8 @@ body {
 .float-left {
     float: left;
 }
+
+/* display */
+.display-flex {
+    display: flex;
+}
