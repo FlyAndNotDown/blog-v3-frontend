@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, Divider } from 'antd';
 import { PostBlock } from "./block/post-block";
+import { EmotionBlock } from "./block/emotion-block";
 
 /**
  * BlockList 块列表
@@ -19,9 +20,11 @@ export class BlockList extends React.Component {
                 <Col>
                     <PostBlock/>
                     <Divider/>
-                    <PostBlock/>
+                    <EmotionBlock/>
                     <Divider/>
                     <PostBlock/>
+                    <Divider/>
+                    <EmotionBlock/>
                     <Divider/>
                     <PostBlock/>
                     <Divider/>

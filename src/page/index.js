@@ -2,7 +2,6 @@ import React from 'react';
 import { KLayout } from "../component/tool/k-layout";
 import { NavHeader } from "../component/nav-header";
 import { BlockList } from "../component/block-list";
-import { Row, Col } from "antd";
 
 /**
  * IndexPage 页面组件 - /

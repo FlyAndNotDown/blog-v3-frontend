@@ -29,13 +29,15 @@ export class PostBlock extends React.Component {
                         测试概述测试概述测试概述测试概述测试概述
                         测试概述测试概述测试概述测试概述测试概述
                     </div>
-                    <div className={'font-size-xs mt-sm float-left'}>
-                        <Icon type={'clock-circle-o'}/>
-                        <span className={'pl-xs pr-xs'}>2018-9-21</span>
-                    </div>
-                    <div className={'font-size-xs mt-sm float-right'}>
-                        <Link to={'#'} className={'color-text'}>#标签</Link>&nbsp;
-                        <Link to={'#'} className={'color-text'}>#标签</Link>&nbsp;
+                    <div>
+                        <span className={'font-size-xs mt-sm float-left'}>
+                            <Icon type={'clock-circle-o'}/>
+                            <span className={'pl-xs pr-xs'}>2018-9-21</span>
+                        </span>
+                            <span className={'font-size-xs mt-sm float-right'}>
+                            <Link to={'#'} className={'color-text'}>#标签</Link>&nbsp;
+                                <Link to={'#'} className={'color-text'}>#标签</Link>&nbsp;
+                        </span>
                     </div>
                 </Col>
             </Row>
