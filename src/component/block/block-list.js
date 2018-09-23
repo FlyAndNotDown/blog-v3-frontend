@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Divider, Pagination } from 'antd';
-import { PostBlock } from "./block/post-block";
-import { EmotionBlock } from "./block/emotion-block";
+import { PostBlock } from "./post-block";
+import { EmotionBlock } from "./emotion-block";
 
 /**
  * BlockList 块列表
@@ -40,7 +40,7 @@ export class BlockList extends React.Component {
                     <Divider/>
 
                     <div className={'text-align-center'}>
-                        <Pagination size={'small'} total={'100'} onChange={() => {}}/>
+                        <Pagination size={'small'} total={100} onChange={() => {}}/>
                     </div>
                 </Col>
             </Row>

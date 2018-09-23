@@ -1,7 +1,8 @@
 import React from 'react';
 import { KLayout } from "../component/tool/k-layout";
 import { NavHeader } from "../component/nav-header";
-import { BlockList } from "../component/block-list";
+import { BlockList } from "../component/block/block-list";
+import { Footer } from "../component/footer";
 
 /**
  * IndexPage 页面组件 - /
@@ -28,6 +29,7 @@ export class IndexPage extends React.Component {
                     className={'z-index-1 p-xl'}>
                     <BlockList/>
                 </KLayout>
+                <Footer/>
             </KLayout>
         );
     }
