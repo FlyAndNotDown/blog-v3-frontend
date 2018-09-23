@@ -42,6 +42,14 @@ export class Footer extends React.Component {
                             <Link to={'#'}>
                                 <KIcon type={'k-sf'}/>
                             </Link>
+                            &nbsp;
+                            <Link to={'#'}>
+                                <KIcon type={'k-email'}/>
+                            </Link>
+                            &nbsp;
+                            <Link to={'#'}>
+                                <KIcon type={'k-money'}/>
+                            </Link>
                         </div>
                         <div className={'font-size-xs'}>
                             Theme By
