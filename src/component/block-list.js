@@ -2,6 +2,9 @@ import React from 'react';
 import { Row, Col, Divider } from 'antd';
 import { PostBlock } from "./block/post-block";
 
+/**
+ * BlockList 块列表
+ */
 export class BlockList extends React.Component {
 
     constructor(props) {

@@ -4,6 +4,9 @@ import { KLayout } from "./tool/k-layout";
 import navHeaderBgImg from '../img/header-bg.jpg';
 import { Link } from 'react-router-dom';
 
+/**
+ * NavHeader 导航页头
+ */
 export class NavHeader extends React.Component {
 
     constructor(props) {

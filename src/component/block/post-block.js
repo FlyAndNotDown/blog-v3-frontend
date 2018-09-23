@@ -1,6 +1,9 @@
 import React from 'react';
 import { Row, Col, Icon } from 'antd';
 
+/**
+ * PostBlock 文章块
+ */
 export class PostBlock extends React.Component {
 
     constructor(props) {
