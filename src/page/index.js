@@ -26,17 +26,9 @@ export class IndexPage extends React.Component {
                 <NavHeader/>
                 <KLayout
                     colorMode={KLayout.COLOR_MODE_MAIN}
-                    className={'z-index-1 p-xl'} style={{ height: '1000px' }}>
-                    <Row className={'display-flex'}>
-                        <Col
-                            className={'m-0-auto'}
-                            xs={{ span: 0 }}
-                            sm={{ span: 0 }}
-                            md={{ span: 0 }}
-                            lg={{ span: 14 }}>
-                            <BlockList/>
-                        </Col>
-                    </Row>
+                    className={'z-index-1 p-xl'}
+                    style={{ height: '1000px' }}>
+                    <BlockList/>
                 </KLayout>
             </KLayout>
         );

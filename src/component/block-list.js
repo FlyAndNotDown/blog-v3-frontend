@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'antd';
+import { Row, Col, Divider } from 'antd';
 import { PostBlock } from "./block/post-block";
 
 export class BlockList extends React.Component {
@@ -12,9 +12,14 @@ export class BlockList extends React.Component {
 
     render() {
         return (
-            <Row>
+            <Row className={'w-block-list m-0-auto'}>
                 <Col>
                     <PostBlock/>
+                    <Divider/>
+                    <PostBlock/>
+                    <Divider/>
+                    <PostBlock/>
+                    <Divider/>
                 </Col>
             </Row>
         );

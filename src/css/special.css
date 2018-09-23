@@ -1,0 +1,15 @@
+.bg-color-nav-bar {
+    background-color: #4fc08d;
+}
+
+.lh-nav-bar {
+    line-height: 60px;
+}
+
+.h-nav-bar {
+    height: 60px;
+}
+
+.w-block-list {
+    max-width: 800px;
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Affix, Row, Col } from 'antd';
 import { KLayout } from "./tool/k-layout";
-import navHeaderBgImg from '../img/header-bg-2.png';
+import navHeaderBgImg from '../img/header-bg.jpg';
 import { Link } from 'react-router-dom';
 
 export class NavHeader extends React.Component {
