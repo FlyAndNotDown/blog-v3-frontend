@@ -1,5 +1,6 @@
 import React from 'react';
 import { Row, Col, Icon } from 'antd';
+import { Link } from 'react-router-dom';
 
 /**
  * PostBlock 文章块
@@ -16,7 +17,7 @@ export class PostBlock extends React.Component {
         return (
             <Row className={'mt-md'}>
                 <Col>
-                    <div className={'font-size-lg'}>测试标题</div>
+                    <Link className={'font-size-lg color-black'} to={'#'}>测试标题</Link>
                     <div className={'font-size-xs'}>
                         测试概述测试概述测试概述测试概述测试概述
                         测试概述测试概述测试概述测试概述测试概述
@@ -33,7 +34,8 @@ export class PostBlock extends React.Component {
                         <span className={'pl-xs pr-xs'}>2018-9-21</span>
                     </div>
                     <div className={'font-size-xs mt-sm float-right'}>
-                        #标签 #标签 #标签
+                        <Link to={'#'} className={'color-text'}>#标签</Link>&nbsp;
+                        <Link to={'#'} className={'color-text'}>#标签</Link>&nbsp;
                     </div>
                 </Col>
             </Row>

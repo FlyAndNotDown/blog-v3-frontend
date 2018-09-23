@@ -26,8 +26,7 @@ export class IndexPage extends React.Component {
                 <NavHeader/>
                 <KLayout
                     colorMode={KLayout.COLOR_MODE_MAIN}
-                    className={'z-index-1 p-xl'}
-                    style={{ height: '1000px' }}>
+                    className={'z-index-1 p-xl'}>
                     <BlockList/>
                 </KLayout>
             </KLayout>

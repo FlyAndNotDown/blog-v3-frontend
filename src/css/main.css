@@ -340,6 +340,19 @@ body {
     color: white;
 }
 
+.color-black {
+    color: black;
+}
+
+.color-text {
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.color-text-a, .color-text-a:link, .color-text-a:visited, .color-text-a:hover, .color-text-a:link:active {
+    color: rgba(0, 0, 0, 0.65);
+    text-decoration: none;
+}
+
 .color-white-a, .color-white-a:link, .color-white-a:visited, .color-white-a:hover, .color-white-a:link:active {
     color: white;
     text-decoration: none;

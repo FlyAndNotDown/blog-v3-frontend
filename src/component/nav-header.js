@@ -41,9 +41,9 @@ export class NavHeader extends React.Component {
                             sm={{ offset: 0, span: 0 }}
                             md={{ offset: 3, span: 3 }}
                             lg={{ offset: 3, span: 3 }}>
-                            <div className={'font-size-md color-white float-left'}>
+                            <Link className={'font-size-md color-white float-left color-white-a'} to={'#'}>
                                 Kindem
-                            </div>
+                            </Link>
                         </Col>
                         <Col
                             xs={{ offset: 0, span: 0 }}

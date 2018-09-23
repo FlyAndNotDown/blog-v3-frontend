@@ -23,6 +23,18 @@ export class BlockList extends React.Component {
                     <Divider/>
                     <PostBlock/>
                     <Divider/>
+                    <PostBlock/>
+                    <Divider/>
+                    <PostBlock/>
+                    <Divider/>
+                    <PostBlock/>
+                    <Divider/>
+                    <PostBlock/>
+                    <Divider/>
+                    <PostBlock/>
+                    <Divider/>
+                    <PostBlock/>
+                    <Divider/>
                 </Col>
             </Row>
         );
