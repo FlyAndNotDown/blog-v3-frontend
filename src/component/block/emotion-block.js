@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Icon } from 'antd';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 /**
  * EmotionBlock 说说块
