@@ -10,7 +10,7 @@ import { BlockList } from "../component/block/block-list";
 import { Footer } from "../component/footer";
 
 /**
- * 页面组件 - /
+ * 首页组件 - /
  */
 export class IndexPage extends React.Component {
 
