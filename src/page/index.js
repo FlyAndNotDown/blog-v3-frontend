@@ -37,7 +37,7 @@ export class IndexPage extends React.Component {
      */
     componentDidMount() {
         axios
-            .get(requestConfig.index)
+            .get(requestConfig.home)
             .then((response) => {
                 this.setState({
                     blocks: response.data

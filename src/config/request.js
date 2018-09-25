@@ -6,6 +6,6 @@
 const commonUrlPrefix = '/request/blog';
 
 export default {
-    index: `${commonUrlPrefix}/index`,
+    home: `${commonUrlPrefix}/home`,
     post: `${commonUrlPrefix}/post`
 };
