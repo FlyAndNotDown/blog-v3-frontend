@@ -24,7 +24,22 @@ export class IndexPage extends React.Component {
         super(props);
 
         // 设置组件初始状态
-        this.state = {};
+        this.state = {
+            blocks: [{
+                type: 'post',
+                title: '测试标题',
+                description: '测试描述测试描述测试描述测试描述测试描述测试描述',
+                date: '2018-9-26',
+                labels: [{
+                    name: '标签',
+                    key: 1
+                }]
+            }, {
+                type: 'emotion',
+                context: '今天真是开心的一天呢',
+                date: '2018-9-26'
+            }]
+        };
     }
 
     /**
@@ -45,7 +60,8 @@ export class IndexPage extends React.Component {
                             sm={{ offset: 1, span: 22 }}
                             md={{ offset: 2, span: 20 }}
                             lg={{ offset: 4, span: 16 }}>
-                            <BlockList/>
+                            <BlockList
+                                blocks={this.state.blocks}/>
                         </Col>
                     </Row>
                 </KLayout>

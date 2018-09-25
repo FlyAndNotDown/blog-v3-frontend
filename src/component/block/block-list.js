@@ -44,8 +44,7 @@ export class BlockList extends React.Component {
             <Row className={'w-block-list m-0-auto'}>
                 <Col>
                     {this.props.blocks.map((block, key) => {
-                        switch (block) {
-                            default:
+                        switch (block.type) {
                             case 'post':
                                 return (
                                     <div>
@@ -67,6 +66,8 @@ export class BlockList extends React.Component {
                                         <Divider/>
                                     </div>
                                 );
+                            default:
+                                break;
                         }
                     })}
 
