@@ -68,7 +68,7 @@ export class BlockList extends React.Component {
                                     </div>
                                 );
                             default:
-                                break;
+                                return null;
                         }
                     })}
 

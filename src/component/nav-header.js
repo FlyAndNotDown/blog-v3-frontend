@@ -4,10 +4,9 @@
  */
 
 import React from 'react';
-import { Affix, Row, Col, Dropdown, Menu, Icon } from 'antd';
+import { Affix, Row, Col } from 'antd';
 import { KLayout } from "./tool/k-layout";
 import navHeaderBgImg from '../img/header-bg.jpg';
-import { Link } from 'react-router-dom';
 import { NavBar } from './nav-bar';
 
 /**

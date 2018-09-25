@@ -9,6 +9,9 @@ import { NavHeader } from "../component/nav-header";
 import { BlockList } from "../component/block/block-list";
 import { Footer } from "../component/footer";
 import { Row, Col } from 'antd';
+import axios from 'axios';
+import requestConfig from '../config/request';
+import mainConfig from '../config/main';
 
 /**
  * 首页组件 - /
@@ -25,21 +28,24 @@ export class IndexPage extends React.Component {
 
         // 设置组件初始状态
         this.state = {
-            blocks: [{
-                type: 'post',
-                title: '测试标题',
-                description: '测试描述测试描述测试描述测试描述测试描述测试描述',
-                date: '2018-9-26',
-                labels: [{
-                    name: '标签',
-                    key: 1
-                }]
-            }, {
-                type: 'emotion',
-                context: '今天真是开心的一天呢',
-                date: '2018-9-26'
-            }]
+            blocks: []
         };
+    }
+
+    /**
+     * 组件加载声明周期函数
+     */
+    componentDidMount() {
+        axios
+            .get(requestConfig.index)
+            .then((response) => {
+                this.setState({
+                    blocks: response.data
+                });
+            })
+            .catch((err) => {
+                if (mainConfig.devMode) console.log(err);
+            });
     }
 
     /**
