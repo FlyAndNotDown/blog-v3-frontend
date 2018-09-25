@@ -31,25 +31,16 @@ export class BlockList extends React.Component {
         return (
             <Row className={'w-block-list m-0-auto'}>
                 <Col>
-                    <PostBlock/>
+                    <PostBlock
+                        title={'测试标题'}
+                        description={'测试描述'}
+                        date={'2018-9-26'}
+                        labels={[{
+                            name: 'label',
+                            key: '1'
+                        }]}/>
                     <Divider/>
                     <EmotionBlock/>
-                    <Divider/>
-                    <PostBlock/>
-                    <Divider/>
-                    <EmotionBlock/>
-                    <Divider/>
-                    <PostBlock/>
-                    <Divider/>
-                    <PostBlock/>
-                    <Divider/>
-                    <PostBlock/>
-                    <Divider/>
-                    <PostBlock/>
-                    <Divider/>
-                    <PostBlock/>
-                    <Divider/>
-                    <PostBlock/>
                     <Divider/>
 
                     <div className={'text-align-center'}>
