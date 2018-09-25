@@ -22,6 +22,7 @@ import { EmotionBlock } from "./emotion-block";
  *      @member {string} type 块对象类型
  *      @member {string} context 说说内容
  *      @member {string} date 日期
+ * @props {function} onPageChange 当分页改变的回调
  */
 export class BlockList extends React.Component {
 
@@ -72,7 +73,9 @@ export class BlockList extends React.Component {
                     })}
 
                     <div className={'text-align-center mt-lg'}>
-                        <Pagination size={'small'} total={100} onChange={() => {}}/>
+                        <Pagination size={'small'} total={100} onChange={(page) => {
+                            this.props.onPageChange(page);
+                        }}/>
                     </div>
                 </Col>
             </Row>

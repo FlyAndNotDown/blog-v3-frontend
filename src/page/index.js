@@ -61,7 +61,10 @@ export class IndexPage extends React.Component {
                             md={{ offset: 2, span: 20 }}
                             lg={{ offset: 4, span: 16 }}>
                             <BlockList
-                                blocks={this.state.blocks}/>
+                                blocks={this.state.blocks}
+                                onPageChange={(page) => {
+                                    console.log('page changed:', page);
+                                }}/>
                         </Col>
                     </Row>
                 </KLayout>
