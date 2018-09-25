@@ -8,6 +8,7 @@ import { KLayout } from "../component/tool/k-layout";
 import { NavHeader } from "../component/nav-header";
 import { BlockList } from "../component/block/block-list";
 import { Footer } from "../component/footer";
+import { Row, Col } from 'antd';
 
 /**
  * 首页组件 - /
@@ -38,7 +39,15 @@ export class IndexPage extends React.Component {
                 <KLayout
                     colorMode={KLayout.COLOR_MODE_MAIN}
                     className={'z-index-1 p-xl'}>
-                    <BlockList/>
+                    <Row>
+                        <Col
+                            xs={{ offset: 1, span: 22 }}
+                            sm={{ offset: 1, span: 22 }}
+                            md={{ offset: 2, span: 20 }}
+                            lg={{ offset: 4, span: 16 }}>
+                            <BlockList/>
+                        </Col>
+                    </Row>
                 </KLayout>
                 <Footer/>
             </KLayout>
