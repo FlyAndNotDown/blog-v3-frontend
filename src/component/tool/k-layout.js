@@ -1,9 +1,14 @@
+/**
+ * /component/tool/k-layout.js
+ * @author John Kindem
+ */
+
 import React from 'react';
 import { Layout } from 'antd';
 import { CssTool } from "../../tool/css";
 
 /**
- * KLayout 自定义 KLayout
+ * 自定义布局
  * @param {number} colorMode 颜色
  * @param {number} widthMode 长度
  * @param {number} fixedWidth
@@ -26,8 +31,11 @@ export class KLayout extends React.Component {
         fixedWidth: '1440px'
     };
 
+    /**
+     * 构造
+     * @param {object} props 属性
+     */
     constructor(props) {
-
         // 调用父类构造函数
         super(props);
 
@@ -66,9 +74,12 @@ export class KLayout extends React.Component {
                 );
                 break;
         }
-
     }
 
+    /**
+     * 渲染函数
+     * @return {JSX} 渲染函数
+     */
     render() {
         return (
             <Layout
@@ -86,4 +97,3 @@ export class KLayout extends React.Component {
     }
 
 }
-

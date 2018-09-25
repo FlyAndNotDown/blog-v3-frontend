@@ -1,3 +1,8 @@
+/**
+ * /component/nav-header.js
+ * @author John Kindem
+ */
+
 import React from 'react';
 import { Affix, Row, Col, Dropdown, Menu, Icon } from 'antd';
 import { KLayout } from "./tool/k-layout";
@@ -5,10 +10,14 @@ import navHeaderBgImg from '../img/header-bg.jpg';
 import { Link } from 'react-router-dom';
 
 /**
- * NavHeader 导航页头
+ * 导航页头
  */
 export class NavHeader extends React.Component {
 
+    /**
+     * 构造
+     * @param {object} props 属性
+     */
     constructor(props) {
         super(props);
 
@@ -17,6 +26,10 @@ export class NavHeader extends React.Component {
         };
     }
 
+    /**
+     * 渲染函数
+     * @return {JSX} 渲染结果
+     */
     render() {
         const overlay = (
             <Menu>

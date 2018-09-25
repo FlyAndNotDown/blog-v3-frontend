@@ -1,5 +1,10 @@
 /**
- * css 工具
+ * /tool/css.js
+ * @author John Kindem
+ */
+
+/**
+ * css 工具类
  */
 export class CssTool {
 
@@ -9,10 +14,8 @@ export class CssTool {
      * @param inputClassName
      */
     static combClassName(defaultClassName, inputClassName) {
-
         return inputClassName ?
             `${defaultClassName} ${inputClassName}` : defaultClassName;
-
     }
 
     /**
@@ -21,9 +24,7 @@ export class CssTool {
      * @param inputStyle
      */
     static combStyle(defaultStyle, inputStyle) {
-
         let style = {};
-
         if (defaultStyle) {
             for (let key in defaultStyle) {
                 if (defaultStyle.hasOwnProperty(key)) {
@@ -31,7 +32,6 @@ export class CssTool {
                 }
             }
         }
-
         if (inputStyle) {
             for (let key in inputStyle) {
                 if (inputStyle.hasOwnProperty(key)) {
@@ -39,9 +39,7 @@ export class CssTool {
                 }
             }
         }
-
         return style;
-
     }
 
 }

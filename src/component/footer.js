@@ -1,3 +1,8 @@
+/**
+ * /component/footer.js
+ * @author John Kindem
+ */
+
 import React from 'react';
 import { Row, Col } from 'antd';
 import { KLayout } from "./tool/k-layout";
@@ -5,16 +10,24 @@ import { Link } from 'react-router-dom';
 import { KIcon } from "./tool/k-icon";
 
 /**
- * Footer 页脚组件
+ * 页脚组件
  */
 export class Footer extends React.Component {
 
+    /**
+     * 构造
+     * @param {object} props 属性
+     */
     constructor(props) {
         super(props);
 
         this.state = {};
     }
 
+    /**
+     * 渲染函数
+     * @return {JSX} 渲染结果
+     */
     render() {
         return (
             <KLayout

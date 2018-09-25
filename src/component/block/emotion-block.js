@@ -1,12 +1,21 @@
+/**
+ * /component/block/emotion-block.js
+ * @author John Kindem
+ */
+
 import React from 'react';
 import { Row, Col, Icon } from 'antd';
 import { Link } from "react-router-dom";
 
 /**
- * EmotionBlock 说说块
+ * 说说块
  */
 export class EmotionBlock extends React.Component {
 
+    /**
+     * 构造
+     * @param {object} props 属性
+     */
     constructor(props) {
         super(props);
 

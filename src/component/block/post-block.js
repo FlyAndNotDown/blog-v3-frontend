@@ -1,18 +1,31 @@
+/**
+ * /component/block/post-block.js
+ * @author John Kindem
+ */
+
 import React from 'react';
 import { Row, Col, Icon } from 'antd';
 import { Link } from 'react-router-dom';
 
 /**
- * PostBlock 文章块
+ * 文章块
  */
 export class PostBlock extends React.Component {
 
+    /**
+     * 构造
+     * @param {object} props 属性
+     */
     constructor(props) {
         super(props);
 
         this.state = {};
     }
 
+    /**
+     * 渲染函数
+     * @return {JSX} 渲染结果
+     */
     render() {
         return (
             <Row className={'mt-md'}>

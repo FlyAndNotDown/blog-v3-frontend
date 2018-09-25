@@ -1,3 +1,8 @@
+/**
+ * /page/index.js
+ * @author John Kindem
+ */
+
 import React from 'react';
 import { KLayout } from "../component/tool/k-layout";
 import { NavHeader } from "../component/nav-header";
@@ -5,20 +10,26 @@ import { BlockList } from "../component/block/block-list";
 import { Footer } from "../component/footer";
 
 /**
- * IndexPage 页面组件 - /
+ * 页面组件 - /
  */
 export class IndexPage extends React.Component {
 
+    /**
+     * 构造
+     * @param {object} props 属性
+     */
     constructor(props) {
-
         // 调用父类构造
         super(props);
 
         // 设置组件初始状态
         this.state = {};
-
     }
 
+    /**
+     * 渲染函数
+     * @return {JSX} 渲染函数
+     */
     render() {
         return (
             <KLayout
