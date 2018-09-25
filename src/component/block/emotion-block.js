@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 
 /**
  * 说说块
+ * @props {string} context 说说内容
+ * @props {string} date 说说日期
  */
 export class EmotionBlock extends React.Component {
 
@@ -29,16 +31,18 @@ export class EmotionBlock extends React.Component {
                     <div className={'text-align-center font-size-lg color-black'}>
                         <Icon type={'message'}/>
                     </div>
-                    <div className={'text-align-center font-size-xs'}>
-                        失落到不行的一天，今天非常难受
+                    <div className={'text-align-center font-size-xs mt-sm'}>
+                        {this.props.context}
                     </div>
-                    <div className={'text-align-center'}>
+                    <div className={'text-align-center mt-xs'}>
                         <span className={'font-size-xs mt-sm'}>
                             <Icon type={'clock-circle-o'}/>
-                            <span className={'pl-xs pr-xs'}>2018-9-21</span>
+                            <span className={'pl-xs pr-xs'}>
+                                {this.props.date}
+                            </span>
                         </span>
                         <span className={'font-size-xs mt-sm'}>
-                            <Link to={'#'} className={'color-text'}>#说说</Link>
+                            <Link to={'/emotions'} className={'color-text'}>#说说</Link>
                         </span>
                     </div>
                 </Col>

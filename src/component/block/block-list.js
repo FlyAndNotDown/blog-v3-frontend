@@ -10,6 +10,18 @@ import { EmotionBlock } from "./emotion-block";
 
 /**
  * 块列表
+ * @props {array} blocks 块数组
+ *  @member {object} postBlock 文章块对象
+ *      @member {string} type 块对象类型
+ *      @member {string} title 标题
+ *      @member {string} description 描述
+ *      @member {number} key 文章键
+ *      @member {string} date 日期
+ *      @member {array} labels 标签
+ *  @member {object} emotionBlock 说说块对象
+ *      @member {string} type 块对象类型
+ *      @member {string} context 说说内容
+ *      @member {string} date 日期
  */
 export class BlockList extends React.Component {
 
@@ -31,19 +43,34 @@ export class BlockList extends React.Component {
         return (
             <Row className={'w-block-list m-0-auto'}>
                 <Col>
-                    <PostBlock
-                        title={'测试标题'}
-                        description={'测试描述'}
-                        date={'2018-9-26'}
-                        labels={[{
-                            name: 'label',
-                            key: '1'
-                        }]}/>
-                    <Divider/>
-                    <EmotionBlock/>
-                    <Divider/>
+                    {this.props.blocks.map((block, key) => {
+                        switch (block) {
+                            default:
+                            case 'post':
+                                return (
+                                    <div>
+                                        <PostBlock
+                                            key={block.key}
+                                            title={block.title}
+                                            description={block.description}
+                                            date={block.date}
+                                            labels={block.labels}/>
+                                        <Divider/>
+                                    </div>
+                                );
+                            case 'emotion':
+                                return (
+                                    <div>
+                                        <EmotionBlock
+                                            context={block.context}
+                                            date={block.date}/>
+                                        <Divider/>
+                                    </div>
+                                );
+                        }
+                    })}
 
-                    <div className={'text-align-center'}>
+                    <div className={'text-align-center mt-lg'}>
                         <Pagination size={'small'} total={100} onChange={() => {}}/>
                     </div>
                 </Col>
