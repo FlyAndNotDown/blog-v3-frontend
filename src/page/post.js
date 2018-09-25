@@ -3,7 +3,9 @@
  * @author John Kindem
  */
 
-import react from 'react';
+import React from 'react';
+import { KLayout } from '../component/tool/k-layout';
+import { NavBar } from '../component/nav-bar';
 
 /**
  * 文章页面 - /post/:postId
@@ -25,9 +27,11 @@ export class PostPage extends React.Component {
      */
     render() {
         return (
-            <div>
-
-            </div>
+            <KLayout colorMode={KLayout.COLOR_MODE_MAIN}>
+                <KLayout colorMode={KLayout.COLOR_MODE_NONE}>
+                    <NavBar active={true}/>
+                </KLayout>
+            </KLayout>
         );
     }
 
