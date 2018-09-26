@@ -10,7 +10,7 @@ import { NavBar } from './nav-bar';
 
 /**
  * 导航页头
- * @props {string} bgImg 背景图片
+ * @property {string} bgImg 背景图片
  */
 export class NavHeader extends React.Component {
 

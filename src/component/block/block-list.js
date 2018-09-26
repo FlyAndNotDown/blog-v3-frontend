@@ -10,7 +10,7 @@ import { EmotionBlock } from "./emotion-block";
 
 /**
  * 块列表
- * @props {array} blocks 块数组
+ * @property {array} blocks 块数组
  *  @member {object} postBlock 文章块对象
  *      @member {string} type 块对象类型
  *      @member {string} title 标题
@@ -22,7 +22,7 @@ import { EmotionBlock } from "./emotion-block";
  *      @member {string} type 块对象类型
  *      @member {string} context 说说内容
  *      @member {string} date 日期
- * @props {function} onPageChange 当分页改变的回调
+ * @property {function} onPageChange 当分页改变的回调
  */
 export class BlockList extends React.Component {
 

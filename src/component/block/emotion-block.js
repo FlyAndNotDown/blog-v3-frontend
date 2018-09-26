@@ -9,8 +9,8 @@ import { Link } from "react-router-dom";
 
 /**
  * 说说块
- * @props {string} context 说说内容
- * @props {string} date 说说日期
+ * @property {string} context 说说内容
+ * @property {string} date 说说日期
  */
 export class EmotionBlock extends React.Component {
 

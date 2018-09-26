@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 /**
  * 导航栏组件
- * @props {bool} active 是否激活
+ * @property {bool} active 是否激活
  */
 export class NavBar extends React.Component {
 

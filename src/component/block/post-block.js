@@ -9,11 +9,11 @@ import { Link } from 'react-router-dom';
 
 /**
  * 文章块
- * @props {number} postKey 文章键
- * @props {string} title 标题
- * @props {string} description 描述
- * @props {string} date 日期
- * @props {array} labels 标签
+ * @property {number} postKey 文章键
+ * @property {string} title 标题
+ * @property {string} description 描述
+ * @property {string} date 日期
+ * @property {array} labels 标签
  *  @member {object} label 标签对象
  *      @member {string} name 标签名
  *      @member {string} key 标签键
