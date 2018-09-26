@@ -35,14 +35,45 @@ export class PostPage extends React.Component {
                 </KLayout>
                 <KLayout>
                     <Row>
-                        <Col>
-                            
+                        <Col
+                            xs={{ offset: 1, span: 22 }}
+                            sm={{ offset: 1, span: 22 }}
+                            md={{ offset: 2, span: 20 }}
+                            lg={{ offset: 2, span: 20 }}
+                            xl={{ offset: 3, span: 18 }}
+                            xxl={{ offset: 4, span: 16 }}>
+                            <Row>
+                                <Col
+                                    xs={{ offset: 0, span: 24 }}
+                                    sm={{ offset: 0, span: 24 }}
+                                    md={{ offset: 0, span: 24 }}
+                                    lg={{ offset: 0, span: 16 }}>
+                                    <br/><br/><br/><br/><br/><br/><br/>
+                                    <br/><br/><br/><br/><br/><br/><br/>
+                                    <br/><br/><br/><br/><br/><br/><br/>
+                                    <br/><br/><br/><br/><br/><br/><br/>
+                                    <br/><br/><br/><br/><br/><br/><br/>
+                                    <br/><br/><br/><br/><br/><br/><br/>
+                                    <br/><br/><br/><br/><br/><br/><br/>
+                                    <br/><br/><br/><br/><br/><br/><br/>
+                                </Col>
+                                <Col
+                                    xs={{ offset: 0, span: 0 }}
+                                    sm={{ offset: 0, span: 0 }}
+                                    md={{ offset: 0, span: 0 }}
+                                    lg={{ offset: 0, span: 8 }}>
+                                    <br/><br/><br/><br/><br/><br/><br/>
+                                    <br/><br/><br/><br/><br/><br/><br/>
+                                    <br/><br/><br/><br/><br/><br/><br/>
+                                    <br/><br/><br/><br/><br/><br/><br/>
+                                    <br/><br/><br/><br/><br/><br/><br/>
+                                    <br/><br/><br/><br/><br/><br/><br/>
+                                    <br/><br/><br/><br/><br/><br/><br/>
+                                    <br/><br/><br/><br/><br/><br/><br/>
+                                </Col>
+                            </Row>
                         </Col>
                     </Row>
-                    <br/><br/><br/><br/><br/><br/><br/>
-                    <br/><br/><br/><br/><br/><br/><br/>
-                    <br/><br/><br/><br/><br/><br/><br/>
-                    <br/><br/><br/><br/><br/><br/><br/>
                 </KLayout>
                 <Footer/>
             </KLayout>

@@ -22,6 +22,14 @@ body {
     background-color: #f6f6f6;
 }
 
+.bg-color-green {
+    background-color: green;
+}
+
+.bg-color-yellow {
+    background-color: yellow;
+}
+
 /* position */
 .position-fixed {
     position: fixed;
