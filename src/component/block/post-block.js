@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 /**
  * 文章块
- * @props {number} key 文章键
+ * @props {number} postKey 文章键
  * @props {string} title 标题
  * @props {string} description 描述
  * @props {string} date 日期
@@ -38,7 +38,7 @@ export class PostBlock extends React.Component {
         return (
             <Row className={'mt-md'}>
                 <Col>
-                    <Link className={'font-size-lg color-black'} to={`${this.props.key}`}>
+                    <Link className={'font-size-lg color-black'} to={`/post/${this.props.postKey}`}>
                         {this.props.title}
                     </Link>
                     <div className={'font-size-xs mt-xs'}>

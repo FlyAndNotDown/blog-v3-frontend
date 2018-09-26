@@ -48,9 +48,9 @@ export class BlockList extends React.Component {
                         switch (block.type) {
                             case 'post':
                                 return (
-                                    <div>
+                                    <div key={key}>
                                         <PostBlock
-                                            key={block.key}
+                                            postKey={block.postKey}
                                             title={block.title}
                                             description={block.description}
                                             date={block.date}
@@ -60,7 +60,7 @@ export class BlockList extends React.Component {
                                 );
                             case 'emotion':
                                 return (
-                                    <div>
+                                    <div key={key}>
                                         <EmotionBlock
                                             context={block.context}
                                             date={block.date}/>
