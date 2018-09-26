@@ -67,7 +67,9 @@ export class IndexPage extends React.Component {
                             xs={{ offset: 1, span: 22 }}
                             sm={{ offset: 1, span: 22 }}
                             md={{ offset: 2, span: 20 }}
-                            lg={{ offset: 4, span: 16 }}>
+                            lg={{ offset: 2, span: 20 }}
+                            xl={{ offset: 3, span: 18 }}
+                            xxl={{ offset: 5, span: 14 }}>
                             <BlockList
                                 blocks={this.state.blocks}
                                 onPageChange={(page) => {
