@@ -13,6 +13,7 @@ import axios from 'axios';
 import requestConfig from '../config/request';
 import mainConfig from '../config/main';
 import { Log } from '../tool/log';
+import navHeaderBgImg from '../img/header-bg.jpg';
 
 /**
  * 首页组件 - /
@@ -58,7 +59,7 @@ export class IndexPage extends React.Component {
         return (
             <KLayout
                 colorMode={KLayout.COLOR_MODE_NONE}>
-                <NavHeader/>
+                <NavHeader bgImg={navHeaderBgImg}/>
                 <KLayout
                     colorMode={KLayout.COLOR_MODE_MAIN}
                     className={'z-index-1 p-xl'}>

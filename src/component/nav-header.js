@@ -6,11 +6,11 @@
 import React from 'react';
 import { Affix, Row, Col } from 'antd';
 import { KLayout } from "./tool/k-layout";
-import navHeaderBgImg from '../img/header-bg.jpg';
 import { NavBar } from './nav-bar';
 
 /**
  * 导航页头
+ * @props {string} bgImg 背景图片
  */
 export class NavHeader extends React.Component {
 
@@ -36,7 +36,7 @@ export class NavHeader extends React.Component {
                 colorMode={KLayout.COLOR_MODE_NONE}>
                 <div className={'mb-md'}>
                     <img
-                        src={navHeaderBgImg}
+                        src={this.props.bgImg}
                         className={'position-fixed left-0 w-100 h-100 object-fit-cover'}
                         alt={'nav-header-background'}/>
                 </div>
