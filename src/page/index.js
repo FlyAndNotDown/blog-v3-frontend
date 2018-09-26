@@ -35,7 +35,7 @@ export class IndexPage extends React.Component {
     }
 
     /**
-     * 组件加载声明周期函数
+     * 组件加载生命周期函数
      */
     componentDidMount() {
         axios
