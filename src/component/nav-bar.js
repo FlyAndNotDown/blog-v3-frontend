@@ -33,6 +33,9 @@ export class NavBar extends React.Component {
                     <Link to={'#'} className={'font-size-xs'}>归档</Link>
                 </Menu.Item>
                 <Menu.Item>
+                    <Link to={'#'} className={'font-size-xs'}>说说</Link>
+                </Menu.Item>
+                <Menu.Item>
                     <Link to={'#'} className={'font-size-xs'}>计划</Link>
                 </Menu.Item>
                 <Menu.Item>
@@ -69,6 +72,8 @@ export class NavBar extends React.Component {
                     lg={{ offset: 9, span: 6 }}>
                     <div className={'lh-nav-bar float-right'}>
                         <Link className={'color-white-a font-size-xs'} to={'#'}>归档</Link>
+                        &nbsp;&nbsp;
+                        <Link className={'color-white-a font-size-xs'} to={'#'}>说说</Link>
                         &nbsp;&nbsp;
                         <Link className={'color-white-a font-size-xs'} to={'#'}>计划</Link>
                         &nbsp;&nbsp;
