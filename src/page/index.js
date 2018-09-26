@@ -12,6 +12,7 @@ import { Row, Col } from 'antd';
 import axios from 'axios';
 import requestConfig from '../config/request';
 import mainConfig from '../config/main';
+import { Log } from '../tool/log';
 
 /**
  * 首页组件 - /
@@ -39,12 +40,13 @@ export class IndexPage extends React.Component {
         axios
             .get(requestConfig.home)
             .then((response) => {
+                if (mainConfig.devMode) Log.dev('get /index');
                 this.setState({
                     blocks: response.data
                 });
             })
             .catch((err) => {
-                if (mainConfig.devMode) console.log(err);
+                if (mainConfig.devMode) Log.devError('get /index', err);
             });
     }
 

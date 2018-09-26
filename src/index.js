@@ -8,13 +8,14 @@ import ReactDom from 'react-dom';
 import { MainRouter } from "./router";
 import { MockTool } from "./tool/mock";
 import mainConfig from './config/main';
+import { Log } from './tool/log';
 
 // 导入全局 css
 import './css/css';
 
 // 开发模式
 if (mainConfig.devMode) {
-    console.log('Dev Mode Toggled!');
+    Log.dev('dev mode toggled');
     // 开启 Mock
     MockTool.start();
 }

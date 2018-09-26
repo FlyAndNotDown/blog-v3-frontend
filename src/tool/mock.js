@@ -17,6 +17,7 @@ export class MockTool {
     static start() {
         // /index
         Mock.mock(requestConfig.index, 'get', [{
+            key: 1,
             type: 'post',
             title: '测试标题',
             description: '测试描述测试描述测试描述测试描述测试描述测试描述',
@@ -30,6 +31,7 @@ export class MockTool {
             context: '今天真是开心的一天呢',
             date: '2018-9-26'
         }, {
+            key: 1,
             type: 'post',
             title: '测试标题',
             description: '测试描述测试描述测试描述测试描述测试描述测试描述',
@@ -39,6 +41,7 @@ export class MockTool {
                 key: 1
             }]
         }, {
+            key: 1,
             type: 'post',
             title: '测试标题',
             description: '测试描述测试描述测试描述测试描述测试描述测试描述',
@@ -48,6 +51,7 @@ export class MockTool {
                 key: 1
             }]
         }, {
+            key: 1,
             type: 'post',
             title: '测试标题',
             description: '测试描述测试描述测试描述测试描述测试描述测试描述',
@@ -57,6 +61,7 @@ export class MockTool {
                 key: 1
             }]
         }, {
+            key: 1,
             type: 'post',
             title: '测试标题',
             description: '测试描述测试描述测试描述测试描述测试描述测试描述',
@@ -66,6 +71,7 @@ export class MockTool {
                 key: 1
             }]
         }, {
+            key: 1,
             type: 'post',
             title: '测试标题',
             description: '测试描述测试描述测试描述测试描述测试描述测试描述',
@@ -75,6 +81,7 @@ export class MockTool {
                 key: 1
             }]
         }, {
+            key: 1,
             type: 'post',
             title: '测试标题',
             description: '测试描述测试描述测试描述测试描述测试描述测试描述',
@@ -84,6 +91,7 @@ export class MockTool {
                 key: 1
             }]
         }, {
+            key: 1,
             type: 'post',
             title: '测试标题',
             description: '测试描述测试描述测试描述测试描述测试描述测试描述',
@@ -93,6 +101,7 @@ export class MockTool {
                 key: 1
             }]
         }, {
+            key: 1,
             type: 'post',
             title: '测试标题',
             description: '测试描述测试描述测试描述测试描述测试描述测试描述',
