@@ -3,7 +3,7 @@
  * @author John Kindem
  */
 
-const commonUrlPrefix = '/request/blog';
+export const commonUrlPrefix = '/request/blog';
 
 export default {
     home: `${commonUrlPrefix}/home`,

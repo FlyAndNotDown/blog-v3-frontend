@@ -10,6 +10,7 @@ import { BlockList } from "../component/block/block-list";
 import { Footer } from "../component/footer";
 import { Row, Col } from 'antd';
 import axios from 'axios';
+import { commonUrlPrefix } from '../config/request';
 import requestConfig from '../config/request';
 import mainConfig from '../config/main';
 import { Log } from '../tool/log';
@@ -41,13 +42,15 @@ export class IndexPage extends React.Component {
         axios
             .get(requestConfig.home)
             .then((response) => {
-                if (mainConfig.devMode) Log.dev('get /index');
+                if (mainConfig.devMode)
+                    Log.dev(`get ${commonUrlPrefix}/home OK`);
                 this.setState({
                     blocks: response.data
                 });
             })
             .catch((err) => {
-                if (mainConfig.devMode) Log.devError('get /index', err);
+                if (mainConfig.devMode)
+                    Log.devError(`get ${commonUrlPrefix}/home`, err);
             });
     }
 
