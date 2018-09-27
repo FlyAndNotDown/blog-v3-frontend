@@ -5,6 +5,7 @@
 
 import React from 'react';
 import { KLayout } from '../../component/tool/k-layout';
+import { Row, Col } from 'antd';
 
 /**
  * 管理员首页 - /admin
@@ -27,8 +28,10 @@ export class AdminIndexPage extends React.Component {
      */
     render() {
         return (
-            <KLayout colorMode={KLayout.COLOR_MODE_MAIN}>
-                
+            <KLayout
+                className={'w-100 h-100'}
+                colorMode={KLayout.COLOR_MODE_MAIN}>
+
             </KLayout>
         );
     }
