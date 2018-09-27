@@ -23,9 +23,9 @@ export class MainRouter extends React.Component {
             <HashRouter>
                 <Switch>
                     <Route exact path={'/'} component={IndexPage}/>
-                    <Route exact path={'/:page'} component={IndexPage}/>
-                    <Route exact path={'/post/:postId'} component={PostPage}/>
                     <Route exact path={'/admin'} component={AdminIndexPage}/>
+                    <Route exact path={'/post/:postId'} component={PostPage}/>
+                    <Route exact path={'/:page'} component={IndexPage}/>
                 </Switch>
             </HashRouter>
         );
