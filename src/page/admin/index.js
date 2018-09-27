@@ -29,9 +29,15 @@ export class AdminIndexPage extends React.Component {
     render() {
         return (
             <KLayout
-                className={'w-100 h-100'}
+                className={'w-100 h-100vh'}
                 colorMode={KLayout.COLOR_MODE_MAIN}>
-
+                <Row
+                    className={'w-100 h-100'}
+                    type={'flex'}
+                    align={'middle'}
+                    justify={'center'}>
+                    <div className={'font-size-xl'}>管理员登录</div>
+                </Row>
             </KLayout>
         );
     }
