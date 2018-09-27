@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { KLayout } from '../../component/tool/k-layout';
-import { Row, Col } from 'antd';
+import { Row, Col, Form, Input } from 'antd';
 
 /**
  * 管理员首页 - /admin
@@ -36,7 +36,20 @@ export class AdminIndexPage extends React.Component {
                     type={'flex'}
                     align={'middle'}
                     justify={'center'}>
-                    <div className={'font-size-xl'}>管理员登录</div>
+                    <Col
+                        xs={20} sm={20} md={6}
+                        lg={4} xl={4} xxl={4}>
+                        <div className={'font-size-xl text-align-center'}>
+                            <span role={'img'} aria-labelledby={'red-heart'}>💎</span>
+                            管理员登录
+                            <span role={'img'} aria-labelledby={'red-heart'}>💎</span>
+                        </div>
+                        <Form>
+                            <Form.Item>
+                                <Input/>
+                            </Form.Item>
+                        </Form>
+                    </Col>
                 </Row>
             </KLayout>
         );
