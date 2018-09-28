@@ -3,7 +3,7 @@
  * @author John Kindem
  */
 
-const sha256 = require('js-sha256');
+import sha256 from 'js-sha256';
 
 /**
  * 密码工具

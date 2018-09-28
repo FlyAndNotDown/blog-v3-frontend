@@ -6,6 +6,8 @@
 import React from 'react';
 import { KLayout } from '../../component/tool/k-layout';
 import { Row, Col, Form, Input, Icon, Button } from 'antd';
+import axios from 'axios';
+import requestConfig from '../../config/request';
 
 /**
  * 管理员首页 - /admin
@@ -46,6 +48,22 @@ export class AdminIndexPage extends React.Component {
     }
 
     /**
+     * 登录按钮点击回调
+     * @param  {object} e 事件
+     */
+    onLoginButtonClick = (e) => {
+        // 发起请求获取盐
+        axios
+            .get(requestConfig.admin)
+            .then((response) => {
+                // TODO
+            })
+            .catch((response) => {
+                // TODO
+            });
+    }
+
+    /**
      * 渲染函数
      * @return {JSX} 渲染结果
      */
@@ -83,7 +101,10 @@ export class AdminIndexPage extends React.Component {
                                     onChange={this.onPasswordChange}/>
                             </Form.Item>
                             <Form.Item>
-                                <Button className={'float-left w-100'} type={'primary'}>
+                                <Button
+                                    className={'float-left w-100'}
+                                    type={'primary'}
+                                    onClick={this.onLoginButtonClick}>
                                     登录
                                 </Button>
                             </Form.Item>

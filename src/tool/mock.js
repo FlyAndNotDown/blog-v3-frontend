@@ -113,6 +113,10 @@ export class MockTool {
                 }]
             }
         ]);
+        // admin
+        Mock.mock(requestConfig.admin, 'get', (options) => {
+            console.log(options);
+        });
     }
 
 }
