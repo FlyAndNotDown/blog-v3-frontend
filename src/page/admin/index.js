@@ -19,7 +19,10 @@ export class AdminIndexPage extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            username: '',
+            password: ''
+        };
     }
 
     /**
@@ -47,12 +50,25 @@ export class AdminIndexPage extends React.Component {
                             <Form.Item>
                                 <Input
                                     placeholder={'管理员账户'}
-                                    prefix={<Icon type={'user'}/>}/>
+                                    prefix={<Icon type={'user'}/>}
+                                    value={this.state.username}
+                                    onChange={(e) => {
+                                        this.setState({
+                                            username: e.target.value
+                                        });
+                                    }}/>
                             </Form.Item>
                             <Form.Item>
                                 <Input
+                                    type={'password'}
                                     placeholder={'密码'}
-                                    prefix={<Icon type={'user'}/>}/>
+                                    prefix={<Icon type={'user'}/>}
+                                    value={this.state.password}
+                                    onChange={(e) => {
+                                        this.setState({
+                                            password: e.target.value
+                                        });
+                                    }}/>
                             </Form.Item>
                             <Form.Item>
                                 <Button className={'float-left w-100'} type={'primary'}>
