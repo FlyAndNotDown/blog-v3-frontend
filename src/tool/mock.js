@@ -7,6 +7,32 @@ import Mock from 'mockjs';
 import requestConfig from '../config/request';
 
 /**
+ * Url工具类
+ */
+class UrlTool {
+
+    /**
+     * url中是否带有参数
+     * @param  {string} url url
+     * @return {bool}       是否带有参数
+     */
+    static haveParam(url) {
+        return url.indexOf('?') !== -1;
+    }
+
+    static getParam(url) {
+        let string = url.split('?')[1];
+        let keyValues = string.splice('&');
+        let params = {};
+        keyValues.forEach((keyValue) => {
+            let temp = keyValue.split('=');
+            params[temp[0]] = temp[1];
+        });
+    }
+
+}
+
+/**
  * Mock工具类
  */
 export class MockTool {
