@@ -26,6 +26,26 @@ export class AdminIndexPage extends React.Component {
     }
 
     /**
+     * 用户名变化回调
+     * @param  {object} e 事件
+     */
+    onUsernameChange = (e) => {
+        this.setState({
+            username: e.target.value
+        });
+    }
+
+    /**
+     * 密码变化回调
+     * @param  {object} e 事件
+     */
+    onPasswordChange = (e) => {
+        this.setState({
+            password: e.target.value
+        });
+    }
+
+    /**
      * 渲染函数
      * @return {JSX} 渲染结果
      */
@@ -52,11 +72,7 @@ export class AdminIndexPage extends React.Component {
                                     placeholder={'管理员账户'}
                                     prefix={<Icon type={'user'}/>}
                                     value={this.state.username}
-                                    onChange={(e) => {
-                                        this.setState({
-                                            username: e.target.value
-                                        });
-                                    }}/>
+                                    onChange={this.onUsernameChange}/>
                             </Form.Item>
                             <Form.Item>
                                 <Input
@@ -64,11 +80,7 @@ export class AdminIndexPage extends React.Component {
                                     placeholder={'密码'}
                                     prefix={<Icon type={'user'}/>}
                                     value={this.state.password}
-                                    onChange={(e) => {
-                                        this.setState({
-                                            password: e.target.value
-                                        });
-                                    }}/>
+                                    onChange={this.onPasswordChange}/>
                             </Form.Item>
                             <Form.Item>
                                 <Button className={'float-left w-100'} type={'primary'}>
