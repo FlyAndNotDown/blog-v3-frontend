@@ -63,7 +63,8 @@ export class AdminIndexPage extends React.Component {
                 }
             })
             .then((response) => {
-                if (mainConfig.devMode) Log.log(`get ${requestConfig.admin} OK`);
+                // if (mainConfig.devMode) debugger;
+                if (mainConfig.devMode) Log.dev(`get ${requestConfig.admin} OK`);
                 if (response.data) {
                     if (!(response.date.success || null)) {
                         // 如果获取盐失败了
@@ -77,7 +78,7 @@ export class AdminIndexPage extends React.Component {
                             password: PasswordTool.encode(this.state.password, salt)
                         })
                         .then((response) => {
-                            if (mainConfig.devMode) Log.log(`post ${requestConfig.admin} OK`);
+                            if (mainConfig.devMode) Log.dev(`post ${requestConfig.admin} OK`);
                             if (response.date) {
                                 if (response.date.success) {
                                     // 如果登录验证成功
@@ -89,15 +90,17 @@ export class AdminIndexPage extends React.Component {
                         .catch((error) => {
                             if (error) {
                                 if (mainConfig.devMode)
-                                    Log.error(`post ${requestConfig.admin}`, error);
+                                    Log.devError(`post ${requestConfig.admin}`, error);
+                                message.error('服务器错误');
                             }
                         });
                 }
             })
             .catch((error) => {
+                // if (mainConfig.devMode) debugger;
                 if (error) {
                     if (mainConfig.devMode)
-                        Log.error(`get ${requestConfig.admin}`, error);
+                        Log.devError(`get ${requestConfig.admin}`, error);
                     message.error('服务器错误');
                 }
             });

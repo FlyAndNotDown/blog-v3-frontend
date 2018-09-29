@@ -5,6 +5,7 @@
 
 import Mock from 'mockjs';
 import requestConfig from '../config/request';
+import mainConfig from '../config/main';
 
 /**
  * Url工具类
@@ -149,6 +150,7 @@ export class MockTool {
         });
         // admin
         Mock.mock(requestConfig.admin, 'get', (options) => {
+            // if (mainConfig.devMode) debugger;
             if (!UrlTool.haveParam(options.url)) {
                 return {
                     success: false,
