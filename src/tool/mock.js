@@ -20,6 +20,11 @@ class UrlTool {
         return url.indexOf('?') !== -1;
     }
 
+    /**
+     * 获取参数对象
+     * @param  {string} url url
+     * @return {object}     参数
+     */
     static getParam(url) {
         let string = url.split('?')[1];
         let keyValues = string.splice('&');
@@ -141,7 +146,23 @@ export class MockTool {
         ]);
         // admin
         Mock.mock(requestConfig.admin, 'get', (options) => {
-            console.log(options);
+            if (!UrlTool.haveParam(options.url)) {
+                return {
+                    success: false,
+                    reason: 'params error'
+                };
+            }
+            let paramsObject = UrlTool.getParam(options.url);
+            if (paramsObject.admin !== 'admin') {
+                return {
+                    success: false,
+                    reason: 'admin account is not exist'
+                };
+            }
+            return {
+                success: true,
+                salt: '4c37a5b2cc0e'
+            };
         });
     }
 
