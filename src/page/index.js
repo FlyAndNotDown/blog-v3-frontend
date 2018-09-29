@@ -42,11 +42,12 @@ export class IndexPage extends React.Component {
         axios
             .get(requestConfig.home)
             .then((response) => {
+                if (mainConfig.devMode) debugger;
                 if (mainConfig.devMode)
                     Log.dev(`get ${commonUrlPrefix}/home OK`);
                 if (response.data) {
                     this.setState({
-                        blocks: response.success ? response.data || [] : []
+                        blocks: response.data.success ? response.data.blocks || [] : []
                     });
                 }
             })
