@@ -43,17 +43,13 @@ export class IndexPage extends React.Component {
             .get(requestConfig.home)
             .then((response) => {
                 // if (mainConfig.devMode) debugger;
-                if (mainConfig.devMode)
-                    Log.dev(`get ${commonUrlPrefix}/home OK`);
-                if (response.data) {
-                    this.setState({
-                        blocks: response.data.success ? response.data.blocks || [] : []
-                    });
-                }
+                if (mainConfig.devMode) Log.dev(`get ${commonUrlPrefix}/home OK`);
+                this.setState({
+                    blocks: response.data || []
+                });
             })
             .catch((err) => {
-                if (mainConfig.devMode)
-                    Log.devError(`get ${commonUrlPrefix}/home`, err);
+                if (mainConfig.devMode) Log.devError(`get ${commonUrlPrefix}/home`, err);
             });
     }
 

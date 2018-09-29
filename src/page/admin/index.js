@@ -59,46 +59,10 @@ export class AdminIndexPage extends React.Component {
         axios
             .get(requestConfig.admin)
             .then((response) => {
-                // if (mainConfig.devMode) debugger;
-                if (mainConfig.devMode) Log.dev(`get ${requestConfig.admin} OK`);
-                if (response.data) {
-                    if (!(response.date.success || null)) {
-                        // 如果获取盐失败了
-                        message.error(response.date.reason);
-                    }
-                    let salt = response.date.salt || '';
-                    // 如果获取盐成功了，发送请求进行登录验证
-                    axios
-                        .post(requestConfig.admin, {
-                            username: this.state.username,
-                            password: PasswordTool.encode(this.state.password, salt)
-                        })
-                        .then((response) => {
-                            if (mainConfig.devMode) Log.dev(`post ${requestConfig.admin} OK`);
-                            if (response.date) {
-                                if (response.date.success) {
-                                    // 如果登录验证成功
-                                    message.success('登录成功，即将为您跳转');
-                                    // TODO 跳转
-                                }
-                            }
-                        })
-                        .catch((error) => {
-                            if (error) {
-                                if (mainConfig.devMode)
-                                    Log.devError(`post ${requestConfig.admin}`, error);
-                                message.error('服务器错误');
-                            }
-                        });
-                }
+                // TODO
             })
             .catch((error) => {
-                // if (mainConfig.devMode) debugger;
-                if (error) {
-                    if (mainConfig.devMode)
-                        Log.devError(`get ${requestConfig.admin}`, error);
-                    message.error('服务器错误');
-                }
+                // TODO
             });
     }
 
