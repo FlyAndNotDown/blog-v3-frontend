@@ -59,10 +59,14 @@ export class AdminIndexPage extends React.Component {
         axios
             .get(requestConfig.admin)
             .then((response) => {
-                // TODO
+                console.log(response.data);
+                // 如果获取倒了盐
+                if (response.data) {
+                    // TODO
+                }
             })
             .catch((error) => {
-                // TODO
+                if (mainConfig.devMode) Log.devError(`get ${requestConfig.admin}`, error);
             });
     }
 

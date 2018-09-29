@@ -76,6 +76,7 @@ export class IndexPage extends React.Component {
                             <BlockList
                                 blocks={this.state.blocks}
                                 onPageChange={(page) => {
+                                    // TODO
                                     console.log('page changed:', page);
                                 }}/>
                         </Col>
