@@ -57,11 +57,7 @@ export class AdminIndexPage extends React.Component {
     onLoginButtonClick = (e) => {
         // 发起请求获取盐
         axios
-            .get(requestConfig.admin, {
-                params: {
-                    username: this.state.username
-                }
-            })
+            .get(requestConfig.admin)
             .then((response) => {
                 // if (mainConfig.devMode) debugger;
                 if (mainConfig.devMode) Log.dev(`get ${requestConfig.admin} OK`);

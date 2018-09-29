@@ -5,7 +5,6 @@
 
 import Mock from 'mockjs';
 import requestConfig from '../config/request';
-import mainConfig from '../config/main';
 
 /**
  * Url工具类
@@ -34,6 +33,15 @@ class UrlTool {
             let temp = keyValue.split('=');
             params[temp[0]] = temp[1];
         });
+    }
+
+    /**
+     * 获取匹配任意url子域的正则
+     * @param  {string} url url
+     * @return {regex}     正则表达式
+     */
+    static getRegex(url) {
+        return new RegExp(`^${url}[\?=/a-zA-Z0-9]*`);
     }
 
 }
@@ -151,27 +159,7 @@ export class MockTool {
             });
         });
         // admin
-        Mock.mock(requestConfig.admin, 'get', (options) => {
-            if (mainConfig.devMode) debugger;
-            if (!UrlTool.haveParam(options.url)) {
-                return {
-                    success: false,
-                    reason: 'params error'
-                };
-            }
-            let paramsObject = UrlTool.getParam(options.url);
-            if (!paramsObject.username || paramsObject.username !== 'admin') {
-                return {
-                    success: false,
-                    reason: 'admin account is not exist'
-                };
-            }
-            return {
-                success: true,
-                salt: '4c37a5b2cc0e'
-            };
-        });
-        Mock.mock(requestConfig.admin, 'post', (options) => {
+        Mock.mock(UrlTool.getRegex(requestConfig.admin), 'get', (options) => {
             // TODO
         });
     }
