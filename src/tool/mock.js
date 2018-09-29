@@ -41,7 +41,7 @@ class UrlTool {
      * @return {regex}     正则表达式
      */
     static getRegex(url) {
-        return new RegExp(`^${url}[\?=/a-zA-Z0-9]*`);
+        return new RegExp(`^${url}[\\?=/a-zA-Z0-9]*`);
     }
 
 }
