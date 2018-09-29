@@ -5,11 +5,12 @@
 
 import React from 'react';
 import { KLayout } from '../../component/tool/k-layout';
-import { Row, Col, Form, Input, Icon, Button } from 'antd';
+import { Row, Col, Form, Input, Icon, Button, message } from 'antd';
 import axios from 'axios';
 import requestConfig from '../../config/request';
-import Log from '../../tool/log';
+import { Log } from '../../tool/log';
 import mainConfig from '../../config/main';
+import { PasswordTool } from '../../tool/password';
 
 /**
  * 管理员首页 - /admin
@@ -62,13 +63,42 @@ export class AdminIndexPage extends React.Component {
                 }
             })
             .then((response) => {
+                if (mainConfig.devMode) Log.log(`get ${requestConfig.admin} OK`);
                 if (response.data) {
-                    // TODO
+                    if (!(response.date.success || null)) {
+                        // 如果获取盐失败了
+                        message.error(response.date.reason);
+                    }
+                    let salt = response.date.salt || '';
+                    // 如果获取盐成功了，发送请求进行登录验证
+                    axios
+                        .post(requestConfig.admin, {
+                            username: this.state.username,
+                            password: PasswordTool.encode(this.state.password, salt)
+                        })
+                        .then((response) => {
+                            if (mainConfig.devMode) Log.log(`post ${requestConfig.admin} OK`);
+                            if (response.date) {
+                                if (response.date.success) {
+                                    // 如果登录验证成功
+                                    message.success('登录成功，即将为您跳转');
+                                    // TODO 跳转
+                                }
+                            }
+                        })
+                        .catch((error) => {
+                            if (error) {
+                                if (mainConfig.devMode)
+                                    Log.error(`post ${requestConfig.admin}`, error);
+                            }
+                        });
                 }
             })
             .catch((error) => {
                 if (error) {
-                    // TODO
+                    if (mainConfig.devMode)
+                        Log.error(`get ${requestConfig.admin}`, error);
+                    message.error('服务器错误');
                 }
             });
     }
