@@ -8,6 +8,8 @@ import { KLayout } from '../../component/tool/k-layout';
 import { Row, Col, Form, Input, Icon, Button } from 'antd';
 import axios from 'axios';
 import requestConfig from '../../config/request';
+import Log from '../../tool/log';
+import mainConfig from '../../config/main';
 
 /**
  * 管理员首页 - /admin
@@ -54,12 +56,20 @@ export class AdminIndexPage extends React.Component {
     onLoginButtonClick = (e) => {
         // 发起请求获取盐
         axios
-            .get(requestConfig.admin)
-            .then((response) => {
-                // TODO
+            .get(requestConfig.admin, {
+                params: {
+                    username: this.state.username
+                }
             })
-            .catch((response) => {
-                // TODO
+            .then((response) => {
+                if (response.data) {
+                    // TODO
+                }
+            })
+            .catch((error) => {
+                if (error) {
+                    // TODO
+                }
             });
     }
 

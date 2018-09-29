@@ -153,7 +153,7 @@ export class MockTool {
                 };
             }
             let paramsObject = UrlTool.getParam(options.url);
-            if (paramsObject.admin !== 'admin') {
+            if (!paramsObject.username || paramsObject.username !== 'admin') {
                 return {
                     success: false,
                     reason: 'admin account is not exist'
@@ -163,6 +163,9 @@ export class MockTool {
                 success: true,
                 salt: '4c37a5b2cc0e'
             };
+        });
+        Mock.mock(requestConfig.admin, 'post', (options) => {
+            // TODO
         });
     }
 
