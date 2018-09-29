@@ -42,7 +42,7 @@ export class IndexPage extends React.Component {
         axios
             .get(requestConfig.home)
             .then((response) => {
-                if (mainConfig.devMode) debugger;
+                // if (mainConfig.devMode) debugger;
                 if (mainConfig.devMode)
                     Log.dev(`get ${commonUrlPrefix}/home OK`);
                 if (response.data) {
