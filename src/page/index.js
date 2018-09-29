@@ -44,9 +44,11 @@ export class IndexPage extends React.Component {
             .then((response) => {
                 if (mainConfig.devMode)
                     Log.dev(`get ${commonUrlPrefix}/home OK`);
-                this.setState({
-                    blocks: response.data || []
-                });
+                if (response.data) {
+                    this.setState({
+                        blocks: response.success ? response.data || [] : []
+                    });
+                }
             })
             .catch((err) => {
                 if (mainConfig.devMode)
