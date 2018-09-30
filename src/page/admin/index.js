@@ -26,7 +26,9 @@ export class AdminIndexPage extends React.Component {
 
         this.state = {
             username: '',
-            password: ''
+            password: '',
+
+            lock: false
         };
     }
 
@@ -55,6 +57,10 @@ export class AdminIndexPage extends React.Component {
      * @param  {object} e 事件
      */
     onLoginButtonClick = (e) => {
+        // 先把输入框和登录按钮锁定
+        this.setState({
+            lock: true
+        });
         // 发起请求获取盐
         axios
             .get(requestConfig.admin, {
@@ -66,9 +72,13 @@ export class AdminIndexPage extends React.Component {
                 if (mainConfig.devMode) Log.dev(`get ${requestConfig.admin} OK`);
                 // 如果没有获取到盐
                 if (!response.data.salt) {
-                    message.error('管理员账户不存在');
+                    this.setState({
+                        lock: false
+                    });
+                    return message.error('管理员账户不存在');
                 }
-
+                // 发送请求进行管理员登录校验
+                // TODO
             })
             .catch((error) => {
                 if (mainConfig.devMode) Log.devError(`get ${requestConfig.admin}`, error);
@@ -102,7 +112,8 @@ export class AdminIndexPage extends React.Component {
                                     placeholder={'管理员账户'}
                                     prefix={<Icon type={'user'}/>}
                                     value={this.state.username}
-                                    onChange={this.onUsernameChange}/>
+                                    onChange={this.onUsernameChange}
+                                    disabled={this.state.lock}/>
                             </Form.Item>
                             <Form.Item>
                                 <Input
@@ -110,13 +121,15 @@ export class AdminIndexPage extends React.Component {
                                     placeholder={'密码'}
                                     prefix={<Icon type={'user'}/>}
                                     value={this.state.password}
-                                    onChange={this.onPasswordChange}/>
+                                    onChange={this.onPasswordChange}
+                                    disabled={this.state.lock}/>
                             </Form.Item>
                             <Form.Item>
                                 <Button
                                     className={'float-left w-100'}
                                     type={'primary'}
-                                    onClick={this.onLoginButtonClick}>
+                                    onClick={this.onLoginButtonClick}
+                                    disabled={this.state.lock}>
                                     登录
                                 </Button>
                             </Form.Item>
