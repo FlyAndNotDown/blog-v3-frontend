@@ -21,6 +21,13 @@ export class AdminGeneralPage extends React.Component {
     }
 
     /**
+     * 组件加载生命周期函数
+     */
+    componentDidMount() {
+        // TODO 校验管理员登录情况
+    }
+
+    /**
      * 渲染函数
      * @return {JSX} 渲染结果
      */
