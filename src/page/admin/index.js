@@ -86,10 +86,10 @@ export class AdminIndexPage extends React.Component {
                     })
                     .then((response) => {
                         if (mainConfig.devMode) Log.dev(`post ${requestConfig.admin} OK`);
-                        this.setState({
-                            lock: false
-                        });
-                        if (!response.date.success) {
+                        if (!response.data.success) {
+                            this.setState({
+                                lock: false
+                            });
                             return message.error('用户名或密码错误');
                         }
                         return message.success('登录成功，即将为你跳转');

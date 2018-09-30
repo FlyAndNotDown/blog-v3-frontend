@@ -48,6 +48,21 @@ class UrlTool {
 }
 
 /**
+ * Http Body 工具类
+ */
+class BodyTool {
+
+    /**
+     * 获取 body 的 json 对象
+     * @return {object} body 的 json 对象
+     */
+    static getBody(body) {
+        return JSON.parse(body);
+    }
+
+}
+
+/**
  * Mock工具类
  */
 export class MockTool {
@@ -163,7 +178,20 @@ export class MockTool {
                     salt: '45c8b12f3e1a'
                 };
             }
-            return {};
+            return {
+                salt: null
+            };
+        });
+        Mock.mock(UrlTool.getRegex(requestConfig.admin), 'post', (options) => {
+            let body = BodyTool.getBody(options.body);
+            if (body.username === 'admin' &&
+                body.password === 'e1efa1257b4cb3cc4a85c904869ea31930ca2629368f5c22bef6cac1f764f69e')
+                return {
+                    success: true
+                };
+            return {
+                success: false
+            };
         });
     }
 
