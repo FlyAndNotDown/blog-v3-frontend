@@ -57,13 +57,18 @@ export class AdminIndexPage extends React.Component {
     onLoginButtonClick = (e) => {
         // 发起请求获取盐
         axios
-            .get(requestConfig.admin)
-            .then((response) => {
-                console.log(response.data);
-                // 如果获取倒了盐
-                if (response.data) {
-                    // TODO
+            .get(requestConfig.admin, {
+                params: {
+                    username: this.state.username
                 }
+            })
+            .then((response) => {
+                if (mainConfig.devMode) Log.dev(`get ${requestConfig.admin} OK`);
+                // 如果没有获取到盐
+                if (!response.data.salt) {
+                    message.error('管理员账户不存在');
+                }
+
             })
             .catch((error) => {
                 if (mainConfig.devMode) Log.devError(`get ${requestConfig.admin}`, error);
