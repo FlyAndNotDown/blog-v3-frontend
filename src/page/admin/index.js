@@ -92,8 +92,10 @@ export class AdminIndexPage extends React.Component {
                             });
                             return message.error('用户名或密码错误');
                         }
-                        return message.success('登录成功，即将为你跳转');
-                        // TODO 跳转
+                        message.success('登录成功，即将为你跳转');
+                        return setTimeout(() => {
+                            this.props.history.push('/admin/general');
+                        }, 1000);
                     });
             })
             .catch((error) => {
