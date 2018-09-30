@@ -69,7 +69,7 @@ export class NavBar extends React.Component {
                     xs={{ offset: 0, span: 0 }}
                     sm={{ offset: 0, span: 0 }}
                     md={{ offset: 6, span: 9 }}
-                    lg={{ offset: 9, span: 6 }}>
+                    lg={{ offset: 10, span: 7 }}>
                     <div className={'lh-nav-bar float-right'}>
                         <Link className={'color-white-a font-size-xs'} to={'#'}>归档</Link>
                         &nbsp;&nbsp;

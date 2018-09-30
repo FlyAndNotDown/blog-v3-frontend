@@ -4,6 +4,7 @@
  */
 
 import React from 'react';
+import { KLayout } from '../../component/tool/k-layout';
 
 export class AdminGeneralPage extends React.Component {
 
@@ -23,7 +24,9 @@ export class AdminGeneralPage extends React.Component {
      */
     render() {
         return (
-            <div></div>
+            <KLayout>
+                
+            </KLayout>
         );
     }
 
