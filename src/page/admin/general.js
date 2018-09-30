@@ -3,7 +3,9 @@
  * @author John Kindem
  */
 
-export class AdminGeneralPage {
+import React from 'react';
+
+export class AdminGeneralPage extends React.Component {
 
     /**
      * 构造
