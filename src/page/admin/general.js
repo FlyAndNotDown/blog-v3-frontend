@@ -6,6 +6,7 @@
 import React from 'react';
 import { KLayout } from '../../component/tool/k-layout';
 import { Row, Col, Divider } from 'antd';
+import { Link } from 'react-router-dom';
 
 export class AdminGeneralPage extends React.Component {
 
@@ -34,8 +35,10 @@ export class AdminGeneralPage extends React.Component {
                         lg={{ offset: 4, span: 16 }}
                         xl={{ offset: 4, span: 16 }}
                         xxl={{ offset: 4, span: 16 }}>
-                        <div className={'color-black font-size-lg'}>总览</div>
-                        <div className={'color-second font-size-sm'}>欢迎您 Kindem</div>
+                        <div className={'font-size-lg'}>
+                            <Link className={'color-black text-decoration-none'} to={'#'}>总览</Link>
+                        </div>
+                        <div className={'color-second font-size-sm'}>欢迎您 管理员</div>
                         <Divider/>
                     </Col>
                 </Row>
