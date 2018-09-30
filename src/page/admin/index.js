@@ -77,8 +77,24 @@ export class AdminIndexPage extends React.Component {
                     });
                     return message.error('管理员账户不存在');
                 }
+                let salt = response.data.salt;
                 // 发送请求进行管理员登录校验
-                // TODO
+                axios
+                    .post(requestConfig.admin, {
+                        username: this.state.username,
+                        password: PasswordTool.encode(this.state.password, salt)
+                    })
+                    .then((response) => {
+                        if (mainConfig.devMode) Log.dev(`post ${requestConfig.admin} OK`);
+                        this.setState({
+                            lock: false
+                        });
+                        if (!response.date.success) {
+                            return message.error('用户名或密码错误');
+                        }
+                        return message.success('登录成功，即将为你跳转');
+                        // TODO 跳转
+                    });
             })
             .catch((error) => {
                 if (mainConfig.devMode) Log.devError(`get ${requestConfig.admin}`, error);
