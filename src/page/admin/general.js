@@ -5,8 +5,9 @@
 
 import React from 'react';
 import { KLayout } from '../../component/tool/k-layout';
-import { Row, Col, Divider, Icon } from 'antd';
+import { Row, Col, Divider, Icon, Button } from 'antd';
 import { Link } from 'react-router-dom';
+import { AdminIconGadget } from '../../component/gadget/admin-icon-gadget';
 
 export class AdminGeneralPage extends React.Component {
 
@@ -83,43 +84,22 @@ export class AdminGeneralPage extends React.Component {
                             </div>
                             <Row className={'mt-lg'}>
                                 <Col span={8}>
-                                    <div>
-                                        <div className={'text-align-center font-size-xxl color-second'}>
-                                            <Icon type={'line-chart'}/>
-                                        </div>
-                                        <div className={'text-align-center font-size-sm color-second'}>
-                                            今日点击量
-                                        </div>
-                                        <div className={'text-align-center font-size-xs color-second'}>
-                                            1000
-                                        </div>
-                                    </div>
+                                    <AdminIconGadget
+                                        iconType={'line-chart'}
+                                        title={'今日点击量'}
+                                        content={1000}/>
                                 </Col>
                                 <Col span={8}>
-                                    <div>
-                                        <div className={'text-align-center font-size-xxl color-second'}>
-                                            <Icon type={'dot-chart'}/>
-                                        </div>
-                                        <div className={'text-align-center font-size-sm color-second'}>
-                                            今日访问量
-                                        </div>
-                                        <div className={'text-align-center font-size-xs color-second'}>
-                                            1000
-                                        </div>
-                                    </div>
+                                    <AdminIconGadget
+                                        iconType={'dot-chart'}
+                                        title={'今日访问量'}
+                                        content={1000}/>
                                 </Col>
                                 <Col span={8}>
-                                    <div>
-                                        <div className={'text-align-center font-size-xxl color-second'}>
-                                            <Icon type={'message'}/>
-                                        </div>
-                                        <div className={'text-align-center font-size-sm color-second'}>
-                                            今日评论
-                                        </div>
-                                        <div className={'text-align-center font-size-xs color-second'}>
-                                            1000
-                                        </div>
-                                    </div>
+                                    <AdminIconGadget
+                                        iconType={'message'}
+                                        title={'今日评论'}
+                                        content={1000}/>
                                 </Col>
                             </Row>
                             <Divider/>
@@ -131,43 +111,22 @@ export class AdminGeneralPage extends React.Component {
                             </div>
                             <Row className={'mt-lg'}>
                                 <Col span={8}>
-                                    <div>
-                                        <div className={'text-align-center font-size-xxl color-second'}>
-                                            <Icon type={'file-done'}/>
-                                        </div>
-                                        <div className={'text-align-center font-size-sm color-second'}>
-                                            本月博文数
-                                        </div>
-                                        <div className={'text-align-center font-size-xs color-second'}>
-                                            5
-                                        </div>
-                                    </div>
+                                    <AdminIconGadget
+                                        iconType={'file-done'}
+                                        title={'本月博文数'}
+                                        content={5}/>
                                 </Col>
                                 <Col span={8}>
-                                    <div>
-                                        <div className={'text-align-center font-size-xxl color-second'}>
-                                            <Icon type={'smile'}/>
-                                        </div>
-                                        <div className={'text-align-center font-size-sm color-second'}>
-                                            本月说说数
-                                        </div>
-                                        <div className={'text-align-center font-size-xs color-second'}>
-                                            5
-                                        </div>
-                                    </div>
+                                    <AdminIconGadget
+                                        iconType={'smile'}
+                                        title={'本月说说数'}
+                                        content={5}/>
                                 </Col>
                                 <Col span={8}>
-                                    <div>
-                                        <div className={'text-align-center font-size-xxl color-second'}>
-                                            <Icon type={'star'}/>
-                                        </div>
-                                        <div className={'text-align-center font-size-sm color-second'}>
-                                            今年作品数
-                                        </div>
-                                        <div className={'text-align-center font-size-xs color-second'}>
-                                            5
-                                        </div>
-                                    </div>
+                                    <AdminIconGadget
+                                        iconType={'star'}
+                                        title={'今年作品数'}
+                                        content={5}/>
                                 </Col>
                             </Row>
                             <Divider/>
@@ -179,43 +138,22 @@ export class AdminGeneralPage extends React.Component {
                             </div>
                             <Row className={'mt-lg'}>
                                 <Col span={8}>
-                                    <div>
-                                        <div className={'text-align-center font-size-xxl color-second'}>
-                                            <Icon type={'login'}/>
-                                        </div>
-                                        <div className={'text-align-center font-size-sm color-second'}>
-                                            管理员账户数量
-                                        </div>
-                                        <div className={'text-align-center font-size-xs color-second'}>
-                                            5
-                                        </div>
-                                    </div>
+                                    <AdminIconGadget
+                                        iconType={'login'}
+                                        title={'管理员账户数量'}
+                                        content={5}/>
                                 </Col>
                                 <Col span={8}>
-                                    <div>
-                                        <div className={'text-align-center font-size-xxl color-second'}>
-                                            <Icon type={'clock-circle-o'}/>
-                                        </div>
-                                        <div className={'text-align-center font-size-sm color-second'}>
-                                            上次登录
-                                        </div>
-                                        <div className={'text-align-center font-size-xs color-second'}>
-                                            2018-9-30
-                                        </div>
-                                    </div>
+                                    <AdminIconGadget
+                                        iconType={'clock-circle-o'}
+                                        title={'上次登录'}
+                                        content={'2018-9-30'}/>
                                 </Col>
                                 <Col span={8}>
-                                    <div>
-                                        <div className={'text-align-center font-size-xxl color-second'}>
-                                            <Icon type={'warning'}/>
-                                        </div>
-                                        <div className={'text-align-center font-size-sm color-second'}>
-                                            异地登录
-                                        </div>
-                                        <div className={'text-align-center font-size-xs color-second'}>
-                                            无
-                                        </div>
-                                    </div>
+                                    <AdminIconGadget
+                                        iconType={'warning'}
+                                        title={'异地登录'}
+                                        content={'无'}/>
                                 </Col>
                             </Row>
                             <Divider/>
@@ -223,8 +161,17 @@ export class AdminGeneralPage extends React.Component {
 
                         <div>
                             <div className={'font-size-sm'}>
-                                <Link className={'color-black text-decoration-none'} to={'#'}>数据库管理</Link>
+                                <Link className={'color-black text-decoration-none'} to={'#'}>文章管理</Link>
                             </div>
+                            <Row className={'mt-lg'}>
+                                <Col span={8}>
+                                    <AdminIconGadget
+                                        iconType={'file-text'}
+                                        title={'文章总数'}
+                                        content={<Button type={'primary'}>管理文章</Button>}/>
+                                </Col>
+                            </Row>
+                            <Divider/>
                         </div>
                         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                     </Col>
