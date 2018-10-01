@@ -29,6 +29,14 @@ export class AdminGeneralPage extends React.Component {
     }
 
     /**
+     * 新建文章按钮点击回调
+     * @param  {object} e 事件
+     */
+    onWritePostButtonClick = (e) => {
+        this.props.history.push('/admin/post/new');
+    }
+
+    /**
      * 渲染函数
      * @return {JSX} 渲染结果
      */
@@ -169,7 +177,13 @@ export class AdminGeneralPage extends React.Component {
                                         iconType={'plus-circle'}
                                         iconColor={'#52c41a'}
                                         title={'写文章'}
-                                        content={<Button type={'primary'}>启动</Button>}/>
+                                        content={
+                                            <Button
+                                                type={'primary'}
+                                                onClick={this.onWritePostButtonClick}>
+                                                启动
+                                            </Button>
+                                        }/>
                                 </Col>
                                 <Col span={8}>
                                     <AdminIconGadget
