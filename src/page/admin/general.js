@@ -168,18 +168,41 @@ export class AdminGeneralPage extends React.Component {
                                     <AdminIconGadget
                                         iconType={'plus-circle'}
                                         iconColor={'#52c41a'}
-                                        title={'文章总数'}
-                                        content={<Button type={'primary'}>写文章</Button>}/>
+                                        title={'写文章'}
+                                        content={<Button type={'primary'}>启动</Button>}/>
                                 </Col>
                                 <Col span={8}>
                                     <AdminIconGadget
                                         iconType={'file-text'}
-                                        title={'文章总数'}
-                                        content={<Button>管理文章</Button>}/>
+                                        title={'管理文章'}
+                                        content={<Button>启动</Button>}/>
                                 </Col>
                             </Row>
                             <Divider/>
                         </div>
+
+                        <div>
+                            <div className={'font-size-sm'}>
+                                <Link className={'color-black text-decoration-none'} to={'#'}>评论管理</Link>
+                            </div>
+                            <Row className={'mt-lg'}>
+                                <Col span={8}>
+                                    <AdminIconGadget
+                                        iconType={'eye'}
+                                        iconColor={'#1890ff'}
+                                        title={'审核评论'}
+                                        content={<Button type={'primary'}>启动</Button>}/>
+                                </Col>
+                                <Col span={8}>
+                                    <AdminIconGadget
+                                        iconType={'message'}
+                                        title={'管理评论'}
+                                        content={<Button>启动</Button>}/>
+                                </Col>
+                            </Row>
+                            <Divider/>
+                        </div>
+
                         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                     </Col>
                 </Row>

@@ -36,7 +36,7 @@ export class AdminIconGadget extends React.Component {
                     {this.props.iconColor ? (
                         <Icon type={this.props.iconType} theme={'twoTone'} twoToneColor={this.props.iconColor}/>
                     ) : (
-                        <Icon type={this.props.iconType}/>
+                        <Icon type={this.props.iconType} theme={'outlined'}/>
                     )}
                 </div>
                 <div className={'text-align-center font-size-sm color-second'}>
