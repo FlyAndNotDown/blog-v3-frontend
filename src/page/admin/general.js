@@ -195,6 +195,12 @@ export class AdminGeneralPage extends React.Component {
                                 </Col>
                                 <Col span={8}>
                                     <AdminIconGadget
+                                        iconType={'search'}
+                                        title={'未审核评论'}
+                                        content={12}/>
+                                </Col>
+                                <Col span={8}>
+                                    <AdminIconGadget
                                         iconType={'message'}
                                         title={'管理评论'}
                                         content={<Button>启动</Button>}/>
@@ -205,7 +211,7 @@ export class AdminGeneralPage extends React.Component {
 
                         <div>
                             <div className={'font-size-sm'}>
-                                <Link className={'color-black text-decoration-none'} to={'#'}>审核管理</Link>
+                                <Link className={'color-black text-decoration-none'} to={'#'}>留言管理</Link>
                             </div>
                             <Row className={'mt-lg'}>
                                 <Col span={8}>
@@ -217,8 +223,14 @@ export class AdminGeneralPage extends React.Component {
                                 </Col>
                                 <Col span={8}>
                                     <AdminIconGadget
+                                        iconType={'search'}
+                                        title={'未审核留言'}
+                                        content={12}/>
+                                </Col>
+                                <Col span={8}>
+                                    <AdminIconGadget
                                         iconType={'message'}
-                                        title={'管理评论'}
+                                        title={'管理留言'}
                                         content={<Button>启动</Button>}/>
                                 </Col>
                             </Row>
