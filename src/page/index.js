@@ -51,6 +51,7 @@ export class IndexPage extends React.Component {
             .catch((err) => {
                 if (mainConfig.devMode) Log.devError(`get ${commonUrlPrefix}/home`, err);
             });
+        // TODO 发送请求验证分页参数是否正确，如果不正确跳转到 /404
     }
 
     /**
