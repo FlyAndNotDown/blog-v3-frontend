@@ -166,9 +166,16 @@ export class AdminGeneralPage extends React.Component {
                             <Row className={'mt-lg'}>
                                 <Col span={8}>
                                     <AdminIconGadget
+                                        iconType={'plus-circle'}
+                                        iconColor={'#52c41a'}
+                                        title={'文章总数'}
+                                        content={<Button type={'primary'}>写文章</Button>}/>
+                                </Col>
+                                <Col span={8}>
+                                    <AdminIconGadget
                                         iconType={'file-text'}
                                         title={'文章总数'}
-                                        content={<Button type={'primary'}>管理文章</Button>}/>
+                                        content={<Button>管理文章</Button>}/>
                                 </Col>
                             </Row>
                             <Divider/>
