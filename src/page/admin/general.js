@@ -203,6 +203,28 @@ export class AdminGeneralPage extends React.Component {
                             <Divider/>
                         </div>
 
+                        <div>
+                            <div className={'font-size-sm'}>
+                                <Link className={'color-black text-decoration-none'} to={'#'}>审核管理</Link>
+                            </div>
+                            <Row className={'mt-lg'}>
+                                <Col span={8}>
+                                    <AdminIconGadget
+                                        iconType={'eye'}
+                                        iconColor={'#1890ff'}
+                                        title={'审核留言'}
+                                        content={<Button type={'primary'}>启动</Button>}/>
+                                </Col>
+                                <Col span={8}>
+                                    <AdminIconGadget
+                                        iconType={'message'}
+                                        title={'管理评论'}
+                                        content={<Button>启动</Button>}/>
+                                </Col>
+                            </Row>
+                            <Divider/>
+                        </div>
+
                         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                     </Col>
                 </Row>
