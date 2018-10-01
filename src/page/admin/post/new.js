@@ -61,7 +61,7 @@ export class AdminNewPostPage extends React.Component {
             <KLayout>
                 <Row>
                     <Col
-                        className={'w-100 h100-vh'}
+                        className={'w-100 h-100vh'}
                         xs={{ offset: 0, span: 24 }}
                         sm={{ offset: 0, span: 24 }}
                         md={{ offset: 0, span: 24 }}
