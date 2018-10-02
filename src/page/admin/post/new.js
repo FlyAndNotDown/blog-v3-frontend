@@ -7,6 +7,7 @@ import React from 'react';
 import { KLayout } from '../../../component/tool/k-layout';
 import { Row, Col, Icon, Divider, Button, Input } from 'antd';
 import { Link } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 
 /**
  * 管理员新建文章界面
@@ -142,8 +143,10 @@ export class AdminNewPostPage extends React.Component {
                                     onChange={this.onMarkdownChange}/>
                             </div>
                         ) : (
-                            <div className={'markdown-preview markdown-div'}>
-                                
+                            <div className={'markdown-preview'}>
+                                <ReactMarkdown
+                                    className={'markdown-div'}
+                                    source={this.state.markdown}/>
                             </div>
                         )}
                     </Col>
