@@ -58,12 +58,7 @@ export class AdminGeneralPage extends React.Component {
                             align={'middle'}
                             justify={'center'}>
                             <Col>
-                                <div className={'text-align-center font-size-xxl'}>
-                                    <Icon type={'chrome'} spin/>
-                                </div>
-                                <div className={'color-second font-size-md text-align-center'}>
-                                    请在PC端登录
-                                </div>
+                                <DoItOnPC/>
                             </Col>
                         </Row>
                     </Col>

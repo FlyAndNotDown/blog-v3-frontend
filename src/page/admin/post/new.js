@@ -8,6 +8,7 @@ import { KLayout } from '../../../component/tool/k-layout';
 import { Row, Col, Icon, Divider, Button, Input } from 'antd';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
+import { DoItOnPC } from '../../../component/gadget/do-it-on-pc';
 
 /**
  * 管理员新建文章界面
@@ -86,12 +87,7 @@ export class AdminNewPostPage extends React.Component {
                             align={'middle'}
                             justify={'center'}>
                             <Col>
-                                <div className={'text-align-center font-size-xxl'}>
-                                    <Icon type={'chrome'} spin/>
-                                </div>
-                                <div className={'color-second font-size-md text-align-center'}>
-                                    请在PC端登录
-                                </div>
+                                <DoItOnPC/>
                             </Col>
                         </Row>
                     </Col>
