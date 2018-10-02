@@ -5,5 +5,7 @@ module.exports = function override(config, env) {
         ['import', { libraryName: 'antd', libraryDirectory: 'es', style: 'css' }],
         config,
     );
+    // TODO
+    // config.devtool = 'false';
     return config;
 };

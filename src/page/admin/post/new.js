@@ -143,12 +143,7 @@ export class AdminNewPostPage extends React.Component {
                             </div>
                         ) : (
                             <div className={'markdown-preview markdown-div'}>
-                                <br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                                <br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                                <br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                                <br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                                <br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                                <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                                
                             </div>
                         )}
                     </Col>
