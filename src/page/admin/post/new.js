@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { KLayout } from '../../../component/tool/k-layout';
-import { Row, Col, Divider, Button, Input } from 'antd';
+import { Row, Col, Divider, Button, Input, Drawer } from 'antd';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { DoItOnPC } from '../../../component/gadget/do-it-on-pc';
@@ -24,7 +24,8 @@ export class AdminNewPostPage extends React.Component {
 
         this.state = {
             editorToggled: true,
-            markdown: ''
+            markdown: '',
+            drawerVisible: false
         };
     }
 
@@ -62,6 +63,26 @@ export class AdminNewPostPage extends React.Component {
     onMarkdownChange = (e) => {
         this.setState({
             markdown: e.target.value
+        });
+    }
+
+    /**
+     * 发表文章按钮点击回调
+     * @param  {object} e 事件
+     */
+    onPublishPostButtonClick = (e) => {
+        this.setState({
+            drawerVisible: true
+        });
+    }
+
+    /**
+     * 发表文章抽屉关闭回调
+     * @param  {object} e 事件
+     */
+    onPublishPostDrawerClose = (e) => {
+        this.setState({
+            drawerVisible: false
         });
     }
 
@@ -126,7 +147,8 @@ export class AdminNewPostPage extends React.Component {
                                 </Button.Group>
                                 <Button
                                     type={'primary'}
-                                    className={'float-right'}>
+                                    className={'float-right'}
+                                    onClick={this.onPublishPostButtonClick}>
                                     发表文章
                                 </Button>
                             </div>
@@ -153,6 +175,15 @@ export class AdminNewPostPage extends React.Component {
                         )}
                     </Col>
                 </Row>
+                <Drawer
+                    width={800}
+                    title={'发表文章'}
+                    placement={'right'}
+                    closable={false}
+                    onClose={this.onPublishPostDrawerClose}
+                    visible={this.state.drawerVisible}>
+                    
+                </Drawer>
             </KLayout>
         );
     }
