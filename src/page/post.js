@@ -148,9 +148,10 @@ export class PostPage extends React.Component {
                                         className={'markdown-body mt-lg'}
                                         source={testMarkdown}
                                         renderers={{
-                                            heading: (object) => {
-                                                // TODO 设置 id，并且存入锚点信息
-                                            },
+                                            // heading: (object) => {
+                                            //     // TODO 设置 id，并且存入锚点信息
+                                            //     return object;
+                                            // },
                                             code: (object) => {
                                                 return (
                                                     <SyntaxHighlighter
