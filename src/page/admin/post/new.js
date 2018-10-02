@@ -36,6 +36,7 @@ export class AdminNewPostPage extends React.Component {
      */
     componentDidMount() {
         // TODO 校验管理员登录情况
+        // TODO tab事件监听，todo 先写在这里
     }
 
     /**
@@ -183,7 +184,6 @@ export class AdminNewPostPage extends React.Component {
                                     source={this.state.markdown}
                                     renderers={{
                                         code: (object) => {
-                                            console.log(object);
                                             return (
                                                 <SyntaxHighlighter
                                                     language={object.language}>
