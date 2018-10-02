@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { KLayout } from '../../component/tool/k-layout';
-import { Row, Col, Divider, Icon, Button } from 'antd';
+import { Row, Col, Divider, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import { AdminIconGadget } from '../../component/gadget/admin-icon-gadget';
 import { DoItOnPC } from '../../component/gadget/do-it-on-pc';
