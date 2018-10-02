@@ -65,13 +65,20 @@ export class PostPage extends React.Component {
      */
     constructor(props) {
         super(props);
-        this.state = {};
+
+        this.state = {
+            anchorLinks: []
+        };
+
+        this.url = '';
     }
 
     /**
      * 组件加载生命周期
      */
     componentDidMount() {
+        // 获取 url
+        this.url = this.props.history.location;
         // TODO 发送请求获取文章
     }
 
@@ -141,6 +148,9 @@ export class PostPage extends React.Component {
                                         className={'markdown-body mt-lg'}
                                         source={testMarkdown}
                                         renderers={{
+                                            heading: (object) => {
+                                                // TODO 设置 id，并且存入锚点信息
+                                            },
                                             code: (object) => {
                                                 return (
                                                     <SyntaxHighlighter
