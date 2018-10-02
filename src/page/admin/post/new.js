@@ -112,19 +112,25 @@ export class AdminNewPostPage extends React.Component {
 
                         <div>
                             <div>
-                                <Button.Group>
+                                <Button.Group className={'float-left'}>
                                     <Button
-                                        type={this.state.editorToggled ? 'primary' : 'normal'}
+                                        type={'normal'}
                                         onClick={this.onEditorButtonClick}>
                                         Markdown编辑器
                                     </Button>
                                     <Button
-                                        type={this.state.editorToggled ? 'normal' : 'primary'}
+                                        type={'normal'}
                                         onClick={this.onPreviewButtonClick}>
                                         预览
                                     </Button>
                                 </Button.Group>
+                                <Button
+                                    type={'primary'}
+                                    className={'float-right'}>
+                                    发表文章
+                                </Button>
                             </div>
+                            <br/>
                             <Divider/>
                         </div>
 
