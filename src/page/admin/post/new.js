@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { KLayout } from '../../../component/tool/k-layout';
-import { Row, Col, Divider, Button, Input, Drawer } from 'antd';
+import { Row, Col, Divider, Button, Input, Drawer, Form, Select } from 'antd';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { DoItOnPC } from '../../../component/gadget/do-it-on-pc';
@@ -25,7 +25,8 @@ export class AdminNewPostPage extends React.Component {
         this.state = {
             editorToggled: true,
             markdown: '',
-            drawerVisible: false
+            drawerVisible: false,
+            labelSelectOptions: []
         };
     }
 
@@ -84,6 +85,14 @@ export class AdminNewPostPage extends React.Component {
         this.setState({
             drawerVisible: false
         });
+    }
+
+    /**
+     * 标签选择器变化回调
+     * @param  {object} e 属性
+     */
+    onLabelSelectChange = (e) => {
+        // TODO
     }
 
     /**
@@ -176,13 +185,30 @@ export class AdminNewPostPage extends React.Component {
                     </Col>
                 </Row>
                 <Drawer
-                    width={800}
+                    width={400}
                     title={'发表文章'}
                     placement={'right'}
                     closable={false}
                     onClose={this.onPublishPostDrawerClose}
                     visible={this.state.drawerVisible}>
-                    
+                    <Form>
+                        <Form.Item label={'标题'}>
+                            <Input placeholder={'取个什么名字好呢'}/>
+                        </Form.Item>
+                        <Form.Item label={'标签'}>
+                            <Select
+                                mode={'multiple'}
+                                placeholder={'选择标签'}
+                                onChange={this.onLabelSelectChange}>
+                                {this.state.labelSelectOptions.map((option, key) => {
+                                    // TODO
+                                })}
+                            </Select>
+                        </Form.Item>
+                        <Form.Item>
+                            <Button type={'primary'}>确认发表</Button>
+                        </Form.Item>
+                    </Form>
                 </Drawer>
             </KLayout>
         );
