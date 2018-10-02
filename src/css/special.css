@@ -24,3 +24,13 @@ body {
 .w-block-list {
     width: 100%;
 }
+
+.markdown-preview {
+    height: 430px;
+    max-height: 430px;
+    overflow-y: auto;
+}
+
+.markdown-div {
+
+}

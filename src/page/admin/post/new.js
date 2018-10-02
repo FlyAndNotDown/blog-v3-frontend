@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { KLayout } from '../../../component/tool/k-layout';
-import { Row, Col, Icon, Divider, Button } from 'antd';
+import { Row, Col, Icon, Divider, Button, Input } from 'antd';
 import { Link } from 'react-router-dom';
 
 /**
@@ -21,7 +21,8 @@ export class AdminNewPostPage extends React.Component {
         super(props);
 
         this.state = {
-            editorToggled: true
+            editorToggled: true,
+            markdown: ''
         };
     }
 
@@ -49,6 +50,16 @@ export class AdminNewPostPage extends React.Component {
     onPreviewButtonClick = (e) => {
         this.setState({
             editorToggled: false
+        });
+    }
+
+    /**
+     * Markdown改变的回调
+     * @param  {object} e 事件
+     */
+    onMarkdownChange = (e) => {
+        this.setState({
+            markdown: e.target.value
         });
     }
 
@@ -119,6 +130,27 @@ export class AdminNewPostPage extends React.Component {
                             </div>
                             <Divider/>
                         </div>
+
+                        {this.state.editorToggled ? (
+                            <div>
+                                <Input.TextArea
+                                    autosize={{
+                                        minRows: 20,
+                                        maxRows: 20
+                                    }}
+                                    value={this.state.markdown}
+                                    onChange={this.onMarkdownChange}/>
+                            </div>
+                        ) : (
+                            <div className={'markdown-preview markdown-div'}>
+                                <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                                <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                                <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                                <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                                <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                                <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                            </div>
+                        )}
                     </Col>
                 </Row>
             </KLayout>
