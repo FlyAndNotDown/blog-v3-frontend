@@ -69,6 +69,13 @@ export class PostPage extends React.Component {
     }
 
     /**
+     * 组件加载生命周期
+     */
+    componentDidMount() {
+        // TODO 发送请求获取文章
+    }
+
+    /**
      * 渲染函数
      * @return {JSX} 渲染结果
      */
