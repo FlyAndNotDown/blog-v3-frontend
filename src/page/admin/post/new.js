@@ -178,7 +178,7 @@ export class AdminNewPostPage extends React.Component {
                         ) : (
                             <div className={'markdown-preview'}>
                                 <ReactMarkdown
-                                    className={'markdown-div'}
+                                    className={'markdown-body'}
                                     source={this.state.markdown}/>
                             </div>
                         )}
@@ -202,6 +202,7 @@ export class AdminNewPostPage extends React.Component {
                                 onChange={this.onLabelSelectChange}>
                                 {this.state.labelSelectOptions.map((option, key) => {
                                     // TODO
+                                    return null;
                                 })}
                             </Select>
                         </Form.Item>
