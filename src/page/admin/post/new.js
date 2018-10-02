@@ -10,7 +10,6 @@ import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { DoItOnPC } from '../../../component/gadget/do-it-on-pc';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { github } from 'react-syntax-highlighter/styles/hljs';
 
 /**
  * 管理员新建文章界面
@@ -187,8 +186,7 @@ export class AdminNewPostPage extends React.Component {
                                             console.log(object);
                                             return (
                                                 <SyntaxHighlighter
-                                                    language={object.language}
-                                                    style={github}>
+                                                    language={object.language}>
                                                     {object.value}
                                                 </SyntaxHighlighter>
                                             );
