@@ -67,6 +67,7 @@ export class PostPage extends React.Component {
         super(props);
 
         this.state = {
+            // TODO 利用这个 state
             anchorLinks: []
         };
 
