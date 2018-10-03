@@ -83,6 +83,57 @@ export class PostPage extends React.Component {
     }
 
     /**
+     * Markdown 标题渲染函数
+     * @param {object} object 解析对象
+     */
+    markdownHeadingRender = (object) => {
+        let level = object.level;
+        let value = object.children[0];
+
+        // 将多个空格全部变成一个空格
+        value = value.replace(/[ ]+/, ' ');
+        // 将空格转换成 -
+        value = value.replace(' ', '-');
+        // 全部转换成小写
+        value = value.toLowerCase();
+
+        let id = '';
+        for (let i = 0; i < value.length; i++) {
+            if (value[i].match(/[0-9a-zA-Z]/)) id += value[i];
+        }
+
+        // 返回渲染结果
+        switch (level) {
+            default:
+            case 1:
+                return (<h1 id={`h1-${id}`}>{object.children[0]}</h1>);
+            case 2:
+                return (<h2 id={`h2-${id}`}>{object.children[0]}</h2>);
+            case 3:
+                return (<h3 id={`h3-${id}`}>{object.children[0]}</h3>);
+            case 4:
+                return (<h4 id={`h4-${id}`}>{object.children[0]}</h4>);
+            case 5:
+                return (<h5 id={`h5-${id}`}>{object.children[0]}</h5>);
+            case 6:
+                return (<h6 id={`h6-${id}`}>{object.children[0]}</h6>);
+        }
+    };
+
+    /**
+     * Markdown 代码渲染函数
+     * @param {object} object 解析对象
+     */
+    markdownCodeRender = (object) => {
+        return (
+            <SyntaxHighlighter
+                language={object.language}>
+                {object.value}
+            </SyntaxHighlighter>
+        );
+    };
+
+    /**
      * 渲染函数
      * @return {JSX} 渲染结果
      */
@@ -148,47 +199,8 @@ export class PostPage extends React.Component {
                                         className={'markdown-body mt-lg'}
                                         source={testMarkdown}
                                         renderers={{
-                                            heading: (object) => {
-                                                let level = object.level;
-                                                let value = object.children[0];
-
-                                                // 将多个空格全部变成一个空格
-                                                value = value.replace(/[ ]+/, ' ');
-                                                // 将空格转换成 -
-                                                value = value.replace(' ', '-');
-                                                // 全部转换成小写
-                                                value = value.toLowerCase();
-
-                                                let id = '';
-                                                for (let i = 0; i < value.length; i++) {
-                                                    if (value[i].match(/[0-9a-zA-Z]/)) id += value[i];
-                                                }
-
-                                                // 返回渲染结果
-                                                switch (level) {
-                                                    default:
-                                                    case 1:
-                                                        return (<h1 id={`h1-${id}`}>{object.children[0]}</h1>);
-                                                    case 2:
-                                                        return (<h2 id={`h2-${id}`}>{object.children[0]}</h2>);
-                                                    case 3:
-                                                        return (<h3 id={`h3-${id}`}>{object.children[0]}</h3>);
-                                                    case 4:
-                                                        return (<h4 id={`h4-${id}`}>{object.children[0]}</h4>);
-                                                    case 5:
-                                                        return (<h5 id={`h5-${id}`}>{object.children[0]}</h5>);
-                                                    case 6:
-                                                        return (<h6 id={`h6-${id}`}>{object.children[0]}</h6>);
-                                                }
-                                            },
-                                            code: (object) => {
-                                                return (
-                                                    <SyntaxHighlighter
-                                                        language={object.language}>
-                                                        {object.value}
-                                                    </SyntaxHighlighter>
-                                                );
-                                            }
+                                            heading: this.markdownHeadingRender,
+                                            code: this.markdownCodeRender
                                         }}/>
                                 </Col>
                                 <Col
