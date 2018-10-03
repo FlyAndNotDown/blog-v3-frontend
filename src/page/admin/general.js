@@ -232,6 +232,8 @@ export class AdminGeneralPage extends React.Component {
                 <Divider/>
             </div>
         );
+        // TODO 标签管理
+        // TODO 文件管理
 
         return (
             <KLayout>
