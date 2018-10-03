@@ -159,21 +159,26 @@ export class PostPage extends React.Component {
                                                 // 全部转换成小写
                                                 value = value.toLowerCase();
 
+                                                let id = '';
+                                                for (let i = 0; i < value.length; i++) {
+                                                    if (value[i].match(/[0-9a-zA-Z]/)) id += value[i];
+                                                }
+
                                                 // 返回渲染结果
                                                 switch (level) {
                                                     default:
                                                     case 1:
-                                                        return (<h1 id={`h1--${value}`}>{object.children[0]}</h1>);
+                                                        return (<h1 id={`h1-${id}`}>{object.children[0]}</h1>);
                                                     case 2:
-                                                        return (<h2 id={`h2--${value}`}>{object.children[0]}</h2>);
+                                                        return (<h2 id={`h2-${id}`}>{object.children[0]}</h2>);
                                                     case 3:
-                                                        return (<h3 id={`h3--${value}`}>{object.children[0]}</h3>);
+                                                        return (<h3 id={`h3-${id}`}>{object.children[0]}</h3>);
                                                     case 4:
-                                                        return (<h4 id={`h4--${value}`}>{object.children[0]}</h4>);
+                                                        return (<h4 id={`h4-${id}`}>{object.children[0]}</h4>);
                                                     case 5:
-                                                        return (<h5 id={`h5--${value}`}>{object.children[0]}</h5>);
+                                                        return (<h5 id={`h5-${id}`}>{object.children[0]}</h5>);
                                                     case 6:
-                                                        return (<h6 id={`h6--${value}`}>{object.children[0]}</h6>);
+                                                        return (<h6 id={`h6-${id}`}>{object.children[0]}</h6>);
                                                 }
                                             },
                                             code: (object) => {
