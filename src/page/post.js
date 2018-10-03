@@ -148,10 +148,34 @@ export class PostPage extends React.Component {
                                         className={'markdown-body mt-lg'}
                                         source={testMarkdown}
                                         renderers={{
-                                            // heading: (object) => {
-                                            //     // TODO 设置 id，并且存入锚点信息
-                                            //     return object;
-                                            // },
+                                            heading: (object) => {
+                                                let level = object.level;
+                                                let value = object.children[0];
+
+                                                // 将多个空格全部变成一个空格
+                                                value = value.replace(/[ ]+/, ' ');
+                                                // 将空格转换成 -
+                                                value = value.replace(' ', '-');
+                                                // 全部转换成小写
+                                                value = value.toLowerCase();
+
+                                                // 返回渲染结果
+                                                switch (level) {
+                                                    default:
+                                                    case 1:
+                                                        return (<h1 id={`h1--${value}`}>{object.children[0]}</h1>);
+                                                    case 2:
+                                                        return (<h2 id={`h2--${value}`}>{object.children[0]}</h2>);
+                                                    case 3:
+                                                        return (<h3 id={`h3--${value}`}>{object.children[0]}</h3>);
+                                                    case 4:
+                                                        return (<h4 id={`h4--${value}`}>{object.children[0]}</h4>);
+                                                    case 5:
+                                                        return (<h5 id={`h5--${value}`}>{object.children[0]}</h5>);
+                                                    case 6:
+                                                        return (<h6 id={`h6--${value}`}>{object.children[0]}</h6>);
+                                                }
+                                            },
                                             code: (object) => {
                                                 return (
                                                     <SyntaxHighlighter
