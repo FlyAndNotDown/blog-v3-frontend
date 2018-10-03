@@ -167,7 +167,7 @@ export class PostPage extends React.Component {
                                     sm={{ offset: 0, span: 0 }}
                                     md={{ offset: 0, span: 0 }}
                                     lg={{ offset: 2, span: 4 }}>
-                                    <Anchor offsetTop={100} className={'bg-color-main'}>
+                                    <Anchor offsetTop={61} className={'bg-color-main mt-lg'}>
                                         <Anchor.Link href={'/#/post/1#'} title="Basic demo"/>
                                     </Anchor>
                                 </Col>

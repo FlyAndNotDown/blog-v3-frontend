@@ -61,7 +61,7 @@ export class NavBar extends React.Component {
                     sm={{ offset: 1, span: 3 }}
                     md={{ offset: 3, span: 3 }}
                     lg={{ offset: 3, span: 3 }}>
-                    <Link className={'font-size-md color-white float-left color-white-a'} to={'#'}>
+                    <Link className={'font-size-md color-white float-left color-white-a'} to={'/'}>
                         Kindem
                     </Link>
                 </Col>
