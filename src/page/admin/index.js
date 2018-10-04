@@ -40,7 +40,7 @@ export class AdminIndexPage extends React.Component {
         this.setState({
             username: e.target.value
         });
-    }
+    };
 
     /**
      * 密码变化回调
@@ -50,7 +50,7 @@ export class AdminIndexPage extends React.Component {
         this.setState({
             password: e.target.value
         });
-    }
+    };
 
     /**
      * 登录按钮点击回调
