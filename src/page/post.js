@@ -11,48 +11,10 @@ import { Row, Col, Affix, Divider, Icon, Anchor } from 'antd';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-
-const testMarkdown = `
-# Live demo
-Changes are automatically rendered as you type.
-
-* Implements [GitHub Flavored Markdown](https://github.github.com/gfm/)
-* Renders actual, "native" React DOM elements
-* Allows you to escape or skip HTML (try toggling the checkboxes above)
-* If you escape or skip the HTML, no \`dangerouslySetInnerHTML\` is used! Yay!
-
-## HTML block below
-> This blockquote will change based on the HTML settings above.
-
-## How about some code?
-\`\`\`js
-var React = require('react');
-var Markdown = require('react-markdown');
-
-React.render(
-  <Markdown source="# Your markdown here" />,
-  document.getElementById('content')
-);
-\`\`\`
-
-Pretty neat, eh?
-
-## Tables?
-
-| Feature | Support |
-| ------ | ----------- |
-| tables | ✔ |
-| alignment | ✔ |
-| wewt | ✔ |
-
-## More info?
-
-Read usage information and more on [GitHub](//github.com/rexxars/react-markdown)
-
----------------
-
-A component by [VaffelNinja](http://vaffel.ninja) / Espen Hovlandsdal
-`;
+import axios from 'axios';
+import requestConfig from '../config/request';
+import { Log } from '../tool/log';
+import mainConfig from '../config/main';
 
 /**
  * 文章页面 - /post/:postId
@@ -68,9 +30,15 @@ export class PostPage extends React.Component {
 
         this.state = {
             // TODO 利用这个 state
-            anchorLinks: []
+            anchorLinks: [],
+
+            title: '',
+            time: '',
+            labels: [],
+            body: ''
         };
 
+        // url
         this.url = '';
     }
 
@@ -80,7 +48,29 @@ export class PostPage extends React.Component {
     componentDidMount() {
         // 获取 url
         this.url = this.props.history.location;
+
         // TODO 发送请求获取文章
+        axios
+            .get(requestConfig.post, {
+                params: {
+                    id: this.props.match.params.postId
+                }
+            })
+            .then(response => {
+                // 日志
+                if (mainConfig.devMode) Log.dev(`get ${requestConfig.post} OK`);
+                // 获取数据
+                let data = response.data || {};
+                this.setState({
+                    title: data.title || '',
+                    time: data.time || '',
+                    labels: data.labels || [],
+                    body: data.body || ''
+                });
+            })
+            .catch(error => {
+                if (mainConfig.devMode) Log.dev(`get ${requestConfig.post}`, error);
+            });
     }
 
     /**
@@ -167,19 +157,33 @@ export class PostPage extends React.Component {
                                             sm={{ offset: 0, span: 0 }}
                                             md={{ offset: 0, span: 0 }}
                                             lg={{ offset: 0, span: 24 }}>
-                                            <div className={'font-size-lg mt-md'}>let和const</div>
+                                            <div className={'font-size-lg mt-md'}>{this.state.title}</div>
                                             <div className={'font-size-xs mt-sm color-grey'}>
-                                                <span><Icon type={'clock-circle-o'}/>&nbsp;2018-10-2</span>
+                                                <span><Icon type={'clock-circle-o'}/>&nbsp;{this.state.time}</span>
                                                 <span className={'ml-md'}>
-                                                    <Link to={'#'} className={'color-grey text-decoration-none'}>#JavaScript</Link>
-                                                    &nbsp;
-                                                    <Link to={'#'} className={'color-grey text-decoration-none'}>#前端</Link>
-                                                    &nbsp;
-                                                    <Link to={'#'} className={'color-grey text-decoration-none'}>#积累</Link>
-                                                    &nbsp;
-                                                    <Link to={'#'} className={'color-grey text-decoration-none'}>#语法</Link>
-                                                    &nbsp;
-                                                    <Link to={'#'} className={'color-grey text-decoration-none'}>#全栈</Link>
+                                                    {this.state.labels.map((label, key) => {
+                                                        if (key === this.state.labels.length - 1) {
+                                                            return (
+                                                                <span key={key}>
+                                                                    <Link
+                                                                        to={`/label/${label.key}`}
+                                                                        className={'color-grey text-decoration-none'}>
+                                                                        {label.name}
+                                                                    </Link>
+                                                                </span>
+                                                            );
+                                                        }
+                                                        return (
+                                                            <span key={key}>
+                                                                <Link
+                                                                    to={`/label/${label.key}`}
+                                                                    className={'color-grey text-decoration-none'}>
+                                                                    {label.name}
+                                                                </Link>
+                                                                &nbsp;
+                                                            </span>
+                                                        );
+                                                    })}
                                                 </span>
                                             </div>
                                             <Divider/>
@@ -198,7 +202,7 @@ export class PostPage extends React.Component {
                                     </Row>
                                     <ReactMarkdown
                                         className={'markdown-body mt-lg'}
-                                        source={testMarkdown}
+                                        source={this.state.body}
                                         renderers={{
                                             heading: this.markdownHeadingRender,
                                             code: this.markdownCodeRender

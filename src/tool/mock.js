@@ -6,6 +6,48 @@
 import Mock from 'mockjs';
 import requestConfig from '../config/request';
 
+const testMarkdown = `
+# Live demo
+Changes are automatically rendered as you type.
+
+* Implements [GitHub Flavored Markdown](https://github.github.com/gfm/)
+* Renders actual, "native" React DOM elements
+* Allows you to escape or skip HTML (try toggling the checkboxes above)
+* If you escape or skip the HTML, no \`dangerouslySetInnerHTML\` is used! Yay!
+
+## HTML block below
+> This blockquote will change based on the HTML settings above.
+
+## How about some code?
+\`\`\`js
+var React = require('react');
+var Markdown = require('react-markdown');
+
+React.render(
+  <Markdown source="# Your markdown here" />,
+  document.getElementById('content')
+);
+\`\`\`
+
+Pretty neat, eh?
+
+## Tables?
+
+| Feature | Support |
+| ------ | ----------- |
+| tables | ✔ |
+| alignment | ✔ |
+| wewt | ✔ |
+
+## More info?
+
+Read usage information and more on [GitHub](//github.com/rexxars/react-markdown)
+
+---------------
+
+A component by [VaffelNinja](http://vaffel.ninja) / Espen Hovlandsdal
+`;
+
 /**
  * Url工具类
  */
@@ -172,7 +214,7 @@ export class MockTool {
             ]
         });
         // admin
-        Mock.mock(UrlTool.getRegex(requestConfig.admin), 'get', (options) => {
+        Mock.mock(UrlTool.getRegex(requestConfig.admin), 'get', options => {
             if ((UrlTool.getParam(options.url).username || '') === 'admin') {
                 return {
                     salt: '45c8b12f3e1a'
@@ -182,7 +224,7 @@ export class MockTool {
                 salt: null
             };
         });
-        Mock.mock(UrlTool.getRegex(requestConfig.admin), 'post', (options) => {
+        Mock.mock(UrlTool.getRegex(requestConfig.admin), 'post', options => {
             let body = BodyTool.getBody(options.body);
             if (body.username === 'admin' &&
                 body.password === 'e1efa1257b4cb3cc4a85c904869ea31930ca2629368f5c22bef6cac1f764f69e')
@@ -191,6 +233,30 @@ export class MockTool {
                 };
             return {
                 success: false
+            };
+        });
+        // post
+        Mock.mock(UrlTool.getRegex(requestConfig.post), 'get', options => {
+            return {
+                title: 'let和const',
+                time: '2018-10-2',
+                labels: [{
+                    name: 'JavaScript',
+                    key: 1
+                }, {
+                    name: '前端',
+                    key: 2
+                }, {
+                    name: '积累',
+                    key: 3
+                }, {
+                    name: '语法',
+                    key: 4
+                }, {
+                    name: '全栈',
+                    key: 5
+                }],
+                body: testMarkdown
             };
         });
     }
