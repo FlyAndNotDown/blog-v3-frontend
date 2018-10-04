@@ -29,8 +29,7 @@ export class PostPage extends React.Component {
         super(props);
 
         this.state = {
-            // TODO 利用这个 state
-            anchorLinks: [],
+            anchors: [],
 
             title: '',
             time: '',
@@ -39,16 +38,15 @@ export class PostPage extends React.Component {
         };
 
         // url
-        this.url = '';
+        this.url = `/#${this.props.history.location.pathname}`;
+
+        this.anchors = [];
     }
 
     /**
      * 组件加载生命周期
      */
     componentDidMount() {
-        // 获取 url
-        this.url = this.props.history.location;
-
         // TODO 发送请求获取文章
         axios
             .get(requestConfig.post, {
@@ -90,8 +88,15 @@ export class PostPage extends React.Component {
 
         let id = '';
         for (let i = 0; i < value.length; i++) {
-            if (value[i].match(/[0-9a-zA-Z\-]/)) id += value[i];
+            if (value[i].match(/[0-9a-zA-Z-]/)) id += value[i];
         }
+
+        // 设置锚点
+        this.anchors.push({
+            value: object.children[0],
+            to: id,
+            level: level
+        });
 
         // 返回渲染结果
         switch (level) {
@@ -214,7 +219,20 @@ export class PostPage extends React.Component {
                                     md={{ offset: 0, span: 0 }}
                                     lg={{ offset: 2, span: 4 }}>
                                     <Anchor offsetTop={61} className={'bg-color-main mt-lg'}>
-                                        <Anchor.Link href={'/#/post/1#'} title="Basic demo"/>
+                                        {this.state.anchors.map(anchor => {
+                                            let spaces = '';
+                                            for (let i = 0; i < anchor.level; i++) spaces += '&nbsp;&nbsp;';
+                                            return (
+                                                <Anchor.Link
+                                                    href={`${this.url}#${anchor.to}`}
+                                                    title={
+                                                        <span>
+                                                            {spaces}
+                                                            {anchor.value}
+                                                        </span>
+                                                    }/>
+                                            );
+                                        })}
                                     </Anchor>
                                 </Col>
                             </Row>
