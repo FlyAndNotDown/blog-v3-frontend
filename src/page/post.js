@@ -90,7 +90,7 @@ export class PostPage extends React.Component {
 
         let id = '';
         for (let i = 0; i < value.length; i++) {
-            if (value[i].match(/[0-9a-zA-Z]/)) id += value[i];
+            if (value[i].match(/[0-9a-zA-Z\-]/)) id += value[i];
         }
 
         // 返回渲染结果
