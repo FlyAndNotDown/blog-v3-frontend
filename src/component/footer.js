@@ -36,29 +36,29 @@ export class Footer extends React.Component {
                 <Row className={'m-xl p-xl'}>
                     <Col className={'text-align-center'}>
                         <div className={'font-size-xl mb-md'}>
-                            <Link to={'#'}>
+                            <a href={'https://github.com/FlyAndNotDown'} target={'__blank'}>
                                 <KIcon type={'k-github'}/>
-                            </Link>
+                            </a>
                             &nbsp;
-                            <Link to={'#'}>
+                            <a href={'https://www.zhihu.com/people/kindem/activities'} target={'__blank'}>
                                 <KIcon type={'k-zhihu'}/>
-                            </Link>
+                            </a>
                             &nbsp;
-                            <Link to={'#'}>
+                            <a href={'https://www.jianshu.com/u/d498ebae7b21'} target={'__blank'}>
                                 <KIcon type={'k-jianshu'}/>
-                            </Link>
+                            </a>
                             &nbsp;
-                            <Link to={'#'}>
+                            <a href={'https://juejin.im/user/5b3a3d53f265da62d21e14fe'} target={'__blank'}>
                                 <KIcon type={'k-juejin'}/>
-                            </Link>
+                            </a>
                             &nbsp;
-                            <Link to={'#'}>
+                            <a href={'https://segmentfault.com/u/liuweimeng'} target={'__blank'}>
                                 <KIcon type={'k-sf'}/>
-                            </Link>
+                            </a>
                             &nbsp;
-                            <Link to={'#'}>
+                            <a href={'mailto:hwq2525775@gmail.com'}>
                                 <KIcon type={'k-email'}/>
-                            </Link>
+                            </a>
                             &nbsp;
                             <Link to={'#'}>
                                 <KIcon type={'k-money'}/>
