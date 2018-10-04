@@ -40,6 +40,7 @@ export class PostPage extends React.Component {
         // url
         this.url = `/#${this.props.history.location.pathname}`;
 
+        // 锚点
         this.anchors = [];
     }
 
@@ -69,6 +70,13 @@ export class PostPage extends React.Component {
             .catch(error => {
                 if (mainConfig.devMode) Log.dev(`get ${requestConfig.post}`, error);
             });
+
+        // 延迟加载锚点，防止超出 state 更新最大深度
+        setTimeout(() => {
+            this.setState({
+                anchors: this.anchors
+            });
+        }, 100);
     }
 
     /**
@@ -219,15 +227,20 @@ export class PostPage extends React.Component {
                                     md={{ offset: 0, span: 0 }}
                                     lg={{ offset: 2, span: 4 }}>
                                     <Anchor offsetTop={61} className={'bg-color-main mt-lg'}>
-                                        {this.state.anchors.map(anchor => {
-                                            let spaces = '';
-                                            for (let i = 0; i < anchor.level; i++) spaces += '&nbsp;&nbsp;';
+                                        {this.state.anchors.map((anchor, key) => {
+                                            let spacesIteration = [];
+                                            for (let i = 0; i < anchor.level - 1; i++) {
+                                                spacesIteration.push(i);
+                                            }
                                             return (
                                                 <Anchor.Link
+                                                    key={key}
                                                     href={`${this.url}#${anchor.to}`}
                                                     title={
                                                         <span>
-                                                            {spaces}
+                                                            {spacesIteration.map((temp, key) => {
+                                                                return (<span key={key}>&nbsp;&nbsp;</span>);
+                                                            })}
                                                             {anchor.value}
                                                         </span>
                                                     }/>
