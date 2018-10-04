@@ -30,6 +30,7 @@ export class PostPage extends React.Component {
 
         this.state = {
             anchors: [],
+            anchorsLock: false,
 
             title: '',
             time: '',
@@ -74,7 +75,8 @@ export class PostPage extends React.Component {
         // 延迟加载锚点，防止超出 state 更新最大深度
         setTimeout(() => {
             this.setState({
-                anchors: this.anchors
+                anchors: this.anchors,
+                anchorsLock: true
             });
         }, 100);
     }
@@ -94,13 +96,13 @@ export class PostPage extends React.Component {
         // 全部转换成小写
         value = value.toLowerCase();
 
-        let id = '';
+        let id = `h${level}-`;
         for (let i = 0; i < value.length; i++) {
             if (value[i].match(/[0-9a-zA-Z-]/)) id += value[i];
         }
 
         // 设置锚点
-        this.anchors.push({
+        if (!this.state.anchorsLock) this.anchors.push({
             value: object.children[0],
             to: id,
             level: level
@@ -110,17 +112,17 @@ export class PostPage extends React.Component {
         switch (level) {
             default:
             case 1:
-                return (<h1 id={`h1-${id}`}>{object.children[0]}</h1>);
+                return (<h1 id={id}>{object.children[0]}</h1>);
             case 2:
-                return (<h2 id={`h2-${id}`}>{object.children[0]}</h2>);
+                return (<h2 id={id}>{object.children[0]}</h2>);
             case 3:
-                return (<h3 id={`h3-${id}`}>{object.children[0]}</h3>);
+                return (<h3 id={id}>{object.children[0]}</h3>);
             case 4:
-                return (<h4 id={`h4-${id}`}>{object.children[0]}</h4>);
+                return (<h4 id={id}>{object.children[0]}</h4>);
             case 5:
-                return (<h5 id={`h5-${id}`}>{object.children[0]}</h5>);
+                return (<h5 id={id}>{object.children[0]}</h5>);
             case 6:
-                return (<h6 id={`h6-${id}`}>{object.children[0]}</h6>);
+                return (<h6 id={id}>{object.children[0]}</h6>);
         }
     };
 
