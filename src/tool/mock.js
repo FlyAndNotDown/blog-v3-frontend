@@ -120,7 +120,7 @@ export class MockTool {
                     postKey: 1,
                     type: 'post',
                     title: '测试标题',
-                    description: '这是一段测试代码\n\`\`\`javascript\nlet a = 10;\n\`\`\`\n',
+                    description: '这是一段测试代码\n```javascript\nlet a = 10;\n```\n',
                     date: '2018-9-26',
                     labels: [{
                         name: '标签',
