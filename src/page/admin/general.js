@@ -45,8 +45,21 @@ export class AdminGeneralPage extends React.Component {
      * @returns {*} 渲染结果
      */
     render() {
+        // 在PC端登录提示块
+        const doItOnPCBlock = (
+            <Row
+                className={'w-100 h-100'}
+                type={'flex'}
+                align={'middle'}
+                justify={'center'}>
+                <Col>
+                    <DoItOnPC/>
+                </Col>
+            </Row>
+        );
+
         // 欢迎块
-        let welcomeBlock = (
+        const welcomeBlock = (
             <div>
                 <div className={'font-size-xxl'}>
                     <Link className={'color-black text-decoration-none'} to={'#'}>总览</Link>
@@ -58,8 +71,9 @@ export class AdminGeneralPage extends React.Component {
                 <Divider/>
             </div>
         );
+
         // 今日概况块
-        let todaySummaryBlock = (
+        const todaySummaryBlock = (
             <div>
                 <div className={'font-size-sm'}>
                     <Link className={'color-black text-decoration-none'} to={'#'}>今日概况</Link>
@@ -87,8 +101,9 @@ export class AdminGeneralPage extends React.Component {
                 <Divider/>
             </div>
         );
+
         // 勤奋指数块
-        let hardWorkValueBlock = (
+        const hardWorkValueBlock = (
             <div>
                 <div className={'font-size-sm'}>
                     <Link className={'color-black text-decoration-none'} to={'#'}>勤奋指数</Link>
@@ -116,8 +131,9 @@ export class AdminGeneralPage extends React.Component {
                 <Divider/>
             </div>
         );
+
         // 安全指数块
-        let securityValueBlock = (
+        const securityValueBlock = (
             <div>
                 <div className={'font-size-sm'}>
                     <Link className={'color-black text-decoration-none'} to={'#'}>安全指数</Link>
@@ -145,8 +161,9 @@ export class AdminGeneralPage extends React.Component {
                 <Divider/>
             </div>
         );
+
         // 文章管理块
-        let postManageBlock = (
+        const postManageBlock = (
             <div>
                 <div className={'font-size-sm'}>
                     <Link className={'color-black text-decoration-none'} to={'#'}>文章管理</Link>
@@ -175,8 +192,9 @@ export class AdminGeneralPage extends React.Component {
                 <Divider/>
             </div>
         );
+
         // 评论管理块
-        let commentManageBlock = (
+        const commentManageBlock = (
             <div>
                 <div className={'font-size-sm'}>
                     <Link className={'color-black text-decoration-none'} to={'#'}>评论管理</Link>
@@ -205,8 +223,9 @@ export class AdminGeneralPage extends React.Component {
                 <Divider/>
             </div>
         );
+
         // 留言管理块
-        let messageManageBlock = (
+        const messageManageBlock = (
             <div>
                 <div className={'font-size-sm'}>
                     <Link className={'color-black text-decoration-none'} to={'#'}>留言管理</Link>
@@ -235,6 +254,7 @@ export class AdminGeneralPage extends React.Component {
                 <Divider/>
             </div>
         );
+
         // TODO 标签管理
         // TODO 文件管理
 
@@ -249,15 +269,7 @@ export class AdminGeneralPage extends React.Component {
                         lg={{ offset: 0, span: 0 }}
                         xl={{ offset: 0, span: 0 }}
                         xxl={{ offset: 0, span: 0 }}>
-                        <Row
-                            className={'w-100 h-100'}
-                            type={'flex'}
-                            align={'middle'}
-                            justify={'center'}>
-                            <Col>
-                                <DoItOnPC/>
-                            </Col>
-                        </Row>
+                        {doItOnPCBlock}
                     </Col>
                     <Col
                         className={'mt-md'}
