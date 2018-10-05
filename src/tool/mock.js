@@ -236,29 +236,70 @@ export class MockTool {
             };
         });
         // post
-        Mock.mock(UrlTool.getRegex(requestConfig.post), 'get', options => {
-            return {
-                title: 'let和const',
-                time: '2018-10-2',
-                labels: [{
-                    name: 'JavaScript',
+        Mock.mock(UrlTool.getRegex(requestConfig.post), 'get', {
+            title: 'let和const',
+            time: '2018-10-2',
+            labels: [{
+                name: 'JavaScript',
+                key: 1
+            }, {
+                name: '前端',
+                key: 2
+            }, {
+                name: '积累',
+                key: 3
+            }, {
+                name: '语法',
+                key: 4
+            }, {
+                name: '全栈',
+                key: 5
+            }],
+            body: testMarkdown
+        });
+        // archive
+        Mock.mock(UrlTool.getRegex(requestConfig.archive), 'get', [{
+            year: 2018,
+            children: [{
+                month: 10,
+                children: [{
+                    day: 5,
+                    title: 'let和const',
                     key: 1
                 }, {
-                    name: '前端',
-                    key: 2
+                    day: 5,
+                    title: 'let和const',
+                    key: 1
                 }, {
-                    name: '积累',
-                    key: 3
+                    day: 5,
+                    title: 'let和const',
+                    key: 1
                 }, {
-                    name: '语法',
-                    key: 4
+                    day: 5,
+                    title: 'let和const',
+                    key: 1
+                }]
+            }, {
+                month: 10,
+                children: [{
+                    day: 5,
+                    title: 'let和const',
+                    key: 1
                 }, {
-                    name: '全栈',
-                    key: 5
-                }],
-                body: testMarkdown
-            };
-        });
+                    day: 5,
+                    title: 'let和const',
+                    key: 1
+                }, {
+                    day: 5,
+                    title: 'let和const',
+                    key: 1
+                }, {
+                    day: 5,
+                    title: 'let和const',
+                    key: 1
+                }]
+            }]
+        }]);
     }
 
 }
