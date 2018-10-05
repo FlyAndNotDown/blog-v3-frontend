@@ -30,56 +30,76 @@ export class Footer extends React.Component {
      * @returns {*} 渲染结果
      */
     render() {
+        // 站长链接 div
+        const linkDiv = (
+            <div className={'font-size-xl mb-md'}>
+                <a href={'https://github.com/FlyAndNotDown'} target={'__blank'}>
+                    <KIcon type={'k-github'}/>
+                </a>
+                &nbsp;
+                <a href={'https://www.zhihu.com/people/kindem/activities'} target={'__blank'}>
+                    <KIcon type={'k-zhihu'}/>
+                </a>
+                &nbsp;
+                <a href={'https://www.jianshu.com/u/d498ebae7b21'} target={'__blank'}>
+                    <KIcon type={'k-jianshu'}/>
+                </a>
+                &nbsp;
+                <a href={'https://juejin.im/user/5b3a3d53f265da62d21e14fe'} target={'__blank'}>
+                    <KIcon type={'k-juejin'}/>
+                </a>
+                &nbsp;
+                <a href={'https://segmentfault.com/u/liuweimeng'} target={'__blank'}>
+                    <KIcon type={'k-sf'}/>
+                </a>
+                &nbsp;
+                <a href={'mailto:hwq2525775@gmail.com'}>
+                    <KIcon type={'k-email'}/>
+                </a>
+                &nbsp;
+                <Link to={'#'}>
+                    <KIcon type={'k-money'}/>
+                </Link>
+            </div>
+        );
+
+        // 主题信息 div
+        const themeDiv = (
+            <div className={'font-size-xs'}>
+                Theme By
+                <Link to={'#'} className={'color-text'} id={'emoji-red-heart'}>
+                    <span role={'img'} aria-labelledby={'red-heart'}>❤️</span>
+                    Blog-V3-Frontend
+                </Link>
+            </div>
+        );
+
+        // 框架 div
+        const frameworkDiv = (
+            <div className={'font-size-xs'}>
+                Framework By
+                <Link to={'#'} className={'color-text'} id={'emoji-ant'}>
+                    <span role={'img'} aria-labelledby={'ant'}>🐜</span>
+                    Ant-Design
+                </Link>
+            </div>
+        );
+
+        // 版权信息 div
+        const copyrightDiv = (
+            <div>@2017 Copyright kindemh.cn</div>
+        );
+
         return (
             <KLayout
                 colorMode={KLayout.COLOR_MODE_MAIN}
                 className={'z-index-1'}>
                 <Row className={'m-xl p-xl'}>
                     <Col className={'text-align-center'}>
-                        <div className={'font-size-xl mb-md'}>
-                            <a href={'https://github.com/FlyAndNotDown'} target={'__blank'}>
-                                <KIcon type={'k-github'}/>
-                            </a>
-                            &nbsp;
-                            <a href={'https://www.zhihu.com/people/kindem/activities'} target={'__blank'}>
-                                <KIcon type={'k-zhihu'}/>
-                            </a>
-                            &nbsp;
-                            <a href={'https://www.jianshu.com/u/d498ebae7b21'} target={'__blank'}>
-                                <KIcon type={'k-jianshu'}/>
-                            </a>
-                            &nbsp;
-                            <a href={'https://juejin.im/user/5b3a3d53f265da62d21e14fe'} target={'__blank'}>
-                                <KIcon type={'k-juejin'}/>
-                            </a>
-                            &nbsp;
-                            <a href={'https://segmentfault.com/u/liuweimeng'} target={'__blank'}>
-                                <KIcon type={'k-sf'}/>
-                            </a>
-                            &nbsp;
-                            <a href={'mailto:hwq2525775@gmail.com'}>
-                                <KIcon type={'k-email'}/>
-                            </a>
-                            &nbsp;
-                            <Link to={'#'}>
-                                <KIcon type={'k-money'}/>
-                            </Link>
-                        </div>
-                        <div className={'font-size-xs'}>
-                            Theme By
-                            <Link to={'#'} className={'color-text'} id={'emoji-red-heart'}>
-                                <span role={'img'} aria-labelledby={'red-heart'}>❤️</span>
-                                Blog-V3-Frontend
-                            </Link>
-                        </div>
-                        <div className={'font-size-xs'}>
-                            Framework By
-                            <Link to={'#'} className={'color-text'} id={'emoji-ant'}>
-                                <span role={'img'} aria-labelledby={'ant'}>🐜</span>
-                                Ant-Design
-                            </Link>
-                        </div>
-                        <div>@2017 Copyright kindemh.cn</div>
+                        {linkDiv}
+                        {themeDiv}
+                        {frameworkDiv}
+                        {copyrightDiv}
                     </Col>
                 </Row>
             </KLayout>

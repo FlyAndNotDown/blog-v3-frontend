@@ -31,7 +31,7 @@ export class EmotionBlock extends React.Component {
      */
     render() {
         // 图标 div
-        let iconDiv = (
+        const iconDiv = (
             <div className={'text-align-center font-size-lg color-black'}>
                 <Icon type={'message'}/>
             </div>

@@ -85,7 +85,7 @@ export class BlockList extends React.Component {
      */
     render() {
         // 分页div
-        let paginationDiv = (
+        const paginationDiv = (
             <div className={'text-align-center mt-lg'}>
                 <Pagination size={'small'} total={100} onChange={this.onPageChange}/>
             </div>

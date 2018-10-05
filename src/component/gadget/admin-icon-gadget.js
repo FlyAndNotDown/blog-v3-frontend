@@ -32,7 +32,7 @@ export class AdminIconGadget extends React.Component {
      */
     render() {
         // 图标 div
-        let iconDiv = (
+        const iconDiv = (
             <div className={'text-align-center font-size-xxl color-second'}>
                 {this.props.iconColor ? (
                     <Icon type={this.props.iconType} theme={'twoTone'} twoToneColor={this.props.iconColor}/>
@@ -43,14 +43,14 @@ export class AdminIconGadget extends React.Component {
         );
 
         // 标题 div
-        let titleDiv = (
+        const titleDiv = (
             <div className={'text-align-center font-size-sm color-second'}>
                 {this.props.title}
             </div>
         );
 
         // 内容 div
-        let contentDiv = (
+        const contentDiv = (
             <div className={'text-align-center font-size-xs color-second'}>
                 {this.props.content}
             </div>

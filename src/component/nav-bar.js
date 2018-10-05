@@ -28,6 +28,7 @@ export class NavBar extends React.Component {
      * @returns {*} 渲染结果
      */
     render() {
+        // 响应式下拉框
         const overlay = (
             <Menu>
                 <Menu.Item>
@@ -54,6 +55,47 @@ export class NavBar extends React.Component {
             </Menu>
         );
 
+        // 主站链接 div
+        const siteLinkDiv = (
+            <div>
+                <Link className={'font-size-md color-white float-left color-white-a'} to={'/'}>
+                    Kindem
+                </Link>
+            </div>
+        );
+
+        // 导航 div
+        const navDiv = (
+            <div className={'lh-nav-bar float-right'}>
+                <Link className={'color-white-a font-size-xs'} to={'/archive'}>归档</Link>
+                &nbsp;&nbsp;
+                <Link className={'color-white-a font-size-xs'} to={'/emotion'}>说说</Link>
+                &nbsp;&nbsp;
+                <Link className={'color-white-a font-size-xs'} to={'/plan'}>计划</Link>
+                &nbsp;&nbsp;
+                <Link className={'color-white-a font-size-xs'} to={'/work'}>作品</Link>
+                &nbsp;&nbsp;
+                <Link className={'color-white-a font-size-xs'} to={'/message'}>留言</Link>
+                &nbsp;&nbsp;
+                <Link className={'color-white-a font-size-xs'} to={'/friend'}>友链</Link>
+                &nbsp;&nbsp;
+                <Link className={'color-white-a font-size-xs'} to={'/about'}>关于</Link>
+                &nbsp;&nbsp;
+            </div>
+        );
+
+        // 移动端导航 div
+        const mobileNavDiv = (
+            <div className={'lh-nav-bar float-right'}>
+                <Dropdown overlay={overlay}>
+                    <Link to={'#'} className={'color-white-a font-size-xs'}>
+                        Menu&nbsp;&nbsp;
+                        <Icon type={'down'}/>
+                    </Link>
+                </Dropdown>
+            </div>
+        );
+
         return (
             <Row className={`h-nav-bar ${this.props.active ? 'bg-color-nav-bar' : 'bg-color-none'}`}>
                 <Col
@@ -62,45 +104,21 @@ export class NavBar extends React.Component {
                     sm={{ offset: 1, span: 3 }}
                     md={{ offset: 3, span: 3 }}
                     lg={{ offset: 3, span: 3 }}>
-                    <Link className={'font-size-md color-white float-left color-white-a'} to={'/'}>
-                        Kindem
-                    </Link>
+                    {siteLinkDiv}
                 </Col>
                 <Col
                     xs={{ offset: 0, span: 0 }}
                     sm={{ offset: 0, span: 0 }}
                     md={{ offset: 6, span: 9 }}
                     lg={{ offset: 10, span: 7 }}>
-                    <div className={'lh-nav-bar float-right'}>
-                        <Link className={'color-white-a font-size-xs'} to={'/archive'}>归档</Link>
-                        &nbsp;&nbsp;
-                        <Link className={'color-white-a font-size-xs'} to={'/emotion'}>说说</Link>
-                        &nbsp;&nbsp;
-                        <Link className={'color-white-a font-size-xs'} to={'/plan'}>计划</Link>
-                        &nbsp;&nbsp;
-                        <Link className={'color-white-a font-size-xs'} to={'/work'}>作品</Link>
-                        &nbsp;&nbsp;
-                        <Link className={'color-white-a font-size-xs'} to={'/message'}>留言</Link>
-                        &nbsp;&nbsp;
-                        <Link className={'color-white-a font-size-xs'} to={'/friend'}>友链</Link>
-                        &nbsp;&nbsp;
-                        <Link className={'color-white-a font-size-xs'} to={'/about'}>关于</Link>
-                        &nbsp;&nbsp;
-                    </div>
+                    {navDiv}
                 </Col>
                 <Col
                     xs={{ offset: 6, span: 13 }}
                     sm={{ offset: 6, span: 13 }}
                     md={{ offset: 0, span: 0 }}
                     lg={{ offset: 0, span: 0 }}>
-                    <div className={'lh-nav-bar float-right'}>
-                        <Dropdown overlay={overlay}>
-                            <Link to={'#'} className={'color-white-a font-size-xs'}>
-                                Menu&nbsp;&nbsp;
-                                <Icon type={'down'}/>
-                            </Link>
-                        </Dropdown>
-                    </div>
+                    {mobileNavDiv}
                 </Col>
             </Row>
         );

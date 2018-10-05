@@ -73,7 +73,7 @@ export class PostBlock extends React.Component {
      */
     render() {
         // 标题 div
-        let titleDiv = (
+        const titleDiv = (
             <div>
                 <Link className={'font-size-lg color-black'} to={`/post/${this.props.postKey}`}>
                     {this.props.title}
@@ -82,7 +82,7 @@ export class PostBlock extends React.Component {
         );
 
         // 描述 div
-        let descriptionDiv = (
+        const descriptionDiv = (
             <div className={'font-size-xs mt-xs'}>
                 <ReactMarkdown
                     className={'markdown-block'}
@@ -94,7 +94,7 @@ export class PostBlock extends React.Component {
         );
 
         // 日期 span
-        let dateSpan = (
+        const dateSpan = (
             <span className={'font-size-xs mt-sm float-left'}>
                 <Icon type={'clock-circle-o'}/>
                 <span className={'pl-xs pr-xs'}>{this.props.date}</span>
@@ -102,14 +102,14 @@ export class PostBlock extends React.Component {
         );
 
         // 标签 span
-        let labelSpan = (
+        const labelSpan = (
             <span className={'font-size-xs mt-sm float-right'}>
                 {this.props.labels.map(this.labelsMapFunc)}
             </span>
         );
 
         // 附加栏 div
-        let additionalDiv = (
+        const additionalDiv = (
             <div>
                 {dateSpan}
                 {labelSpan}

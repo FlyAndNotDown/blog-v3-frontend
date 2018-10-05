@@ -28,14 +28,14 @@ export class DoItOnPC extends React.Component {
      */
     render() {
         // 图标 div
-        let iconDiv = (
+        const iconDiv = (
             <div className={'text-align-center font-size-xxl'}>
                 <Icon type={'chrome'} spin/>
             </div>
         );
 
         // 提示 div
-        let tipDiv = (
+        const tipDiv = (
             <div className={'color-second font-size-md text-align-center'}>
                 请在PC端登录
             </div>
