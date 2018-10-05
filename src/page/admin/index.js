@@ -109,6 +109,46 @@ export class AdminIndexPage extends React.Component {
      * @returns {*} 渲染结果
      */
     render() {
+        // 标题行
+        const titleDiv = (
+            <div className={'font-size-xl text-align-center'}>
+                <span role={'img'} aria-labelledby={'red-heart'}>🤣</span>
+                别攻击我
+            </div>
+        );
+
+        // 登录表单
+        const loginForm = (
+            <Form className={'mt-lg'}>
+                <Form.Item>
+                    <Input
+                        placeholder={'管理员账户'}
+                        prefix={<Icon type={'user'}/>}
+                        value={this.state.username}
+                        onChange={this.onUsernameChange}
+                        disabled={this.state.lock}/>
+                </Form.Item>
+                <Form.Item>
+                    <Input
+                        type={'password'}
+                        placeholder={'密码'}
+                        prefix={<Icon type={'user'}/>}
+                        value={this.state.password}
+                        onChange={this.onPasswordChange}
+                        disabled={this.state.lock}/>
+                </Form.Item>
+                <Form.Item>
+                    <Button
+                        className={'float-left w-100'}
+                        type={'primary'}
+                        onClick={this.onLoginButtonClick}
+                        disabled={this.state.lock}>
+                        登录
+                    </Button>
+                </Form.Item>
+            </Form>
+        );
+
         return (
             <KLayout
                 className={'w-100 h-100vh'}
@@ -121,38 +161,8 @@ export class AdminIndexPage extends React.Component {
                     <Col
                         xs={20} sm={18} md={8}
                         lg={6} xl={6} xxl={4}>
-                        <div className={'font-size-xl text-align-center'}>
-                            <span role={'img'} aria-labelledby={'red-heart'}>🤣</span>
-                            别攻击我
-                        </div>
-                        <Form className={'mt-lg'}>
-                            <Form.Item>
-                                <Input
-                                    placeholder={'管理员账户'}
-                                    prefix={<Icon type={'user'}/>}
-                                    value={this.state.username}
-                                    onChange={this.onUsernameChange}
-                                    disabled={this.state.lock}/>
-                            </Form.Item>
-                            <Form.Item>
-                                <Input
-                                    type={'password'}
-                                    placeholder={'密码'}
-                                    prefix={<Icon type={'user'}/>}
-                                    value={this.state.password}
-                                    onChange={this.onPasswordChange}
-                                    disabled={this.state.lock}/>
-                            </Form.Item>
-                            <Form.Item>
-                                <Button
-                                    className={'float-left w-100'}
-                                    type={'primary'}
-                                    onClick={this.onLoginButtonClick}
-                                    disabled={this.state.lock}>
-                                    登录
-                                </Button>
-                            </Form.Item>
-                        </Form>
+                        {titleDiv}
+                        {loginForm}
                     </Col>
                 </Row>
             </KLayout>
