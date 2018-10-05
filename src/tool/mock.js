@@ -121,7 +121,7 @@ export class MockTool {
      */
     static start() {
         // home
-        Mock.mock(requestConfig.home, 'get', {
+        Mock.mock(UrlTool.getRegex(requestConfig.home), 'get', {
             blocks: [
                 {
                     postKey: 1,
