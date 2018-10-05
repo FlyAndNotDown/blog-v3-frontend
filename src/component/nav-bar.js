@@ -30,25 +30,25 @@ export class NavBar extends React.Component {
         const overlay = (
             <Menu>
                 <Menu.Item>
-                    <Link to={'#'} className={'font-size-xs'}>归档</Link>
+                    <Link to={'/archive'} className={'font-size-xs'}>归档</Link>
                 </Menu.Item>
                 <Menu.Item>
-                    <Link to={'#'} className={'font-size-xs'}>说说</Link>
+                    <Link to={'/emotion'} className={'font-size-xs'}>说说</Link>
                 </Menu.Item>
                 <Menu.Item>
-                    <Link to={'#'} className={'font-size-xs'}>计划</Link>
+                    <Link to={'/plan'} className={'font-size-xs'}>计划</Link>
                 </Menu.Item>
                 <Menu.Item>
-                    <Link to={'#'} className={'font-size-xs'}>作品</Link>
+                    <Link to={'/work'} className={'font-size-xs'}>作品</Link>
                 </Menu.Item>
                 <Menu.Item>
-                    <Link to={'#'} className={'font-size-xs'}>留言</Link>
+                    <Link to={'/message'} className={'font-size-xs'}>留言</Link>
                 </Menu.Item>
                 <Menu.Item>
-                    <Link to={'#'} className={'font-size-xs'}>友链</Link>
+                    <Link to={'/friend'} className={'font-size-xs'}>友链</Link>
                 </Menu.Item>
                 <Menu.Item>
-                    <Link to={'#'} className={'font-size-xs'}>关于</Link>
+                    <Link to={'/about'} className={'font-size-xs'}>关于</Link>
                 </Menu.Item>
             </Menu>
         );
@@ -71,19 +71,19 @@ export class NavBar extends React.Component {
                     md={{ offset: 6, span: 9 }}
                     lg={{ offset: 10, span: 7 }}>
                     <div className={'lh-nav-bar float-right'}>
-                        <Link className={'color-white-a font-size-xs'} to={'#'}>归档</Link>
+                        <Link className={'color-white-a font-size-xs'} to={'/archive'}>归档</Link>
                         &nbsp;&nbsp;
-                        <Link className={'color-white-a font-size-xs'} to={'#'}>说说</Link>
+                        <Link className={'color-white-a font-size-xs'} to={'/emotion'}>说说</Link>
                         &nbsp;&nbsp;
-                        <Link className={'color-white-a font-size-xs'} to={'#'}>计划</Link>
+                        <Link className={'color-white-a font-size-xs'} to={'/plan'}>计划</Link>
                         &nbsp;&nbsp;
-                        <Link className={'color-white-a font-size-xs'} to={'#'}>作品</Link>
+                        <Link className={'color-white-a font-size-xs'} to={'/work'}>作品</Link>
                         &nbsp;&nbsp;
-                        <Link className={'color-white-a font-size-xs'} to={'#'}>留言</Link>
+                        <Link className={'color-white-a font-size-xs'} to={'/message'}>留言</Link>
                         &nbsp;&nbsp;
-                        <Link className={'color-white-a font-size-xs'} to={'#'}>友链</Link>
+                        <Link className={'color-white-a font-size-xs'} to={'/friend'}>友链</Link>
                         &nbsp;&nbsp;
-                        <Link className={'color-white-a font-size-xs'} to={'#'}>关于</Link>
+                        <Link className={'color-white-a font-size-xs'} to={'/about'}>关于</Link>
                         &nbsp;&nbsp;
                     </div>
                 </Col>
