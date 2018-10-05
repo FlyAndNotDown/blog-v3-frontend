@@ -101,8 +101,127 @@ export class AdminNewPostPage extends React.Component {
      * @returns {*} 渲染结果
      */
     render() {
+        // 在电脑端登录提示挂件
+        const doItOnPCGadget = (
+            <Row
+                className={'w-100 h-100'}
+                type={'flex'}
+                align={'middle'}
+                justify={'center'}>
+                <Col>
+                    <DoItOnPC/>
+                </Col>
+            </Row>
+        );
+
+        // 欢迎行
+        const welcomeRow = (
+            <div>
+                <div className={'font-size-xxl'}>
+                    <Link className={'color-black text-decoration-none'} to={'#'}>写文章</Link>
+                </div>
+                <div className={'color-second font-size-sm'}>
+                    <span role={'img'} aria-labelledby={'happy-face'}>😀</span>
+                    写作的快乐
+                </div>
+                <Divider/>
+            </div>
+        );
+
+        // 操作行
+        const actionRow = (
+            <div>
+                <div>
+                    <Button.Group className={'float-left'}>
+                        <Button
+                            type={'normal'}
+                            onClick={this.onEditorButtonClick}>
+                            Markdown编辑器
+                        </Button>
+                        <Button
+                            type={'normal'}
+                            onClick={this.onPreviewButtonClick}>
+                            预览
+                        </Button>
+                    </Button.Group>
+                    <Button
+                        type={'primary'}
+                        className={'float-right'}
+                        onClick={this.onPublishPostButtonClick}>
+                        发表文章
+                    </Button>
+                </div>
+                <br/>
+                <Divider/>
+            </div>
+        );
+
+        // 编辑器行
+        const editorRow = (
+            <div>
+                <Input.TextArea
+                    autosize={{
+                        minRows: 20,
+                        maxRows: 20
+                    }}
+                    value={this.state.markdown}
+                    onChange={this.onMarkdownChange}/>
+            </div>
+        );
+
+        // 预览行
+        const previewRow = (
+            <div className={'markdown-preview'}>
+                <ReactMarkdown
+                    className={'markdown-body'}
+                    source={this.state.markdown}
+                    renderers={{
+                        code: (object) => {
+                            return (
+                                <SyntaxHighlighter
+                                    language={object.language}>
+                                    {object.value}
+                                </SyntaxHighlighter>
+                            );
+                        }
+                    }}/>
+            </div>
+        );
+
+        // 发表文章抽屉
+        const publishPostDrawer = (
+            <Drawer
+                width={400}
+                title={'发表文章'}
+                placement={'right'}
+                closable={false}
+                onClose={this.onPublishPostDrawerClose}
+                visible={this.state.drawerVisible}>
+                <Form>
+                    <Form.Item label={'标题'}>
+                        <Input placeholder={'取个什么名字好呢'}/>
+                    </Form.Item>
+                    <Form.Item label={'标签'}>
+                        <Select
+                            mode={'multiple'}
+                            placeholder={'选择标签'}
+                            onChange={this.onLabelSelectChange}>
+                            {this.state.labelSelectOptions.map((option, key) => {
+                                // TODO
+                                return null;
+                            })}
+                        </Select>
+                    </Form.Item>
+                    <Form.Item>
+                        <Button type={'primary'}>确认发表</Button>
+                    </Form.Item>
+                </Form>
+            </Drawer>
+        );
+
         return (
-            <KLayout>
+            <KLayout
+                colorMode={KLayout.COLOR_MODE_MAIN}>
                 <Row>
                     <Col
                         className={'w-100 h-100vh'}
@@ -112,15 +231,7 @@ export class AdminNewPostPage extends React.Component {
                         lg={{ offset: 0, span: 0 }}
                         xl={{ offset: 0, span: 0 }}
                         xxl={{ offset: 0, span: 0 }}>
-                        <Row
-                            className={'w-100 h-100'}
-                            type={'flex'}
-                            align={'middle'}
-                            justify={'center'}>
-                            <Col>
-                                <DoItOnPC/>
-                            </Col>
-                        </Row>
+                        {doItOnPCGadget}
                     </Col>
                     <Col
                         className={'mt-md'}
@@ -130,98 +241,12 @@ export class AdminNewPostPage extends React.Component {
                         lg={{ offset: 4, span: 16 }}
                         xl={{ offset: 5, span: 14 }}
                         xxl={{ offset: 6, span: 12 }}>
-                        <div>
-                            <div className={'font-size-xxl'}>
-                                <Link className={'color-black text-decoration-none'} to={'#'}>写文章</Link>
-                            </div>
-                            <div className={'color-second font-size-sm'}>
-                                <span role={'img'} aria-labelledby={'happy-face'}>😀</span>
-                                写作的快乐
-                            </div>
-                            <Divider/>
-                        </div>
-
-                        <div>
-                            <div>
-                                <Button.Group className={'float-left'}>
-                                    <Button
-                                        type={'normal'}
-                                        onClick={this.onEditorButtonClick}>
-                                        Markdown编辑器
-                                    </Button>
-                                    <Button
-                                        type={'normal'}
-                                        onClick={this.onPreviewButtonClick}>
-                                        预览
-                                    </Button>
-                                </Button.Group>
-                                <Button
-                                    type={'primary'}
-                                    className={'float-right'}
-                                    onClick={this.onPublishPostButtonClick}>
-                                    发表文章
-                                </Button>
-                            </div>
-                            <br/>
-                            <Divider/>
-                        </div>
-
-                        {this.state.editorToggled ? (
-                            <div>
-                                <Input.TextArea
-                                    autosize={{
-                                        minRows: 20,
-                                        maxRows: 20
-                                    }}
-                                    value={this.state.markdown}
-                                    onChange={this.onMarkdownChange}/>
-                            </div>
-                        ) : (
-                            <div className={'markdown-preview'}>
-                                <ReactMarkdown
-                                    className={'markdown-body'}
-                                    source={this.state.markdown}
-                                    renderers={{
-                                        code: (object) => {
-                                            return (
-                                                <SyntaxHighlighter
-                                                    language={object.language}>
-                                                    {object.value}
-                                                </SyntaxHighlighter>
-                                            );
-                                        }
-                                    }}/>
-                            </div>
-                        )}
+                        {welcomeRow}
+                        {actionRow}
+                        {this.state.editorToggled ? editorRow : previewRow}
                     </Col>
                 </Row>
-                <Drawer
-                    width={400}
-                    title={'发表文章'}
-                    placement={'right'}
-                    closable={false}
-                    onClose={this.onPublishPostDrawerClose}
-                    visible={this.state.drawerVisible}>
-                    <Form>
-                        <Form.Item label={'标题'}>
-                            <Input placeholder={'取个什么名字好呢'}/>
-                        </Form.Item>
-                        <Form.Item label={'标签'}>
-                            <Select
-                                mode={'multiple'}
-                                placeholder={'选择标签'}
-                                onChange={this.onLabelSelectChange}>
-                                {this.state.labelSelectOptions.map((option, key) => {
-                                    // TODO
-                                    return null;
-                                })}
-                            </Select>
-                        </Form.Item>
-                        <Form.Item>
-                            <Button type={'primary'}>确认发表</Button>
-                        </Form.Item>
-                    </Form>
-                </Drawer>
+                {publishPostDrawer}
             </KLayout>
         );
     }
