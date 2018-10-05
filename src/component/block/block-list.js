@@ -10,25 +10,25 @@ import { EmotionBlock } from "./emotion-block";
 
 /**
  * 块列表
- * @property {array} blocks 块数组
- *  @member {object} postBlock 文章块对象
- *      @member {string} type 块对象类型
- *      @member {string} title 标题
- *      @member {string} description 描述
- *      @member {number} key 文章键
- *      @member {string} date 日期
- *      @member {array} labels 标签
- *  @member {object} emotionBlock 说说块对象
- *      @member {string} type 块对象类型
- *      @member {string} context 说说内容
- *      @member {string} date 日期
+ * @property {Array} blocks 块数组
+ *      @member {Object} postBlock 文章块对象
+ *          @member {string} type 块对象类型
+ *          @member {string} title 标题
+ *          @member {string} description 描述
+ *          @member {number} key 文章键
+ *          @member {string} date 日期
+ *          @member {Array} labels 标签
+ *      @member {Object} emotionBlock 说说块对象
+ *          @member {string} type 块对象类型
+ *          @member {string} context 说说内容
+ *          @member {string} date 日期
  * @property {function} onPageChange 当分页改变的回调
  */
 export class BlockList extends React.Component {
 
     /**
      * 构造
-     * @param {object} props 属性
+     * @param {Object} props 属性
      */
     constructor(props) {
         super(props);
@@ -38,7 +38,7 @@ export class BlockList extends React.Component {
 
     /**
      * 渲染函数
-     * @return {JSX} 渲染结果
+     * @return {*} 渲染结果
      */
     render() {
         return (
