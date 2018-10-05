@@ -48,47 +48,79 @@ export class PostBlock extends React.Component {
     };
 
     /**
+     * 标签迭代映射函数
+     * @param {Object} label 标签对象
+     * @param {number} key 迭代标识
+     * @returns {*} 渲染结果
+     */
+    labelsMapFunc = (label, key) => {
+        return (
+            <Link
+                to={`/label/${label.key}`}
+                key={key}
+                className={'color-text'}>
+                #{label.name}
+                {key === this.props.labels.length - 1 ? (
+                    <span>&nbsp;</span>
+                ) : null}
+            </Link>
+        );
+    };
+
+    /**
      * 渲染函数
      * @returns {*} 渲染结果
      */
     render() {
+        // 标题 div
+        let titleDiv = (
+            <div>
+                <Link className={'font-size-lg color-black'} to={`/post/${this.props.postKey}`}>
+                    {this.props.title}
+                </Link>
+            </div>
+        );
+
+        // 描述 div
+        let descriptionDiv = (
+            <div className={'font-size-xs mt-xs'}>
+                <ReactMarkdown
+                    className={'markdown-block'}
+                    source={this.props.description}
+                    renderers={{
+                        code: this.markdownCodeRender
+                    }}/>
+            </div>
+        );
+
+        // 日期 span
+        let dateSpan = (
+            <span className={'font-size-xs mt-sm float-left'}>
+                <Icon type={'clock-circle-o'}/>
+                <span className={'pl-xs pr-xs'}>{this.props.date}</span>
+            </span>
+        );
+
+        // 标签 span
+        let labelSpan = (
+            <span className={'font-size-xs mt-sm float-right'}>
+                {this.props.labels.map(this.labelsMapFunc)}</span>
+        );
+
+        // 附加栏 div
+        let additionalDiv = (
+            <div>
+                {dateSpan}
+                {labelSpan}
+            </div>
+        );
+
         return (
             <Row className={'mt-md'}>
                 <Col>
-                    <Link className={'font-size-lg color-black'} to={`/post/${this.props.postKey}`}>
-                        {this.props.title}
-                    </Link>
-                    <div className={'font-size-xs mt-xs'}>
-                        <ReactMarkdown
-                            className={'markdown-block'}
-                            source={this.props.description}
-                            renderers={{
-                                code: this.markdownCodeRender
-                            }}/>
-                    </div>
-                    <div>
-                        <span className={'font-size-xs mt-sm float-left'}>
-                            <Icon type={'clock-circle-o'}/>
-                            <span className={'pl-xs pr-xs'}>
-                                {this.props.date}
-                            </span>
-                        </span>
-                            <span className={'font-size-xs mt-sm float-right'}>
-                            {this.props.labels.map((label, key) => {
-                                return (
-                                    <Link
-                                        to={`/label/${label.key}`}
-                                        key={key}
-                                        className={'color-text'}>
-                                        #{label.name}
-                                        {key === this.props.labels.length - 1 ? (
-                                            <span>&nbsp;</span>
-                                        ) : null}
-                                    </Link>
-                                );
-                            })}
-                        </span>
-                    </div>
+                    {titleDiv}
+                    {descriptionDiv}
+                    {additionalDiv}
                 </Col>
             </Row>
         );
