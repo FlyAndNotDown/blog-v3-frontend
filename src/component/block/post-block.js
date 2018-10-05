@@ -104,7 +104,8 @@ export class PostBlock extends React.Component {
         // 标签 span
         let labelSpan = (
             <span className={'font-size-xs mt-sm float-right'}>
-                {this.props.labels.map(this.labelsMapFunc)}</span>
+                {this.props.labels.map(this.labelsMapFunc)}
+            </span>
         );
 
         // 附加栏 div

@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { Icon } from 'antd';
+import { Icon, Row, Col } from 'antd';
 
 /**
  * 管理员小图标挂件
@@ -31,22 +31,39 @@ export class AdminIconGadget extends React.Component {
      * @returns {*} 渲染结果
      */
     render() {
-        return (
-            <div>
-                <div className={'text-align-center font-size-xxl color-second'}>
-                    {this.props.iconColor ? (
-                        <Icon type={this.props.iconType} theme={'twoTone'} twoToneColor={this.props.iconColor}/>
-                    ) : (
-                        <Icon type={this.props.iconType} theme={'outlined'}/>
-                    )}
-                </div>
-                <div className={'text-align-center font-size-sm color-second'}>
-                    {this.props.title}
-                </div>
-                <div className={'text-align-center font-size-xs color-second'}>
-                    {this.props.content}
-                </div>
+        // 图标 div
+        let iconDiv = (
+            <div className={'text-align-center font-size-xxl color-second'}>
+                {this.props.iconColor ? (
+                    <Icon type={this.props.iconType} theme={'twoTone'} twoToneColor={this.props.iconColor}/>
+                ) : (
+                    <Icon type={this.props.iconType}/>
+                )}
             </div>
+        );
+
+        // 标题 div
+        let titleDiv = (
+            <div className={'text-align-center font-size-sm color-second'}>
+                {this.props.title}
+            </div>
+        );
+
+        // 内容 div
+        let contentDiv = (
+            <div className={'text-align-center font-size-xs color-second'}>
+                {this.props.content}
+            </div>
+        );
+
+        return (
+            <Row>
+                <Col>
+                    {iconDiv}
+                    {titleDiv}
+                    {contentDiv}
+                </Col>
+            </Row>
         );
     }
 
