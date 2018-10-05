@@ -10,21 +10,22 @@ import ReactMarkdown from 'react-markdown';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 
 /**
- * 文章块
+ * 文章块组件
+ * @constructor
  * @property {number} postKey 文章键
  * @property {string} title 标题
  * @property {string} description 描述
  * @property {string} date 日期
- * @property {array} labels 标签
- *  @member {object} label 标签对象
- *      @member {string} name 标签名
- *      @member {string} key 标签键
+ * @property {Array} labels 标签
+ * * @member {Object} label 标签对象
+ * * @member {string} name 标签名
+ * * @member {string} key 标签键
  */
 export class PostBlock extends React.Component {
 
     /**
      * 构造
-     * @param {object} props 属性
+     * @param {Object} props 属性
      */
     constructor(props) {
         super(props);
@@ -34,7 +35,8 @@ export class PostBlock extends React.Component {
 
     /**
      * Markdown 代码渲染函数
-     * @param {object} object 解析对象
+     * @param {Object} object 解析对象
+     * @return {*} 渲染结果
      */
     markdownCodeRender = object => {
         return (
@@ -47,7 +49,7 @@ export class PostBlock extends React.Component {
 
     /**
      * 渲染函数
-     * @return {JSX} 渲染结果
+     * @returns {*} 渲染结果
      */
     render() {
         return (

@@ -8,6 +8,7 @@ import { Icon } from 'antd';
 
 /**
  * 请在PC端登录小挂件
+ * @constructor
  */
 export class DoItOnPC extends React.Component {
 
@@ -23,7 +24,7 @@ export class DoItOnPC extends React.Component {
 
     /**
      * 渲染函数
-     * @return {JSX} 渲染结果
+     * @returns {*} 渲染结果
      */
     render() {
         return (

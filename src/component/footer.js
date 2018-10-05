@@ -11,12 +11,13 @@ import { KIcon } from "./tool/k-icon";
 
 /**
  * 页脚组件
+ * @constructor
  */
 export class Footer extends React.Component {
 
     /**
      * 构造
-     * @param {object} props 属性
+     * @param {Object} props 属性
      */
     constructor(props) {
         super(props);
@@ -26,7 +27,7 @@ export class Footer extends React.Component {
 
     /**
      * 渲染函数
-     * @return {JSX} 渲染结果
+     * @returns {*} 渲染结果
      */
     render() {
         return (

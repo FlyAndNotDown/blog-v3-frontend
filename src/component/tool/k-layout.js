@@ -9,6 +9,7 @@ import { CssTool } from "../../tool/css";
 
 /**
  * 自定义布局
+ * @constructor
  * @property {number} colorMode 颜色
  * @property {number} widthMode 长度
  * @property {number} fixedWidth
@@ -33,7 +34,7 @@ export class KLayout extends React.Component {
 
     /**
      * 构造
-     * @param {object} props 属性
+     * @param {Object} props 属性
      */
     constructor(props) {
         // 调用父类构造函数
@@ -78,7 +79,7 @@ export class KLayout extends React.Component {
 
     /**
      * 渲染函数
-     * @return {JSX} 渲染函数
+     * @returns {*} 渲染函数
      */
     render() {
         return (

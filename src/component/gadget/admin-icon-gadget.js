@@ -8,10 +8,11 @@ import { Icon } from 'antd';
 
 /**
  * 管理员小图标挂件
+ * @constructor
  * @property {string} iconType 图标类型
- * @property {string|null} iconColor 图标颜色
+ * @property {string} iconColor 图标颜色
  * @property {string} title 标题
- * @property {string|JSX} content 内容
+ * @property {string} content 内容
  */
 export class AdminIconGadget extends React.Component {
 
@@ -27,7 +28,7 @@ export class AdminIconGadget extends React.Component {
 
     /**
      * 渲染函数
-     * @return {JSX} 渲染结果
+     * @returns {*} 渲染结果
      */
     render() {
         return (

@@ -10,13 +10,14 @@ import { NavBar } from './nav-bar';
 
 /**
  * 导航页头
+ * @constructor
  * @property {string} bgImg 背景图片
  */
 export class NavHeader extends React.Component {
 
     /**
      * 构造
-     * @param {object} props 属性
+     * @param {Object} props 属性
      */
     constructor(props) {
         super(props);
@@ -28,7 +29,7 @@ export class NavHeader extends React.Component {
 
     /**
      * 渲染函数
-     * @return {JSX} 渲染结果
+     * @returns {*} 渲染结果
      */
     render() {
         return (

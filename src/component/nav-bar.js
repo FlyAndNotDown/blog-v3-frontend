@@ -9,7 +9,8 @@ import { Link } from 'react-router-dom';
 
 /**
  * 导航栏组件
- * @property {bool} active 是否激活
+ * @constructor
+ * @property {boolean} active 是否激活
  */
 export class NavBar extends React.Component {
 
@@ -24,7 +25,7 @@ export class NavBar extends React.Component {
 
     /**
      * 渲染函数
-     * @return {JSX} 渲染结果
+     * @returns {*} 渲染结果
      */
     render() {
         const overlay = (
