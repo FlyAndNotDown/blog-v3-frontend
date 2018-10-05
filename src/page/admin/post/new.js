@@ -37,6 +37,7 @@ export class AdminNewPostPage extends React.Component {
     componentDidMount() {
         // TODO 校验管理员登录情况
         // TODO tab事件监听，todo 先写在这里
+        // TODO 自动上传图片，todo 先写在这里
     }
 
     /**
@@ -47,7 +48,7 @@ export class AdminNewPostPage extends React.Component {
         this.setState({
             editorToggled: true
         });
-    }
+    };
 
     /**
      * 预览按钮被点击的回调
@@ -57,7 +58,7 @@ export class AdminNewPostPage extends React.Component {
         this.setState({
             editorToggled: false
         });
-    }
+    };
 
     /**
      * Markdown改变的回调
@@ -67,7 +68,7 @@ export class AdminNewPostPage extends React.Component {
         this.setState({
             markdown: e.target.value
         });
-    }
+    };
 
     /**
      * 发表文章按钮点击回调
@@ -77,7 +78,7 @@ export class AdminNewPostPage extends React.Component {
         this.setState({
             drawerVisible: true
         });
-    }
+    };
 
     /**
      * 发表文章抽屉关闭回调
@@ -87,7 +88,7 @@ export class AdminNewPostPage extends React.Component {
         this.setState({
             drawerVisible: false
         });
-    }
+    };
 
     /**
      * 标签选择器变化回调
@@ -95,7 +96,7 @@ export class AdminNewPostPage extends React.Component {
      */
     onLabelSelectChange = (e) => {
         // TODO
-    }
+    };
 
     /**
      * 渲染函数
