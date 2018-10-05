@@ -6,6 +6,8 @@
 import React from 'react';
 import { Row, Col, Icon } from 'antd';
 import { Link } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
+import SyntaxHighlighter from 'react-syntax-highlighter';
 
 /**
  * 文章块
@@ -31,6 +33,19 @@ export class PostBlock extends React.Component {
     }
 
     /**
+     * Markdown 代码渲染函数
+     * @param {object} object 解析对象
+     */
+    markdownCodeRender = object => {
+        return (
+            <SyntaxHighlighter
+                language={object.language}>
+                {object.value}
+            </SyntaxHighlighter>
+        );
+    };
+
+    /**
      * 渲染函数
      * @return {JSX} 渲染结果
      */
@@ -42,7 +57,12 @@ export class PostBlock extends React.Component {
                         {this.props.title}
                     </Link>
                     <div className={'font-size-xs mt-xs'}>
-                        {this.props.description}
+                        <ReactMarkdown
+                            className={'markdown-block'}
+                            source={this.props.description}
+                            renderers={{
+                                code: this.markdownCodeRender
+                            }}/>
                     </div>
                     <div>
                         <span className={'font-size-xs mt-sm float-left'}>
