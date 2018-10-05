@@ -85,7 +85,7 @@ export class PostPage extends React.Component {
      * Markdown 标题渲染函数
      * @param {object} object 解析对象
      */
-    markdownHeadingRender = (object) => {
+    markdownHeadingRender = object => {
         let level = object.level;
         let value = object.children[0];
 
@@ -130,12 +130,23 @@ export class PostPage extends React.Component {
      * Markdown 代码渲染函数
      * @param {object} object 解析对象
      */
-    markdownCodeRender = (object) => {
+    markdownCodeRender = object => {
         return (
             <SyntaxHighlighter
                 language={object.language}>
                 {object.value}
             </SyntaxHighlighter>
+        );
+    };
+
+    /**
+     * Markdown 链接渲染
+     * @param {object} object 渲染节点对象
+     * @returns {*} 渲染结果
+     */
+    markdownLinkRender = object => {
+        return (
+            <a href={object.href} target={'__blank'}>{object.children[0]}</a>
         );
     };
 
@@ -220,7 +231,9 @@ export class PostPage extends React.Component {
                                         source={this.state.body}
                                         renderers={{
                                             heading: this.markdownHeadingRender,
-                                            code: this.markdownCodeRender
+                                            code: this.markdownCodeRender,
+                                            link: this.markdownLinkRender,
+                                            linkReference: this.markdownLinkRender
                                         }}/>
                                 </Col>
                                 <Col

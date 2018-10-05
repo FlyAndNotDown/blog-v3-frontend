@@ -16,7 +16,7 @@ Changes are automatically rendered as you type.
 * If you escape or skip the HTML, no \`dangerouslySetInnerHTML\` is used! Yay!
 
 ## HTML block below
-> This blockquote will change based on the HTML settings above.
+> This blockquote will change based on the HTML settings above. [testLink](https://github.github.com/gfm/)
 
 ## How about some code?
 \`\`\`js
