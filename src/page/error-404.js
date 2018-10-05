@@ -29,6 +29,27 @@ export class Error404Page extends React.Component {
      * @returns {*} 渲染结果
      */
     render() {
+        // 图标行
+        const iconDiv = (
+            <div className={'text-align-center color-second font-size-xxl'}>
+                <Icon type={'frown'}/>
+            </div>
+        );
+
+        // 提示行
+        const tipDiv = (
+            <div className={'text-align-center color-black font-size-md'}>
+                哎呀 页面消失了
+            </div>
+        );
+
+        // 次要话语行
+        const secondWordDiv = (
+            <div className={'text-align-center font-size-sm'}>
+                <Link to={'/'}>跟我一起回主站吧</Link>
+            </div>
+        );
+
         return (
             <KLayout
                 className={'w-100 h-100vh'}
@@ -39,15 +60,9 @@ export class Error404Page extends React.Component {
                     align={'middle'}
                     justify={'center'}>
                     <Col>
-                        <div className={'text-align-center color-second font-size-xxl'}>
-                            <Icon type={'frown'}/>
-                        </div>
-                        <div className={'text-align-center color-black font-size-md'}>
-                            哎呀 页面消失了
-                        </div>
-                        <div className={'text-align-center font-size-sm'}>
-                            <Link to={'/'}>跟我一起回主站吧</Link>
-                        </div>
+                        {iconDiv}
+                        {tipDiv}
+                        {secondWordDiv}
                     </Col>
                 </Row>
             </KLayout>
