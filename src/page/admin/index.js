@@ -13,13 +13,14 @@ import mainConfig from '../../config/main';
 import { PasswordTool } from '../../tool/password';
 
 /**
- * 管理员首页 - /admin
+ * 管理员首页组件
+ * @constructor
  */
 export class AdminIndexPage extends React.Component {
 
     /**
      * 构造
-     * @param {object} props 属性
+     * @param {Object} props 属性
      */
     constructor(props) {
         super(props);
@@ -34,7 +35,7 @@ export class AdminIndexPage extends React.Component {
 
     /**
      * 用户名变化回调
-     * @param  {object} e 事件
+     * @param {Object} e 事件对象
      */
     onUsernameChange = (e) => {
         this.setState({
@@ -44,7 +45,7 @@ export class AdminIndexPage extends React.Component {
 
     /**
      * 密码变化回调
-     * @param  {object} e 事件
+     * @param {Object} e 事件对象
      */
     onPasswordChange = (e) => {
         this.setState({
@@ -54,13 +55,13 @@ export class AdminIndexPage extends React.Component {
 
     /**
      * 登录按钮点击回调
-     * @param  {object} e 事件
      */
-    onLoginButtonClick = (e) => {
+    onLoginButtonClick = () => {
         // 先把输入框和登录按钮锁定
         this.setState({
             lock: true
         });
+
         // 发起请求获取盐
         axios
             .get(requestConfig.admin, {
@@ -101,11 +102,11 @@ export class AdminIndexPage extends React.Component {
             .catch((error) => {
                 if (mainConfig.devMode) Log.devError(`get ${requestConfig.admin}`, error);
             });
-    }
+    };
 
     /**
      * 渲染函数
-     * @return {JSX} 渲染结果
+     * @returns {*} 渲染结果
      */
     render() {
         return (

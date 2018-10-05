@@ -13,12 +13,13 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 
 /**
  * 管理员新建文章界面
+ * @constructor
  */
 export class AdminNewPostPage extends React.Component {
 
     /**
      * 构造
-     * @param {object} props 属性
+     * @param {Object} props 属性
      */
     constructor(props) {
         super(props);
@@ -42,9 +43,8 @@ export class AdminNewPostPage extends React.Component {
 
     /**
      * Markdown编辑器按钮被点击的回调
-     * @param  {object} e 事件
      */
-    onEditorButtonClick = (e) => {
+    onEditorButtonClick = () => {
         this.setState({
             editorToggled: true
         });
@@ -52,7 +52,6 @@ export class AdminNewPostPage extends React.Component {
 
     /**
      * 预览按钮被点击的回调
-     * @param  {[type]} e 事件
      */
     onPreviewButtonClick = (e) => {
         this.setState({
@@ -62,7 +61,7 @@ export class AdminNewPostPage extends React.Component {
 
     /**
      * Markdown改变的回调
-     * @param  {object} e 事件
+     * @param {Object} e 事件对象
      */
     onMarkdownChange = (e) => {
         this.setState({
@@ -72,7 +71,7 @@ export class AdminNewPostPage extends React.Component {
 
     /**
      * 发表文章按钮点击回调
-     * @param  {object} e 事件
+     * @param {Object} e 事件对象
      */
     onPublishPostButtonClick = (e) => {
         this.setState({
@@ -82,9 +81,8 @@ export class AdminNewPostPage extends React.Component {
 
     /**
      * 发表文章抽屉关闭回调
-     * @param  {object} e 事件
      */
-    onPublishPostDrawerClose = (e) => {
+    onPublishPostDrawerClose = () => {
         this.setState({
             drawerVisible: false
         });
@@ -92,7 +90,7 @@ export class AdminNewPostPage extends React.Component {
 
     /**
      * 标签选择器变化回调
-     * @param  {object} e 属性
+     * @param {Object} e 事件对象
      */
     onLabelSelectChange = (e) => {
         // TODO
@@ -100,7 +98,7 @@ export class AdminNewPostPage extends React.Component {
 
     /**
      * 渲染函数
-     * @return {JSX} 渲染结果
+     * @returns {*} 渲染结果
      */
     render() {
         return (

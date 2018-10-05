@@ -6,6 +6,10 @@
 import Mock from 'mockjs';
 import requestConfig from '../config/request';
 
+/**
+ * 测试 Markdown 内容
+ * @type {string}
+ */
 const testMarkdown = `
 # Live demo
 Changes are automatically rendered as you type.
@@ -50,13 +54,14 @@ A component by [VaffelNinja](http://vaffel.ninja) / Espen Hovlandsdal
 
 /**
  * Url工具类
+ * @constructor
  */
 class UrlTool {
 
     /**
      * url中是否带有参数
-     * @param  {string} url url
-     * @return {bool}       是否带有参数
+     * @param {string} url url
+     * @returns {bool} 是否带有参数
      */
     static haveParam(url) {
         return url.indexOf('?') !== -1;
@@ -64,8 +69,8 @@ class UrlTool {
 
     /**
      * 获取参数对象
-     * @param  {string} url url
-     * @return {object}     参数
+     * @param {string} url url
+     * @returns {Object} 参数对象
      */
     static getParam(url) {
         let string = url.split('?')[1];
@@ -80,23 +85,24 @@ class UrlTool {
 
     /**
      * 获取匹配任意url子域的正则
-     * @param  {string} url url
-     * @return {regex}     正则表达式
+     * @param {string} url url
+     * @returns {*} 正则表达式
      */
     static getRegex(url) {
-        return new RegExp(`^${url}[\\?=/a-zA-Z0-9]*`);
+        return new RegExp(`^${url}[?=/a-zA-Z0-9]*`);
     }
 
 }
 
 /**
  * Http Body 工具类
+ * @constructor
  */
 class BodyTool {
 
     /**
      * 获取 body 的 json 对象
-     * @return {object} body 的 json 对象
+     * @returns {Object} body 的 json 对象
      */
     static getBody(body) {
         return JSON.parse(body);
@@ -106,11 +112,12 @@ class BodyTool {
 
 /**
  * Mock工具类
+ * @constructor
  */
 export class MockTool {
 
     /**
-     * 开启 Mock
+     * 开启 Mock 功能
      */
     static start() {
         // home

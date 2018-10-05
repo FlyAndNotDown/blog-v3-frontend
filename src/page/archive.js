@@ -10,6 +10,7 @@ import { NavBar } from "../component/nav-bar";
 
 /**
  * 归档页面组件
+ * @constructor
  */
 export class ArchivePage extends React.Component {
 

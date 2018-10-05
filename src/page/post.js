@@ -17,13 +17,14 @@ import { Log } from '../tool/log';
 import mainConfig from '../config/main';
 
 /**
- * 文章页面 - /post/:postId
+ * 文章页面
+ * @constructor
  */
 export class PostPage extends React.Component {
 
     /**
      * 构造
-     * @param {object} props 属性
+     * @param {Object} props 属性
      */
     constructor(props) {
         super(props);
@@ -83,7 +84,8 @@ export class PostPage extends React.Component {
 
     /**
      * Markdown 标题渲染函数
-     * @param {object} object 解析对象
+     * @param {Object} object 解析对象
+     * @returns {*} 渲染结果
      */
     markdownHeadingRender = object => {
         let level = object.level;
@@ -128,7 +130,8 @@ export class PostPage extends React.Component {
 
     /**
      * Markdown 代码渲染函数
-     * @param {object} object 解析对象
+     * @param {Object} object 解析对象
+     * @returns {*} 渲染结果
      */
     markdownCodeRender = object => {
         return (
@@ -141,7 +144,7 @@ export class PostPage extends React.Component {
 
     /**
      * Markdown 链接渲染
-     * @param {object} object 渲染节点对象
+     * @param {Object} object 渲染节点对象
      * @returns {*} 渲染结果
      */
     markdownLinkRender = object => {
@@ -152,7 +155,7 @@ export class PostPage extends React.Component {
 
     /**
      * 渲染函数
-     * @return {JSX} 渲染结果
+     * @returns {*} 渲染结果
      */
     render() {
         return (

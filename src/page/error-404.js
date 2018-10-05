@@ -10,12 +10,13 @@ import { Link } from 'react-router-dom';
 
 /**
  * 404页面组件
+ * @constructor
  */
 export class Error404Page extends React.Component {
 
     /**
      * 构造
-     * @param {object} props 属性
+     * @param {Object} props 属性
      */
     constructor(props) {
         super(props);
@@ -25,6 +26,7 @@ export class Error404Page extends React.Component {
 
     /**
      * 渲染函数
+     * @returns {*} 渲染结果
      */
     render() {
         return (

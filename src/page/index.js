@@ -17,13 +17,14 @@ import { Log } from '../tool/log';
 import navHeaderBgImg from '../img/header-bg.jpg';
 
 /**
- * 首页组件 - /
+ * 首页组件
+ * @constructor
  */
 export class IndexPage extends React.Component {
 
     /**
      * 构造
-     * @param {object} props 属性
+     * @param {Object} props 属性
      */
     constructor(props) {
         // 调用父类构造
@@ -56,7 +57,7 @@ export class IndexPage extends React.Component {
 
     /**
      * 渲染函数
-     * @return {JSX} 渲染函数
+     * @returns {*} 渲染函数
      */
     render() {
         return (

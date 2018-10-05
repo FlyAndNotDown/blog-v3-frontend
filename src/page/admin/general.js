@@ -10,11 +10,15 @@ import { Link } from 'react-router-dom';
 import { AdminIconGadget } from '../../component/gadget/admin-icon-gadget';
 import { DoItOnPC } from '../../component/gadget/do-it-on-pc';
 
+/**
+ * 管理员概览页面组件
+ * @constructor
+ */
 export class AdminGeneralPage extends React.Component {
 
     /**
      * 构造
-     * @param {object} props 属性
+     * @param {Object} props 属性
      */
     constructor(props) {
         super(props);
@@ -31,15 +35,14 @@ export class AdminGeneralPage extends React.Component {
 
     /**
      * 新建文章按钮点击回调
-     * @param  {object} e 事件
      */
-    onWritePostButtonClick = (e) => {
+    onWritePostButtonClick = () => {
         this.props.history.push('/admin/post/new');
     };
 
     /**
      * 渲染函数
-     * @return {JSX} 渲染结果
+     * @returns {*} 渲染结果
      */
     render() {
         // 欢迎块
