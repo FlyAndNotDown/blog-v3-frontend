@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { Icon } from 'antd';
+import { Icon, Row, Col } from 'antd';
 
 /**
  * 请在PC端登录小挂件
@@ -27,15 +27,27 @@ export class DoItOnPC extends React.Component {
      * @returns {*} 渲染结果
      */
     render() {
-        return (
-            <div>
-                <div className={'text-align-center font-size-xxl'}>
-                    <Icon type={'chrome'} spin/>
-                </div>
-                <div className={'color-second font-size-md text-align-center'}>
-                    请在PC端登录
-                </div>
+        // 图标 div
+        let iconDiv = (
+            <div className={'text-align-center font-size-xxl'}>
+                <Icon type={'chrome'} spin/>
             </div>
+        );
+
+        // 提示 div
+        let tipDiv = (
+            <div className={'color-second font-size-md text-align-center'}>
+                请在PC端登录
+            </div>
+        );
+
+        return (
+            <Row>
+                <Col>
+                    {iconDiv}
+                    {tipDiv}
+                </Col>
+            </Row>
         );
     }
 
