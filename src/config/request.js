@@ -3,11 +3,13 @@
  * @author John Kindem
  */
 
+import mainConfig from './main';
+
 /**
  * 公共url前缀
  * @type {string}
  */
-export const commonUrlPrefix = '/request/blog';
+export const commonUrlPrefix = mainConfig.devMode ? 'http://localhost:30000/request/blog' : '/request/blog';
 
 /**
  * 请求url配置
