@@ -15,9 +15,11 @@ import './css/css';
 
 // 开发模式
 if (mainConfig.devMode) {
-    Log.dev('dev mode toggled');
-    // 开启 Mock
-    MockTool.start();
+    Log.dev('dev mode toggled', `mock status: ${mainConfig.mock}`);
+    if (mainConfig.mock) {
+        // 开启 Mock
+        MockTool.start();
+    }
 }
 
 /**
