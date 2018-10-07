@@ -11,6 +11,9 @@ import requestConfig from '../../config/request';
 import { Log } from '../../tool/log';
 import mainConfig from '../../config/main';
 import { PasswordTool } from '../../tool/password';
+import regexConfig from '../../config/regex';
+
+const adminRegex = regexConfig.admin;
 
 /**
  * 管理员首页组件
@@ -57,6 +60,11 @@ export class AdminIndexPage extends React.Component {
      * 登录按钮点击回调
      */
     onLoginButtonClick = () => {
+        // 校验 username
+        if (!this.state.username.match(adminRegex.username)) {
+            return message.error('用户名不满足条件');
+        }
+
         // 先把输入框和登录按钮锁定
         this.setState({
             lock: true
@@ -79,6 +87,15 @@ export class AdminIndexPage extends React.Component {
                     return message.error('管理员账户不存在');
                 }
                 let salt = response.data.salt;
+
+                // 校验密码
+                if (!this.state.password.match(adminRegex.password)) {
+                    this.setState({
+                        lock: false
+                    });
+                    return message.error('用户名不满足条件');
+                }
+
                 // 发送请求进行管理员登录校验
                 axios
                     .post(requestConfig.adminLogin, {
@@ -101,6 +118,9 @@ export class AdminIndexPage extends React.Component {
             })
             .catch((error) => {
                 if (mainConfig.devMode) Log.devError(`get ${requestConfig.adminLogin}`, error);
+                this.setState({
+                    lock: false
+                });
             });
     };
 
