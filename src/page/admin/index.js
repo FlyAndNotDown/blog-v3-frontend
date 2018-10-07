@@ -64,13 +64,13 @@ export class AdminIndexPage extends React.Component {
 
         // 发起请求获取盐
         axios
-            .get(requestConfig.admin, {
+            .get(requestConfig.adminLogin, {
                 params: {
                     username: this.state.username
                 }
             })
             .then((response) => {
-                if (mainConfig.devMode) Log.dev(`get ${requestConfig.admin} OK`);
+                if (mainConfig.devMode) Log.dev(`get ${requestConfig.adminLogin} OK`);
                 // 如果没有获取到盐
                 if (!response.data.salt) {
                     this.setState({
@@ -81,12 +81,12 @@ export class AdminIndexPage extends React.Component {
                 let salt = response.data.salt;
                 // 发送请求进行管理员登录校验
                 axios
-                    .post(requestConfig.admin, {
+                    .post(requestConfig.adminLogin, {
                         username: this.state.username,
                         password: PasswordTool.encode(this.state.password, salt)
                     })
                     .then((response) => {
-                        if (mainConfig.devMode) Log.dev(`post ${requestConfig.admin} OK`);
+                        if (mainConfig.devMode) Log.dev(`post ${requestConfig.adminLogin} OK`);
                         if (!response.data.success) {
                             this.setState({
                                 lock: false
@@ -100,7 +100,7 @@ export class AdminIndexPage extends React.Component {
                     });
             })
             .catch((error) => {
-                if (mainConfig.devMode) Log.devError(`get ${requestConfig.admin}`, error);
+                if (mainConfig.devMode) Log.devError(`get ${requestConfig.adminLogin}`, error);
             });
     };
 
