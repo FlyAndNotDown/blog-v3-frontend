@@ -93,7 +93,7 @@ export class AdminIndexPage extends React.Component {
                     this.setState({
                         lock: false
                     });
-                    return message.error('用户名不满足条件');
+                    return message.error('密码不满足条件');
                 }
 
                 // 发送请求进行管理员登录校验
