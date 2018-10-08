@@ -74,6 +74,7 @@ export class AdminIndexPage extends React.Component {
         axios
             .get(requestConfig.adminLogin, {
                 params: {
+                    type: 'salt',
                     username: this.state.username
                 }
             })
