@@ -13,6 +13,10 @@ import { Log } from './tool/log';
 // 导入全局 css
 import './css/css';
 
+// 设置 axios 全局自动带 cookies
+import axios from 'axios';
+axios.defaults.withCredentials = true;
+
 // 开发模式
 if (mainConfig.devMode) {
     Log.dev('dev mode toggled', `mock status: ${mainConfig.mock}`);
