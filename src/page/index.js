@@ -12,7 +12,6 @@ import { Row, Col } from 'antd';
 import axios from 'axios';
 import { commonUrlPrefix } from '../config/request';
 import requestConfig from '../config/request';
-import mainConfig from '../config/main';
 import { Log } from '../tool/log';
 import navHeaderBgImg from '../img/header-bg.jpg';
 
@@ -44,13 +43,13 @@ export class IndexPage extends React.Component {
             .get(requestConfig.home)
             .then((response) => {
                 // if (mainConfig.devMode) debugger;
-                if (mainConfig.devMode) Log.dev(`get ${commonUrlPrefix}/home OK`);
+                Log.dev(`get ${commonUrlPrefix}/home OK`);
                 this.setState({
                     blocks: response.data.blocks || []
                 });
             })
             .catch((err) => {
-                if (mainConfig.devMode) Log.devError(`get ${commonUrlPrefix}/home`, err);
+                Log.devError(`get ${commonUrlPrefix}/home`, err);
             });
         // TODO 发送请求验证分页参数是否正确，如果不正确跳转到 /error/404
     }

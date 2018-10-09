@@ -8,5 +8,5 @@
  */
 export default {
     devMode: true,
-    mock: true
+    mock: false
 };

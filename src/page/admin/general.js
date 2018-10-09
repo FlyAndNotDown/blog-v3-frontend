@@ -11,7 +11,6 @@ import { AdminIconGadget } from '../../component/gadget/admin-icon-gadget';
 import { DoItOnPC } from '../../component/gadget/do-it-on-pc';
 import axios from 'axios';
 import requestConfig from '../../config/request';
-import mainConfig from '../../config/main';
 import { Log } from '../../tool/log';
 
 /**
@@ -36,29 +35,29 @@ export class AdminGeneralPage extends React.Component {
      * 组件加载生命周期函数
      */
     componentDidMount() {
-        // axios
-        //     .get(requestConfig.adminLogin, {
-        //         params: {
-        //             type: 'info'
-        //         }
-        //     })
-        //     .then((response) => {
-        //         if (mainConfig.devMode) Log.dev(`get ${requestConfig.adminLogin} OK`);
-        //         // 如果用户没有登录
-        //         if (!response.data.status) {
-        //             // 引导用户进行登录
-        //             return this.props.history.push('/admin');
-        //         }
-        //         // 如果用户已经登录，设置载入状态为已完成
-        //         this.setState({
-        //             loaded: true
-        //         });
-        //     })
-        //     .catch((error) => {
-        //         if (mainConfig.devMode) Log.devError(`get ${requestConfig.adminLogin}`, error);
-        //         // 如果发生错误了，赶出去
-        //         this.props.history.push('/admin');
-        //     });
+        axios
+            .get(requestConfig.adminLogin, {
+                params: {
+                    type: 'info'
+                }
+            })
+            .then((response) => {
+                Log.dev(`get ${requestConfig.adminLogin} OK`);
+                // 如果用户没有登录
+                if (!response.data.status) {
+                    // 引导用户进行登录
+                    return this.props.history.push('/admin');
+                }
+                // 如果用户已经登录，设置载入状态为已完成
+                this.setState({
+                    loaded: true
+                });
+            })
+            .catch((error) => {
+                Log.devError(`get ${requestConfig.adminLogin}`, error);
+                // 如果发生错误了，赶出去
+                this.props.history.push('/admin');
+            });
         // TODO 获取管理员主页信息
     }
 

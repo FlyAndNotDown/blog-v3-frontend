@@ -9,7 +9,6 @@ import { Row, Col, Form, Input, Icon, Button, message } from 'antd';
 import axios from 'axios';
 import requestConfig from '../../config/request';
 import { Log } from '../../tool/log';
-import mainConfig from '../../config/main';
 import { PasswordTool } from '../../tool/password';
 import regexConfig from '../../config/regex';
 
@@ -79,7 +78,7 @@ export class AdminIndexPage extends React.Component {
                 }
             })
             .then((response) => {
-                if (mainConfig.devMode) Log.dev(`get ${requestConfig.adminLogin} OK`);
+                Log.dev(`get ${requestConfig.adminLogin} OK`);
                 // 如果没有获取到盐
                 if (!response.data.salt) {
                     this.setState({
@@ -104,7 +103,7 @@ export class AdminIndexPage extends React.Component {
                         password: PasswordTool.encode(this.state.password, salt)
                     })
                     .then((response) => {
-                        if (mainConfig.devMode) Log.dev(`post ${requestConfig.adminLogin} OK`);
+                        Log.dev(`post ${requestConfig.adminLogin} OK`);
                         if (!response.data.success) {
                             this.setState({
                                 lock: false
@@ -118,7 +117,7 @@ export class AdminIndexPage extends React.Component {
                     });
             })
             .catch((error) => {
-                if (mainConfig.devMode) Log.devError(`get ${requestConfig.adminLogin}`, error);
+                Log.devError(`get ${requestConfig.adminLogin}`, error);
                 this.setState({
                     lock: false
                 });

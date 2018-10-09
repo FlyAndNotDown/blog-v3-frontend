@@ -14,7 +14,6 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import axios from 'axios';
 import requestConfig from '../config/request';
 import { Log } from '../tool/log';
-import mainConfig from '../config/main';
 
 /**
  * 文章页面
@@ -59,7 +58,7 @@ export class PostPage extends React.Component {
             })
             .then(response => {
                 // 日志
-                if (mainConfig.devMode) Log.dev(`get ${requestConfig.post} OK`);
+                Log.dev(`get ${requestConfig.post} OK`);
                 // 获取数据
                 let data = response.data || {};
                 this.setState({
@@ -70,7 +69,7 @@ export class PostPage extends React.Component {
                 });
             })
             .catch(error => {
-                if (mainConfig.devMode) Log.dev(`get ${requestConfig.post}`, error);
+                Log.dev(`get ${requestConfig.post}`, error);
             });
 
         // 延迟加载锚点，防止超出 state 更新最大深度
