@@ -27,7 +27,8 @@ export class AdminGeneralPage extends React.Component {
         super(props);
 
         this.state = {
-            loaded: false
+            loaded: false,
+            adminInfo: {}
         };
     }
 
@@ -44,13 +45,14 @@ export class AdminGeneralPage extends React.Component {
             .then((response) => {
                 Log.dev(`get ${requestConfig.adminLogin} OK`);
                 // 如果用户没有登录
-                if (!response.data.status) {
+                if (!response.data.login) {
                     // 引导用户进行登录
                     return this.props.history.push('/admin');
                 }
                 // 如果用户已经登录，设置载入状态为已完成
                 this.setState({
-                    loaded: true
+                    loaded: true,
+                    adminInfo: response.data.info || {}
                 });
             })
             .catch((error) => {
