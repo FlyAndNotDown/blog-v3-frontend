@@ -288,7 +288,7 @@ export class AdminGeneralPage extends React.Component {
         // TODO 标签管理
         // TODO 文件管理
 
-        return (
+        return this.state.loaded ? (
             <KLayout>
                 <Row>
                     <Col
@@ -319,7 +319,7 @@ export class AdminGeneralPage extends React.Component {
                     </Col>
                 </Row>
             </KLayout>
-        );
+        ) : null;
     }
 
 }
