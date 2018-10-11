@@ -36,7 +36,7 @@ export class AdminNewPostPage extends React.Component {
          * @property {string} title 标题
          * @property {string} description 描述
          * @property {string} body 文章正文
-         * @property {string} labels 选中的标签
+         * @property {[]} labels 选中的标签id数组
          * @property {boolean} locked 网络请求用到的锁
          * @property {boolean} drawerVisible 抽屉是否被打开
          * @property {[{name: string, id: number}]} labelSelectOptions 标签备选项
@@ -48,7 +48,7 @@ export class AdminNewPostPage extends React.Component {
             title: '',
             description: '',
             body: '',
-            labels: '',
+            labels: [],
             locked: false,
             drawerVisible: false,
             labelSelectOptions: [],
@@ -216,15 +216,13 @@ export class AdminNewPostPage extends React.Component {
         }
 
         // 处理 labels 为数组
-        let labels = [];
-        this.state.labels.split(',').forEach(label => labels.push(label));
         // 发送请求新建文章
         axios
             .post(`${requestConfig.post}`, {
                 title: this.state.title,
                 body: this.state.body,
                 description: this.state.description,
-                labels: labels
+                labels: this.state.labels
             })
             .then(response => {
                 // TODO 日志，解锁
