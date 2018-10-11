@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { KLayout } from '../../../component/tool/k-layout';
-import { Row, Col, Divider, Button, Input, Drawer, Form, Select, message } from 'antd';
+import { Row, Col, Divider, Button, Input, Drawer, Form, Select, message, Spin } from 'antd';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { DoItOnPC } from '../../../component/gadget/do-it-on-pc';
@@ -13,6 +13,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import axios from 'axios';
 import requestConfig from '../../../config/request';
 import regexConfig from '../../../config/regex';
+import { Log } from "../../../tool/log";
 
 const postRegex = regexConfig.post;
 
@@ -29,19 +30,29 @@ export class AdminNewPostPage extends React.Component {
     constructor(props) {
         super(props);
 
+        /**
+         * @property {boolean} loaded 是否已经加载完成
+         * @property {boolean} editorToggled 当前Markdown编辑器是否处于编辑器模式
+         * @property {string} title 标题
+         * @property {string} description 描述
+         * @property {string} body 文章正文
+         * @property {string} labels 选中的标签
+         * @property {boolean} locked 网络请求用到的锁
+         * @property {boolean} drawerVisible 抽屉是否被打开
+         * @property {[{name: string, id: number}]} labelSelectOptions 标签备选项
+         * @property {boolean} haveLabelOptionData 是否有标签备选项数据
+         */
         this.state = {
+            loaded: false,
             editorToggled: true,
-
             title: '',
             description: '',
             body: '',
             labels: '',
-
             locked: false,
-
             drawerVisible: false,
-
-            labelSelectOptions: []
+            labelSelectOptions: [],
+            haveLabelOptionData: false
         };
     }
 
@@ -49,7 +60,30 @@ export class AdminNewPostPage extends React.Component {
      * 组件加载生命周期函数
      */
     componentDidMount() {
-        // TODO 校验管理员登录情况
+        axios
+            .get(requestConfig.adminLogin, {
+                params: {
+                    type: 'info'
+                }
+            })
+            .then(response => {
+                Log.dev(`get ${requestConfig.adminLogin} OK`);
+                // 如果用户没有登录
+                if (!response.data.login) {
+                    // 赶出去
+                    return this.props.history.push('/admin');
+                }
+                // 如果用户已经登录，设置加载已经完成
+                this.setState({
+                    loaded: true,
+                });
+            })
+            .catch(error => {
+                Log.devError(`get ${requestConfig.adminLogin}`, error);
+                // 赶出去
+                this.props.history.push('/admin');
+            });
+
         // TODO tab事件监听，todo 先写在这里
         // TODO 自动上传图片，todo 先写在这里
     }
@@ -90,6 +124,30 @@ export class AdminNewPostPage extends React.Component {
         this.setState({
             drawerVisible: true
         });
+        // 判断是否需要获取 labels 备选数据
+        if (!this.state.haveLabelOptionData) {
+            axios
+                .get(requestConfig.label, {
+                    params: {
+                        type: 'all'
+                    }
+                })
+                .then(response => {
+                    Log.dev(`get ${requestConfig.label} OK`);
+                    // 如果获取数据成功
+                    this.setState({
+                        haveLabelOptionData: true,
+                        labelSelectOptions: response.data.labels || []
+                    });
+                })
+                .catch(error => {
+                    Log.devError(`get ${requestConfig.label}`, error);
+                    message.error('加载数据失败，请重试');
+                    this.setState({
+                        drawerVisible: false
+                    });
+                });
+        }
     };
 
     /**
@@ -184,7 +242,7 @@ export class AdminNewPostPage extends React.Component {
      */
     labelSelectOptionMapFunc = (option, key) => {
         return (
-            <Select.Option value={option.value} key={key}>{option.key}</Select.Option>
+            <Select.Option value={option.id} key={key}>{option.name}</Select.Option>
         );
     };
 
@@ -299,39 +357,45 @@ export class AdminNewPostPage extends React.Component {
                 closable={false}
                 onClose={this.onPublishPostDrawerClose}
                 visible={this.state.drawerVisible}>
-                <Form>
-                    <Form.Item label={'标题'}>
-                        <Input
-                            placeholder={'取个什么名字好呢'}
-                            onChange={this.onTitleChange}/>
-                    </Form.Item>
-                    <Form.Item label={'描述'}>
-                        <Input.TextArea
-                            autosize={{
-                                minRows: 10,
-                                maxRows: 10
-                            }}
-                            value={this.state.description}
-                            placeholder={'文章描述 ( 真难编'}
-                            onChange={this.onDescriptionChange}/>
-                    </Form.Item>
-                    <Form.Item label={'标签'}>
-                        <Select
-                            mode={'multiple'}
-                            placeholder={'选择标签'}
-                            onChange={this.onLabelSelectChange}>
-                            {this.state.labelSelectOptions.map(this.labelSelectOptionMapFunc)}
-                        </Select>
-                    </Form.Item>
-                    <Form.Item>
-                        <Button
-                            type={'primary'}
-                            onClick={this.onConfirmPublishButtonClick}
-                            disabled={this.state.locked}>
-                            确认发表
-                        </Button>
-                    </Form.Item>
-                </Form>
+                {this.state.haveLabelOptionData ? (
+                    <Form>
+                        <Form.Item label={'标题'}>
+                            <Input
+                                placeholder={'取个什么名字好呢'}
+                                onChange={this.onTitleChange}/>
+                        </Form.Item>
+                        <Form.Item label={'描述'}>
+                            <Input.TextArea
+                                autosize={{
+                                    minRows: 10,
+                                    maxRows: 10
+                                }}
+                                value={this.state.description}
+                                placeholder={'文章描述 ( 真难编'}
+                                onChange={this.onDescriptionChange}/>
+                        </Form.Item>
+                        <Form.Item label={'标签'}>
+                            <Select
+                                mode={'multiple'}
+                                placeholder={'选择标签'}
+                                onChange={this.onLabelSelectChange}>
+                                {this.state.labelSelectOptions.map(this.labelSelectOptionMapFunc)}
+                            </Select>
+                        </Form.Item>
+                        <Form.Item>
+                            <Button
+                                type={'primary'}
+                                onClick={this.onConfirmPublishButtonClick}
+                                disabled={this.state.locked}>
+                                确认发表
+                            </Button>
+                        </Form.Item>
+                    </Form>
+                ) : (
+                    <div className={'text-align-center'}>
+                        <Spin className={'mt-lg'}/>
+                    </div>
+                )}
             </Drawer>
         );
 
