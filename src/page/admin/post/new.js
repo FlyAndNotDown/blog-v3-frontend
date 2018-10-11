@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { DoItOnPC } from '../../../component/gadget/do-it-on-pc';
 import SyntaxHighlighter from 'react-syntax-highlighter';
+import axios from 'axios';
+import requestConfig from '../../../config/request';
 
 /**
  * 管理员新建文章界面
@@ -26,8 +28,13 @@ export class AdminNewPostPage extends React.Component {
 
         this.state = {
             editorToggled: true,
+
+            title: '',
             markdown: '',
+            labels: '',
+
             drawerVisible: false,
+
             labelSelectOptions: []
         };
     }
@@ -90,10 +97,47 @@ export class AdminNewPostPage extends React.Component {
 
     /**
      * 标签选择器变化回调
+     * @param {Object} value 选择器的值
+     */
+    onLabelSelectChange = (value) => {
+        this.setState({
+            labels: value
+        });
+    };
+
+    /**
+     * 确认发表按钮点击的回调
      * @param {Object} e 事件对象
      */
-    onLabelSelectChange = (e) => {
-        // TODO
+    onConfirmPublishButtonClick = (e) => {
+        // 处理 labels 为数组
+        let labels = [];
+        this.state.labels.split(',').forEach(label => labels.push(label));
+        // 发送请求新建文章
+        axios
+            .post(`${requestConfig.post}`, {
+                title: this.state.title,
+                body: this.state.markdown,
+                labels: labels
+            })
+            .then(response => {
+                // TODO
+            })
+            .catch(error => {
+                // TODO
+            });
+    };
+
+    /**
+     * 标签选择器候选项的映射函数
+     * @param {{key: string, value: string}} option
+     * @param {number} key 索引号
+     * @returns {*} JSX
+     */
+    labelSelectOptionMapFunc = (option, key) => {
+        return (
+            <Select.Option value={option.value} key={key}>{option.key}</Select.Option>
+        );
     };
 
     /**
@@ -206,14 +250,11 @@ export class AdminNewPostPage extends React.Component {
                             mode={'multiple'}
                             placeholder={'选择标签'}
                             onChange={this.onLabelSelectChange}>
-                            {this.state.labelSelectOptions.map((option, key) => {
-                                // TODO
-                                return null;
-                            })}
+                            {this.state.labelSelectOptions.map(this.labelSelectOptionMapFunc)}
                         </Select>
                     </Form.Item>
                     <Form.Item>
-                        <Button type={'primary'}>确认发表</Button>
+                        <Button type={'primary'} onClick={this.onConfirmPublishButtonClick}>确认发表</Button>
                     </Form.Item>
                 </Form>
             </Drawer>
