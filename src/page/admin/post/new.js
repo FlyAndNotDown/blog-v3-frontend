@@ -5,13 +5,16 @@
 
 import React from 'react';
 import { KLayout } from '../../../component/tool/k-layout';
-import { Row, Col, Divider, Button, Input, Drawer, Form, Select } from 'antd';
+import { Row, Col, Divider, Button, Input, Drawer, Form, Select, message } from 'antd';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { DoItOnPC } from '../../../component/gadget/do-it-on-pc';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import axios from 'axios';
 import requestConfig from '../../../config/request';
+import regexConfig from '../../../config/regex';
+
+const postRegex = regexConfig.post;
 
 /**
  * 管理员新建文章界面
@@ -33,6 +36,8 @@ export class AdminNewPostPage extends React.Component {
             description: '',
             body: '',
             labels: '',
+
+            locked: false,
 
             drawerVisible: false,
 
@@ -107,12 +112,51 @@ export class AdminNewPostPage extends React.Component {
     };
 
     /**
+     * 标题改变回调
+     * @param {Object} e 事件对象
+     */
+    onTitleChange = (e) => {
+        this.setState({
+            title: e.target.value
+        });
+    };
+
+    /**
+     * 加锁
+     */
+    lock = () => {
+        this.setState({
+            locked: true
+        });
+    };
+
+    /**
+     * 解锁
+     */
+    unLock = () => {
+        this.setState({
+            locked: false
+        });
+    };
+
+    /**
      * 确认发表按钮点击的回调
      * @param {Object} e 事件对象
      */
     onConfirmPublishButtonClick = (e) => {
+        // 加锁
+        this.lock();
+
         // 参数校验
-        // TODO
+        if (!this.state.title.match(postRegex.title)) {
+            this.unLock();
+            return message.error('标题不符合规范');
+        }
+        if (!this.state.description.match(postRegex.description)) {
+            this.unLock();
+            return message.error('描述不符合规范');
+        }
+
         // 处理 labels 为数组
         let labels = [];
         this.state.labels.split(',').forEach(label => labels.push(label));
@@ -125,10 +169,10 @@ export class AdminNewPostPage extends React.Component {
                 labels: labels
             })
             .then(response => {
-                // TODO
+                // TODO 日志，解锁
             })
             .catch(error => {
-                // TODO
+                // TODO 日志，解锁
             });
     };
 
@@ -257,7 +301,9 @@ export class AdminNewPostPage extends React.Component {
                 visible={this.state.drawerVisible}>
                 <Form>
                     <Form.Item label={'标题'}>
-                        <Input placeholder={'取个什么名字好呢'}/>
+                        <Input
+                            placeholder={'取个什么名字好呢'}
+                            onChange={this.onTitleChange}/>
                     </Form.Item>
                     <Form.Item label={'描述'}>
                         <Input.TextArea
@@ -278,7 +324,12 @@ export class AdminNewPostPage extends React.Component {
                         </Select>
                     </Form.Item>
                     <Form.Item>
-                        <Button type={'primary'} onClick={this.onConfirmPublishButtonClick}>确认发表</Button>
+                        <Button
+                            type={'primary'}
+                            onClick={this.onConfirmPublishButtonClick}
+                            disabled={this.state.locked}>
+                            确认发表
+                        </Button>
                     </Form.Item>
                 </Form>
             </Drawer>
