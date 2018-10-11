@@ -30,7 +30,8 @@ export class AdminNewPostPage extends React.Component {
             editorToggled: true,
 
             title: '',
-            markdown: '',
+            description: '',
+            body: '',
             labels: '',
 
             drawerVisible: false,
@@ -67,12 +68,12 @@ export class AdminNewPostPage extends React.Component {
     };
 
     /**
-     * Markdown改变的回调
+     * body改变的回调
      * @param {Object} e 事件对象
      */
-    onMarkdownChange = (e) => {
+    onBodyChange = (e) => {
         this.setState({
-            markdown: e.target.value
+            body: e.target.value
         });
     };
 
@@ -110,6 +111,8 @@ export class AdminNewPostPage extends React.Component {
      * @param {Object} e 事件对象
      */
     onConfirmPublishButtonClick = (e) => {
+        // 参数校验
+        // TODO
         // 处理 labels 为数组
         let labels = [];
         this.state.labels.split(',').forEach(label => labels.push(label));
@@ -117,7 +120,8 @@ export class AdminNewPostPage extends React.Component {
         axios
             .post(`${requestConfig.post}`, {
                 title: this.state.title,
-                body: this.state.markdown,
+                body: this.state.body,
+                description: this.state.description,
                 labels: labels
             })
             .then(response => {
@@ -138,6 +142,16 @@ export class AdminNewPostPage extends React.Component {
         return (
             <Select.Option value={option.value} key={key}>{option.key}</Select.Option>
         );
+    };
+
+    /**
+     * 描述改变回调
+     * @param {Object} e 事件对象
+     */
+    onDescriptionChange = (e) => {
+        this.setState({
+            description: e.target.value
+        });
     };
 
     /**
@@ -208,8 +222,8 @@ export class AdminNewPostPage extends React.Component {
                         minRows: 20,
                         maxRows: 20
                     }}
-                    value={this.state.markdown}
-                    onChange={this.onMarkdownChange}/>
+                    value={this.state.body}
+                    onChange={this.onBodyChange}/>
             </div>
         );
 
@@ -218,7 +232,7 @@ export class AdminNewPostPage extends React.Component {
             <div className={'markdown-preview'}>
                 <ReactMarkdown
                     className={'markdown-body'}
-                    source={this.state.markdown}
+                    source={this.state.body}
                     renderers={{
                         code: (object) => {
                             return (
@@ -244,6 +258,16 @@ export class AdminNewPostPage extends React.Component {
                 <Form>
                     <Form.Item label={'标题'}>
                         <Input placeholder={'取个什么名字好呢'}/>
+                    </Form.Item>
+                    <Form.Item label={'描述'}>
+                        <Input.TextArea
+                            autosize={{
+                                minRows: 10,
+                                maxRows: 10
+                            }}
+                            value={this.state.description}
+                            placeholder={'文章描述 ( 真难编'}
+                            onChange={this.onDescriptionChange}/>
                     </Form.Item>
                     <Form.Item label={'标签'}>
                         <Select
