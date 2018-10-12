@@ -27,39 +27,52 @@ export class AdminGeneralPage extends React.Component {
         super(props);
 
         this.state = {
-            loaded: false,
-            adminInfo: {}
+            loaded: false
         };
     }
+
+    /**
+     * 设置加载情况为已完成
+     */
+    setLoadedTrue = () => {
+        this.setState({ loaded: true });
+    };
 
     /**
      * 组件加载生命周期函数
      */
     componentDidMount() {
-        axios
-            .get(requestConfig.adminLogin, {
+        let response;
+        let data;
+
+        try {
+            response = await axios.get(requestConfig.adminLogin, {
                 params: {
                     type: 'info'
                 }
-            })
-            .then((response) => {
-                Log.dev(`get ${requestConfig.adminLogin} OK`);
-                // 如果用户没有登录
-                if (!response.data.login) {
-                    // 引导用户进行登录
-                    return this.props.history.push('/admin');
-                }
-                // 如果用户已经登录，设置载入状态为已完成
-                this.setState({
-                    loaded: true,
-                    adminInfo: response.data.info || {}
-                });
-            })
-            .catch((error) => {
-                Log.devError(`get ${requestConfig.adminLogin}`, error);
-                // 如果发生错误了，赶出去
-                this.props.history.push('/admin');
             });
+        } catch(e) {
+            Log.devError(`get ${requestConfig.adminLogin}`, e);
+            // 赶出去
+            message.error('管理员账户未登录，请先登录');
+            return this.props.history.push('/admin');
+        }
+
+        // 如果请求成功
+        Log.dev(`get ${requestConfig.adminLogin} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        let login = !!data.login;
+        if (!login) {
+            // 如果用户没有登录，赶出去
+            message.error('管理员账户未登录，请先登录');
+            return this.props.history.push('/admin');
+        }
+
+        // 如果用户已经登录了，则设置载入状态为已完成
+        this.setLoadedTrue();
+
         // TODO 获取管理员主页信息
     }
 

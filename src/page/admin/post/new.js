@@ -272,8 +272,8 @@ export class AdminNewPostPage extends React.Component {
             });
         } catch(e) {
             Log.devError(`post ${requestConfig.post}`, e);
-            this.unLock();
-            return message.error('文章未能发表成功，请重试');
+            message.error('文章未能发表成功，请重试');
+            return this.unLock();
         }
 
         // 如果请求成功了

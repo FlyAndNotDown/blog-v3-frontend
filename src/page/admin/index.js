@@ -31,7 +31,7 @@ export class AdminIndexPage extends React.Component {
             username: '',
             password: '',
 
-            lock: false
+            locked: false
         };
     }
 
@@ -56,6 +56,20 @@ export class AdminIndexPage extends React.Component {
     };
 
     /**
+     * 上锁
+     */
+    lock = () => {
+        this.setState({ locked: true });
+    };
+
+    /**
+     * 解锁
+     */
+    unLock = () => {
+        this.setState({ locked: false });
+    };
+
+    /**
      * 登录按钮点击回调
      */
     onLoginButtonClick = async () => {
@@ -65,12 +79,12 @@ export class AdminIndexPage extends React.Component {
         }
 
         // 先把输入框和登录按钮锁定
-        this.setState({
-            lock: true
-        });
+        this.lock()
+
+        let response;
+        let data;
 
         // 发送请求获取盐
-        let response = null;
         try {
             response = await axios.get(requestConfig.adminLogin, {
                 params: {
@@ -80,59 +94,52 @@ export class AdminIndexPage extends React.Component {
             });
         } catch(error) {
             Log.devError(`get ${requestConfig.adminLogin}`, error);
-            this.setState({
-                lock: false
-            });
-            return null;
+            message.error('网络或服务器错误');
+            return this.unLock();
         }
 
+        // 如果请求成功
         Log.dev(`get ${requestConfig.adminLogin} OK`);
-        // 获取结果
         response = response || {};
-        let data = response.data || {};
+        data = response.data || {};
+
         let salt = data.salt || null;
         // 如果没有获取到盐
         if (!salt) {
-            this.setState({
-                lock: false
-            });
+            this.unLock();
             return message.error('管理员账户不存在');
         }
 
         // 校验密码
         if (!this.state.password.match(adminRegex.password)) {
-            this.setState({
-                lock: false
-            });
+            this.unLock();
             return message.error('密码不满足条件');
         }
 
         // 发送请求进行登录校验
-        let response2 = null;
         try {
-            response2 = await axios.post(requestConfig.adminLogin, {
+            response = await axios.post(requestConfig.adminLogin, {
                 username: this.state.username,
                 password: PasswordTool.encode(this.state.password, salt)
             });
         } catch(error) {
             Log.devError(`get ${requestConfig.adminLogin}`, error);
-            this.setState({
-                lock: false
-            });
-            return null;
+            message.error('网络或服务器错误');
+            return this.unLock();
         }
 
+        // 如果请求成功
         Log.dev(`post ${requestConfig.adminLogin} OK`);
-        // 获取结果
-        response2 = response2 || {};
-        let data2 = response2.data || {};
-        let success = data2.success || false;
+        response = response || {};
+        data = response.data || {};
+
+        let success = !!data.success;
+        // 如果不成功
         if (!success) {
-            this.setState({
-                lock: false
-            });
+            this.unLock();
             return message.error('用户名或密码错误');
         }
+        // 如果成功了
         message.success('登录成功，即将为你跳转');
         return setTimeout(() => {
             this.props.history.push('/admin/general');
