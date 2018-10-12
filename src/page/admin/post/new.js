@@ -57,32 +57,47 @@ export class AdminNewPostPage extends React.Component {
     }
 
     /**
+     * 设置加载已经完成
+     */
+    setLoadedTrue = () => {
+        this.setState({ loaded: true });
+    };
+
+    /**
      * 组件加载生命周期函数
      */
-    componentDidMount() {
-        axios
-            .get(requestConfig.adminLogin, {
+    async componentDidMount() {
+        let response;
+        let data;
+
+        // 发送请求进行进行管理员登录校验
+        try {
+            response = await axios.get(requestConfig.adminLogin, {
                 params: {
                     type: 'info'
                 }
-            })
-            .then(response => {
-                Log.dev(`get ${requestConfig.adminLogin} OK`);
-                // 如果用户没有登录
-                if (!response.data.login) {
-                    // 赶出去
-                    return this.props.history.push('/admin');
-                }
-                // 如果用户已经登录，设置加载已经完成
-                this.setState({
-                    loaded: true,
-                });
-            })
-            .catch(error => {
-                Log.devError(`get ${requestConfig.adminLogin}`, error);
-                // 赶出去
-                this.props.history.push('/admin');
             });
+        } catch(e) {
+-           Log.devError(`get ${requestConfig.adminLogin}`, e);
+            message.error('管理员未登录，请先登录');
+            // 赶出去
+            return this.props.history.push('/admin');
+        }
+
+        // 如果成功了
+        Log.dev(`get ${requestConfig.adminLogin} OK`);
+        response = response || {};
+        data = response || {};
+
+        let login = !!data.login;
+        if (!login) {
+            // 如果没有登录，赶出去
+            message.error('管理员未登录，请先登录');
+            return this.props.history.push('/admin');
+        }
+
+        // 如果用户已经登录，则设置加载已经完成
+        this.setLoadedTrue();
 
         // TODO tab事件监听，todo 先写在这里
         // TODO 自动上传图片，todo 先写在这里
@@ -117,36 +132,54 @@ export class AdminNewPostPage extends React.Component {
     };
 
     /**
+     * 打开抽屉
+     */
+    openDrawer = () => {
+        this.setState({ drawerVisible: true });
+    };
+
+    /**
+     * 关闭抽屉
+     */
+    closeDrawer = () => {
+        this.setState({ drawerVisible: false });
+    };
+
+    /**
      * 发表文章按钮点击回调
      * @param {Object} e 事件对象
      */
-    onPublishPostButtonClick = (e) => {
-        this.setState({
-            drawerVisible: true
-        });
+    onPublishPostButtonClick = async (e) => {
+        // 打开抽屉
+        this.openDrawer();
         // 判断是否需要获取 labels 备选数据
         if (!this.state.haveLabelOptionData) {
-            axios
-                .get(requestConfig.label, {
+            // 如果需要，则发送请求获取 labels 备选
+            let response;
+            let data;
+
+            try {
+                response = await axios.get(requestConfig.label, {
                     params: {
                         type: 'all'
                     }
-                })
-                .then(response => {
-                    Log.dev(`get ${requestConfig.label} OK`);
-                    // 如果获取数据成功
-                    this.setState({
-                        haveLabelOptionData: true,
-                        labelSelectOptions: response.data.labels || []
-                    });
-                })
-                .catch(error => {
-                    Log.devError(`get ${requestConfig.label}`, error);
-                    message.error('加载数据失败，请重试');
-                    this.setState({
-                        drawerVisible: false
-                    });
                 });
+            } catch(e) {
+                Log.devError(`get ${requestConfig.label}`, e);
+                message.error('加载数据失败，请重试');
+                return this.closeDrawer();
+            }
+
+            // 如果请求成功了
+            Log.dev(`get ${requestConfig.label} OK`);
+            response = response || {};
+            data = response.data || {};
+
+            let labels = data.labels || [];
+            this.setState({
+                haveLabelOptionData: true,
+                labelSelectOptions: labels
+            });
         }
     };
 
@@ -201,7 +234,7 @@ export class AdminNewPostPage extends React.Component {
      * 确认发表按钮点击的回调
      * @param {Object} e 事件对象
      */
-    onConfirmPublishButtonClick = (e) => {
+    onConfirmPublishButtonClick = async (e) => {
         // 加锁
         this.lock();
 
@@ -215,31 +248,34 @@ export class AdminNewPostPage extends React.Component {
             return message.error('描述不符合规范');
         }
 
-        // 处理 labels 为数组
+        let response;
+        let data;
+
         // 发送请求新建文章
-        axios
-            .post(`${requestConfig.post}`, {
+        try {
+            response = await axios.post(`${requestConfig.post}`, {
                 title: this.state.title,
                 body: this.state.body,
                 description: this.state.description,
                 labels: this.state.labels
-            })
-            .then(response => {
-                Log.dev(`post ${requestConfig.post} OK`);
-                if (response.data.success) {
-                    message.info('发表文章成功');
-                    this.setState({
-                        drawerVisible: false
-                    });
-                } else {
-                    message.error('文章未能发表成功');
-                }
-                this.unLock();
-            })
-            .catch(error => {
-                Log.devError(`post ${requestConfig.post}`, error);
-                this.unLock();
             });
+        } catch(e) {
+            Log.devError(`post ${requestConfig.post}`, e);
+            this.unLock();
+            return message.error('文章未能发表成功，请重试');
+        }
+
+        // 如果请求成功了
+        Log.dev(`post ${requestConfig.post} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        let success = !!data.success;
+        if (!success) {
+            return message.error('文章未能发表成功，请重试');
+        }
+        message.info('发表文章成功');
+        return this.closeDrawer();
     };
 
     /**
