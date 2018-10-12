@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { KLayout } from '../../component/tool/k-layout';
-import { Row, Col, Divider, Button } from 'antd';
+import { Row, Col, Divider, Button, message } from 'antd';
 import { Link } from 'react-router-dom';
 import { AdminIconGadget } from '../../component/gadget/admin-icon-gadget';
 import { DoItOnPC } from '../../component/gadget/do-it-on-pc';
@@ -41,7 +41,7 @@ export class AdminGeneralPage extends React.Component {
     /**
      * 组件加载生命周期函数
      */
-    componentDidMount() {
+    async componentDidMount() {
         let response;
         let data;
 
