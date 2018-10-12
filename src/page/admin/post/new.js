@@ -78,7 +78,7 @@ export class AdminNewPostPage extends React.Component {
                 }
             });
         } catch(e) {
--           Log.devError(`get ${requestConfig.adminLogin}`, e);
+            Log.devError(`get ${requestConfig.adminLogin}`, e);
             message.error('管理员未登录，请先登录');
             // 赶出去
             return this.props.history.push('/admin');
