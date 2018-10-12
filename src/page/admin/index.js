@@ -58,7 +58,7 @@ export class AdminIndexPage extends React.Component {
     /**
      * 登录按钮点击回调
      */
-    onLoginButtonClick = () => {
+    onLoginButtonClick = async () => {
         // 校验 username
         if (!this.state.username.match(adminRegex.username)) {
             return message.error('用户名不满足条件');
@@ -69,59 +69,74 @@ export class AdminIndexPage extends React.Component {
             lock: true
         });
 
-        // 发起请求获取盐
-        axios
-            .get(requestConfig.adminLogin, {
+        // 发送请求获取盐
+        let response = null;
+        try {
+            response = await axios.get(requestConfig.adminLogin, {
                 params: {
                     type: 'salt',
                     username: this.state.username
                 }
-            })
-            .then((response) => {
-                Log.dev(`get ${requestConfig.adminLogin} OK`);
-                // 如果没有获取到盐
-                if (!response.data.salt) {
-                    this.setState({
-                        lock: false
-                    });
-                    return message.error('管理员账户不存在');
-                }
-                let salt = response.data.salt;
-
-                // 校验密码
-                if (!this.state.password.match(adminRegex.password)) {
-                    this.setState({
-                        lock: false
-                    });
-                    return message.error('密码不满足条件');
-                }
-
-                // 发送请求进行管理员登录校验
-                axios
-                    .post(requestConfig.adminLogin, {
-                        username: this.state.username,
-                        password: PasswordTool.encode(this.state.password, salt)
-                    })
-                    .then((response) => {
-                        Log.dev(`post ${requestConfig.adminLogin} OK`);
-                        if (!response.data.success) {
-                            this.setState({
-                                lock: false
-                            });
-                            return message.error('用户名或密码错误');
-                        }
-                        message.success('登录成功，即将为你跳转');
-                        return setTimeout(() => {
-                            this.props.history.push('/admin/general');
-                        }, 1000);
-                    });
-            })
-            .catch((error) => {
-                Log.devError(`get ${requestConfig.adminLogin}`, error);
-                this.setState({
-                    lock: false
-                });
             });
+        } catch(error) {
+            Log.devError(`get ${requestConfig.adminLogin}`, error);
+            this.setState({
+                lock: false
+            });
+            return null;
+        }
+
+        Log.dev(`get ${requestConfig.adminLogin} OK`);
+        // 获取结果
+        response = response || {};
+        let data = response.data || {};
+        let salt = data.salt || null;
+        // 如果没有获取到盐
+        if (!salt) {
+            this.setState({
+                lock: false
+            });
+            return message.error('管理员账户不存在');
+        }
+
+        // 校验密码
+        if (!this.state.password.match(adminRegex.password)) {
+            this.setState({
+                lock: false
+            });
+            return message.error('密码不满足条件');
+        }
+
+        // 发送请求进行登录校验
+        let response2 = null;
+        try {
+            response2 = await axios.post(requestConfig.adminLogin, {
+                username: this.state.username,
+                password: PasswordTool.encode(this.state.password, salt)
+            });
+        } catch(error) {
+            Log.devError(`get ${requestConfig.adminLogin}`, error);
+            this.setState({
+                lock: false
+            });
+            return null;
+        }
+
+        Log.dev(`post ${requestConfig.adminLogin} OK`);
+        // 获取结果
+        response2 = response2 || {};
+        let data2 = response2.data || {};
+        let success = data2.success || false;
+        if (!success) {
+            this.setState({
+                lock: false
+            });
+            return message.error('用户名或密码错误');
+        }
+        message.success('登录成功，即将为你跳转');
+        return setTimeout(() => {
+            this.props.history.push('/admin/general');
+        }, 1000);
     };
 
     /**

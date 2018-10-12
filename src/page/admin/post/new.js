@@ -225,10 +225,20 @@ export class AdminNewPostPage extends React.Component {
                 labels: this.state.labels
             })
             .then(response => {
-                // TODO 日志，解锁
+                Log.dev(`post ${requestConfig.post} OK`);
+                if (response.data.success) {
+                    message.info('发表文章成功');
+                    this.setState({
+                        drawerVisible: false
+                    });
+                } else {
+                    message.error('文章未能发表成功');
+                }
+                this.unLock();
             })
             .catch(error => {
-                // TODO 日志，解锁
+                Log.devError(`post ${requestConfig.post}`, error);
+                this.unLock();
             });
     };
 
