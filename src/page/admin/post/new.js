@@ -107,21 +107,31 @@ export class AdminNewPostPage extends React.Component {
     }
 
     /**
+     * 打开编辑器
+     */
+    toggleEditor = () => {
+        this.setState({ editorToggled: true });
+    };
+
+    /**
+     * 打开预览
+     */
+    togglePreview = () => {
+        this.setState({ editorToggled: false });
+    };
+
+    /**
      * Markdown编辑器按钮被点击的回调
      */
     onEditorButtonClick = () => {
-        this.setState({
-            editorToggled: true
-        });
+        this.toggleEditor();
     };
 
     /**
      * 预览按钮被点击的回调
      */
     onPreviewButtonClick = (e) => {
-        this.setState({
-            editorToggled: false
-        });
+        this.togglePreview();
     };
 
     /**
@@ -190,9 +200,7 @@ export class AdminNewPostPage extends React.Component {
      * 发表文章抽屉关闭回调
      */
     onPublishPostDrawerClose = () => {
-        this.setState({
-            drawerVisible: false
-        });
+        this.closeDrawer();
     };
 
     /**
