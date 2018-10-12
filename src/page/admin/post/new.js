@@ -78,6 +78,7 @@ export class AdminNewPostPage extends React.Component {
                 }
             });
         } catch(e) {
+            debugger;
             Log.devError(`get ${requestConfig.adminLogin}`, e);
             message.error('管理员未登录，请先登录');
             // 赶出去
@@ -87,7 +88,9 @@ export class AdminNewPostPage extends React.Component {
         // 如果成功了
         Log.dev(`get ${requestConfig.adminLogin} OK`);
         response = response || {};
-        data = response || {};
+        data = response.data || {};
+
+        debugger;
 
         let login = !!data.login;
         if (!login) {
