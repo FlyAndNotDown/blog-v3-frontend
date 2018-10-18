@@ -84,6 +84,13 @@ export class AdminGeneralPage extends React.Component {
     };
 
     /**
+     * 写说说按钮点击回调
+     */
+    onWriteEmotionButtonClick = () => {
+        this.props.history.push('/admin/emotion/new');
+    };
+
+    /**
      * 渲染函数
      * @returns {*} 渲染结果
      */
@@ -132,12 +139,6 @@ export class AdminGeneralPage extends React.Component {
                         <AdminIconGadget
                             iconType={'dot-chart'}
                             title={'今日访问量'}
-                            content={1000}/>
-                    </Col>
-                    <Col span={8}>
-                        <AdminIconGadget
-                            iconType={'message'}
-                            title={'今日评论'}
                             content={1000}/>
                     </Col>
                 </Row>
@@ -227,7 +228,7 @@ export class AdminGeneralPage extends React.Component {
                     </Col>
                     <Col span={8}>
                         <AdminIconGadget
-                            iconType={'file-text'}
+                            iconType={'database'}
                             title={'管理文章'}
                             content={<Button>启动</Button>}/>
                     </Col>
@@ -298,6 +299,37 @@ export class AdminGeneralPage extends React.Component {
             </div>
         );
 
+        // 说说管理块
+        const emotionManageBlock = (
+            <div>
+                <div className={'font-size-sm'}>
+                    <Link className={'color-black text-decoration-none'} to={'#'}>说说管理</Link>
+                </div>
+                <Row className={'mt-lg'}>
+                    <Col span={8}>
+                        <AdminIconGadget
+                            iconType={'plus-circle'}
+                            iconColor={'#52c41a'}
+                            title={'写说说'}
+                            content={
+                                <Button
+                                    type={'primary'}
+                                    onClick={this.onWriteEmotionButtonClick}>
+                                    启动
+                                </Button>
+                            }/>
+                    </Col>
+                    <Col span={8}>
+                        <AdminIconGadget
+                            iconType={'database'}
+                            title={'管理说说'}
+                            content={<Button>启动</Button>}/>
+                    </Col>
+                </Row>
+                <Divider/>
+            </div>
+        );
+
         // TODO 标签管理
         // TODO 文件管理
 
@@ -327,6 +359,7 @@ export class AdminGeneralPage extends React.Component {
                         {hardWorkValueBlock}
                         {securityValueBlock}
                         {postManageBlock}
+                        {emotionManageBlock}
                         {commentManageBlock}
                         {messageManageBlock}
                     </Col>
