@@ -66,6 +66,10 @@
     height: 100px;
 }
 
+.h-40vh {
+    height: 40vh;
+}
+
 .h-100vh {
     height: 100vh;
 }

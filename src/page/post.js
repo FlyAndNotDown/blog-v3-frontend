@@ -7,7 +7,7 @@ import React from 'react';
 import { KLayout } from '../component/tool/k-layout';
 import { NavBar } from '../component/nav-bar';
 import { Footer } from '../component/footer';
-import { Row, Col, Affix, Divider, Icon, Anchor, BackTop } from 'antd';
+import { Row, Col, Affix, Divider, Icon, Anchor, BackTop, Spin } from 'antd';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import SyntaxHighlighter from 'react-syntax-highlighter';
@@ -35,7 +35,9 @@ export class PostPage extends React.Component {
             title: '',
             time: '',
             labels: [],
-            body: ''
+            body: '',
+
+            loadDown: false
         };
 
         // url
@@ -43,34 +45,49 @@ export class PostPage extends React.Component {
 
         // 锚点
         this.anchors = [];
+
+        // postId
+        this.postId = parseInt(this.props.match.params.postId, 10);
     }
 
     /**
      * 组件加载生命周期
      */
-    componentDidMount() {
-        // TODO 发送请求获取文章
-        axios
-            .get(requestConfig.post, {
+    async componentDidMount() {
+        let response;
+        let data;
+
+        try {
+            response = await axios.get(requestConfig.post, {
                 params: {
-                    id: this.props.match.params.postId
+                    type: 'detail',
+                    id: this.postId
                 }
-            })
-            .then(response => {
-                // 日志
-                Log.dev(`get ${requestConfig.post} OK`);
-                // 获取数据
-                let data = response.data || {};
-                this.setState({
-                    title: data.title || '',
-                    time: data.time || '',
-                    labels: data.labels || [],
-                    body: data.body || ''
-                });
-            })
-            .catch(error => {
-                Log.dev(`get ${requestConfig.post}`, error);
             });
+        } catch (e) {
+            Log.devError(`get ${requestConfig.post}`);
+            return this.props.history.push('/err/404');
+        }
+
+        // 如果请求成功
+        Log.dev(`get ${requestConfig.post} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        let post = data.post || null;
+
+        // 如果没有查到文章内容， 404
+        if (!post) {
+            return this.props.history.push('/err/404');
+        }
+
+        this.setState({
+            title: post.title,
+            time: post.time,
+            labels: post.labels,
+            body: post.body,
+            loadDown: true
+        });
 
         // 延迟加载锚点，防止超出 state 更新最大深度
         setTimeout(() => {
@@ -78,7 +95,7 @@ export class PostPage extends React.Component {
                 anchors: this.anchors,
                 anchorsLock: true
             });
-        }, 100);
+        }, 1000);
     }
 
     /**
@@ -311,11 +328,20 @@ export class PostPage extends React.Component {
             <Footer className={'mt-lg'}/>
         );
 
+        // TODO 改成加载占位符
+        const loadingLayout = (
+            <KLayout colorMode={KLayout.COLOR_MODE_MAIN}>
+                <div className={'h-40vh'}></div>
+                <Spin/>
+            </KLayout>
+        );
+
         return (
             <KLayout colorMode={KLayout.COLOR_MODE_MAIN}>
-                {headerLayout}
-                {bodyLayout}
-                {footerLayout}
+                {this.state.loadDown && headerLayout}
+                {!this.state.loadDown && loadingLayout}
+                {this.state.loadDown && bodyLayout}
+                {this.state.loadDown && footerLayout}
             </KLayout>
         );
     }

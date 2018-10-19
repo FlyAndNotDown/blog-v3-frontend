@@ -39,6 +39,7 @@ export class IndexPage extends React.Component {
      * 组件加载生命周期函数
      */
     componentDidMount() {
+        // 改成异步模式
         axios
             .get(requestConfig.home)
             .then((response) => {
