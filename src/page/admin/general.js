@@ -259,7 +259,7 @@ export class AdminGeneralPage extends React.Component {
                     </Col>
                     <Col span={8}>
                         <AdminIconGadget
-                            iconType={'message'}
+                            iconType={'database'}
                             title={'管理评论'}
                             content={<Button>启动</Button>}/>
                     </Col>
@@ -290,7 +290,7 @@ export class AdminGeneralPage extends React.Component {
                     </Col>
                     <Col span={8}>
                         <AdminIconGadget
-                            iconType={'message'}
+                            iconType={'database'}
                             title={'管理留言'}
                             content={<Button>启动</Button>}/>
                     </Col>
