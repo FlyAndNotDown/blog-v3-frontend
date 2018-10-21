@@ -177,6 +177,30 @@ export class PostPage extends React.Component {
         return (<span key={key}>&nbsp;&nbsp;</span>);
     };
 
+    descriptionLabelsMapFunc = (label, key) => {
+        if (key === this.state.labels.length - 1) {
+            return (
+                <span key={key}>
+                    <Link
+                        to={`/label/${label.key}`}
+                        className={'color-grey text-decoration-none'}>
+                        #{label.name}
+                    </Link>
+                </span>
+            );
+        }
+        return (
+            <span key={key}>
+                <Link
+                    to={`/label/${label.key}`}
+                    className={'color-grey text-decoration-none'}>
+                    #{label.name}
+                </Link>
+                &nbsp;
+                </span>
+        );
+    };
+
     /**
      * 渲染函数
      * @returns {*} 渲染结果
@@ -199,34 +223,12 @@ export class PostPage extends React.Component {
                     sm={{ offset: 0, span: 0 }}
                     md={{ offset: 0, span: 0 }}
                     lg={{ offset: 0, span: 24 }}>
-                    <div className={'font-size-lg mt-md'}>{this.state.title}</div>
+                    <div className={'font-size-xl mt-md'}>{this.state.title}</div>
                     <div className={'font-size-xs mt-sm color-grey'}>
                         <span><Icon type={'clock-circle-o'}/>&nbsp;{this.state.time}</span>
                         <span className={'ml-md'}>
-                                                    {this.state.labels.map((label, key) => {
-                                                        if (key === this.state.labels.length - 1) {
-                                                            return (
-                                                                <span key={key}>
-                                                                    <Link
-                                                                        to={`/label/${label.key}`}
-                                                                        className={'color-grey text-decoration-none'}>
-                                                                        {label.name}
-                                                                    </Link>
-                                                                </span>
-                                                            );
-                                                        }
-                                                        return (
-                                                            <span key={key}>
-                                                                <Link
-                                                                    to={`/label/${label.key}`}
-                                                                    className={'color-grey text-decoration-none'}>
-                                                                    {label.name}
-                                                                </Link>
-                                                                &nbsp;
-                                                            </span>
-                                                        );
-                                                    })}
-                                                </span>
+                            {this.state.labels.map(this.descriptionLabelsMapFunc)}
+                        </span>
                     </div>
                     <Divider/>
                 </Col>
@@ -235,7 +237,7 @@ export class PostPage extends React.Component {
                     sm={{ offset: 0, span: 24 }}
                     md={{ offset: 0, span: 24 }}
                     lg={{ offset: 0, span: 0 }}>
-                    <div className={'font-size-lg mt-md text-align-center'}>let和const</div>
+                    <div className={'font-size-xl mt-md text-align-center'}>let和const</div>
                     <div className={'font-size-xs mt-sm color-grey text-align-center'}>
                         <span><Icon type={'clock-circle-o'}/>&nbsp;2018-10-2</span>
                     </div>
