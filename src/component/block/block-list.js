@@ -11,19 +11,14 @@ import { EmotionBlock } from "./emotion-block";
 /**
  * 块列表组件
  * @constructor
- * @property {Array} blocks 块数组
- * * @member {Object} postBlock 文章块对象
+ * @property {Array} posts 文章数组
+ * * @member {Object} post 文章块对象
  * * * @member {string} type 块对象类型
  * * * @member {string} title 标题
  * * * @member {string} description 描述
  * * * @member {number} key 文章键
  * * * @member {string} date 日期
  * * * @member {Array} labels 标签
- * * @member {Object} emotionBlock 说说块对象
- * * * @member {string} type 块对象类型
- * * * @member {string} context 说说内容
- * * * @member {string} date 日期
- * @property {function} onPageChange 当分页改变的回调
  */
 export class BlockList extends React.Component {
 
@@ -43,32 +38,18 @@ export class BlockList extends React.Component {
      * @param {number} key 迭代标识
      * @returns {*} 渲染结果
      */
-    blocksMapFunc = (block, key) => {
-        switch (block.type) {
-            case 'post':
-                return (
-                    <div key={key}>
-                        <PostBlock
-                            postKey={block.postKey}
-                            title={block.title}
-                            description={block.description}
-                            date={block.date}
-                            labels={block.labels}/>
-                        <Divider/>
-                    </div>
-                );
-            case 'emotion':
-                return (
-                    <div key={key}>
-                        <EmotionBlock
-                            context={block.context}
-                            date={block.date}/>
-                        <Divider/>
-                    </div>
-                );
-            default:
-                return null;
-        }
+    postsMapFunc = (post, key) => {
+        return (
+            <div key={key}>
+                <PostBlock
+                    postKey={post.postKey}
+                    title={post.title}
+                    description={post.description}
+                    date={post.date}
+                    labels={post.labels}/>
+                <Divider/>
+            </div>
+        );
     };
 
     /**
@@ -94,7 +75,7 @@ export class BlockList extends React.Component {
         return (
             <Row className={'w-block-list m-0-auto'}>
                 <Col>
-                    {this.props.blocks.map(this.blocksMapFunc)}
+                    {this.props.posts.map(this.postsMapFunc)}
                     {paginationDiv}
                 </Col>
             </Row>

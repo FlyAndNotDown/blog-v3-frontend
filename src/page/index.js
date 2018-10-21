@@ -8,12 +8,13 @@ import { KLayout } from "../component/tool/k-layout";
 import { NavHeader } from "../component/nav-header";
 import { BlockList } from "../component/block/block-list";
 import { Footer } from "../component/footer";
-import { Row, Col } from 'antd';
+import { Row, Col, message, Spin } from 'antd';
 import axios from 'axios';
 import { commonUrlPrefix } from '../config/request';
 import requestConfig from '../config/request';
 import { Log } from '../tool/log';
 import navHeaderBgImg from '../img/header-bg.jpg';
+import optionConfig from '../config/option';
 
 /**
  * 首页组件
@@ -31,28 +32,45 @@ export class IndexPage extends React.Component {
 
         // 设置组件初始状态
         this.state = {
-            blocks: []
+            posts: [],
+
+            loadDown: false
         };
     }
 
     /**
      * 组件加载生命周期函数
      */
-    componentDidMount() {
-        // 改成异步模式
-        axios
-            .get(requestConfig.home)
-            .then((response) => {
-                // if (mainConfig.devMode) debugger;
-                Log.dev(`get ${commonUrlPrefix}/home OK`);
-                this.setState({
-                    blocks: response.data.blocks || []
-                });
-            })
-            .catch((err) => {
-                Log.devError(`get ${commonUrlPrefix}/home`, err);
+    async componentDidMount() {
+        // 发送请求获取文章
+        let response;
+        let data;
+
+        try {
+            response = await axios.get(requestConfig.post, {
+                params: {
+                    type: 'summary',
+                    range: {
+                        start: 0,
+                        length: optionConfig.postPerPage
+                    }
+                }
             });
-        // TODO 发送请求验证分页参数是否正确，如果不正确跳转到 /error/404
+        } catch (e) {
+            Log.devError(`get ${requestConfig.post}`, e);
+            return message.error('尝试获取博客文章时出错，请刷新重试');
+        }
+
+        Log.dev(`get ${requestConfig.post} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        let posts = data.posts || [];
+
+        this.setState({
+            posts: posts,
+            loadDown: true
+        });
     }
 
     /**
@@ -60,31 +78,44 @@ export class IndexPage extends React.Component {
      * @returns {*} 渲染函数
      */
     render() {
+        // 加载中布局
+        const loadingLayout = (
+            <KLayout colorMode={KLayout.COLOR_MODE_MAIN}>
+                <div className={'h-40vh'}></div>
+                <Spin/>
+            </KLayout>
+        );
+
+        // 主布局
+        const bodyLayout = (
+            <KLayout
+                colorMode={KLayout.COLOR_MODE_MAIN}
+                className={'z-index-1 p-xl'}>
+                <Row>
+                    <Col
+                        xs={{ offset: 1, span: 22 }}
+                        sm={{ offset: 1, span: 22 }}
+                        md={{ offset: 2, span: 20 }}
+                        lg={{ offset: 2, span: 20 }}
+                        xl={{ offset: 3, span: 18 }}
+                        xxl={{ offset: 5, span: 14 }}>
+                        <BlockList
+                            posts={this.state.posts}
+                            onPageChange={(page) => {
+                                // TODO
+                                console.log('page changed:', page);
+                            }}/>
+                    </Col>
+                </Row>
+            </KLayout>
+        );
+
         return (
             <KLayout
                 colorMode={KLayout.COLOR_MODE_NONE}>
-                <NavHeader bgImg={navHeaderBgImg}/>
-                <KLayout
-                    colorMode={KLayout.COLOR_MODE_MAIN}
-                    className={'z-index-1 p-xl'}>
-                    <Row>
-                        <Col
-                            xs={{ offset: 1, span: 22 }}
-                            sm={{ offset: 1, span: 22 }}
-                            md={{ offset: 2, span: 20 }}
-                            lg={{ offset: 2, span: 20 }}
-                            xl={{ offset: 3, span: 18 }}
-                            xxl={{ offset: 5, span: 14 }}>
-                            <BlockList
-                                blocks={this.state.blocks}
-                                onPageChange={(page) => {
-                                    // TODO
-                                    console.log('page changed:', page);
-                                }}/>
-                        </Col>
-                    </Row>
-                </KLayout>
-                <Footer/>
+                {this.state.loadDown && (<NavHeader bgImg={navHeaderBgImg}/>)}
+                {this.state.loadDown ? (bodyLayout) : (loadingLayout)}
+                {this.state.loadDown && (<Footer/>)}
             </KLayout>
         );
     }
