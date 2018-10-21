@@ -90,12 +90,10 @@ export class PostPage extends React.Component {
         });
 
         // 延迟加载锚点，防止超出 state 更新最大深度
-        setTimeout(() => {
-            this.setState({
-                anchors: this.anchors,
-                anchorsLock: true
-            });
-        }, 1000);
+        this.setState({
+            anchors: this.anchors,
+            anchorsLock: true
+        });
     }
 
     /**
