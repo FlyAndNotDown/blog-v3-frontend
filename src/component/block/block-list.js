@@ -6,7 +6,6 @@
 import React from 'react';
 import { Row, Col, Divider, Pagination } from 'antd';
 import { PostBlock } from "./post-block";
-import { EmotionBlock } from "./emotion-block";
 
 /**
  * 块列表组件

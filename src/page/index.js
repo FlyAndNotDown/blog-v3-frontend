@@ -10,7 +10,6 @@ import { BlockList } from "../component/block/block-list";
 import { Footer } from "../component/footer";
 import { Row, Col, message, Spin } from 'antd';
 import axios from 'axios';
-import { commonUrlPrefix } from '../config/request';
 import requestConfig from '../config/request';
 import { Log } from '../tool/log';
 import navHeaderBgImg from '../img/header-bg.jpg';
