@@ -49,10 +49,8 @@ export class IndexPage extends React.Component {
             response = await axios.get(requestConfig.post, {
                 params: {
                     type: 'summary',
-                    range: {
-                        start: 0,
-                        length: optionConfig.postPerPage
-                    }
+                    start: 0,
+                    length: optionConfig.postPerPage
                 }
             });
         } catch (e) {
