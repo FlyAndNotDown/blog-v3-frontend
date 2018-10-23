@@ -41,7 +41,7 @@ export class BlockList extends React.Component {
         return (
             <div key={key}>
                 <PostBlock
-                    postKey={post.postKey}
+                    postKey={post.key}
                     title={post.title}
                     description={post.description}
                     date={post.date}
