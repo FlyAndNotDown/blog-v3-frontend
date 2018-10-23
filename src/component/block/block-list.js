@@ -74,6 +74,10 @@ export class BlockList extends React.Component {
                 {this.props.loading && (<Skeleton active/>)}
                 {this.props.loading && (<Skeleton active/>)}
                 {this.props.loading && (<Skeleton active/>)}
+                {this.props.loading && (<Skeleton active/>)}
+                {this.props.loading && (<Skeleton active/>)}
+                {this.props.loading && (<Skeleton active/>)}
+                {this.props.loading && (<Skeleton active/>)}
             </div>
         );
 

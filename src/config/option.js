@@ -10,7 +10,7 @@ import mainConfig from './main';
  * 导出选项
  */
 export default mainConfig.devMode ? {
-    postPerPage: 6
+    postPerPage: 10
 } : {
-    postPerPage: 6
+    postPerPage: 10
 };
