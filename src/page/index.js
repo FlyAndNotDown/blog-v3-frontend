@@ -133,7 +133,8 @@ export class IndexPage extends React.Component {
         }
 
         this.setState({
-            posts: newPosts
+            posts: newPosts,
+            currentPage: page
         });
     };
 
