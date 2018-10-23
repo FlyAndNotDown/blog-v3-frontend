@@ -64,6 +64,13 @@ export class BlockList extends React.Component {
      * @returns {*} 渲染结果
      */
     render() {
+        // div for posts
+        const postsDiv = (
+            <div className={'min-h-600px'}>
+                {this.props.posts.map(this.postsMapFunc)}
+            </div>
+        );
+
         // 分页div
         const paginationDiv = (
             <div className={'text-align-center mt-lg'}>
@@ -74,7 +81,7 @@ export class BlockList extends React.Component {
         return (
             <Row className={'w-block-list m-0-auto'}>
                 <Col>
-                    {this.props.posts.map(this.postsMapFunc)}
+                    {postsDiv}
                     {paginationDiv}
                 </Col>
             </Row>

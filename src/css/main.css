@@ -83,6 +83,10 @@
     line-height: 64px;
 }
 
+.min-h-600px {
+    min-height: 600px;
+}
+
 /* 布局 */
 .m-0-auto {
     margin: 0 auto;
