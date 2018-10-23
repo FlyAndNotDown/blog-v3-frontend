@@ -60,9 +60,7 @@ export class PostBlock extends React.Component {
                 key={key}
                 className={'color-text'}>
                 #{label.name}
-                {key === this.props.labels.length - 1 ? (
-                    <span>&nbsp;</span>
-                ) : null}
+                {key !== this.props.labels.length - 1 && (<span>&nbsp;</span>)}
             </Link>
         );
     };
