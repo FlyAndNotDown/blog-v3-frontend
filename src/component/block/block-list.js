@@ -18,6 +18,7 @@ import { PostBlock } from "./post-block";
  * * * @member {number} key 文章键
  * * * @member {string} date 日期
  * * * @member {Array} labels 标签
+ * @property {number} page total page
  */
 export class BlockList extends React.Component {
 
@@ -74,7 +75,7 @@ export class BlockList extends React.Component {
         // 分页div
         const paginationDiv = (
             <div className={'text-align-center mt-lg'}>
-                <Pagination size={'small'} total={100} onChange={this.onPageChange}/>
+                <Pagination size={'small'} total={this.props.page * 10} onChange={this.onPageChange}/>
             </div>
         );
 

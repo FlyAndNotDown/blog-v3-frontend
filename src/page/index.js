@@ -32,7 +32,9 @@ export class IndexPage extends React.Component {
         // 设置组件初始状态
         this.state = {
             posts: [],
-            count: 0,
+
+            totalPage: 0,
+            currentPage: 1,
 
             loadDown: false
         };
@@ -84,11 +86,56 @@ export class IndexPage extends React.Component {
         let count = data.count || null;
 
         this.setState({
-            posts: posts,
-            count: count,
+            posts: [posts],
+            totalPage: Math.ceil(count / optionConfig.postPerPage),
             loadDown: true
         });
     }
+
+    /**
+     * callback when the index page change
+     * @param {number} page the page callback given
+     */
+    onPageChange = async (page) => {
+        // if need no update the data
+        if (page <= this.state.posts.length) {
+            return this.setState({
+                currentPage: page
+            });
+        }
+        let newPosts = [];
+        for (let i = 0; i < this.state.posts.length; i++) {
+            newPosts.push(this.state.posts[i]);
+        }
+        // if need update the data
+        for (let i = newPosts.length; i < page; i++) {
+            let postsInLastPage = newPosts[newPosts.length - 1];
+            // do the request to get posts data
+            let response;
+            let data;
+            try {
+                response = await axios.get(requestConfig.post, {
+                    params: {
+                        type: 'summary',
+                        start: postsInLastPage[postsInLastPage.length - 1].key,
+                        length: optionConfig.postPerPage
+                    }
+                });
+            } catch (e) {
+                Log.log(`get ${requestConfig.post}`, e);
+                return message.error('请求文章数据时遇到错误，请刷新重试');
+            }
+
+            response = response || {};
+            data = response.data || {};
+
+            newPosts.push(data.posts || []);
+        }
+
+        this.setState({
+            posts: newPosts
+        });
+    };
 
     /**
      * 渲染函数
@@ -117,11 +164,9 @@ export class IndexPage extends React.Component {
                         xl={{ offset: 3, span: 18 }}
                         xxl={{ offset: 5, span: 14 }}>
                         <BlockList
-                            posts={this.state.posts}
-                            onPageChange={(page) => {
-                                // TODO
-                                console.log('page changed:', page);
-                            }}/>
+                            posts={this.state.posts[this.state.currentPage - 1]}
+                            page={this.state.totalPage}
+                            onPageChange={this.onPageChange}/>
                     </Col>
                 </Row>
             </KLayout>
