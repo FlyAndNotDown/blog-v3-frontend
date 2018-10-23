@@ -177,6 +177,11 @@ export class PostPage extends React.Component {
         return (<span key={key}>&nbsp;&nbsp;</span>);
     };
 
+    /**
+     * map function for render labels in description block
+     * @param {{key: number, name: string}} label label object in every map time
+     * @param {number} key key auto added in map function
+     */
     descriptionLabelsMapFunc = (label, key) => {
         if (key === this.state.labels.length - 1) {
             return (
