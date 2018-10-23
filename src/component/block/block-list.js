@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { Row, Col, Divider, Pagination } from 'antd';
+import { Row, Col, Divider, Pagination, Skeleton } from 'antd';
 import { PostBlock } from "./post-block";
 
 /**
@@ -19,6 +19,7 @@ import { PostBlock } from "./post-block";
  * * * @member {string} date 日期
  * * * @member {Array} labels 标签
  * @property {number} page total page
+ * @property {boolean} loading loading state
  */
 export class BlockList extends React.Component {
 
@@ -69,6 +70,10 @@ export class BlockList extends React.Component {
         const postsDiv = (
             <div className={'min-h-600px'}>
                 {this.props.posts.map(this.postsMapFunc)}
+                {this.props.loading && (<Skeleton active/>)}
+                {this.props.loading && (<Skeleton active/>)}
+                {this.props.loading && (<Skeleton active/>)}
+                {this.props.loading && (<Skeleton active/>)}
             </div>
         );
 

@@ -36,7 +36,8 @@ export class IndexPage extends React.Component {
             totalPage: 0,
             currentPage: 1,
 
-            loadDown: false
+            loadDown: false,
+            postsLoading: false
         };
     }
 
@@ -103,11 +104,16 @@ export class IndexPage extends React.Component {
                 currentPage: page
             });
         }
+
+        // if need update the data
+        // start the loading picture
+        this.setState({ postsLoading: true, currentPage: 0 });
+
         let newPosts = [];
         for (let i = 0; i < this.state.posts.length; i++) {
             newPosts.push(this.state.posts[i]);
         }
-        // if need update the data
+
         for (let i = newPosts.length; i < page; i++) {
             let postsInLastPage = newPosts[newPosts.length - 1];
             // do the request to get posts data
@@ -123,6 +129,7 @@ export class IndexPage extends React.Component {
                 });
             } catch (e) {
                 Log.log(`get ${requestConfig.post}`, e);
+                this.setState({ postsLoading: false });
                 return message.error('请求文章数据时遇到错误，请刷新重试');
             }
 
@@ -134,7 +141,8 @@ export class IndexPage extends React.Component {
 
         this.setState({
             posts: newPosts,
-            currentPage: page
+            currentPage: page,
+            postsLoading: false
         });
     };
 
@@ -165,7 +173,8 @@ export class IndexPage extends React.Component {
                         xl={{ offset: 3, span: 18 }}
                         xxl={{ offset: 5, span: 14 }}>
                         <BlockList
-                            posts={this.state.posts[this.state.currentPage - 1]}
+                            posts={this.state.currentPage === 0 ? [] : this.state.posts[this.state.currentPage - 1]}
+                            loading={this.state.postsLoading}
                             page={this.state.totalPage}
                             onPageChange={this.onPageChange}/>
                     </Col>

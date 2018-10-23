@@ -33,7 +33,7 @@ export class PostPage extends React.Component {
             anchorsLock: false,
 
             title: '',
-            time: '',
+            date: '',
             labels: [],
             body: '',
 
@@ -83,7 +83,7 @@ export class PostPage extends React.Component {
 
         this.setState({
             title: post.title,
-            time: post.time,
+            date: post.date,
             labels: post.labels,
             body: post.body,
             loadDown: true
@@ -230,7 +230,7 @@ export class PostPage extends React.Component {
                     lg={{ offset: 0, span: 24 }}>
                     <div className={'font-size-xl mt-md'}>{this.state.title}</div>
                     <div className={'font-size-xs mt-sm color-grey'}>
-                        <span><Icon type={'clock-circle-o'}/>&nbsp;{this.state.time}</span>
+                        <span><Icon type={'clock-circle-o'}/>&nbsp;{this.state.date}</span>
                         <span className={'ml-md'}>
                             {this.state.labels.map(this.descriptionLabelsMapFunc)}
                         </span>
