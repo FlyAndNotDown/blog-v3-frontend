@@ -32,6 +32,7 @@ export class IndexPage extends React.Component {
         // 设置组件初始状态
         this.state = {
             posts: [],
+            count: 0,
 
             loadDown: false
         };
@@ -64,8 +65,27 @@ export class IndexPage extends React.Component {
 
         let posts = data.posts || [];
 
+        // do a request to get the count of all page
+        try {
+            response = await axios.get(requestConfig.post, {
+                params: {
+                    type: 'count'
+                }
+            });
+        } catch (e) {
+            Log.devError(`get ${requestConfig}`, e);
+            return message.error('尝试获取文章总数时出错，请刷新重试');
+        }
+
+        Log.dev(`get ${requestConfig.post} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        let count = data.count || null;
+
         this.setState({
             posts: posts,
+            count: count,
             loadDown: true
         });
     }
