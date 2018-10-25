@@ -31,7 +31,7 @@ export class Footer extends React.Component {
      * @returns {*} 渲染结果
      */
     render() {
-        // 站长链接 div
+        // div of site owner's info
         const linkDiv = (
             <div className={'font-size-xl mb-md'}>
                 <BlankLink to={'https://github.com/FlyAndNotDown'}>
@@ -64,33 +64,45 @@ export class Footer extends React.Component {
             </div>
         );
 
-        // 主题信息 div
+        // div of theme info
         const themeDiv = (
             <div className={'font-size-xs'}>
                 Theme By
-                <Link to={'#'} className={'color-text'} id={'emoji-red-heart'}>
+                <BlankLink to={'https://github.com/FlyAndNotDown/blog-v3-frontend'} className={'color-text'} id={'emoji-red-heart'}>
                     <span role={'img'} aria-labelledby={'red-heart'}>❤️</span>
                     Blog-V3-Frontend
-                </Link>
+                </BlankLink>
             </div>
         );
 
-        // 框架 div
+        // div of framework info
         const frameworkDiv = (
             <div className={'font-size-xs'}>
                 Framework By
-                <Link to={'#'} className={'color-text'} id={'emoji-ant'}>
+                <BlankLink to={'https://ant.design/'} className={'color-text'} id={'emoji-ant'}>
                     <span role={'img'} aria-labelledby={'ant'}>🐜</span>
                     Ant-Design
-                </Link>
+                </BlankLink>
             </div>
         );
 
-        // 版权信息 div
+        // div of background image copyright
+        const bgImgDiv = (
+            <div className={'font-size-xs'}>
+                Background Image By
+                <BlankLink to={'https://www.deviantart.com/wlop'} className={'color-text'} id={'emoji-thumbs-up'}>
+                    <span role={'img'} aria-labelledby={'ant'}>👍</span>
+                    God WLOP
+                </BlankLink>
+            </div>
+        );
+
+        // div of copyright info
         const copyrightDiv = (
             <div>@2017 Copyright kindemh.cn</div>
         );
 
+        // render
         return (
             <KLayout
                 colorMode={KLayout.COLOR_MODE_MAIN}
@@ -100,6 +112,7 @@ export class Footer extends React.Component {
                         {linkDiv}
                         {themeDiv}
                         {frameworkDiv}
+                        {bgImgDiv}
                         {copyrightDiv}
                     </Col>
                 </Row>
