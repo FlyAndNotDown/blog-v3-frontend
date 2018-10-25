@@ -8,6 +8,7 @@ import { Row, Col, Icon } from 'antd';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import SyntaxHighlighter from 'react-syntax-highlighter';
+import { BlankLink } from '../tool/blank-link';
 
 /**
  * 文章块组件
@@ -73,9 +74,11 @@ export class PostBlock extends React.Component {
         // 标题 div
         const titleDiv = (
             <div>
-                <a className={'font-size-lg color-black'} href={`/post/${this.props.postKey}`} target='__blank'>
+                <BlankLink
+                    className={'font-size-lg color-black text-decoration-none'}
+                    to={`/post/${this.props.postKey}`}>
                     {this.props.title}
-                </a>
+                </BlankLink>
             </div>
         );
 
