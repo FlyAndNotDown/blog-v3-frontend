@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { IndexPage } from './page/index';
 import { PostPage } from './page/post';
 import { AdminIndexPage } from './page/admin/index';
@@ -24,7 +24,7 @@ export class MainRouter extends React.Component {
      */
     render() {
         return (
-            <HashRouter>
+            <BrowserRouter>
                 <Switch>
                     <Route exact path={'/'} component={IndexPage}/>
                     <Route exact path={'/archive'} component={ArchivePage}/>
@@ -35,7 +35,7 @@ export class MainRouter extends React.Component {
                     <Route exact path={'/:page'} component={IndexPage}/>
                     <Route paht={'*'} component={Error404Page}/>
                 </Switch>
-            </HashRouter>
+            </BrowserRouter>
         );
     }
 

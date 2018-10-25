@@ -41,7 +41,7 @@ export class PostPage extends React.Component {
         };
 
         // url
-        this.url = `/#${this.props.history.location.pathname}`;
+        this.url = `${this.props.history.location.pathname}`;
 
         // 锚点
         this.anchors = [];

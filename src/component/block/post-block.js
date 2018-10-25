@@ -73,9 +73,9 @@ export class PostBlock extends React.Component {
         // 标题 div
         const titleDiv = (
             <div>
-                <Link className={'font-size-lg color-black'} to={`/post/${this.props.postKey}`}>
+                <a className={'font-size-lg color-black'} href={`/post/${this.props.postKey}`} target='__blank'>
                     {this.props.title}
-                </Link>
+                </a>
             </div>
         );
 
