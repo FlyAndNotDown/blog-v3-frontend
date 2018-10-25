@@ -8,6 +8,7 @@ import { Row, Col } from 'antd';
 import { KLayout } from "./tool/k-layout";
 import { Link } from 'react-router-dom';
 import { KIcon } from "./tool/k-icon";
+import { BlankLink } from './tool/blank-link';
 
 /**
  * 页脚组件
@@ -33,33 +34,33 @@ export class Footer extends React.Component {
         // 站长链接 div
         const linkDiv = (
             <div className={'font-size-xl mb-md'}>
-                <a href={'https://github.com/FlyAndNotDown'} target={'__blank'}>
+                <BlankLink to={'https://github.com/FlyAndNotDown'}>
                     <KIcon type={'k-github'}/>
-                </a>
+                </BlankLink>
                 &nbsp;
-                <a href={'https://www.zhihu.com/people/kindem/activities'} target={'__blank'}>
+                <BlankLink to={'https://www.zhihu.com/people/kindem/activities'}>
                     <KIcon type={'k-zhihu'}/>
-                </a>
+                </BlankLink>
                 &nbsp;
-                <a href={'https://www.jianshu.com/u/d498ebae7b21'} target={'__blank'}>
+                <BlankLink to={'https://www.jianshu.com/u/d498ebae7b21'}>
                     <KIcon type={'k-jianshu'}/>
-                </a>
+                </BlankLink>
                 &nbsp;
-                <a href={'https://juejin.im/user/5b3a3d53f265da62d21e14fe'} target={'__blank'}>
+                <BlankLink to={'https://juejin.im/user/5b3a3d53f265da62d21e14fe'}>
                     <KIcon type={'k-juejin'}/>
-                </a>
+                </BlankLink>
                 &nbsp;
-                <a href={'https://segmentfault.com/u/liuweimeng'} target={'__blank'}>
+                <BlankLink to={'https://segmentfault.com/u/liuweimeng'}>
                     <KIcon type={'k-sf'}/>
-                </a>
+                </BlankLink>
                 &nbsp;
                 <a href={'mailto:hwq2525775@gmail.com'}>
                     <KIcon type={'k-email'}/>
                 </a>
                 &nbsp;
-                <Link to={'#'}>
+                <BlankLink to={'#'}>
                     <KIcon type={'k-money'}/>
-                </Link>
+                </BlankLink>
             </div>
         );
 
