@@ -6,7 +6,6 @@
 import React from 'react';
 import { Row, Col } from 'antd';
 import { KLayout } from "./tool/k-layout";
-import { Link } from 'react-router-dom';
 import { KIcon } from "./tool/k-icon";
 import { BlankLink } from './tool/blank-link';
 
