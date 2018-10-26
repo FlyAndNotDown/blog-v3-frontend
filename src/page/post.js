@@ -149,10 +149,13 @@ export class PostPage extends React.Component {
      */
     markdownCodeRender = object => {
         return (
-            <SyntaxHighlighter
-                language={object.language}>
-                {object.value}
-            </SyntaxHighlighter>
+            <div className={'highlight'}>
+                <SyntaxHighlighter
+                    customStyle={{ padding: '20px' }}
+                    language={object.language}>
+                    {object.value}
+                </SyntaxHighlighter>
+            </div>
         );
     };
 

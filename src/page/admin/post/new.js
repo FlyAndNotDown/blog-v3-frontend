@@ -393,10 +393,13 @@ export class AdminNewPostPage extends React.Component {
                     renderers={{
                         code: (object) => {
                             return (
-                                <SyntaxHighlighter
-                                    language={object.language}>
-                                    {object.value}
-                                </SyntaxHighlighter>
+                                <div className={'highlight'}>
+                                    <SyntaxHighlighter
+                                        customStyle={{ padding: '20px' }}
+                                        language={object.language}>
+                                        {object.value}
+                                    </SyntaxHighlighter>
+                                </div>
                             );
                         }
                     }}/>
