@@ -76,7 +76,7 @@ export class PostBlock extends React.Component {
             <div>
                 <BlankLink
                     className={'font-size-lg color-black text-decoration-none'}
-                    to={`/post/${this.props.postKey}`}>
+                    to={`/post/key/${this.props.postKey}`}>
                     {this.props.title}
                 </BlankLink>
             </div>
