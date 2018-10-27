@@ -182,10 +182,18 @@ export class IndexPage extends React.Component {
             </KLayout>
         );
 
+        // nav header content
+        const navHeaderContent = (
+            <div>
+                <div className={'font-size-xl color-white'}>离开世界前，一切都是过程</div>
+                <div className={'font-size-md color-white'}>Before your death, everything in process</div>
+            </div>
+        );
+
         return (
             <KLayout
                 colorMode={KLayout.COLOR_MODE_NONE}>
-                {this.state.loadDown && (<NavHeader bgImg={navHeaderBgImg}/>)}
+                {this.state.loadDown && (<NavHeader bgImg={navHeaderBgImg} content={navHeaderContent}/>)}
                 {this.state.loadDown ? (bodyLayout) : (loadingLayout)}
                 {this.state.loadDown && (<Footer/>)}
             </KLayout>

@@ -11,7 +11,8 @@ import { NavBar } from './nav-bar';
 /**
  * 导航页头
  * @constructor
- * @property {string} bgImg 背景图片
+ * @property {string} bgImg background image's source in nav header
+ * @property {*} content the content of nav header
  */
 export class NavHeader extends React.Component {
 
@@ -59,8 +60,7 @@ export class NavHeader extends React.Component {
         let sloganRow = (
             <Row className={'mt-slogan mb-slogan'}>
                 <Col className={'text-align-center'}>
-                    <div className={'font-size-xl color-white'}>离开世界前，一切都是过程</div>
-                    <div className={'font-size-md color-white'}>Before your death, everything in process</div>
+                    {this.props.content}
                 </Col>
             </Row>
         );
