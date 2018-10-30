@@ -12,6 +12,7 @@ import { BlankLink } from '../tool/blank-link';
 /**
  * ArchiveBlockList
  * @description the main block list of archive page
+ * @property {[{[]}]} posts the data of archive page posts
  */
 export class ArchiveBlockList extends React.Component {
 
