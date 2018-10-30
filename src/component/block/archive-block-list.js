@@ -6,7 +6,8 @@
  */
 
 import React from 'react';
-import { Row, Col } from 'antd';
+import { Row, Col, List } from 'antd';
+import { BlankLink } from '../tool/blank-link';
 
 /**
  * ArchiveBlockList
@@ -25,11 +26,30 @@ export class ArchiveBlockList extends React.Component {
     }
 
     /**
+     * archive post render function
+     * @return {*} JSX render result
+     */
+    archivePostRenderFunc = (item) => {
+        return (
+            <List.Item>
+                <BlankLink to={`/post/key/${item.id}`}>{item.title}</BlankLink>
+            </List.Item>
+        );
+    };
+
+    /**
      * map function of post array
      * @return {*} JSX render result
      */
-    postsMapFunc = (post) => {
-        // TODO
+    postsListMapFunc = (list) => {
+        return (
+            <div>
+                <h3>{list.year}-{list.month}</h3>
+                <List
+                    dataSource={list.posts}
+                    renderItem={this.archivePostRenderFunc}/>
+            </div>
+        );
     };
 
     /**
@@ -40,7 +60,7 @@ export class ArchiveBlockList extends React.Component {
         return (
             <Row className={'w-block-list m-auto-0'}>
                 <Col>
-                    {this.props.posts.map(this.postsMapFunc)}
+                    {this.props.posts.map(this.postsListMapFunc)}
                 </Col>
             </Row>
         );
