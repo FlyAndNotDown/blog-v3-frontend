@@ -6,6 +6,6 @@ module.exports = function override(config, env) {
         config,
     );
     // TODO
-    // config.devtool = 'false';
+    config.devtool = 'false';
     return config;
 };
