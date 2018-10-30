@@ -8,6 +8,7 @@ import { KLayout } from "../component/tool/k-layout";
 import { NavHeader } from '../component/nav-header';
 import navHeaderBgImg from '../img/header-bg-2.png';
 import { Row, Col } from 'antd';
+import { ArchiveBlockList } from '../component/block/archive-block-list';
 
 /**
  * 归档页面组件
@@ -41,11 +42,9 @@ export class ArchivePage extends React.Component {
                         sm={{ offset: 1, span: 22 }}
                         md={{ offset: 2, span: 20 }}
                         lg={{ offset: 2, span: 20 }}
-                        xl={{ offset: 3, span: 18 }}
+                        xl={{ offset: 5, span: 14 }}
                         xxl={{ offset: 5, span: 14 }}>
-                        <br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                        <br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                        <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                        <ArchiveBlockList/>
                     </Col>
                 </Row>
             </KLayout>
