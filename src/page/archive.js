@@ -44,7 +44,7 @@ export class ArchivePage extends React.Component {
                         lg={{ offset: 2, span: 20 }}
                         xl={{ offset: 5, span: 14 }}
                         xxl={{ offset: 5, span: 14 }}>
-                        <ArchiveBlockList/>
+                        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                     </Col>
                 </Row>
             </KLayout>
