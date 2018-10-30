@@ -33,7 +33,12 @@ export class ArchiveBlockList extends React.Component {
     archivePostRenderFunc = (item) => {
         return (
             <List.Item>
-                <BlankLink to={`/post/key/${item.id}`}>{item.title}</BlankLink>
+                <BlankLink
+                    className={'color-text-a'}
+                    to={`/post/key/${item.id}`}>
+                    <span>{item.day}日</span>
+                    <span className={'ml-md'}>{item.title}</span>
+                </BlankLink>
             </List.Item>
         );
     };
@@ -45,8 +50,9 @@ export class ArchiveBlockList extends React.Component {
     postsListMapFunc = (list) => {
         return (
             <div>
-                <h3>{list.year}-{list.month}</h3>
+                <h1>{list.year}年{list.month}月</h1>
                 <List
+                    bordered
                     dataSource={list.posts}
                     renderItem={this.archivePostRenderFunc}/>
             </div>

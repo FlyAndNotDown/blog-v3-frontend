@@ -65,7 +65,7 @@ export class ArchivePage extends React.Component {
         // get the posts data
         let posts = data.posts || [];
 
-        if (mainConfig.devMode) { debugger; }
+        // if (mainConfig.devMode) { debugger; }
 
         // set it to state
         this.setState({
