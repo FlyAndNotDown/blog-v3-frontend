@@ -32,7 +32,6 @@ export class MainRouter extends React.Component {
                     <Route exact path={'/admin/general'} component={AdminGeneralPage}/>
                     <Route exact path={'/admin/post/new'} component={AdminNewPostPage}/>
                     <Route exact path={'/post/key/:postId'} component={PostPage}/>
-                    <Route exact path={'/:page'} component={IndexPage}/>
                     <Route paht={'*'} component={Error404Page}/>
                 </Switch>
             </BrowserRouter>
