@@ -67,11 +67,13 @@ export class ArchivePage extends React.Component {
 
         // if (mainConfig.devMode) { debugger; }
 
-        // set it to state
-        this.setState({
-            posts: posts,
-            loadDown: true
-        });
+        // delay to show animation and set it to state
+        setTimeout(() => {
+            this.setState({
+                posts: posts,
+                loadDown: true
+            });
+        }, 300);
     }
 
     /**

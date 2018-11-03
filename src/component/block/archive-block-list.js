@@ -33,12 +33,17 @@ export class ArchiveBlockList extends React.Component {
     archivePostRenderFunc = (item) => {
         return (
             <List.Item>
-                <BlankLink
-                    className={'color-text-a'}
-                    to={`/post/key/${item.id}`}>
-                    <span>{item.day}日</span>
-                    <span className={'ml-md'}>{item.title}</span>
-                </BlankLink>
+                <span>
+                    {item.day}日
+                </span>
+                &nbsp;
+                <span>
+                    <BlankLink
+                        className={'text-decoration-none color-text'}
+                        to={`/post/key/${item.id}`}>
+                        {item.title}
+                    </BlankLink>
+                </span>
             </List.Item>
         );
     };
