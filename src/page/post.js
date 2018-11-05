@@ -65,7 +65,7 @@ export class PostPage extends React.Component {
                 }
             });
         } catch (e) {
-            Log.devError(`get ${requestConfig.post}`);
+            Log.devError(`get ${requestConfig.post}`, e);
             return this.props.history.push('/err/404');
         }
 

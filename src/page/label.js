@@ -10,6 +10,10 @@ import { NavHeader } from '../component/nav-header';
 import { Footer } from '../component/footer';
 import navHeaderBgImg from '../img/header-bg-3.jpg';
 import axios from 'axios';
+import { LabelTool } from '../tool/label';
+import requestConfig from '../config/request';
+import { Log } from '../tool/log';
+import regexConfig from '../config/regex';
 
 /**
  * LabelPage
@@ -25,15 +29,91 @@ export class LabelPage extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            labels: [],
+
+            selectedLabel: null,
+            labelPostsLoading: false
+        };
+
+        this.__lastLabelColor = null;
     }
 
     /**
      * a life function of React, to do something after document ready
      */
     async componentDidMount() {
-        // TODO
+        let response;
+        let data;
+
+        // get the page params
+        let labelId = this.props.match.params.labelId;
+
+        // do the request to get all the label info
+        try {
+            response = await axios.get(requestConfig.label, {
+                params: {
+                    type: 'all'
+                }
+            });
+        } catch (e) {
+            Log.devError(`get ${requestConfig.label}`, e);
+            return this.props.history.push('/err/404');
+        }
+
+        // if success
+        // log it
+        Log.dev(`get ${requestConfig.label} OK`);
+
+        // deal data
+        response = response || {};
+        data = response.data || {};
+
+        let labels = data.labels || null;
+
+        // safety
+        if (!labels) {
+            return this.props.history.push('/err/404');
+        }
+
+        // save it to state
+        this.setState({ labels: labels });
+
+        // judge if the page params is a number
+        // if yes, get the post which have the label
+        if (labelId.match(regexConfig.normal.naturalNumber)) {
+            this.setState({
+                selectedLabel: parseInt(labelId, 10),
+                labelPostsLoading: true
+            });
+
+            // start loading
+            // TODO
+        }
     }
+
+    /**
+     * labelsMapFunc
+     * @description map function to show label info
+     * @param {{id: number, name: string}} label label object
+     * @return {*} JSX render result
+     */
+    labelsMapFunc = (label) => {
+        // get a random color
+        let labelColor = this.__lastLabelColor ?
+            LabelTool.getFirstRandomColor() :
+            LabelTool.getNextRandomColor(this.__lastLabelColor);
+        this.__lastLabelColor = labelColor;
+
+        // return JSX render result
+        return (
+            <Tag color={labelColor} onClick={() => {
+                this.props.history.push(`/label/${label.id}`);
+            }}>
+                {label.name}
+            </Tag>
+        );
+    };
 
     /**
      * render function
