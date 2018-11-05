@@ -51,9 +51,55 @@ export class PostPage extends React.Component {
     }
 
     /**
-     * 组件加载生命周期
+     * a life function of React, do something after DOM render done
      */
     async componentDidMount() {
+        let response;
+        let data;
+
+        try {
+            response = await axios.get(requestConfig.post, {
+                params: {
+                    type: 'detail',
+                    id: this.postId
+                }
+            });
+        } catch (e) {
+            Log.devError(`get ${requestConfig.post}`);
+            return this.props.history.push('/err/404');
+        }
+
+        // 如果请求成功
+        Log.dev(`get ${requestConfig.post} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        let post = data.post || null;
+
+        // 如果没有查到文章内容， 404
+        if (!post) {
+            return this.props.history.push('/err/404');
+        }
+
+        this.setState({
+            title: post.title,
+            date: post.date,
+            labels: post.labels,
+            body: post.body,
+            loadDown: true
+        });
+
+        // 延迟加载锚点，防止超出 state 更新最大深度
+        this.setState({
+            anchors: this.anchors,
+            anchorsLock: true
+        });
+    }
+
+    /**
+     * a life function of React, do something after URL update
+     */
+    async componentDidUpdate() {
         let response;
         let data;
 
