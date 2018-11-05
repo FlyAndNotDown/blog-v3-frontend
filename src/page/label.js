@@ -30,6 +30,8 @@ export class LabelPage extends React.Component {
         super(props);
 
         this.state = {
+            labelsLoading: true,
+
             labels: [],
 
             selectedLabel: null,
@@ -76,8 +78,24 @@ export class LabelPage extends React.Component {
             return this.props.history.push('/err/404');
         }
 
+        // set label color
+        for (let i = 0; i < labels.length; i++) {
+            if (i === 0) {
+                this.__lastLabelColor = LabelTool.getFirstRandomColor();
+                labels[i].color = this.__lastLabelColor;
+            } else {
+                this.__lastLabelColor = LabelTool.getNextRandomColor(this.__lastLabelColor);
+                labels[i].color = this.__lastLabelColor;
+            }
+        }
+
         // save it to state
-        this.setState({ labels: labels });
+        setTimeout(() => {
+            this.setState({
+                labels: labels,
+                labelsLoading: false
+            });
+        }, 300);
 
         // judge if the page params is a number
         // if yes, get the post which have the label
@@ -93,21 +111,24 @@ export class LabelPage extends React.Component {
     }
 
     /**
+     * componentWillReceiveProps
+     * @description a life function, to do something before get new props
+     * @param {Object} nextProps new props
+     */
+    async componentWillReceiveProps(nextProps) {
+        // TODO
+    }
+
+    /**
      * labelsMapFunc
      * @description map function to show label info
      * @param {{id: number, name: string}} label label object
      * @return {*} JSX render result
      */
     labelsMapFunc = (label) => {
-        // get a random color
-        let labelColor = this.__lastLabelColor ?
-            LabelTool.getFirstRandomColor() :
-            LabelTool.getNextRandomColor(this.__lastLabelColor);
-        this.__lastLabelColor = labelColor;
-
         // return JSX render result
         return (
-            <Tag color={labelColor} onClick={() => {
+            <Tag color={label.color} onClick={() => {
                 this.props.history.push(`/label/${label.id}`);
             }}>
                 {label.name}
@@ -137,7 +158,7 @@ export class LabelPage extends React.Component {
                         <div>
                             <h1>标签一览</h1>
                             <div className={'lh-40px'}>
-
+                                {this.state.labels.map(this.labelsMapFunc)}
                             </div>
                         </div>
                         <br/>
@@ -156,8 +177,8 @@ export class LabelPage extends React.Component {
             </div>
         );
 
-        // loading layout
-        const loadingLayout = (
+        // labels loading layout
+        const labelsLoadingLayout = (
             <KLayout colorMode={KLayout.COLOR_MODE_MAIN}>
                 <div className={'h-40vh'}></div>
                 <Spin/>
@@ -168,9 +189,9 @@ export class LabelPage extends React.Component {
         return (
             <KLayout
                 colorMode={KLayout.COLOR_MODE_MAIN}>
-                <NavHeader bgImg={navHeaderBgImg} content={navHeaderContent}/>
-                {mainLayout}
-                <Footer/>
+                {!this.state.labelsLoading && (<NavHeader bgImg={navHeaderBgImg} content={navHeaderContent}/>)}
+                {!this.state.labelsLoading ? mainLayout : labelsLoadingLayout}
+                {!this.state.labelsLoading && (<Footer/>)}
             </KLayout>
         );
     }

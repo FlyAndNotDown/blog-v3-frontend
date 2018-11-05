@@ -97,9 +97,14 @@ export class PostPage extends React.Component {
     }
 
     /**
-     * a life function of React, do something after URL update
+     * componentWillReceiveProps
+     * @description a life function, to do something before get new props
+     * @param {Object} nextProps new props
      */
-    async componentDidUpdate() {
+    async componentWillReceiveProps(nextProps) {
+        // get postId
+        this.postId = parseInt(nextProps.match.params.postId, 10);
+
         let response;
         let data;
 
@@ -111,7 +116,7 @@ export class PostPage extends React.Component {
                 }
             });
         } catch (e) {
-            Log.devError(`get ${requestConfig.post}`);
+            Log.devError(`get ${requestConfig.post}`, e);
             return this.props.history.push('/err/404');
         }
 
