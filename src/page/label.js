@@ -5,10 +5,11 @@
 
 import React from 'react';
 import { KLayout } from '../component/tool/k-layout';
-import { Row, Col, Spin } from 'antd';
+import { Row, Col, Spin, Tag, Divider, Input } from 'antd';
 import { NavHeader } from '../component/nav-header';
 import { Footer } from '../component/footer';
 import navHeaderBgImg from '../img/header-bg-3.jpg';
+import axios from 'axios';
 
 /**
  * LabelPage
@@ -28,6 +29,13 @@ export class LabelPage extends React.Component {
     }
 
     /**
+     * a life function of React, to do something after document ready
+     */
+    async componentDidMount() {
+        // TODO
+    }
+
+    /**
      * render function
      * @return {*} result of render
      */
@@ -38,10 +46,23 @@ export class LabelPage extends React.Component {
                 colorMode={KLayout.COLOR_MODE_MAIN}
                 className={'z-index-1 p-xl'}>
                 <Row>
-                    <Col>
-                        <br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                        <br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                        <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    <Col
+                        xs={{ offset: 1, span: 22 }}
+                        sm={{ offset: 1, span: 22 }}
+                        md={{ offset: 2, span: 20 }}
+                        lg={{ offset: 2, span: 20 }}
+                        xl={{ offset: 5, span: 14 }}
+                        xxl={{ offset: 5, span: 14 }}>
+                        <br/><br/>
+                        <div>
+                            <h1>标签一览</h1>
+                            <div className={'lh-40px'}>
+
+                            </div>
+                        </div>
+                        <br/>
+                        <Divider/>
+                        <br/>
                     </Col>
                 </Row>
             </KLayout>
@@ -50,7 +71,7 @@ export class LabelPage extends React.Component {
         // nav header content
         const navHeaderContent = (
             <div>
-                <div className={'font-size-xl color-white'}>标签</div>
+                <div className={'font-size-xl color-white'}>寻找你感兴趣的内容</div>
                 <div className={'font-size-md color-white'}>Find something interesting</div>
             </div>
         );

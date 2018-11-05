@@ -75,6 +75,10 @@
 }
 
 /* 行高 */
+.lh-20px {
+    line-height: 20px;
+}
+
 .lh-40px {
     line-height: 40px;
 }
