@@ -151,7 +151,114 @@ export class LabelPage extends React.Component {
      * @param {Object} nextProps new props
      */
     async componentWillReceiveProps(nextProps) {
-        // TODO
+        let response;
+        let data;
+
+        // get the new page params
+        let labelId = nextProps.match.params.labelId;
+
+        // check if there is new selectedLabel
+        if (labelId.match(regexConfig.normal.naturalNumber)) {
+            // if true, update the selectedLabel and its posts
+            this.setState({
+                selectedLabel: parseInt(labelId, 10),
+                labelPostsLoading: true
+            });
+
+            // start loading
+            // do the request to get post which have this label
+            try {
+                response = await axios.get(requestConfig.post, {
+                    params: {
+                        type: 'label',
+                        labelId: this.state.selectedLabel
+                    }
+                });
+            } catch (e) {
+                Log.devError(`get ${requestConfig.post}`, e);
+                return this.props.history.push('/err/404');
+            }
+
+            // if success
+            // log it
+            Log.dev(`get ${requestConfig.label} OK`);
+
+            // deal data
+            response = response || {};
+            data = response.data || {};
+
+            let posts = data.posts || null;
+
+            // safety protect
+            if (!posts) {
+                return this.props.history.push('/err/404');
+            }
+
+            // save it to state
+            setTimeout(() => {
+                this.setState({
+                    labelPostsLoading: false,
+                    labelPosts: posts
+                });
+            }, 300);
+        } else {
+            // else, where it's 'all' and other
+            // update all the state
+            let response;
+            let data;
+
+            // get the page params
+            let labelId = this.props.match.params.labelId;
+
+            // do the request to get all the label info
+            try {
+                response = await axios.get(requestConfig.label, {
+                    params: {
+                        type: 'all'
+                    }
+                });
+            } catch (e) {
+                Log.devError(`get ${requestConfig.label}`, e);
+                return this.props.history.push('/err/404');
+            }
+
+            // if success
+            // log it
+            Log.dev(`get ${requestConfig.label} OK`);
+
+            // deal data
+            response = response || {};
+            data = response.data || {};
+
+            let labels = data.labels || null;
+
+            // safety
+            if (!labels) {
+                return this.props.history.push('/err/404');
+            }
+
+            // set label color
+            for (let i = 0; i < labels.length; i++) {
+                if (i === 0) {
+                    this.__lastLabelColor = LabelTool.getFirstRandomColor();
+                    labels[i].color = this.__lastLabelColor;
+                } else {
+                    this.__lastLabelColor = LabelTool.getNextRandomColor(this.__lastLabelColor);
+                    labels[i].color = this.__lastLabelColor;
+                }
+            }
+
+            // save it to state
+            setTimeout(() => {
+                this.setState({
+                    labels: labels,
+                    labelsLoading: false,
+                    selectedLabel: null,
+                    labelPostsLoading: false,
+                    labelPosts: null
+                });
+            }, 300);
+        }
     }
 
     /**
