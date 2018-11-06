@@ -112,7 +112,7 @@ export class LabelPage extends React.Component {
                 response = await axios.get(requestConfig.post, {
                     params: {
                         type: 'label',
-                        labelId: this.state.selectedLabel
+                        labelId: labelId
                     }
                 });
             } catch (e) {
@@ -171,7 +171,7 @@ export class LabelPage extends React.Component {
                 response = await axios.get(requestConfig.post, {
                     params: {
                         type: 'label',
-                        labelId: this.state.selectedLabel
+                        labelId: labelId
                     }
                 });
             } catch (e) {
