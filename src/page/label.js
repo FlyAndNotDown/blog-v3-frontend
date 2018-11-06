@@ -35,7 +35,8 @@ export class LabelPage extends React.Component {
             labels: [],
 
             selectedLabel: null,
-            labelPostsLoading: false
+            labelPostsLoading: false,
+            labelPosts: null
         };
 
         this.__lastLabelColor = null;
@@ -106,7 +107,41 @@ export class LabelPage extends React.Component {
             });
 
             // start loading
-            // TODO
+            // do the request to get post which have this label
+            try {
+                response = await axios.get(requestConfig.post, {
+                    params: {
+                        type: 'label',
+                        labelId: this.state.selectedLabel
+                    }
+                });
+            } catch (e) {
+                Log.devError(`get ${requestConfig.post}`, e);
+                return this.props.history.push('/err/404');
+            }
+
+            // if success
+            // log it
+            Log.dev(`get ${requestConfig.label} OK`);
+
+            // deal data
+            response = response || {};
+            data = response.data || {};
+
+            let posts = data.posts || null;
+
+            // safety protect
+            if (!posts) {
+                return this.props.history.push('/err/404');
+            }
+
+            // save it to state
+            setTimeout(() => {
+                this.setState({
+                    labelPostsLoading: false,
+                    labelPosts: posts
+                });
+            }, 300);
         }
     }
 
