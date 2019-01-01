@@ -155,7 +155,7 @@ export class AdminIndexPage extends React.Component {
         const titleDiv = (
             <div className={'font-size-xl text-align-center'}>
                 <span role={'img'} aria-labelledby={'red-heart'}>🤣</span>
-                别攻击我
+                饶我一条狗命
             </div>
         );
 
