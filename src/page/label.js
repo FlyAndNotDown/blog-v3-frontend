@@ -14,7 +14,7 @@ import { LabelTool } from '../tool/label';
 import requestConfig from '../config/request';
 import { Log } from '../tool/log';
 import regexConfig from '../config/regex';
-import { BlockList } from '../component/block/block-list';
+import { LabelBlockList } from '../component/block/label-block-list';
 
 /**
  * LabelPage
@@ -287,6 +287,13 @@ export class LabelPage extends React.Component {
      * @return {*} result of render
      */
     render() {
+        // label posts block list row
+        const labelPostsRow = (
+            <div>
+                <LabelBlockList posts={this.state.posts}/>
+            </div>
+        );
+
         // main layout to show labels info
         const mainLayout = (
             <KLayout
@@ -310,6 +317,7 @@ export class LabelPage extends React.Component {
                         <br/>
                         <Divider/>
                         <br/>
+                        {labelPostsRow}
                     </Col>
                 </Row>
             </KLayout>
