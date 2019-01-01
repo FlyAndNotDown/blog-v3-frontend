@@ -29,6 +29,7 @@ export class MainRouter extends React.Component {
                 <Switch>
                     <Route exact path={'/'} component={IndexPage}/>
                     <Route exact path={'/archive'} component={ArchivePage}/>
+                    <Route exact path={'/label'} component={LabelPage}/>
                     <Route exact path={'/label/:labelId'} component={LabelPage}/>
                     <Route exact path={'/admin'} component={AdminIndexPage}/>
                     <Route exact path={'/admin/general'} component={AdminGeneralPage}/>
