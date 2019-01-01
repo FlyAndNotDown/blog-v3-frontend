@@ -52,6 +52,9 @@ export class LabelBlockList extends React.Component {
                 <Col>
                     <List
                         bordered
+                        locale={{
+                            emptyText: '没有文章'
+                        }}
                         dataSource={this.props.posts}
                         renderItem={this.labelPostsRenderFunc}/>
                 </Col>
