@@ -299,30 +299,17 @@ export class AdminGeneralPage extends React.Component {
             </div>
         );
 
-        // 说说管理块
-        const emotionManageBlock = (
+        // 标签管理
+        const labelManageBlock = (
             <div>
                 <div className={'font-size-sm'}>
-                    <Link className={'color-black text-decoration-none'} to={'#'}>说说管理</Link>
+                    <Link className={'color-black text-decoration-none'} to={'#'}>标签管理</Link>
                 </div>
                 <Row className={'mt-lg'}>
                     <Col span={8}>
                         <AdminIconGadget
-                            iconType={'plus-circle'}
-                            iconColor={'#52c41a'}
-                            title={'写说说'}
-                            content={
-                                <Button
-                                    type={'primary'}
-                                    onClick={this.onWriteEmotionButtonClick}>
-                                    启动
-                                </Button>
-                            }/>
-                    </Col>
-                    <Col span={8}>
-                        <AdminIconGadget
                             iconType={'database'}
-                            title={'管理说说'}
+                            title={'管理标签'}
                             content={<Button>启动</Button>}/>
                     </Col>
                 </Row>
@@ -330,7 +317,6 @@ export class AdminGeneralPage extends React.Component {
             </div>
         );
 
-        // TODO 标签管理
         // TODO 文件管理
 
         return this.state.loaded ? (
@@ -359,7 +345,7 @@ export class AdminGeneralPage extends React.Component {
                         {hardWorkValueBlock}
                         {securityValueBlock}
                         {postManageBlock}
-                        {emotionManageBlock}
+                        {labelManageBlock}
                         {commentManageBlock}
                         {messageManageBlock}
                     </Col>

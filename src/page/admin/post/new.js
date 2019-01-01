@@ -376,8 +376,8 @@ export class AdminNewPostPage extends React.Component {
             <div>
                 <Input.TextArea
                     autosize={{
-                        minRows: 20,
-                        maxRows: 20
+                        minRows: 30,
+                        maxRows: 30
                     }}
                     value={this.state.body}
                     onChange={this.onBodyChange}/>
