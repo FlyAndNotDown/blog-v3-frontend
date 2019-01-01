@@ -14,6 +14,7 @@ import { LabelTool } from '../tool/label';
 import requestConfig from '../config/request';
 import { Log } from '../tool/log';
 import regexConfig from '../config/regex';
+import { BlockList } from '../component/block/block-list';
 
 /**
  * LabelPage
@@ -267,12 +268,15 @@ export class LabelPage extends React.Component {
      * @param {{id: number, name: string}} label label object
      * @return {*} JSX render result
      */
-    labelsMapFunc = (label) => {
+    labelsMapFunc = (label, key) => {
         // return JSX render result
         return (
-            <Tag color={label.color} onClick={() => {
-                this.props.history.push(`/label/${label.id}`);
-            }}>
+            <Tag
+                color={label.color}
+                key={key}
+                onClick={() => {
+                    this.props.history.push(`/label/${label.id}`);
+                }}>
                 {label.name}
             </Tag>
         );
