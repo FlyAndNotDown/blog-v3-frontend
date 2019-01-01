@@ -317,6 +317,39 @@ export class AdminGeneralPage extends React.Component {
             </div>
         );
 
+        // 计划管理
+        const planManageBlock = (
+            <div>
+                <div className={'font-size-sm'}>
+                    <Link className={'color-black text-decoration-none'} to={'#'}>计划管理</Link>
+                </div>
+                <Row className={'mt-lg'}>
+                    <Col span={8}>
+                        <AdminIconGadget
+                            iconType={'plus-circle'}
+                            iconColor={'#52c41a'}
+                            title={'新计划'}
+                            content={
+                                <Button type={'primary'}>
+                                    启动
+                                </Button>
+                            }/>
+                    </Col>
+                    <Col span={8}>
+                        <AdminIconGadget
+                            iconType={'database'}
+                            title={'管理计划'}
+                            content={
+                                <Button>
+                                    启动
+                                </Button>
+                            }/>
+                    </Col>
+                </Row>
+                <Divider/>
+            </div>
+        );
+
         // TODO 文件管理
 
         return this.state.loaded ? (
@@ -346,6 +379,7 @@ export class AdminGeneralPage extends React.Component {
                         {securityValueBlock}
                         {postManageBlock}
                         {labelManageBlock}
+                        {planManageBlock}
                         {commentManageBlock}
                         {messageManageBlock}
                     </Col>
