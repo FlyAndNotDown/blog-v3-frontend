@@ -30,6 +30,7 @@ export class LabelBlockList extends React.Component {
                 <span>
                     {item.date}
                 </span>
+                &nbsp;
                 <span>
                     <BlankLink
                         className={'text-decoration-none color-text'}

@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { KLayout } from '../component/tool/k-layout';
-import { Row, Col, Spin, Tag, Divider, Input } from 'antd';
+import { Row, Col, Spin, Tag, Divider, Input, Button } from 'antd';
 import { NavHeader } from '../component/nav-header';
 import { Footer } from '../component/footer';
 import navHeaderBgImg from '../img/header-bg-3.jpg';
@@ -287,10 +287,20 @@ export class LabelPage extends React.Component {
      * @return {*} result of render
      */
     render() {
+        // label post loading row
+        const labelPostLoadingRow = (
+            <Row>
+                <Col>
+                    <Spin/>
+                </Col>
+            </Row>
+        );
+
         // label posts block list row
         const labelPostsRow = (
             <div>
-                <LabelBlockList posts={this.state.posts}/>
+                <LabelBlockList
+                    posts={this.state.labelPosts}/>
             </div>
         );
 
@@ -317,7 +327,9 @@ export class LabelPage extends React.Component {
                         <br/>
                         <Divider/>
                         <br/>
-                        {labelPostsRow}
+                        {this.state.labelPostsLoading ? labelPostLoadingRow :
+                            this.state.labelPosts && labelPostsRow
+                        }
                     </Col>
                 </Row>
             </KLayout>
