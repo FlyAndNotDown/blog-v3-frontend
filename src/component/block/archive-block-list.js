@@ -23,7 +23,7 @@ export class ArchiveBlockList extends React.Component {
     constructor(props) {
         super(props);
 
-        this.__dateShown = [];
+        // this.__dateShown = [];
     }
 
     /**
