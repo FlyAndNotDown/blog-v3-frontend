@@ -5,6 +5,7 @@
 
 import React from 'react';
 import { KLayout } from '../component/tool/k-layout';
+import { Spin } from 'antd';
 
 /**
  * page of work
@@ -19,7 +20,10 @@ export class WorkPage extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            // if page data load down
+            loadDown: false
+        };
     }
 
     /**
@@ -27,6 +31,9 @@ export class WorkPage extends React.Component {
      */
     async componentDidMount() {
         // TODO
+        this.setState({
+            loadDown: true
+        });
     }
 
     /**
@@ -34,12 +41,19 @@ export class WorkPage extends React.Component {
      * @returns {*} JSX render result
      */
     render() {
+        // loading layout
+        const loadingLayout = (
+            <KLayout colorMode={KLayout.COLOR_MODE_MAIN}>
+                <div className={'h-40vh'}></div>
+                <Spin/>
+            </KLayout>
+        );
 
         // return the render result
         return (
             <KLayout
                 colorMode={KLayout.COLOR_MODE_NONE}>
-
+                
             </KLayout>
         );
     }
