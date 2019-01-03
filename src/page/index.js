@@ -12,7 +12,7 @@ import { Row, Col, message, Spin } from 'antd';
 import axios from 'axios';
 import requestConfig from '../config/request';
 import { Log } from '../tool/log';
-import navHeaderBgImg from '../img/header-bg.jpg';
+import navHeaderBgImg from '../img/header-bg-0.jpg';
 import optionConfig from '../config/option';
 
 /**
