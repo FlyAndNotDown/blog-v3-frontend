@@ -38,9 +38,6 @@ export class NavBar extends React.Component {
                     <Link to={'/label/all'} className={'font-size-xs'}>标签</Link>
                 </Menu.Item>
                 <Menu.Item>
-                    <Link to={'/plan'} className={'font-size-xs'}>计划</Link>
-                </Menu.Item>
-                <Menu.Item>
                     <Link to={'/work'} className={'font-size-xs'}>作品</Link>
                 </Menu.Item>
                 <Menu.Item>
@@ -70,8 +67,6 @@ export class NavBar extends React.Component {
                 <Link className={'color-white-a font-size-xs'} to={'/archive'}>归档</Link>
                 &nbsp;&nbsp;
                 <Link className={'color-white-a font-size-xs'} to={'/label/all'}>标签</Link>
-                &nbsp;&nbsp;
-                <Link className={'color-white-a font-size-xs'} to={'/plan'}>计划</Link>
                 &nbsp;&nbsp;
                 <Link className={'color-white-a font-size-xs'} to={'/work'}>作品</Link>
                 &nbsp;&nbsp;
