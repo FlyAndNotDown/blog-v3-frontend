@@ -13,7 +13,6 @@ import { ArchiveBlockList } from '../component/block/archive-block-list';
 import axios from 'axios';
 import { Log } from '../tool/log';
 import requestConfig from '../config/request';
-import mainConfig from '../config/main';
 
 /**
  * ArchivePage

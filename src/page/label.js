@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { KLayout } from '../component/tool/k-layout';
-import { Row, Col, Spin, Tag, Divider, Input, Button } from 'antd';
+import { Row, Col, Spin, Tag, Divider } from 'antd';
 import { NavHeader } from '../component/nav-header';
 import { Footer } from '../component/footer';
 import navHeaderBgImg from '../img/header-bg-3.jpg';

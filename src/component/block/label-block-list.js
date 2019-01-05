@@ -22,6 +22,8 @@ export class LabelBlockList extends React.Component {
      */
     constructor(props) {
         super(props);
+
+        this.state = {};
     }
 
     labelPostsRenderFunc = (item) => {
