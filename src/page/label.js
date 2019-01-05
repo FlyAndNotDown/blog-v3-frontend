@@ -23,6 +23,12 @@ import { LabelBlockList } from '../component/block/label-block-list';
  */
 export class LabelPage extends React.Component {
 
+    // slogans
+    static __LABEL_PAGE__SLOGAN_MAIN = '寻找你感兴趣的内容';
+    static __LABEL_PAGE__SLOGAN_SECOND = 'Find something interesting';
+    // label summary
+    static __LABEL_PAGE__LABEL_SUMMARY = '标签一栏';
+
     /**
      * constructor of component
      * @param {Object} props properties of component
@@ -319,7 +325,7 @@ export class LabelPage extends React.Component {
                         xxl={{ offset: 5, span: 14 }}>
                         <br/><br/>
                         <div>
-                            <h1>标签一览</h1>
+                            <h1>{LabelPage.__LABEL_PAGE__LABEL_SUMMARY}</h1>
                             <div className={'lh-40px'}>
                                 {this.state.labels.map(this.labelsMapFunc)}
                             </div>
@@ -338,8 +344,8 @@ export class LabelPage extends React.Component {
         // nav header content
         const navHeaderContent = (
             <div>
-                <div className={'font-size-xl color-white'}>寻找你感兴趣的内容</div>
-                <div className={'font-size-md color-white'}>Find something interesting</div>
+                <div className={'font-size-xl color-white'}>{LabelPage.__LABEL_PAGE__SLOGAN_MAIN}</div>
+                <div className={'font-size-md color-white'}>{LabelPage.__LABEL_PAGE__SLOGAN_SECOND}</div>
             </div>
         );
 
