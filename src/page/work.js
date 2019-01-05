@@ -6,6 +6,9 @@
 import React from 'react';
 import { KLayout } from '../component/tool/k-layout';
 import { Spin, Row, Col } from 'antd';
+import navHeaderBgImg from '../img/header-bg-4.png';
+import { Footer } from '../component/footer';
+import { NavHeader } from '../component/nav-header';
 
 /**
  * page of work
@@ -71,8 +74,8 @@ export class WorkPage extends React.Component {
         // nav header content
         const navHeaderContent = (
             <div>
-                <div className={'font-size-xl color-white'}></div>
-                <div className={'font-size-md color-white'}></div>
+                <div className={'font-size-xl color-white'}>做好很简单，做到极致很难</div>
+                <div className={'font-size-md color-white'}>Goodness is easy, perfection is difficult</div>
             </div>
         );
 
@@ -80,7 +83,14 @@ export class WorkPage extends React.Component {
         return (
             <KLayout
                 colorMode={KLayout.COLOR_MODE_NONE}>
-                
+                {this.state.loadDown && (
+                        <NavHeader
+                            bgImg={navHeaderBgImg}
+                            content={navHeaderContent}/>
+                    )
+                }
+                {this.state.loadDown ? bodyLayout : loadingLayout}
+                {this.state.loadDown && <Footer/>}
             </KLayout>
         );
     }
