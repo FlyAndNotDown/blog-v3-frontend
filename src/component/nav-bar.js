@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { Row, Col, Dropdown, Menu, Icon } from 'antd';
+import { Row, Col, Dropdown, Menu, Icon, Avatar, Button } from 'antd';
 import { Link } from 'react-router-dom';
 
 /**
@@ -20,7 +20,20 @@ export class NavBar extends React.Component {
      */
     constructor(props) {
         super(props);
-        this.state = {};
+
+        // 是否登录
+        this.state = {
+            user: {
+                login: false
+            }
+        };
+    }
+
+    /**
+     * a life function of React component
+     */
+    componentDidMount() {
+        // TODO login status
     }
 
     /**
@@ -61,6 +74,26 @@ export class NavBar extends React.Component {
             </div>
         );
 
+        // user status dropdown
+        const userStatusMenu = (
+            <Menu className={'mt-md'}>
+                <Menu.Item key={'logout'} disabled={true}>欢迎您，xxx</Menu.Item>
+                <Menu.Item key={'logout'}>注销</Menu.Item>
+            </Menu>
+        );
+        const userStatus = (
+            <Dropdown
+                placement={'bottomCenter'}
+                overlay={userStatusMenu}>
+                <Avatar icon={'user'}/>
+            </Dropdown>
+        );
+
+        // login button
+        const loginButton = (
+            <Button type={'primary'}>登录</Button>
+        );
+
         // 导航 div
         const navDiv = (
             <div className={'lh-nav-bar float-right'}>
@@ -76,6 +109,9 @@ export class NavBar extends React.Component {
                 &nbsp;&nbsp;
                 <Link className={'color-white-a font-size-xs'} to={'/about'}>关于</Link>
                 &nbsp;&nbsp;
+                {this.state.user.login ?
+                    (userStatus) : (loginButton)
+                }
             </div>
         );
 
@@ -97,8 +133,8 @@ export class NavBar extends React.Component {
                     className={'lh-nav-bar'}
                     xs={{ offset: 1, span: 3 }}
                     sm={{ offset: 1, span: 3 }}
-                    md={{ offset: 3, span: 3 }}
-                    lg={{ offset: 3, span: 3 }}>
+                    md={{ offset: 1, span: 5 }}
+                    lg={{ offset: 1, span: 5 }}>
                     {siteLinkDiv}
                 </Col>
                 <Col
