@@ -123,8 +123,8 @@ export class WorkPage extends React.Component {
         // set the avatar background color
         this.__lastAvatarColor = item.logo.type === 'char' ?
             (this.__lastAvatarColor ?
-                ColorTool.getFirstRandomColor() :
-                ColorTool.getNextRandomColor(this.__lastAvatarColor)
+                ColorTool.getNextRandomColor(this.__lastAvatarColor) :
+                ColorTool.getFirstRandomColor()
             ) : this.__lastAvatarColor;
 
         // return the render result
