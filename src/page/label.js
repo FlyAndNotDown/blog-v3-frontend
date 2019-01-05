@@ -10,7 +10,7 @@ import { NavHeader } from '../component/nav-header';
 import { Footer } from '../component/footer';
 import navHeaderBgImg from '../img/header-bg-3.jpg';
 import axios from 'axios';
-import { LabelTool } from '../tool/label';
+import { ColorTool } from '../tool/color';
 import requestConfig from '../config/request';
 import { Log } from '../tool/log';
 import regexConfig from '../config/regex';
@@ -89,10 +89,10 @@ export class LabelPage extends React.Component {
         // set label color
         for (let i = 0; i < labels.length; i++) {
             if (i === 0) {
-                this.__lastLabelColor = LabelTool.getFirstRandomColor();
+                this.__lastLabelColor = ColorTool.getFirstRandomColor();
                 labels[i].color = this.__lastLabelColor;
             } else {
-                this.__lastLabelColor = LabelTool.getNextRandomColor(this.__lastLabelColor);
+                this.__lastLabelColor = ColorTool.getNextRandomColor(this.__lastLabelColor);
                 labels[i].color = this.__lastLabelColor;
             }
         }
@@ -247,10 +247,10 @@ export class LabelPage extends React.Component {
             // set label color
             for (let i = 0; i < labels.length; i++) {
                 if (i === 0) {
-                    this.__lastLabelColor = LabelTool.getFirstRandomColor();
+                    this.__lastLabelColor = ColorTool.getFirstRandomColor();
                     labels[i].color = this.__lastLabelColor;
                 } else {
-                    this.__lastLabelColor = LabelTool.getNextRandomColor(this.__lastLabelColor);
+                    this.__lastLabelColor = ColorTool.getNextRandomColor(this.__lastLabelColor);
                     labels[i].color = this.__lastLabelColor;
                 }
             }
