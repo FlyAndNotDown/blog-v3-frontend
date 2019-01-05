@@ -369,6 +369,10 @@
     color: rgba(0, 0, 0, 0.65);
 }
 
+.color-dark {
+    color: rgba(0,0,0,0.85);
+}
+
 .color-text-a, .color-text-a:link, .color-text-a:visited, .color-text-a:hover, .color-text-a:active {
     color: rgba(0, 0, 0, 0.65);
     text-decoration: none;
