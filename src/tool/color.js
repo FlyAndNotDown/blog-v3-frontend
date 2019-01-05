@@ -23,7 +23,7 @@ export class ColorTool {
      * @return {string} a random color
      */
     static __getRandomColor() {
-        return labelColors[Math.floor(Math.random() * labelColors.length)];
+        return colorPrefebs[Math.floor(Math.random() * colorPrefebs.length)];
     }
 
     /**
@@ -32,7 +32,7 @@ export class ColorTool {
      * @return {string} a random color
      */
     static getFirstRandomColor() {
-        return LabelTool.__getRandomColor();
+        return ColorTool.__getRandomColor();
     }
 
     /**
@@ -42,9 +42,9 @@ export class ColorTool {
      * @return {string} a random color
      */
     static getNextRandomColor(prevColor) {
-        let randomColor = LabelTool.__getRandomColor();
+        let randomColor = ColorTool.__getRandomColor();
         while (randomColor === prevColor) {
-            randomColor = LabelTool.__getRandomColor();
+            randomColor = ColorTool.__getRandomColor();
         }
         return randomColor;
     }

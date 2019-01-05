@@ -13,6 +13,7 @@ import { Footer } from '../component/footer';
 import { NavHeader } from '../component/nav-header';
 import { Link } from 'react-router-dom';
 import { BlankLink } from '../component/tool/blank-link';
+import { ColorTool } from '../tool/color';
 
 const { Item } = List;
 const { Meta } = Item;
@@ -35,6 +36,9 @@ export class WorkPage extends React.Component {
      */
     constructor(props) {
         super(props);
+
+        // last color
+        this.__lastAvatarColor = null;
 
         this.state = {
             // if page data load down
@@ -79,7 +83,34 @@ export class WorkPage extends React.Component {
         setTimeout(() => {
             this.setState({
                 loadDown: true,
-                data: []
+                works: [{
+                    logo: {
+                        type: 'char',
+                        char: '编'
+                    },
+                    title: 'C语言(缩减版)编译器前端',
+                    key: 20,
+                    description: '一个简单的编译器前端一个简单的编译器前端一个简单的编译器前端一个简单一个简单的编译器前端一个简单的编译器前端一个简单的编译器前端一个简单一个简单的编译器前端一个简单的编译器前端一个简单的编译器前端一个简单一个简单的编译器前端一个简单的编译器前端一个简单的编译器前端一个简单一个简单的编译器前端一个简单的编译器前端一个简单的编译器前端一个简单的编译器前端',
+                    github: ''
+                }, {
+                    logo: {
+                        type: 'char',
+                        char: '编'
+                    },
+                    title: 'C语言(缩减版)编译器前端',
+                    key: 20,
+                    description: '一个简单的编译器前端一个简单的编译器前端一个简单的编译器前端一个简单一个简单的编译器前端一个简单的编译器前端一个简单的编译器前端一个简单一个简单的编译器前端一个简单的编译器前端一个简单的编译器前端一个简单一个简单的编译器前端一个简单的编译器前端一个简单的编译器前端一个简单一个简单的编译器前端一个简单的编译器前端一个简单的编译器前端一个简单的编译器前端',
+                    github: ''
+                }, {
+                    logo: {
+                        type: 'char',
+                        char: '编'
+                    },
+                    title: 'C语言(缩减版)编译器前端',
+                    key: 20,
+                    description: '一个简单的编译器前端一个简单的编译器前端一个简单的编译器前端一个简单一个简单的编译器前端一个简单的编译器前端一个简单的编译器前端一个简单一个简单的编译器前端一个简单的编译器前端一个简单的编译器前端一个简单一个简单的编译器前端一个简单的编译器前端一个简单的编译器前端一个简单一个简单的编译器前端一个简单的编译器前端一个简单的编译器前端一个简单的编译器前端',
+                    github: ''
+                }]
             });
         }, 500);
     }
@@ -88,24 +119,36 @@ export class WorkPage extends React.Component {
      * render function of work list
      * @return {*} render result
      */
-    workListItemRenderFunc = (item) => (
-        <Item>
-            <Meta
-                avatar={
-                    item.logo.type === 'char' ?
-                        (<Avatar>{item.logo.char}</Avatar>) :
-                        (<Avatar src={item.logo.src}/>)
-                }
-                title={
-                    <h3>
-                        <Link className={'color-dark float-left'} to={`/post/key/${item.key}`}>{item.title}</Link>
-                        &nbsp;
-                        <Link className={'color-dark float-right pr-sm'} to={item.github}><Icon type={'github'}/></Link>
-                    </h3>
-                }
-                description={item.description}/>
-        </Item>
-    );
+    workListItemRenderFunc = (item) => {
+        // set the avatar background color
+        this.__lastAvatarColor = item.logo.type === 'char' ?
+            (this.__lastAvatarColor ?
+                ColorTool.getFirstRandomColor() :
+                ColorTool.getNextRandomColor(this.__lastAvatarColor)
+            ) : this.__lastAvatarColor;
+
+        // return the render result
+        return (
+            <Item>
+                <Meta
+                    avatar={
+                        item.logo.type === 'char' ?
+                            (<Avatar style={{
+                                backgroundColor: this.__lastAvatarColor
+                            }}>{item.logo.char}</Avatar>) :
+                            (<Avatar src={item.logo.src}/>)
+                    }
+                    title={
+                        <h3>
+                            <Link className={'color-dark float-left'} to={`/post/key/${item.key}`}>{item.title}</Link>
+                            &nbsp;
+                            <Link className={'color-dark float-right pr-sm'} to={item.github}><Icon type={'github'}/></Link>
+                        </h3>
+                    }
+                    description={item.description}/>
+            </Item>
+        );
+    };
 
     /**
      * render function of React component
