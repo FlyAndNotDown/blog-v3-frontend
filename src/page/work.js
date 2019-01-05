@@ -21,6 +21,12 @@ const { Meta } = Item;
  */
 export class WorkPage extends React.Component {
 
+    // slogans
+    static __WORK_PAGE__SLOGAN_MAIN = '保持虚心，保持上进';
+    static __WORK_PAGE__SLOGAN_SECOND = 'Stay foolish, stay aggressive';
+    // works set
+    static __WORK_PAGE__WORKS_SET = '作品集';
+
     /**
      * constructor
      * @param {Object} props properties of React component
@@ -127,7 +133,7 @@ export class WorkPage extends React.Component {
                         lg={{ offset: 2, span: 20 }}
                         xl={{ offset: 5, span: 14 }}
                         xxl={{ offset: 7, span: 10 }}>
-                        <h1 className={'mt-lg'}>作品集</h1>
+                        <h1 className={'mt-lg'}>{WorkPage.__WORK_PAGE__WORKS_SET}</h1>
                         <List
                             className={'mt-lg'}
                             itemLayout={'horizontal'}
@@ -141,8 +147,8 @@ export class WorkPage extends React.Component {
         // nav header content
         const navHeaderContent = (
             <div>
-                <div className={'font-size-xl color-white'}>保持虚心，保持上进</div>
-                <div className={'font-size-md color-white'}>Stay foolish, stay aggressive</div>
+                <div className={'font-size-xl color-white'}>{WorkPage.__WORK_PAGE__SLOGAN_MAIN}</div>
+                <div className={'font-size-md color-white'}>{WorkPage.__WORK_PAGE__SLOGAN_SECOND}</div>
             </div>
         );
 
