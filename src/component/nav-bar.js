@@ -44,6 +44,21 @@ export class NavBar extends React.Component {
         // 响应式下拉框
         const overlay = (
             <Menu>
+                {this.state.user.login && (
+                    <Menu.Item disabled>
+                        欢迎，xxxx
+                    </Menu.Item>
+                )}
+                {this.state.user.login && (
+                    <Menu.Item>
+                        <Link to={'#'} className={'font-size-xs'}>注销</Link>
+                    </Menu.Item>
+                )}
+                {!this.state.user.login && (
+                    <Menu.Item>
+                        <Link to={'#'} className={'font-size-xs'}>登录</Link>
+                    </Menu.Item>
+                )}
                 <Menu.Item>
                     <Link to={'/archive'} className={'font-size-xs'}>归档</Link>
                 </Menu.Item>
@@ -118,7 +133,8 @@ export class NavBar extends React.Component {
         // 移动端导航 div
         const mobileNavDiv = (
             <div className={'lh-nav-bar float-right'}>
-                <Dropdown overlay={overlay}>
+                <Dropdown
+                    overlay={overlay}>
                     <Link to={'#'} className={'color-white-a font-size-xs'}>
                         Menu&nbsp;&nbsp;
                         <Icon type={'down'}/>
@@ -140,8 +156,8 @@ export class NavBar extends React.Component {
                 <Col
                     xs={{ offset: 0, span: 0 }}
                     sm={{ offset: 0, span: 0 }}
-                    md={{ offset: 6, span: 9 }}
-                    lg={{ offset: 10, span: 7 }}>
+                    md={{ offset: 7, span: 10 }}
+                    lg={{ offset: 9, span: 8 }}>
                     {navDiv}
                 </Col>
                 <Col
