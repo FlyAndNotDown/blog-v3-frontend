@@ -7,7 +7,7 @@ import React from 'react';
 import { KLayout } from '../component/tool/k-layout';
 import { NavBar } from '../component/nav-bar';
 import { Footer } from '../component/footer';
-import { Row, Col, Affix, Divider, Icon, Anchor, BackTop, Spin } from 'antd';
+import { Row, Col, Affix, Divider, Icon, Anchor, BackTop, Spin, Comment, Avatar } from 'antd';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import SyntaxHighlighter from 'react-syntax-highlighter';
@@ -307,15 +307,27 @@ export class PostPage extends React.Component {
 
         // 文章内容
         const postBody = (
-            <ReactMarkdown
-                className={'markdown-body mt-lg'}
-                source={this.state.body}
-                renderers={{
-                    heading: this.markdownHeadingRender,
-                    code: this.markdownCodeRender,
-                    link: this.markdownLinkRender,
-                    linkReference: this.markdownLinkRender
-                }}/>
+            <div>
+                <ReactMarkdown
+                    className={'markdown-body mt-lg'}
+                    source={this.state.body}
+                    renderers={{
+                        heading: this.markdownHeadingRender,
+                        code: this.markdownCodeRender,
+                        link: this.markdownLinkRender,
+                        linkReference: this.markdownLinkRender
+                    }}/>
+                <Divider/>
+            </div>
+        );
+
+        // TODO 评论块
+        const commentBlock = (
+            <div>
+                <Comment>
+
+                </Comment>
+            </div>
         );
 
         // 锚点块
@@ -351,6 +363,7 @@ export class PostPage extends React.Component {
                     lg={{ offset: 2, span: 14 }}>
                     {postDescriptionRow}
                     {postBody}
+                    {commentBlock}
                 </Col>
                 <Col
                     xs={{ offset: 0, span: 0 }}
