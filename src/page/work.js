@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { KLayout } from '../component/tool/k-layout';
-import { Spin } from 'antd';
+import { Spin, Row, Col } from 'antd';
 
 /**
  * page of work
@@ -47,6 +47,33 @@ export class WorkPage extends React.Component {
                 <div className={'h-40vh'}></div>
                 <Spin/>
             </KLayout>
+        );
+
+        // main layout
+        const bodyLayout = (
+            <KLayout
+                colorMode={KLayout.COLOR_MODE_MAIN}
+                className={'z-index-1 p-xl'}>
+                <Row>
+                    <Col
+                        xs={{ offset: 1, span: 22 }}
+                        sm={{ offset: 1, span: 22 }}
+                        md={{ offset: 2, span: 20 }}
+                        lg={{ offset: 2, span: 20 }}
+                        xl={{ offset: 3, span: 18 }}
+                        xxl={{ offset: 5, span: 14 }}>
+
+                    </Col>
+                </Row>
+            </KLayout>
+        );
+
+        // nav header content
+        const navHeaderContent = (
+            <div>
+                <div className={'font-size-xl color-white'}></div>
+                <div className={'font-size-md color-white'}></div>
+            </div>
         );
 
         // return the render result
