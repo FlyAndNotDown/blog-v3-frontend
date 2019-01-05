@@ -110,7 +110,7 @@ export class WorkPage extends React.Component {
      * @returns {*} JSX render result
      */
     render() {
-        // TODO Kindem的笔记，使用 List 组件，头像放作品图标
+        // TODO background color
 
         // loading layout
         const loadingLayout = (
