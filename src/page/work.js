@@ -1,6 +1,8 @@
 /**
  * /page/work.js
  * @author John Kindem
+ * @description source file for work page
+ * @version v1.0
  */
 
 import React from 'react';

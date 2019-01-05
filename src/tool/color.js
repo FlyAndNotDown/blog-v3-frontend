@@ -1,21 +1,20 @@
 /**
- * /tool/label.js
+ * /tool/color.js
  * @author John Kindem
- * @description source file for label tool
+ * @description source file for color tool
  * @version v1.0
- * @todo refactor: del the tool, replace it with color tool
  */
 
 import optionConfig from '../config/option';
 
-const labelColors = optionConfig.labelColors;
+const colorPrefebs = optionConfig.colorPrefebs;
 
 /**
- * LabelTool
+ * ColorTool
  * @constructor
- * @description some tool for label & label page
+ * @description some tool function for colors
  */
-export class LabelTool {
+export class ColorTool {
 
     /**
      * __getRandomColor
