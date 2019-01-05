@@ -65,7 +65,7 @@ export class WorkPage extends React.Component {
                         lg={{ offset: 2, span: 20 }}
                         xl={{ offset: 3, span: 18 }}
                         xxl={{ offset: 5, span: 14 }}>
-
+                        
                     </Col>
                 </Row>
             </KLayout>
@@ -74,8 +74,8 @@ export class WorkPage extends React.Component {
         // nav header content
         const navHeaderContent = (
             <div>
-                <div className={'font-size-xl color-white'}>做好很简单，做到极致很难</div>
-                <div className={'font-size-md color-white'}>Goodness is easy, perfection is difficult</div>
+                <div className={'font-size-xl color-white'}>保持虚心，保持上进</div>
+                <div className={'font-size-md color-white'}>Stay foolish, stay aggressive</div>
             </div>
         );
 
