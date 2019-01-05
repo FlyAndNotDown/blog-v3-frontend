@@ -44,6 +44,8 @@ export class WorkPage extends React.Component {
      * @returns {*} JSX render result
      */
     render() {
+        // TODO Kindem的笔记，使用 List 组件，头像放作品图标
+
         // loading layout
         const loadingLayout = (
             <KLayout colorMode={KLayout.COLOR_MODE_MAIN}>
