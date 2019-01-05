@@ -22,8 +22,8 @@ const { Meta } = Item;
 export class WorkPage extends React.Component {
 
     // slogans
-    static __WORK_PAGE__SLOGAN_MAIN = '保持虚心，保持上进';
-    static __WORK_PAGE__SLOGAN_SECOND = 'Stay foolish, stay aggressive';
+    static __WORK_PAGE__SLOGAN_MAIN = '求知若渴,虚怀若愚';
+    static __WORK_PAGE__SLOGAN_SECOND = 'Stay hungery, Stay foolish';
     // works set
     static __WORK_PAGE__WORKS_SET = '作品集';
 
