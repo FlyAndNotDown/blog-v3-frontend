@@ -21,6 +21,10 @@ import optionConfig from '../config/option';
  */
 export class IndexPage extends React.Component {
 
+    // slogans
+    static __INDEX_PAGE__SLOGAN_MAIN = '离开世界前，一切都是过程';
+    static __INDEX_PAGE__SLOGAN_SECOND = 'Before your death, everything in process';
+
     /**
      * 构造
      * @param {Object} props 属性
@@ -185,8 +189,8 @@ export class IndexPage extends React.Component {
         // nav header content
         const navHeaderContent = (
             <div>
-                <div className={'font-size-xl color-white'}>离开世界前，一切都是过程</div>
-                <div className={'font-size-md color-white'}>Before your death, everything in process</div>
+                <div className={'font-size-xl color-white'}>{IndexPage.__INDEX_PAGE__SLOGAN_MAIN}</div>
+                <div className={'font-size-md color-white'}>{IndexPage.__INDEX_PAGE__SLOGAN_SECOND}</div>
             </div>
         );
 
