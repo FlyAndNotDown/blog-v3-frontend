@@ -65,7 +65,6 @@ export class WorkPage extends React.Component {
                         lg={{ offset: 2, span: 20 }}
                         xl={{ offset: 3, span: 18 }}
                         xxl={{ offset: 5, span: 14 }}>
-                        
                     </Col>
                 </Row>
             </KLayout>
