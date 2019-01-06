@@ -16,6 +16,13 @@ import { CommentInputBlock } from './comment-input-block';
  */
 export class CommentBlock extends React.Component {
 
+    // default props
+    static defaultProps = {
+        user: {
+            login: false
+        }
+    };
+
     /**
      * constructor of React component
      * @param {Object} props properties
@@ -63,19 +70,25 @@ export class CommentBlock extends React.Component {
      * @returns {*} render result of component
      */
     render() {
+        // new comment block
+        const newCommentBlock = (
+            <Comment
+                avatar={
+                    <Avatar icon={'user'}/>
+                }
+                content={
+                    <CommentInputBlock
+                        onChange={this.onNewCommentContentChange}
+                        onSubmit={this.onNewCommentSubmit}
+                        submitting={this.state.submitting}
+                        value={this.state.newCommentContent}
+                        disabled={!this.props.user.login}/>
+                }/>
+        );
+
         return (
             <div>
-                <Comment
-                    avatar={
-                        <Avatar icon={'user'}/>
-                    }
-                    content={
-                        <CommentInputBlock
-                            onChange={this.onNewCommentContentChange}
-                            onSubmit={this.onNewCommentSubmit}
-                            submitting={this.state.submitting}
-                            value={this.state.newCommentContent}/>
-                    }/>
+                {newCommentBlock}
             </div>
         );
     }
