@@ -85,17 +85,6 @@ export class Footer extends React.Component {
             </div>
         );
 
-        // div of background image copyright
-        const bgImgDiv = (
-            <div className={'font-size-xs'}>
-                Background Image By
-                <BlankLink to={'https://www.deviantart.com/wlop'} className={'color-text'} id={'emoji-thumbs-up'}>
-                    <span role={'img'} aria-labelledby={'ant'}>👍</span>
-                    God WLOP
-                </BlankLink>
-            </div>
-        );
-
         // div of copyright info
         const copyrightDiv = (
             <div>@2017 Copyright kindemh.cn</div>
@@ -111,7 +100,6 @@ export class Footer extends React.Component {
                         {linkDiv}
                         {themeDiv}
                         {frameworkDiv}
-                        {bgImgDiv}
                         {copyrightDiv}
                     </Col>
                 </Row>
