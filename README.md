@@ -9,7 +9,7 @@
 
 你也可以点击这个链接来参与`preview`:
 
-[Kindem的博客Version 3.0 (Preview)](http://www.kindemh.cn/preview/#/)
+[Kindem的博客Version 3.0 (Preview)](http://dev.kindemh.cn/)
 
 # 技术栈
 * 构建: `Node.js`、`Babel`、`Webpack`
