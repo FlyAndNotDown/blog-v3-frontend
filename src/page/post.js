@@ -14,6 +14,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import axios from 'axios';
 import requestConfig from '../config/request';
 import { Log } from '../tool/log';
+import { CommentBlock } from '../component/block/comment-block';
 
 /**
  * 文章页面
@@ -321,15 +322,6 @@ export class PostPage extends React.Component {
             </div>
         );
 
-        // TODO 评论块
-        const commentBlock = (
-            <div>
-                <Comment>
-
-                </Comment>
-            </div>
-        );
-
         // 锚点块
         const anchorBlock = (
             <Anchor offsetTop={61} className={'bg-color-main mt-lg'}>
@@ -363,7 +355,7 @@ export class PostPage extends React.Component {
                     lg={{ offset: 2, span: 14 }}>
                     {postDescriptionRow}
                     {postBody}
-                    {commentBlock}
+                    <CommentBlock/>
                 </Col>
                 <Col
                     xs={{ offset: 0, span: 0 }}
