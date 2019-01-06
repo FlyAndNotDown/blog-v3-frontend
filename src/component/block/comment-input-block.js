@@ -46,7 +46,6 @@ export class CommentInputBlock extends React.Component {
                 </Item>
                 <Item>
                     <Button
-                        htmlType={'submit'}
                         loading={this.props.submitting}
                         onClick={this.props.onClick}
                         type={'primary'}>
