@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
  * 导航栏组件
  * @constructor
  * @property {boolean} active 是否激活
+ * @property {{ login: boolean }} user user info
  */
 export class NavBar extends React.Component {
 
@@ -34,6 +35,7 @@ export class NavBar extends React.Component {
      */
     componentDidMount() {
         // TODO login status
+        // TODO if get a user props, don't get user info by itself, if not, get user info by itself
     }
 
     /**
