@@ -84,7 +84,7 @@ export class UserLoginPage extends React.Component {
                     <Input
                         type={'password'}
                         placeholder={UserLoginPage.__LOGIN_FORM__PASSWORD_INPUT__PLACEHOLDER}
-                        prefix={<Icon type={'key'}/>}
+                        prefix={<Icon type={'lock'}/>}
                         value={this.state.loginPassword}
                         onChange={this.onLoginPasswordChange}
                         disabled={this.state.buttonLocked}/>
