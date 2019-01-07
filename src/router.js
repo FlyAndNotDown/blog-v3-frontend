@@ -14,6 +14,7 @@ import { Error404Page } from './page/error-404';
 import { ArchivePage } from './page/archive';
 import { LabelPage } from './page/label';
 import { WorkPage } from './page/work';
+import { UserLoginPage } from './page/user/login';
 
 /**
  * 主路由组件
@@ -37,6 +38,7 @@ export class MainRouter extends React.Component {
                     <Route exact path={'/admin/general'} component={AdminGeneralPage}/>
                     <Route exact path={'/admin/post/new'} component={AdminNewPostPage}/>
                     <Route exact path={'/post/key/:postId'} component={PostPage}/>
+                    <Route exact path={'/user/login'} component={UserLoginPage}/>
                     <Route paht={'*'} component={Error404Page}/>
                 </Switch>
             </BrowserRouter>
