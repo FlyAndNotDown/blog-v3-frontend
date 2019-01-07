@@ -174,7 +174,7 @@ export class AdminIndexPage extends React.Component {
                     <Input
                         type={'password'}
                         placeholder={'密码'}
-                        prefix={<Icon type={'user'}/>}
+                        prefix={<Icon type={'key'}/>}
                         value={this.state.password}
                         onChange={this.onPasswordChange}
                         disabled={this.state.lock}/>

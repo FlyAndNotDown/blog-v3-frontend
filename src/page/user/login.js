@@ -49,6 +49,14 @@ export class UserLoginPage extends React.Component {
     };
 
     /**
+     * handle when login form's password value change
+     * @param {Object} e react event object
+     */
+    onLoginPasswordChange = (e) => {
+        this.setState({ loginPassword: e.target.value });
+    };
+
+    /**
      * render function of react component
      * @return {*} result of render
      */
@@ -70,6 +78,15 @@ export class UserLoginPage extends React.Component {
                         prefix={<Icon type={'user'}/>}
                         value={this.state.loginUsername}
                         onChange={this.onLoginUsernameChange}
+                        disabled={this.state.buttonLocked}/>
+                </Item>
+                <Item>
+                    <Input
+                        type={'password'}
+                        placeholder={UserLoginPage.__LOGIN_FORM__PASSWORD_INPUT__PLACEHOLDER}
+                        prefix={<Icon type={'key'}/>}
+                        value={this.state.loginPassword}
+                        onChange={this.onLoginPasswordChange}
                         disabled={this.state.buttonLocked}/>
                 </Item>
             </Form>
