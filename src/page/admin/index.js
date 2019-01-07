@@ -154,7 +154,7 @@ export class AdminIndexPage extends React.Component {
         // 标题行
         const titleDiv = (
             <div className={'font-size-xl text-align-center'}>
-                <span role={'img'} aria-labelledby={'red-heart'}>🤣</span>
+                <span role={'img'} aria-labelledby={'cry-laugh'}>🤣</span>
                 饶我一条狗命
             </div>
         );
