@@ -15,6 +15,7 @@ import axios from 'axios';
 import requestConfig from '../config/request';
 import { Log } from '../tool/log';
 import { CommentBlock } from '../component/block/comment-block';
+import { LoadingLayout } from '../component/gadget/loading-layout';
 
 /**
  * 文章页面
@@ -392,18 +393,10 @@ export class PostPage extends React.Component {
             <Footer className={'mt-lg'}/>
         );
 
-        // TODO 改成加载占位符
-        const loadingLayout = (
-            <KLayout colorMode={KLayout.COLOR_MODE_MAIN}>
-                <div className={'h-40vh'}></div>
-                <Spin/>
-            </KLayout>
-        );
-
         return (
             <KLayout colorMode={KLayout.COLOR_MODE_MAIN}>
                 {this.state.loadDown && headerLayout}
-                {!this.state.loadDown && loadingLayout}
+                {!this.state.loadDown && (<LoadingLayout/>)}
                 {this.state.loadDown && bodyLayout}
                 {this.state.loadDown && footerLayout}
             </KLayout>

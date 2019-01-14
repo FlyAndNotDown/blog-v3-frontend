@@ -14,6 +14,7 @@ import requestConfig from '../config/request';
 import { Log } from '../tool/log';
 import navHeaderBgImg from '../img/header-bg-0.jpg';
 import optionConfig from '../config/option';
+import { LoadingLayout } from '../component/gadget/loading-layout';
 
 /**
  * 首页组件
@@ -155,14 +156,6 @@ export class IndexPage extends React.Component {
      * @returns {*} 渲染函数
      */
     render() {
-        // 加载中布局
-        const loadingLayout = (
-            <KLayout colorMode={KLayout.COLOR_MODE_MAIN}>
-                <div className={'h-40vh'}></div>
-                <Spin/>
-            </KLayout>
-        );
-
         // 主布局
         const bodyLayout = (
             <KLayout
@@ -198,7 +191,7 @@ export class IndexPage extends React.Component {
             <KLayout
                 colorMode={KLayout.COLOR_MODE_NONE}>
                 {this.state.loadDown && (<NavHeader bgImg={navHeaderBgImg} content={navHeaderContent} history={this.props.history}/>)}
-                {this.state.loadDown ? (bodyLayout) : (loadingLayout)}
+                {this.state.loadDown ? (bodyLayout) : (<LoadingLayout/>)}
                 {this.state.loadDown && (<Footer/>)}
             </KLayout>
         );

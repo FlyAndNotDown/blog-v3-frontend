@@ -15,6 +15,7 @@ import requestConfig from '../config/request';
 import { Log } from '../tool/log';
 import regexConfig from '../config/regex';
 import { LabelBlockList } from '../component/block/label-block-list';
+import { LoadingLayout } from '../component/gadget/loading-layout';
 
 /**
  * LabelPage
@@ -349,20 +350,12 @@ export class LabelPage extends React.Component {
             </div>
         );
 
-        // labels loading layout
-        const labelsLoadingLayout = (
-            <KLayout colorMode={KLayout.COLOR_MODE_MAIN}>
-                <div className={'h-40vh'}></div>
-                <Spin/>
-            </KLayout>
-        );
-
         // return the render result
         return (
             <KLayout
                 colorMode={KLayout.COLOR_MODE_MAIN}>
                 {!this.state.labelsLoading && (<NavHeader bgImg={navHeaderBgImg} content={navHeaderContent} history={this.props.history}/>)}
-                {!this.state.labelsLoading ? mainLayout : labelsLoadingLayout}
+                {!this.state.labelsLoading ? mainLayout : (<LoadingLayout/>)}
                 {!this.state.labelsLoading && (<Footer/>)}
             </KLayout>
         );

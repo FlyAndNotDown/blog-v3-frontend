@@ -13,6 +13,7 @@ import { ArchiveBlockList } from '../component/block/archive-block-list';
 import axios from 'axios';
 import { Log } from '../tool/log';
 import requestConfig from '../config/request';
+import { LoadingLayout } from '../component/gadget/loading-layout';
 
 /**
  * ArchivePage
@@ -108,20 +109,12 @@ export class ArchivePage extends React.Component {
             </div>
         );
 
-        // loading layout
-        const loadingLayout = (
-            <KLayout colorMode={KLayout.COLOR_MODE_MAIN}>
-                <div className={'h-40vh'}></div>
-                <Spin/>
-            </KLayout>
-        );
-
         // return the render result
         return (
             <KLayout
                 colorMode={KLayout.COLOR_MODE_MAIN}>
                 {this.state.loadDown && (<NavHeader bgImg={navHeaderBgImg} content={navHeaderContent} history={this.props.history}/>)}
-                {this.state.loadDown ? mainLayout : loadingLayout}
+                {this.state.loadDown ? mainLayout : (<LoadingLayout/>)}
                 {this.state.loadDown && (<Footer/>)}
             </KLayout>
         );
