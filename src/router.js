@@ -13,7 +13,6 @@ import { AdminNewPostPage } from './page/admin/post/new';
 import { Error404Page } from './page/error-404';
 import { ArchivePage } from './page/archive';
 import { LabelPage } from './page/label';
-import { WorkPage } from './page/work';
 import { UserLoginPage } from './page/user/login';
 
 /**
@@ -33,7 +32,6 @@ export class MainRouter extends React.Component {
                     <Route exact path={'/archive'} component={ArchivePage}/>
                     <Route exact path={'/label'} component={LabelPage}/>
                     <Route exact path={'/label/:labelId'} component={LabelPage}/>
-                    <Route exact path={'/work'} component={WorkPage}/>
                     <Route exact path={'/admin'} component={AdminIndexPage}/>
                     <Route exact path={'/admin/general'} component={AdminGeneralPage}/>
                     <Route exact path={'/admin/post/new'} component={AdminNewPostPage}/>
