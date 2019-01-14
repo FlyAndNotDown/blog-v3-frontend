@@ -197,7 +197,7 @@ export class IndexPage extends React.Component {
         return (
             <KLayout
                 colorMode={KLayout.COLOR_MODE_NONE}>
-                {this.state.loadDown && (<NavHeader bgImg={navHeaderBgImg} content={navHeaderContent}/>)}
+                {this.state.loadDown && (<NavHeader bgImg={navHeaderBgImg} content={navHeaderContent} history={this.props.history}/>)}
                 {this.state.loadDown ? (bodyLayout) : (loadingLayout)}
                 {this.state.loadDown && (<Footer/>)}
             </KLayout>

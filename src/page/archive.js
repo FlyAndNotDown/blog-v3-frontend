@@ -120,7 +120,7 @@ export class ArchivePage extends React.Component {
         return (
             <KLayout
                 colorMode={KLayout.COLOR_MODE_MAIN}>
-                {this.state.loadDown && (<NavHeader bgImg={navHeaderBgImg} content={navHeaderContent}/>)}
+                {this.state.loadDown && (<NavHeader bgImg={navHeaderBgImg} content={navHeaderContent} history={this.props.history}/>)}
                 {this.state.loadDown ? mainLayout : loadingLayout}
                 {this.state.loadDown && (<Footer/>)}
             </KLayout>

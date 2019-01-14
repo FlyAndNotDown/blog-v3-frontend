@@ -13,6 +13,7 @@ import { NavBar } from './nav-bar';
  * @constructor
  * @property {string} bgImg background image's source in nav header
  * @property {*} content the content of nav header
+ * @property {Object} history react history object
  */
 export class NavHeader extends React.Component {
 
@@ -52,7 +53,7 @@ export class NavHeader extends React.Component {
                         navBarToggled: affixed
                     });
                 }}>
-                <NavBar active={this.state.navBarToggled}/>
+                <NavBar active={this.state.navBarToggled} history={this.props.history}/>
             </Affix>
         );
 

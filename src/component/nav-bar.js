@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
  * @constructor
  * @property {boolean} active 是否激活
  * @property {{ login: boolean }} user user info
+ * @property {Object} history react history object
  */
 export class NavBar extends React.Component {
 
@@ -37,6 +38,13 @@ export class NavBar extends React.Component {
         // TODO login status
         // TODO if get a user props, don't get user info by itself, if not, get user info by itself
     }
+
+    /**
+     * handle when login button click
+     */
+    onLoginButtonClick = () => {
+        this.props.history.push('/user/login');
+    };
 
     /**
      * 渲染函数
@@ -105,7 +113,7 @@ export class NavBar extends React.Component {
 
         // login button
         const loginButton = (
-            <Button type={'primary'}>登录</Button>
+            <Button type={'primary'} onClick={this.onLoginButtonClick}>登录</Button>
         );
 
         // 导航 div

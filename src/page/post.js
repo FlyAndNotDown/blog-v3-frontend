@@ -270,7 +270,7 @@ export class PostPage extends React.Component {
         const headerLayout = (
             <KLayout colorMode={KLayout.COLOR_MODE_NONE}>
                 <Affix offsetTop={0}>
-                    <NavBar active={true}/>
+                    <NavBar active={true} history={this.props.history}/>
                 </Affix>
             </KLayout>
         );

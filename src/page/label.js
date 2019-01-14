@@ -361,7 +361,7 @@ export class LabelPage extends React.Component {
         return (
             <KLayout
                 colorMode={KLayout.COLOR_MODE_MAIN}>
-                {!this.state.labelsLoading && (<NavHeader bgImg={navHeaderBgImg} content={navHeaderContent}/>)}
+                {!this.state.labelsLoading && (<NavHeader bgImg={navHeaderBgImg} content={navHeaderContent} history={this.props.history}/>)}
                 {!this.state.labelsLoading ? mainLayout : labelsLoadingLayout}
                 {!this.state.labelsLoading && (<Footer/>)}
             </KLayout>
