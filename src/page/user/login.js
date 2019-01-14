@@ -7,7 +7,7 @@
 
 import React from 'react';
 import { KLayout } from '../../component/tool/k-layout';
-import { Row, Col, Form, Input, Icon, Button, message } from 'antd';
+import { Row, Col, Form, Input, Icon, Button, message, Spin } from 'antd';
 import axios from 'axios';
 import requestConfig from '../../config/request';
 import { Log } from '../../tool/log';
@@ -36,8 +36,22 @@ export class UserLoginPage extends React.Component {
             loginPassword: '',
 
             // button locked
-            buttonLocked: false
+            buttonLocked: false,
+
+            // loading
+            loading: true
         };
+    }
+
+    /**
+     * a life function of react
+     */
+    componentDidMount() {
+        setTimeout(() => {
+            this.setState({
+                loading: false
+            });
+        }, 1500);
     }
 
     /**
@@ -92,22 +106,34 @@ export class UserLoginPage extends React.Component {
             </Form>
         );
 
+        // 加载中布局
+        const loadingLayout = (
+            <KLayout colorMode={KLayout.COLOR_MODE_MAIN}>
+                <div className={'h-40vh'}></div>
+                <Spin/>
+            </KLayout>
+        );
+
         return (
             <KLayout
                 className={'w-100 h-100vh'}
                 colorMode={KLayout.COLOR_MODE_MAIN}>
-                <Row
-                    className={'w-100 h-100'}
-                    type={'flex'}
-                    align={'middle'}
-                    justify={'center'}>
-                    <Col
-                        xs={20} sm={18} md={8}
-                        lg={6} xl={6} xxl={4}>
-                        {titleDiv}
-                        {loginForm}
-                    </Col>
-                </Row>
+                {this.state.loading ? (
+                    loadingLayout
+                ) : (
+                    <Row
+                        className={'w-100 h-100'}
+                        type={'flex'}
+                        align={'middle'}
+                        justify={'center'}>
+                        <Col
+                            xs={20} sm={18} md={8}
+                            lg={6} xl={6} xxl={4}>
+                            {titleDiv}
+                            {loginForm}
+                        </Col>
+                    </Row>
+                )}
             </KLayout>
         );
     }
