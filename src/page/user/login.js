@@ -22,6 +22,11 @@ export class UserLoginPage extends React.Component {
     // static text
     static __LOGIN_FORM__USERNAME_INPUT__PLACEHOLDER = '用户名';
     static __LOGIN_FORM__PASSWORD_INPUT__PLACEHOLDER = '密码';
+    // button text
+    static __LOGIN_FORM__LOGIN_BUTTON__TEXT = '登录';
+    static __LOGIN_FORM__JMPTO_REGISTER_BUTTON__TEXT = '转到注册';
+    static __LOGIN_FORM__REGISTER_BUTTON_TEXT = '注册';
+    static __LOGIN_FORM__JMPTO_LOGIN_BUTTON__TEXT = '转到登录';
 
     /**
      * constructor of react component
@@ -72,6 +77,38 @@ export class UserLoginPage extends React.Component {
     };
 
     /**
+     * a handle called when login button clicked
+     * @param {Object} e react event object
+     */
+    onLoginButtonClick = (e) => {
+        // TODO
+    };
+
+    /**
+     * a handle called when register button clicked
+     * @param {Object} e react event object
+     */
+    onRegisterButtonClick = (e) => {
+        // TODO
+    };
+
+    /**
+     * a handle called when jmp to login button clicked
+     * @param {Object} e react event object
+     */
+    onJmptoLoginButtonClick = (e) => {
+        // TODO
+    };
+
+    /**
+     * a handle called when jmp to register button clicked
+     * @param {Object} e react event object
+     */
+    onJmptoRegisterButtonClick = (e) => {
+        // TODO
+    };
+
+    /**
      * render function of react component
      * @return {*} result of render
      */
@@ -103,6 +140,19 @@ export class UserLoginPage extends React.Component {
                         value={this.state.loginPassword}
                         onChange={this.onLoginPasswordChange}
                         disabled={this.state.buttonLocked}/>
+                </Item>
+                <Item>
+                    <Button
+                        type={'primary'}
+                        className={'float-left w-45'}
+                        onClick={this.onLoginButtonClick}>
+                        {UserLoginPage.__LOGIN_FORM__LOGIN_BUTTON__TEXT}
+                    </Button>
+                    <Button
+                        className={'float-right w-45'}
+                        onClick={this.onJmptoRegisterButtonClick}>
+                        {UserLoginPage.__LOGIN_FORM__JMPTO_REGISTER_BUTTON__TEXT}
+                    </Button>
                 </Item>
             </Form>
         );
