@@ -13,6 +13,7 @@ import requestConfig from '../../config/request';
 import { Log } from '../../tool/log';
 import { PasswordTool } from '../../tool/password';
 import regexConfig from '../../config/regex';
+import { LoadingLayout } from '../../component/gadget/loading-layout';
 
 const { Item } = Form;
 
@@ -106,20 +107,13 @@ export class UserLoginPage extends React.Component {
             </Form>
         );
 
-        // 加载中布局
-        const loadingLayout = (
-            <KLayout colorMode={KLayout.COLOR_MODE_MAIN}>
-                <div className={'h-40vh'}></div>
-                <Spin/>
-            </KLayout>
-        );
-
+        // return the render result
         return (
             <KLayout
                 className={'w-100 h-100vh'}
                 colorMode={KLayout.COLOR_MODE_MAIN}>
                 {this.state.loading ? (
-                    loadingLayout
+                    <LoadingLayout/>
                 ) : (
                     <Row
                         className={'w-100 h-100'}
