@@ -105,6 +105,7 @@ export class UserLoginPage extends React.Component {
      * @param {Object} e react event object
      */
     onRegisterButtonClick = (e) => {
+        this.setState({ buttonLocked: true });
         // TODO
     };
 
