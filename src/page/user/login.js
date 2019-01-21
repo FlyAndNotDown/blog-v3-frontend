@@ -26,8 +26,8 @@ export class UserLoginPage extends React.Component {
     // button text
     static __LOGIN_FORM__LOGIN_BUTTON__TEXT = '登录';
     static __LOGIN_FORM__JMPTO_REGISTER_BUTTON__TEXT = '转到注册';
-    static __LOGIN_FORM__REGISTER_BUTTON_TEXT = '注册';
-    static __LOGIN_FORM__JMPTO_LOGIN_BUTTON__TEXT = '转到登录';
+    static __REGISTER_FORM__REGISTER_BUTTON_TEXT = '注册';
+    static __REGISTER_FORM__JMPTO_LOGIN_BUTTON__TEXT = '转到登录';
     // title text
     static __TITLE_LOGIN__TEXT = '欢迎 我的朋友 ';
     // emoji
@@ -139,6 +139,14 @@ export class UserLoginPage extends React.Component {
             </div>
         );
 
+        // little loading span
+        const littleLoadingSpan = (
+            <Spin
+                indicator={
+                    <Icon type={'loading'} className={'font-size-xs'}/>
+                }/>
+        );
+
         // login form
         const loginForm = (
             <Form className={'mt-lg'}>
@@ -166,10 +174,7 @@ export class UserLoginPage extends React.Component {
                         onClick={this.onLoginButtonClick}
                         disabled={this.state.buttonLocked}>
                         {this.state.buttonLocked ? (
-                            <Spin
-                                indicator={
-                                    <Icon type={'loading'} className={'font-size-xs'}/>
-                                }/>
+                            littleLoadingSpan
                         ) : (
                             UserLoginPage.__LOGIN_FORM__LOGIN_BUTTON__TEXT
                         )}
@@ -188,6 +193,23 @@ export class UserLoginPage extends React.Component {
         const registerForm = (
             <Form className={'mt-lg'}>
                 <Item>
+                    <Button
+                        type={'primary'}
+                        className={'float-left w-45'}
+                        onClick={this.onRegisterButtonClick}
+                        disabled={this.state.buttonLocked}>
+                        {this.state.buttonLocked ? (
+                            littleLoadingSpan
+                        ) : (
+                            UserLoginPage.__REGISTER_FORM__REGISTER_BUTTON_TEXT
+                        )}
+                    </Button>
+                    <Button
+                        className={'float-right w-45'}
+                        onClick={this.onJmptoLoginButtonClick}
+                        disabled={this.state.buttonLocked}>
+                        {UserLoginPage.__REGISTER_FORM__JMPTO_LOGIN_BUTTON__TEXT}
+                    </Button>
                 </Item>
             </Form>
         );
