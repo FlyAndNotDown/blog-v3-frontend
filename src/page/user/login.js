@@ -7,7 +7,7 @@
 
 import React from 'react';
 import { KLayout } from '../../component/tool/k-layout';
-import { Row, Col, Form, Input, Icon, Button, message, Spin } from 'antd';
+import { Row, Col, Form, Input, Icon, Button, message, Spin, Upload } from 'antd';
 import axios from 'axios';
 import requestConfig from '../../config/request';
 import { Log } from '../../tool/log';
@@ -20,6 +20,7 @@ const { Item } = Form;
 export class UserLoginPage extends React.Component {
 
     // static text
+    // login form text
     static __LOGIN_FORM__USERNAME_INPUT__PLACEHOLDER = '用户名';
     static __LOGIN_FORM__PASSWORD_INPUT__PLACEHOLDER = '密码';
     // button text
@@ -27,6 +28,10 @@ export class UserLoginPage extends React.Component {
     static __LOGIN_FORM__JMPTO_REGISTER_BUTTON__TEXT = '转到注册';
     static __LOGIN_FORM__REGISTER_BUTTON_TEXT = '注册';
     static __LOGIN_FORM__JMPTO_LOGIN_BUTTON__TEXT = '转到登录';
+    // title text
+    static __TITLE_LOGIN__TEXT = '欢迎 我的朋友 ';
+    // emoji
+    static __EMOJI_LOGIN = '🍉';
 
     /**
      * constructor of react component
@@ -36,10 +41,20 @@ export class UserLoginPage extends React.Component {
         super(props);
 
         this.state = {
+            // block status - 'login' or 'register'
+            blockIsLogin: true,
+
             // login form - username input value
             loginUsername: '',
             // login form - password input value
             loginPassword: '',
+
+            // file list
+            fileList: [],
+            // preview image
+            preivewImage: '',
+            // preview image visible
+            previewVisible: false,
 
             // button locked
             buttonLocked: false,
@@ -57,7 +72,7 @@ export class UserLoginPage extends React.Component {
             this.setState({
                 loading: false
             });
-        }, 1500);
+        }, 1000);
     }
 
     /**
@@ -98,7 +113,7 @@ export class UserLoginPage extends React.Component {
      * @param {Object} e react event object
      */
     onJmptoLoginButtonClick = (e) => {
-        // TODO
+        this.setState({ blockIsLogin: true });
     };
 
     /**
@@ -106,7 +121,7 @@ export class UserLoginPage extends React.Component {
      * @param {Object} e react event object
      */
     onJmptoRegisterButtonClick = (e) => {
-        // TODO
+        this.setState({ blockIsLogin: false });
     };
 
     /**
@@ -117,8 +132,10 @@ export class UserLoginPage extends React.Component {
         // title row
         const titleDiv = (
             <div className={'font-size-xl text-align-center'}>
-                <span role={'img'} aria-labelledby={'watermelon'}>🍉</span>
-                欢迎 我的朋友&nbsp;
+                <span role={'img'} aria-labelledby={'watermelon'}>
+                    {UserLoginPage.__EMOJI_LOGIN}
+                </span>
+                <span>{UserLoginPage.__TITLE_LOGIN__TEXT}</span>
             </div>
         );
 
@@ -159,9 +176,18 @@ export class UserLoginPage extends React.Component {
                     </Button>
                     <Button
                         className={'float-right w-45'}
-                        onClick={this.onJmptoRegisterButtonClick}>
+                        onClick={this.onJmptoRegisterButtonClick}
+                        disabled={this.state.buttonLocked}>
                         {UserLoginPage.__LOGIN_FORM__JMPTO_REGISTER_BUTTON__TEXT}
                     </Button>
+                </Item>
+            </Form>
+        );
+
+        // register form
+        const registerForm = (
+            <Form className={'mt-lg'}>
+                <Item>
                 </Item>
             </Form>
         );
@@ -182,8 +208,8 @@ export class UserLoginPage extends React.Component {
                         <Col
                             xs={20} sm={18} md={8}
                             lg={6} xl={6} xxl={4}>
-                            {titleDiv}
-                            {loginForm}
+                            {this.state.blockIsLogin && (titleDiv)}
+                            {this.state.blockIsLogin ? (loginForm) : (registerForm)}
                         </Col>
                     </Row>
                 )}
