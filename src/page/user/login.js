@@ -81,6 +81,7 @@ export class UserLoginPage extends React.Component {
      * @param {Object} e react event object
      */
     onLoginButtonClick = (e) => {
+        this.setState({ buttonLocked: true });
         // TODO
     };
 
@@ -145,8 +146,16 @@ export class UserLoginPage extends React.Component {
                     <Button
                         type={'primary'}
                         className={'float-left w-45'}
-                        onClick={this.onLoginButtonClick}>
-                        {UserLoginPage.__LOGIN_FORM__LOGIN_BUTTON__TEXT}
+                        onClick={this.onLoginButtonClick}
+                        disabled={this.state.buttonLocked}>
+                        {this.state.buttonLocked ? (
+                            <Spin
+                                indicator={
+                                    <Icon type={'loading'} className={'font-size-xs'}/>
+                                }/>
+                        ) : (
+                            UserLoginPage.__LOGIN_FORM__LOGIN_BUTTON__TEXT
+                        )}
                     </Button>
                     <Button
                         className={'float-right w-45'}
