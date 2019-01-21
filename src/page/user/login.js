@@ -7,7 +7,7 @@
 
 import React from 'react';
 import { KLayout } from '../../component/tool/k-layout';
-import { Row, Col, Form, Input, Icon, Button, message, Spin, Upload } from 'antd';
+import { Row, Col, Form, Input, Icon, Button, message, Spin, Upload, Avatar } from 'antd';
 import axios from 'axios';
 import requestConfig from '../../config/request';
 import { Log } from '../../tool/log';
@@ -20,9 +20,12 @@ const { Item } = Form;
 export class UserLoginPage extends React.Component {
 
     // static text
-    // login form text
+    // place holder text
     static __LOGIN_FORM__USERNAME_INPUT__PLACEHOLDER = '用户名';
     static __LOGIN_FORM__PASSWORD_INPUT__PLACEHOLDER = '密码';
+    static __REGISTER_FORM__USERNAME_INPUT__PLACEHOLDER = '用户名';
+    static __REGISTER_FORM__NICKNAME_INPUT__PLACEHOLDER = '昵称';
+    static __REGISTER_FORM__PASSWORD_INPUT__PLACEHOLDER = '密码';
     // button text
     static __LOGIN_FORM__LOGIN_BUTTON__TEXT = '登录';
     static __LOGIN_FORM__JMPTO_REGISTER_BUTTON__TEXT = '转到注册';
@@ -48,6 +51,13 @@ export class UserLoginPage extends React.Component {
             loginUsername: '',
             // login form - password input value
             loginPassword: '',
+
+            // register form - username input value
+            registerUsername: '',
+            // register form - nickname input value
+            registerNickname: '',
+            // register form - password input value
+            registerPassword: '',
 
             // file list
             fileList: [],
@@ -89,6 +99,30 @@ export class UserLoginPage extends React.Component {
      */
     onLoginPasswordChange = (e) => {
         this.setState({ loginPassword: e.target.value });
+    };
+
+    /**
+     * a handle called when register's username value change
+     * @param {Object} e react event object
+     */
+    onRegisterUsernameChange = (e) => {
+        this.setState({ registerUsername: e.target.value });
+    };
+
+    /**
+     * a handle called when register's nickname value change
+     * @param {Object} e react event object
+     */
+    onRegisterNicknameChange = (e) => {
+        this.setState({ registerNickname: e.target.value });
+    };
+
+    /**
+     * a handle called when register's password value change
+     * @param {Object} e react event object
+     */
+    onRegisterPasswordChange = (e) => {
+        this.setState({ registerPassword: e.target.value });
     };
 
     /**
@@ -193,6 +227,17 @@ export class UserLoginPage extends React.Component {
         // register form
         const registerForm = (
             <Form className={'mt-lg'}>
+                <Item className={'text-align-center'}>
+                    <Avatar size={128}/>
+                </Item>
+                <Item>
+                    <Input
+                        placeholder={UserLoginPage.__REGISTER_FORM__USERNAME_INPUT__PLACEHOLDER}
+                        prefix={<Icon type={'user'}/>}
+                        value={this.state.loginUsername}
+                        onChange={this.onLoginUsernameChange}
+                        disabled={this.state.buttonLocked}/>
+                </Item>
                 <Item>
                     <Button
                         type={'primary'}
