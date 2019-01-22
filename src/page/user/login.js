@@ -26,11 +26,13 @@ export class UserLoginPage extends React.Component {
     static __REGISTER_FORM__USERNAME_INPUT__PLACEHOLDER = '用户名';
     static __REGISTER_FORM__NICKNAME_INPUT__PLACEHOLDER = '昵称';
     static __REGISTER_FORM__PASSWORD_INPUT__PLACEHOLDER = '密码';
+    static __REGISTER_FORM__CONFIRM_PASSWORD_INPUT__PLACEHOLDER = '确认密码';
     // button text
     static __LOGIN_FORM__LOGIN_BUTTON__TEXT = '登录';
     static __LOGIN_FORM__JMPTO_REGISTER_BUTTON__TEXT = '转到注册';
     static __REGISTER_FORM__REGISTER_BUTTON_TEXT = '注册';
     static __REGISTER_FORM__JMPTO_LOGIN_BUTTON__TEXT = '转到登录';
+    static __REGISTER_FORM__GET_RANDOM_AVATAR_BUTTON__TEXT = '随机头像';
     // title text
     static __TITLE_LOGIN__TEXT = '欢迎 我的朋友 ';
     // emoji
@@ -58,6 +60,8 @@ export class UserLoginPage extends React.Component {
             registerNickname: '',
             // register form - password input value
             registerPassword: '',
+            // register form - confirm password input value
+            registerConfirmPassword: '',
 
             // file list
             fileList: [],
@@ -123,6 +127,14 @@ export class UserLoginPage extends React.Component {
      */
     onRegisterPasswordChange = (e) => {
         this.setState({ registerPassword: e.target.value });
+    };
+
+    /**
+     * a handle called when register's confirm password value change
+     * @param {Object} e react event object
+     */
+    onRegisterConfirmPasswordChange = (e) => {
+        this.setState({ registerConfirmPassword: e.target.value });
     };
 
     /**
@@ -228,14 +240,47 @@ export class UserLoginPage extends React.Component {
         const registerForm = (
             <Form className={'mt-lg'}>
                 <Item className={'text-align-center'}>
-                    <Avatar size={128}/>
+                    <Avatar
+                        size={128}
+                        icon={'user'}/>
+                </Item>
+                <Item className={'text-align-center'}>
+                    <Button>
+                        {UserLoginPage.__REGISTER_FORM__GET_RANDOM_AVATAR_BUTTON__TEXT}
+                    </Button>
                 </Item>
                 <Item>
                     <Input
                         placeholder={UserLoginPage.__REGISTER_FORM__USERNAME_INPUT__PLACEHOLDER}
                         prefix={<Icon type={'user'}/>}
-                        value={this.state.loginUsername}
+                        value={this.state.registerUsername}
                         onChange={this.onLoginUsernameChange}
+                        disabled={this.state.buttonLocked}/>
+                </Item>
+                <Item>
+                    <Input
+                        placeholder={UserLoginPage.__REGISTER_FORM__NICKNAME_INPUT__PLACEHOLDER}
+                        prefix={<Icon type={'smile'}/>}
+                        value={this.state.registerNickname}
+                        onChange={this.onRegisterNicknameChange}
+                        disabled={this.state.buttonLocked}/>
+                </Item>
+                <Item>
+                    <Input
+                        type={'password'}
+                        placeholder={UserLoginPage.__REGISTER_FORM__PASSWORD_INPUT__PLACEHOLDER}
+                        prefix={<Icon type={'key'}/>}
+                        value={this.state.registerPassword}
+                        onChange={this.onRegisterPasswordChange}
+                        disabled={this.state.buttonLocked}/>
+                </Item>
+                <Item>
+                    <Input
+                        type={'password'}
+                        placeholder={UserLoginPage.__REGISTER_FORM__CONFIRM_PASSWORD_INPUT__PLACEHOLDER}
+                        prefix={<Icon type={'key'}/>}
+                        value={this.state.registerConfirmPassword}
+                        onChange={this.onRegisterConfirmPasswordChange}
                         disabled={this.state.buttonLocked}/>
                 </Item>
                 <Item>
