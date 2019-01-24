@@ -166,7 +166,7 @@ export class UserLoginPage extends React.Component {
      * a handle called when register button clicked
      * @param {Object} e react event object
      */
-    async onRegisterButtonClick = (e) => {
+    onRegisterButtonClick = async (e) => {
         this.lockButton();
 
         // check the input value

@@ -29,7 +29,7 @@ export class PasswordTool {
      */
     static getSalt() {
         let salt = '';
-        const saltVertex = PwdTool.getSaltVertex();
+        const saltVertex = PasswordTool.getSaltVertex();
         for (let i = 0; i < 12; i++) {
             salt += saltVertex[Math.floor(Math.random() * 16)]
         }
