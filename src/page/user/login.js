@@ -14,7 +14,6 @@ import { Log } from '../../tool/log';
 import { PasswordTool } from '../../tool/password';
 import regexConfig from '../../config/regex';
 import { LoadingLayout } from '../../component/gadget/loading-layout';
-import regexConfig from '../../config/regex';
 
 const { Item } = Form;
 const userRegex = regexConfig.user;
