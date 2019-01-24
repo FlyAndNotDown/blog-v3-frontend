@@ -94,14 +94,14 @@ export class UserLoginPage extends React.Component {
      * lock button
      */
     lockButton = () => {
-        this.lockButton();
+        this.setState({ buttonLocked: true });
     };
 
     /**
      * unlock button
      */
     unlockButton = () => {
-        this.unlockButton();
+        this.setState({ buttonLocked: false });
     };
 
     /**
