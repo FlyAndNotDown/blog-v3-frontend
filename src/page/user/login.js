@@ -14,8 +14,10 @@ import { Log } from '../../tool/log';
 import { PasswordTool } from '../../tool/password';
 import regexConfig from '../../config/regex';
 import { LoadingLayout } from '../../component/gadget/loading-layout';
+import regexConfig from '../../config/regex';
 
 const { Item } = Form;
+const userRegex = regexConfig.user;
 
 export class UserLoginPage extends React.Component {
 
@@ -90,6 +92,20 @@ export class UserLoginPage extends React.Component {
     }
 
     /**
+     * lock button
+     */
+    lockButton = () => {
+        this.lockButton();
+    };
+
+    /**
+     * unlock button
+     */
+    unlockButton = () => {
+        this.unlockButton();
+    };
+
+    /**
      * handle when login form's username value change
      * @param {Object} e react event object
      */
@@ -151,8 +167,27 @@ export class UserLoginPage extends React.Component {
      * @param {Object} e react event object
      */
     onRegisterButtonClick = (e) => {
-        this.setState({ buttonLocked: true });
-        // TODO
+        this.lockButton();
+
+        // check the input value
+        if (!this.state.registerUsername.match(userRegex.username)) {
+            this.unlockButton();
+            return message.error('用户名不符合要求 (6-16位英文/数字组合)');
+        }
+        if (!this.state.registerNickname.match(userRegex.nickname)) {
+            this.unlockButton();
+            return message.error('昵称不符合要求 (4-20字符长度英文/汉字/数字组合)');
+        }
+        if (!this.state.registerPassword.match(userRegex.password)) {
+            this.unlockButton();
+            return message.error('密码不符合要求 (6-16位英文/数字/@#组合)');
+        }
+
+        // check the password input in second times as same
+        if (this.state.registerPassword !== this.state.registerConfirmPassword) {
+            this.unlockButton();
+            return message.error('两次输入的密码不同，请重试');
+        }
     };
 
     /**
@@ -254,7 +289,7 @@ export class UserLoginPage extends React.Component {
                         placeholder={UserLoginPage.__REGISTER_FORM__USERNAME_INPUT__PLACEHOLDER}
                         prefix={<Icon type={'user'}/>}
                         value={this.state.registerUsername}
-                        onChange={this.onLoginUsernameChange}
+                        onChange={this.onRegisterUsernameChange}
                         disabled={this.state.buttonLocked}/>
                 </Item>
                 <Item>
