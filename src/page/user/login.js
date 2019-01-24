@@ -156,9 +156,84 @@ export class UserLoginPage extends React.Component {
      * a handle called when login button clicked
      * @param {Object} e react event object
      */
-    onLoginButtonClick = (e) => {
-        this.setState({ buttonLocked: true });
-        // TODO
+    onLoginButtonClick = async (e) => {
+        // lock buttons at first
+        this.lockButton();
+
+        // check the input value at first
+        if (!this.state.loginUsername || !this.state.loginUsername.match(userRegex.username)) {
+            this.unlockButton();
+            return message.error('用户名不符合要求 (6-16位英文/数字组合)');
+        }
+        if (!this.state.loginPassword || !this.state.loginPassword.match(userRegex.username)) {
+            this.unlockButton();
+            return message.error('密码不符合要求 (6-16位英文/数字/@#组合)');
+        }
+
+        // send a request to get salt of user's password
+        let response, data;
+        try {
+            response = await axios.get(requestConfig.userLocal, {
+                params: {
+                    type: 'salt',
+                    username: this.state.loginUsername
+                }
+            });
+        } catch (e) {
+            this.unlockButton();
+            Log.devError(`get ${requestConfig.userLocal}`, e);
+            return message.error('服务器错误');
+        }
+
+        // if request success
+        Log.dev(`get ${requestConfig.userLocal} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        // get the info in response
+        const salt = data.salt || null;
+
+        if (!salt) {
+            this.unlockButton();
+            message.error('用户不存在!');
+        }
+
+        // if got salt, encode the password
+        const passwordHash = PasswordTool.encode(this.state.loginPassword, salt);
+
+        // send request to check username and password
+        response = null;
+        data = null;
+        try {
+            response = await axios.post(requestConfig.userLogin, {
+                userType: 'local',
+                username: this.state.username,
+                password: passwordHash
+            });
+        } catch (e) {
+            this.unlockButton();
+            Log.devError(`post ${requestConfig.userLogin}`, e);
+            return message.error('服务器错误');
+        }
+
+        // if request success
+        Log.dev(`post ${requestConfig.userLogin} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        // get info in response
+        const success = !!response.success;
+
+        // if not success
+        if (!success) {
+            this.unlockButton();
+            return message.error('登录失败，请稍后重试');
+        }
+
+        // if success
+        this.unlockButton();
+        message.success('登录成功，正在为您跳转');
+        this.props.history.push('/');
     };
 
     /**
@@ -166,6 +241,7 @@ export class UserLoginPage extends React.Component {
      * @param {Object} e react event object
      */
     onRegisterButtonClick = async (e) => {
+        // lock buttons at first
         this.lockButton();
 
         // check the input value
@@ -203,17 +279,18 @@ export class UserLoginPage extends React.Component {
                 password: passwordHash
             });
         } catch (e) {
-            Log.devError(`get ${requestConfig.userLocal}`, e);
+            this.unlockButton();
+            Log.devError(`post ${requestConfig.userLocal}`, e);
             return message.error('服务器错误，请稍后重试');
         }
 
         // if request success
-        Log.dev(`get ${requestConfig.userLocal} OK`);
+        Log.dev(`post ${requestConfig.userLocal} OK`);
         response = response || {};
         data = response.data || {};
 
         // get register success status
-        let success = !!data.success;
+        const success = !!data.success;
 
         // if not success
         if (!success) {
