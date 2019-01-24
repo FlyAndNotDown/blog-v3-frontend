@@ -209,7 +209,23 @@ export class UserLoginPage extends React.Component {
         }
 
         // if request success
-        // TODO
+        Log.dev(`get ${requestConfig.userLocal} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        // get register success status
+        let success = !!data.success;
+
+        // if not success
+        if (!success) {
+            this.unlockButton();
+            return message.error(`注册失败${!!data.reason ? `，${data.reason}` : ''}`);
+        }
+
+        // if success
+        this.unlockButton();
+        message.success('注册成功，正在为您跳转');
+        return this.props.history.push('/');
     };
 
     /**
