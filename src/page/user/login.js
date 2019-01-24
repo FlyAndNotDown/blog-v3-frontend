@@ -166,7 +166,7 @@ export class UserLoginPage extends React.Component {
      * a handle called when register button clicked
      * @param {Object} e react event object
      */
-    onRegisterButtonClick = (e) => {
+    async onRegisterButtonClick = (e) => {
         this.lockButton();
 
         // check the input value
@@ -188,6 +188,28 @@ export class UserLoginPage extends React.Component {
             this.unlockButton();
             return message.error('两次输入的密码不同，请重试');
         }
+
+        // get a random salt string
+        const salt = PasswordTool.getSalt();
+        // encode the password to sha256 hash value
+        const passwordHash = PasswordTool.encode(this.state.registerPassword, salt);
+
+        // send request to register a new user
+        let response, data;
+        try {
+            response = await axios.post(requestConfig.userLocal, {
+                username: this.state.registerUsername,
+                nickname: this.state.registerNickname,
+                salt: salt,
+                password: passwordHash
+            });
+        } catch (e) {
+            Log.devError(`get ${requestConfig.userLocal}`, e);
+            return message.error('服务器错误，请稍后重试');
+        }
+
+        // if request success
+        // TODO
     };
 
     /**

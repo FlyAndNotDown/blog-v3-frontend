@@ -19,5 +19,7 @@ export default {
     post: `${commonUrlPrefix}/post`,
     adminLogin: `${commonUrlPrefix}/admin/login`,
     archive: `${commonUrlPrefix}/archive`,
-    label: `${commonUrlPrefix}/label`
+    label: `${commonUrlPrefix}/label`,
+    userLocal: `${commonUrlPrefix}/user/local`,
+    userLogin: `${commonUrlPrefix}/user/login`
 };
