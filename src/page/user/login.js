@@ -38,7 +38,7 @@ export class UserLoginPage extends React.Component {
     static __TITLE_LOGIN__TEXT = '欢迎 我的朋友 ';
     // emoji
     static __EMOJI_LOGIN = '🍉';
-
+    static __EMOJI_LOGIN_LABEL = 'watermelon';
     /**
      * constructor of react component
      * @param {Object} props properties of component
@@ -48,7 +48,7 @@ export class UserLoginPage extends React.Component {
 
         this.state = {
             // block status - 'login' or 'register'
-            blockIsLogin: true,
+            blockIsLogin: false,
 
             // login form - username input value
             loginUsername: '',
@@ -63,13 +63,6 @@ export class UserLoginPage extends React.Component {
             registerPassword: '',
             // register form - confirm password input value
             registerConfirmPassword: '',
-
-            // file list
-            fileList: [],
-            // preview image
-            preivewImage: '',
-            // preview image visible
-            previewVisible: false,
 
             // button locked
             buttonLocked: false,
@@ -388,16 +381,6 @@ export class UserLoginPage extends React.Component {
         // register form
         const registerForm = (
             <Form className={'mt-lg'}>
-                <Item className={'text-align-center'}>
-                    <Avatar
-                        size={128}
-                        icon={'user'}/>
-                </Item>
-                <Item className={'text-align-center'}>
-                    <Button>
-                        {UserLoginPage.__REGISTER_FORM__GET_RANDOM_AVATAR_BUTTON__TEXT}
-                    </Button>
-                </Item>
                 <Item>
                     <Input
                         placeholder={UserLoginPage.__REGISTER_FORM__USERNAME_INPUT__PLACEHOLDER}

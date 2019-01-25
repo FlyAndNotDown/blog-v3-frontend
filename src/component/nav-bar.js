@@ -113,7 +113,7 @@ export class NavBar extends React.Component {
 
         // login button
         const loginButton = (
-            <Button type={'primary'} onClick={this.onLoginButtonClick}>登录</Button>
+            <Button type={'primary'} onClick={this.onLoginButtonClick}>加入</Button>
         );
 
         // 导航 div
