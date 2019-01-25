@@ -195,7 +195,7 @@ export class UserLoginPage extends React.Component {
 
         if (!salt) {
             this.unlockButton();
-            message.error('用户不存在!');
+            return message.error('用户不存在!');
         }
 
         // if got salt, encode the password
