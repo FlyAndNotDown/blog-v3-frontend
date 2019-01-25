@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import { Comment, Avatar, Form, Input, Button, message } from 'antd';
+import { Comment, Avatar } from 'antd';
 import { CommentInputBlock } from './comment-input-block';
 
 /**

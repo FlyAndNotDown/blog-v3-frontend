@@ -8,7 +8,7 @@ import { KLayout } from "../component/tool/k-layout";
 import { NavHeader } from "../component/nav-header";
 import { BlockList } from "../component/block/block-list";
 import { Footer } from "../component/footer";
-import { Row, Col, message, Spin } from 'antd';
+import { Row, Col, message } from 'antd';
 import axios from 'axios';
 import requestConfig from '../config/request';
 import { Log } from '../tool/log';

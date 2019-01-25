@@ -215,8 +215,8 @@ export class LabelPage extends React.Component {
             let response;
             let data;
 
-            // get the page params
-            let labelId = this.props.match.params.labelId;
+            // // get the page params
+            // let labelId = this.props.match.params.labelId;
 
             // do the request to get all the label info
             try {

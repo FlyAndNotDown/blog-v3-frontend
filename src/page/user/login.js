@@ -7,7 +7,7 @@
 
 import React from 'react';
 import { KLayout } from '../../component/tool/k-layout';
-import { Row, Col, Form, Input, Icon, Button, message, Spin, Upload, Avatar } from 'antd';
+import { Row, Col, Form, Input, Icon, Button, message, Spin, Avatar } from 'antd';
 import axios from 'axios';
 import requestConfig from '../../config/request';
 import { Log } from '../../tool/log';

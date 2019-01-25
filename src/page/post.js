@@ -7,7 +7,7 @@ import React from 'react';
 import { KLayout } from '../component/tool/k-layout';
 import { NavBar } from '../component/nav-bar';
 import { Footer } from '../component/footer';
-import { Row, Col, Affix, Divider, Icon, Anchor, BackTop, Spin, Comment, Avatar } from 'antd';
+import { Row, Col, Affix, Divider, Icon, Anchor, BackTop } from 'antd';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import SyntaxHighlighter from 'react-syntax-highlighter';
