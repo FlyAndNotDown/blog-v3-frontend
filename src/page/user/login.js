@@ -14,6 +14,8 @@ import { Log } from '../../tool/log';
 import { PasswordTool } from '../../tool/password';
 import regexConfig from '../../config/regex';
 import { LoadingLayout } from '../../component/gadget/loading-layout';
+import { KIcon } from '../../component/tool/k-icon';
+import { Link } from 'react-router-dom';
 
 const { Item } = Form;
 const userRegex = regexConfig.user;
@@ -413,6 +415,13 @@ export class UserLoginPage extends React.Component {
                             UserLoginPage.__LOGIN_FORM__LOGIN_BUTTON__TEXT
                         )}
                     </Button>
+                    <span>
+                        或使用&nbsp;
+                        <Link to={'#'}>GitHub</Link>&nbsp;
+                        <Link to={'#'}>QQ</Link>&nbsp;
+                        <Link to={'#'}>微博</Link>&nbsp;
+                        登录
+                    </span>
                 </Item>
             </Form>
         );
@@ -493,6 +502,7 @@ export class UserLoginPage extends React.Component {
                             xs={20} sm={18} md={8}
                             lg={6} xl={6} xxl={4}>
                             {titleDiv}
+                            <br/><br/>
                             {this.state.blockIsLogin ? (loginForm) : (registerForm)}
                         </Col>
                     </Row>
