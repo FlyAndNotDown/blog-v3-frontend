@@ -35,10 +35,14 @@ export class UserLoginPage extends React.Component {
     static __REGISTER_FORM__JMPTO_LOGIN_BUTTON__TEXT = '转到登录';
     static __REGISTER_FORM__GET_RANDOM_AVATAR_BUTTON__TEXT = '随机头像';
     // title text
-    static __TITLE_LOGIN__TEXT = '欢迎 我的朋友 ';
+    static __TITLE_LOGIN__TEXT = '登录';
+    static __TITLE_REGISTER__TEXT = '注册';
     // emoji
     static __EMOJI_LOGIN = '🍉';
     static __EMOJI_LOGIN_LABEL = 'watermelon';
+    static __EMOJI_REGISTER = '🎉';
+    static __EMOJI_REGISTER_LABEL = 'welcome';
+
     /**
      * constructor of react component
      * @param {Object} props properties of component
@@ -321,8 +325,16 @@ export class UserLoginPage extends React.Component {
         // title row
         const titleDiv = (
             <div className={'font-size-xl text-align-center'}>
-                <span role={'img'} aria-labelledby={'watermelon'}>
-                    {UserLoginPage.__EMOJI_LOGIN}
+                <span
+                    role={'img'}
+                    aria-labelledby={this.state.blockIsLogin ?
+                        UserLoginPage.__EMOJI_LOGIN_LABEL :
+                        UserLoginPage.__EMOJI_REGISTER_LABEL
+                    }>
+                    {this.state.blockIsLogin ?
+                        UserLoginPage.__EMOJI_LOGIN :
+                        UserLoginPage.__EMOJI_REGISTER
+                    }
                 </span>
                 <span>{UserLoginPage.__TITLE_LOGIN__TEXT}</span>
             </div>
