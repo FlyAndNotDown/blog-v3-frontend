@@ -7,7 +7,7 @@
 
 import React from 'react';
 import { KLayout } from '../../component/tool/k-layout';
-import { Row, Col, Form, Input, Icon, Button, message, Spin } from 'antd';
+import { Row, Col, Form, Input, Icon, Button, message, Spin, Checkbox } from 'antd';
 import axios from 'axios';
 import requestConfig from '../../config/request';
 import { Log } from '../../tool/log';
@@ -54,7 +54,7 @@ export class UserLoginPage extends React.Component {
 
         this.state = {
             // block status - 'login' or 'register'
-            blockIsLogin: false,
+            blockIsLogin: true,
 
             // // login form - username input value
             // loginUsername: '',
@@ -395,9 +395,16 @@ export class UserLoginPage extends React.Component {
                         disabled={this.state.buttonLocked}/>
                 </Item>
                 <Item>
+                    <span className={'float-left'}>
+                        <Checkbox>记住我30天</Checkbox>
+                    </span>
+                    <span className={'float-right'}>
+                        <a onClick={this.onJmptoRegisterButtonClick}>注册</a>&nbsp;&nbsp;
+                        <a>忘记密码</a>
+                    </span>
                     <Button
                         type={'primary'}
-                        className={'float-left w-45'}
+                        className={'w-100'}
                         onClick={this.onLoginButtonClick}
                         disabled={this.state.buttonLocked}>
                         {this.state.buttonLocked ? (
@@ -405,12 +412,6 @@ export class UserLoginPage extends React.Component {
                         ) : (
                             UserLoginPage.__LOGIN_FORM__LOGIN_BUTTON__TEXT
                         )}
-                    </Button>
-                    <Button
-                        className={'float-right w-45'}
-                        onClick={this.onJmptoRegisterButtonClick}
-                        disabled={this.state.buttonLocked}>
-                        {UserLoginPage.__LOGIN_FORM__JMPTO_REGISTER_BUTTON__TEXT}
                     </Button>
                 </Item>
             </Form>
