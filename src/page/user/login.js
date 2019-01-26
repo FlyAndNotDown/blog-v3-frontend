@@ -336,7 +336,12 @@ export class UserLoginPage extends React.Component {
                         UserLoginPage.__EMOJI_REGISTER
                     }
                 </span>
-                <span>{UserLoginPage.__TITLE_LOGIN__TEXT}</span>
+                <span>
+                    {this.state.blockIsLogin ?
+                        UserLoginPage.__TITLE_LOGIN__TEXT :
+                        UserLoginPage.__TITLE_REGISTER__TEXT
+                    }
+                </span>
             </div>
         );
 
@@ -465,7 +470,7 @@ export class UserLoginPage extends React.Component {
                         <Col
                             xs={20} sm={18} md={8}
                             lg={6} xl={6} xxl={4}>
-                            {this.state.blockIsLogin && (titleDiv)}
+                            {titleDiv}
                             {this.state.blockIsLogin ? (loginForm) : (registerForm)}
                         </Col>
                     </Row>
