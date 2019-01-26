@@ -22,9 +22,11 @@ export class UserLoginPage extends React.Component {
 
     // static text
     // place holder text
-    static __LOGIN_FORM__USERNAME_INPUT__PLACEHOLDER = '用户名';
+    // static __LOGIN_FORM__USERNAME_INPUT__PLACEHOLDER = '用户名';
+    static __LOGIN_FORM__EMAIL_INPUT__PLACEHOLDER = '邮箱';
     static __LOGIN_FORM__PASSWORD_INPUT__PLACEHOLDER = '密码';
-    static __REGISTER_FORM__USERNAME_INPUT__PLACEHOLDER = '用户名';
+    // static __REGISTER_FORM__USERNAME_INPUT__PLACEHOLDER = '用户名';
+    static __REGISTER_FORM__EMAIL_INPUT__PLACEHOLDER = '邮箱';
     static __REGISTER_FORM__NICKNAME_INPUT__PLACEHOLDER = '昵称';
     static __REGISTER_FORM__PASSWORD_INPUT__PLACEHOLDER = '密码';
     static __REGISTER_FORM__CONFIRM_PASSWORD_INPUT__PLACEHOLDER = '确认密码';
@@ -54,13 +56,16 @@ export class UserLoginPage extends React.Component {
             // block status - 'login' or 'register'
             blockIsLogin: false,
 
-            // login form - username input value
-            loginUsername: '',
+            // // login form - username input value
+            // loginUsername: '',
+            // login form - email input value
+            loginEmail: '',
             // login form - password input value
             loginPassword: '',
 
-            // register form - username input value
-            registerUsername: '',
+            // // register form - username input value
+            // registerUsername: '',
+            registerEmail: '',
             // register form - nickname input value
             registerNickname: '',
             // register form - password input value
@@ -101,12 +106,20 @@ export class UserLoginPage extends React.Component {
         this.setState({ buttonLocked: false });
     };
 
+    // /**
+    //  * handle when login form's username value change
+    //  * @param {Object} e react event object
+    //  */
+    // onLoginUsernameChange = (e) => {
+    //     this.setState({ loginUsername: e.target.value });
+    // };
+
     /**
-     * handle when login form's username value change
+     * a handle when login form's email value change
      * @param {Object} e react event object
      */
-    onLoginUsernameChange = (e) => {
-        this.setState({ loginUsername: e.target.value });
+    onLoginEmailChange = (e) => {
+        this.setState({ loginEmail: e.target.value });
     };
 
     /**
@@ -117,12 +130,20 @@ export class UserLoginPage extends React.Component {
         this.setState({ loginPassword: e.target.value });
     };
 
+    // /**
+    //  * a handle called when register's username value change
+    //  * @param {Object} e react event object
+    //  */
+    // onRegisterUsernameChange = (e) => {
+    //     this.setState({ registerUsername: e.target.value });
+    // };
+
     /**
-     * a handle called when register's username value change
-     * @param {Object} e react event object
+     * a handle called when register's email value change
+     * @param {Object} e react event value
      */
-    onRegisterUsernameChange = (e) => {
-        this.setState({ registerUsername: e.target.value });
+    onRegisterEmailChange = (e) => {
+        this.setState({ registerEmail: e.target.value });
     };
 
     /**
@@ -158,11 +179,11 @@ export class UserLoginPage extends React.Component {
         this.lockButton();
 
         // check the input value at first
-        if (!this.state.loginUsername || !this.state.loginUsername.match(userRegex.username)) {
+        if (!this.state.loginEmail.match(userRegex.email)) {
             this.unlockButton();
-            return message.error('用户名不符合要求 (6-16位英文/数字组合)');
+            return message.error('邮箱地址不符合要求');
         }
-        if (!this.state.loginPassword || !this.state.loginPassword.match(userRegex.username)) {
+        if (!this.state.loginPassword.match(userRegex.username)) {
             this.unlockButton();
             return message.error('密码不符合要求 (6-16位英文/数字/@#组合)');
         }
@@ -173,7 +194,7 @@ export class UserLoginPage extends React.Component {
             response = await axios.get(requestConfig.userLocal, {
                 params: {
                     type: 'salt',
-                    username: this.state.loginUsername
+                    email: this.state.loginEmail
                 }
             });
         } catch (e) {
@@ -198,13 +219,13 @@ export class UserLoginPage extends React.Component {
         // if got salt, encode the password
         const passwordHash = PasswordTool.encode(this.state.loginPassword, salt);
 
-        // send request to check username and password
+        // send request to check email and password
         response = null;
         data = null;
         try {
             response = await axios.post(requestConfig.userLogin, {
                 userType: 'local',
-                username: this.state.username,
+                email: this.state.loginEmail,
                 password: passwordHash
             });
         } catch (e) {
@@ -242,9 +263,9 @@ export class UserLoginPage extends React.Component {
         this.lockButton();
 
         // check the input value
-        if (!this.state.registerUsername.match(userRegex.username)) {
+        if (!this.state.registerEmail.match(userRegex.email)) {
             this.unlockButton();
-            return message.error('用户名不符合要求 (6-16位英文/数字组合)');
+            return message.error('邮箱不符合要求');
         }
         if (!this.state.registerNickname.match(userRegex.nickname)) {
             this.unlockButton();
@@ -270,7 +291,7 @@ export class UserLoginPage extends React.Component {
         let response, data;
         try {
             response = await axios.post(requestConfig.userLocal, {
-                username: this.state.registerUsername,
+                email: this.state.registerEmail,
                 nickname: this.state.registerNickname,
                 salt: salt,
                 password: passwordHash
@@ -358,10 +379,10 @@ export class UserLoginPage extends React.Component {
             <Form className={'mt-lg'}>
                 <Item>
                     <Input
-                        placeholder={UserLoginPage.__LOGIN_FORM__USERNAME_INPUT__PLACEHOLDER}
+                        placeholder={UserLoginPage.__LOGIN_FORM__EMAIL_INPUT__PLACEHOLDER}
                         prefix={<Icon type={'user'}/>}
-                        value={this.state.loginUsername}
-                        onChange={this.onLoginUsernameChange}
+                        value={this.state.loginEmail}
+                        onChange={this.onLoginEmailChange}
                         disabled={this.state.buttonLocked}/>
                 </Item>
                 <Item>
@@ -400,10 +421,10 @@ export class UserLoginPage extends React.Component {
             <Form className={'mt-lg'}>
                 <Item>
                     <Input
-                        placeholder={UserLoginPage.__REGISTER_FORM__USERNAME_INPUT__PLACEHOLDER}
+                        placeholder={UserLoginPage.__REGISTER_FORM__EMAIL_INPUT__PLACEHOLDER}
                         prefix={<Icon type={'user'}/>}
-                        value={this.state.registerUsername}
-                        onChange={this.onRegisterUsernameChange}
+                        value={this.state.registerEmail}
+                        onChange={this.onRegisterEmailChange}
                         disabled={this.state.buttonLocked}/>
                 </Item>
                 <Item>
