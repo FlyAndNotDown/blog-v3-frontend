@@ -26,14 +26,18 @@ export class UserLoginPage extends React.Component {
 
     // static text
     // input component place holder text
-    static __FORM_EMAIL_INPUT__PLACEHOLDER = '邮箱';
-    static __FORM_PASSWORD_INPUT__PLACEHOLDER = '密码';
+    static __FORM__EMAIL_INPUT__PLACEHOLDER = '邮箱';
+    static __FORM__PASSWORD_INPUT__PLACEHOLDER = '密码';
     // button text
-    static __FORM__LOGIN_BUTTON_TEXT = '登录';
+    static __FORM__LOGIN_BUTTON__TEXT = '登录';
     // title text
-    static __TITLE_TEXT = '登录';
-    static __TITLE_EMOJI = '🍉';
-    static __TITLE_EMOJI_LABEL = 'watermelon';
+    static __TITLE__TEXT = '登录';
+    static __TITLE__EMOJI = '🍉';
+    static __TITLE__EMOJI__LABEL = 'watermelon';
+    // other text
+    static __REMEMBER_ME_CHECKBOX__TEXT = '记住我30天';
+    static __REGISTER_LINK__TEXT = '注册';
+    static __FORGET_PASSWORD_LINK__TEXT = '忘记密码';
 
     /**
      * constructor of react component
@@ -47,7 +51,7 @@ export class UserLoginPage extends React.Component {
             email: '',
             password: '',
 
-            // button locked
+            // form locked
             locked: false,
 
             // loading status
@@ -110,11 +114,11 @@ export class UserLoginPage extends React.Component {
             <div className={'font-size-xl text-align-center'}>
                 <span
                     role={'img'}
-                    aria-labelledby={UserLoginPage.__TITLE_EMOJI_LABEL}>
-                    {UserLoginPage.__TITLE_EMOJI}
+                    aria-labelledby={UserLoginPage.__TITLE__EMOJI__LABEL}>
+                    {UserLoginPage.__TITLE__EMOJI}
                 </span>
                 <span>
-                    {UserLoginPage.__TITLE_TEXT}
+                    {UserLoginPage.__TITLE__TEXT}
                 </span>
             </div>
         );
@@ -132,7 +136,7 @@ export class UserLoginPage extends React.Component {
             <Form className={'mt-lg'}>
                 <Item>
                     <Input
-                        placeholder={UserLoginPage.__FORM_EMAIL_INPUT__PLACEHOLDER}
+                        placeholder={UserLoginPage.__FORM__EMAIL_INPUT__PLACEHOLDER}
                         prefix={<Icon type={'user'}/>}
                         value={this.state.email}
                         onChange={this.onEmailChange}
@@ -141,7 +145,7 @@ export class UserLoginPage extends React.Component {
                 <Item>
                     <Input
                         type={'password'}
-                        placeholder={UserLoginPage.__FORM_PASSWORD_INPUT__PLACEHOLDER}
+                        placeholder={UserLoginPage.__FORM__PASSWORD_INPUT__PLACEHOLDER}
                         prefix={<Icon type={'lock'}/>}
                         value={this.state.password}
                         onChange={this.onPasswordChange}
@@ -149,11 +153,11 @@ export class UserLoginPage extends React.Component {
                 </Item>
                 <Item>
                     <span className={'float-left'}>
-                        <Checkbox>记住我30天</Checkbox>
+                        <Checkbox>{UserLoginPage.__REMEMBER_ME_CHECKBOX__TEXT}</Checkbox>
                     </span>
                     <span className={'float-right'}>
-                        <Link to={'/user/register'}>注册</Link>&nbsp;
-                        <Link to={'#'}>忘记密码</Link>
+                        <Link to={'/user/register'}>{UserLoginPage.__REGISTER_LINK__TEXT}</Link>&nbsp;
+                        <Link to={'#'}>{UserLoginPage.__FORGET_PASSWORD_LINK__TEXT}</Link>
                     </span>
                     <Button
                         type={'primary'}
@@ -163,7 +167,7 @@ export class UserLoginPage extends React.Component {
                         {this.state.buttonLocked ? (
                             littleLoadingSpan
                         ) : (
-                            UserLoginPage.__FORM__LOGIN_BUTTON_TEXT
+                            UserLoginPage.__FORM__LOGIN_BUTTON__TEXT
                         )}
                     </Button>
                     <span>
