@@ -1,7 +1,7 @@
 /**
- * /page/user/login.js
+ * /page/user/register.js
  * @author John Kindem
- * @description source file for user login page
+ * @description source file for user register page
  * @version v1.0
  */
 
@@ -14,30 +14,32 @@ import { Log } from '../../tool/log';
 import { PasswordTool } from '../../tool/password';
 import regexConfig from '../../config/regex';
 import { LoadingLayout } from '../../component/gadget/loading-layout';
+import { KIcon } from '../../component/tool/k-icon';
 import { Link } from 'react-router-dom';
 
 const { Item } = Form;
 const userRegex = regexConfig.user;
 
 /**
- * page component - /user/login
+ * page component - /user/register
  */
-export class UserLoginPage extends React.Component {
+export class UserRegisterPage extends React.Component {
 
     // static text
-    // input component place holder text
+    // input component place holder texts
     static __FORM__EMAIL_INPUT__PLACEHOLDER = '邮箱';
+    static __FORM__NICKNAME_INPUT__PLACEHOLDER = '昵称';
     static __FORM__PASSWORD_INPUT__PLACEHOLDER = '密码';
+    static __FORM__CONFIRM_PASSWORD_INPUT__PLACEHOLDER = '确认密码';
     // button text
-    static __FORM__LOGIN_BUTTON__TEXT = '登录';
+    static __FORM__REGISTER_BUTTON__TEXT = '注册';
     // title text
-    static __TITLE__TEXT = '登录';
-    static __TITLE__EMOJI = '🍉';
-    static __TITLE__EMOJI__LABEL = 'watermelon';
+    static __TITLE__TEXT = '注册';
+    static __TITLE__EMOJI = '🎉';
+    static __TITLE__EMOJI__LABEL = 'welcome';
     // other text
-    static __REMEMBER_ME_CHECKBOX__TEXT = '记住我30天';
-    static __REGISTER_LINK__TEXT = '注册';
-    static __FORGET_PASSWORD_LINK__TEXT = '忘记密码';
+    static __HAVE_ACCOUNT_HINT__TEXT = '已有账号?直接';
+    static __LOGIN_LINK__TEXT = '登录';
 
     /**
      * constructor of react component
@@ -49,7 +51,9 @@ export class UserLoginPage extends React.Component {
         this.state = {
             // form values
             email: '',
+            nickname: '',
             password: '',
+            confirmPassword: '',
 
             // form locked
             locked: false,
@@ -60,10 +64,9 @@ export class UserLoginPage extends React.Component {
     }
 
     /**
-     * life function of react which called when component did mount
+     * life cuntion of react which called when component did mount
      */
     componentDidMount() {
-        // set loading status false
         setTimeout(() => { this.setState({ loading: false }); }, 1000);
     }
 
@@ -90,6 +93,14 @@ export class UserLoginPage extends React.Component {
     };
 
     /**
+     * handle called when form's value 'nickname' change
+     * @param {Object} e react event object
+     */
+    onNicknameChange = (e) => {
+        this.setState({ nickname: e.target.value });
+    };
+
+    /**
      * handle called when form's value 'password' change
      * @param {Object} e react event object
      */
@@ -98,9 +109,17 @@ export class UserLoginPage extends React.Component {
     };
 
     /**
-     * handle called when login button clicked
+     * handle called when form's value 'confirm password' change
+     * @param {Object} e react event object
      */
-    onLoginButtonClick = () => {
+    onConfirmPasswordChange = (e) => {
+        this.setState({ confirmPassword: e.target.value });
+    };
+
+    /**
+     * handle called when register button clicked
+     */
+    onRegisterButtonClick = () => {
         // TODO
     };
 
@@ -109,16 +128,16 @@ export class UserLoginPage extends React.Component {
      * @return {*} result of render
      */
     render() {
-        // title row
+        // title div
         const titleDiv = (
             <div className={'font-size-xl text-align-center'}>
                 <span
                     role={'img'}
-                    aria-labelledby={UserLoginPage.__TITLE__EMOJI__LABEL}>
-                    {UserLoginPage.__TITLE__EMOJI}
+                    aria-labelledby={UserRegisterPage.__TITLE__EMOJI__LABEL}>
+                    {UserRegisterPage.__TITLE__EMOJI}
                 </span>
                 <span>
-                    {UserLoginPage.__TITLE__TEXT}
+                    {UserRegisterPage.__TITLE__TEXT}
                 </span>
             </div>
         );
@@ -136,7 +155,7 @@ export class UserLoginPage extends React.Component {
             <Form className={'mt-lg'}>
                 <Item>
                     <Input
-                        placeholder={UserLoginPage.__FORM__EMAIL_INPUT__PLACEHOLDER}
+                        placeholder={UserRegisterPage.__FORM__EMAIL_INPUT__PLACEHOLDER}
                         prefix={<Icon type={'user'}/>}
                         value={this.state.email}
                         onChange={this.onEmailChange}
@@ -144,38 +163,44 @@ export class UserLoginPage extends React.Component {
                 </Item>
                 <Item>
                     <Input
+                        placeholder={UserRegisterPage.__FORM__NICKNAME_INPUT__PLACEHOLDER}
+                        prefix={<Icon type={'smile'}/>}
+                        value={this.state.nickname}
+                        onChange={this.onNicknameChange}
+                        disabled={this.state.locked}/>
+                </Item>
+                <Item>
+                    <Input
                         type={'password'}
-                        placeholder={UserLoginPage.__FORM__PASSWORD_INPUT__PLACEHOLDER}
+                        placeholder={UserRegisterPage.__FORM__PASSWORD_INPUT__PLACEHOLDER}
                         prefix={<Icon type={'lock'}/>}
                         value={this.state.password}
                         onChange={this.onPasswordChange}
                         disabled={this.state.locked}/>
                 </Item>
                 <Item>
-                    <span className={'float-left'}>
-                        <Checkbox>{UserLoginPage.__REMEMBER_ME_CHECKBOX__TEXT}</Checkbox>
-                    </span>
-                    <span className={'float-right'}>
-                        <Link to={'/user/register'}>{UserLoginPage.__REGISTER_LINK__TEXT}</Link>&nbsp;
-                        <Link to={'#'}>{UserLoginPage.__FORGET_PASSWORD_LINK__TEXT}</Link>
-                    </span>
+                    <Input
+                        type={'password'}
+                        placeholder={UserRegisterPage.__FORM__CONFIRM_PASSWORD_INPUT__PLACEHOLDER}
+                        prefix={<Icon type={'lock'}/>}
+                        value={this.state.confirmPassword}
+                        onChange={this.onConfirmPasswordChange}
+                        disabled={this.state.locked}/>
+                </Item>
+                <Item>
                     <Button
                         type={'primary'}
                         className={'w-100'}
-                        onClick={this.onLoginButtonClick}
-                        disabled={this.state.locked}>
-                        {this.state.buttonLocked ? (
+                        onClick={this.onRegisterButtonClick}>
+                        {this.state.locked ? (
                             littleLoadingSpan
                         ) : (
-                            UserLoginPage.__FORM__LOGIN_BUTTON__TEXT
+                            UserRegisterPage.__FORM__REGISTER_BUTTON__TEXT
                         )}
                     </Button>
                     <span>
-                        或使用&nbsp;
-                        <Link to={'#'}>GitHub</Link>&nbsp;
-                        <Link to={'#'}>QQ</Link>&nbsp;
-                        <Link to={'#'}>微博</Link>&nbsp;
-                        登录
+                        {UserRegisterPage.__HAVE_ACCOUNT_HINT__TEXT}&nbsp;
+                        <Link to={'/user/login'}>{UserRegisterPage.__LOGIN_LINK__TEXT}</Link>
                     </span>
                 </Item>
             </Form>
@@ -205,6 +230,6 @@ export class UserLoginPage extends React.Component {
                 )}
             </KLayout>
         );
-    }
+    };
 
 };
