@@ -68,16 +68,16 @@ export class UserLoginPage extends React.Component {
     }
 
     /**
-     * tool function for lock button
+     * tool function for lock form
      */
-    lockButton() {
+    lock() {
         this.setState({ locked: true });
     }
 
     /**
-     * tool function for unlock button
+     * tool function for unlock form
      */
-    unlockButton() {
+    unlock() {
         this.setState({ locked: false });
     }
 
