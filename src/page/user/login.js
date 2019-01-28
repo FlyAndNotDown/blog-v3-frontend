@@ -100,8 +100,23 @@ export class UserLoginPage extends React.Component {
     /**
      * handle called when login button clicked
      */
-    onLoginButtonClick = () => {
+    onLoginButtonClick = async () => {
+        // lock the form
+        this.lock();
+
+        // check the input value at first
+        let { email, password } = this.state;
+        if (!email || !email.match(userRegex.email)) {
+            this.unlock();
+            return message.error('邮箱地址不符合要求');
+        }
+        if (!password || !password.match(userRegex.password)) {
+            this.unlock();
+            return message.error('密码不符合要求');
+        }
+
         // TODO
+        
     };
 
     /**
