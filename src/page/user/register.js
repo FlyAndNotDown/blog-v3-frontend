@@ -40,6 +40,11 @@ export class UserRegisterPage extends React.Component {
     // other text
     static __HAVE_ACCOUNT_HINT__TEXT = '已有账号?直接';
     static __LOGIN_LINK__TEXT = '登录';
+    // validator help text
+    static __VALIDATE_HELP__EMAIL__TEXT = '不正确的邮箱地址';
+    static __VALIDATE_HELP__NICKNAME__TEXT = '昵称必须是4-20字符内中英文、数字的组合';
+    static __VALIDATE_HELP__PASSWORD__TEXT = '密码必须为6-16字符内英文、数字、@#的组合';
+    static __VALIDATE_HELP__CONFIRM_PASSWORD__TEXT = '两次输入的密码不同';
 
     /**
      * constructor of react component
@@ -59,7 +64,13 @@ export class UserRegisterPage extends React.Component {
             locked: false,
 
             // loading status
-            loading: true
+            loading: true,
+
+            // validate status
+            emailValidated: true,
+            nicknameValidated: true,
+            passwordValidated: true,
+            confirmPasswordValidated: true
         };
     }
 
@@ -117,10 +128,62 @@ export class UserRegisterPage extends React.Component {
     };
 
     /**
+     * validate form values
+     * @returns {boolean} validate success
+     */
+    validateFormValues = () => {
+        let success = true;
+
+        // check email input value
+        if (this.state.email.match(userRegex.email)) {
+            this.setState({ emailValidated: true });
+            success = true;
+        } else {
+            this.setState({ emailValidated: false });
+            success = false;
+        }
+
+        // check username input value
+        if (this.state.nickname.match(userRegex.nickname)) {
+            this.setState({ nicknameValidated: true });
+            success = true;
+        } else {
+            this.setState({ nicknameValidated: false });
+            success = false;
+        }
+
+        // password
+        if (this.state.password.match(userRegex.password)) {
+            this.setState({ passwordValidated: true });
+            success = true;
+        } else {
+            this.setState({ passwordValidated: false });
+            success = false;
+        }
+
+        // confirm password
+        if (this.state.confirmPassword === this.state.password) {
+            this.setState({ confirmPasswordValidated: true });
+            success = true;
+        } else {
+            this.setState({ confirmPasswordValidated: false });
+            success = false;
+        }
+
+        return success;
+    };
+
+    /**
      * handle called when register button clicked
      */
     onRegisterButtonClick = () => {
-        // TODO
+        // lock
+        this.lock();
+
+        // form validate
+        if (!this.validateFormValues()) {
+            this.unlock();
+        }
     };
 
     /**
@@ -153,7 +216,10 @@ export class UserRegisterPage extends React.Component {
         // form
         const form = (
             <Form className={'mt-lg'}>
-                <Item>
+                <Item
+                    hasFeedback
+                    validateStatus={this.state.emailValidated ? null : 'error'}
+                    help={this.state.emailValidated ? '' : UserRegisterPage.__VALIDATE_HELP__EMAIL__TEXT}>
                     <Input
                         placeholder={UserRegisterPage.__FORM__EMAIL_INPUT__PLACEHOLDER}
                         prefix={<Icon type={'user'}/>}
@@ -161,7 +227,10 @@ export class UserRegisterPage extends React.Component {
                         onChange={this.onEmailChange}
                         disabled={this.state.locked}/>
                 </Item>
-                <Item>
+                <Item
+                    hasFeedback
+                    validateStatus={this.state.nicknameValidated ? null : 'error'}
+                    help={this.state.nicknameValidated ? '' : UserRegisterPage.__VALIDATE_HELP__NICKNAME__TEXT}>
                     <Input
                         placeholder={UserRegisterPage.__FORM__NICKNAME_INPUT__PLACEHOLDER}
                         prefix={<Icon type={'smile'}/>}
@@ -169,7 +238,10 @@ export class UserRegisterPage extends React.Component {
                         onChange={this.onNicknameChange}
                         disabled={this.state.locked}/>
                 </Item>
-                <Item>
+                <Item
+                    hasFeedback
+                    validateStatus={this.state.passwordValidated ? null : 'error'}
+                    help={this.state.passwordValidated ? '' : UserRegisterPage.__VALIDATE_HELP__PASSWORD__TEXT}>
                     <Input
                         type={'password'}
                         placeholder={UserRegisterPage.__FORM__PASSWORD_INPUT__PLACEHOLDER}
@@ -178,7 +250,10 @@ export class UserRegisterPage extends React.Component {
                         onChange={this.onPasswordChange}
                         disabled={this.state.locked}/>
                 </Item>
-                <Item>
+                <Item
+                    hasFeedback
+                    validateStatus={this.state.confirmPasswordValidated ? null : 'error'}
+                    help={this.state.confirmPasswordValidated ? '' : UserRegisterPage.__VALIDATE_HELP__CONFIRM_PASSWORD__TEXT}>
                     <Input
                         type={'password'}
                         placeholder={UserRegisterPage.__FORM__CONFIRM_PASSWORD_INPUT__PLACEHOLDER}
@@ -191,7 +266,8 @@ export class UserRegisterPage extends React.Component {
                     <Button
                         type={'primary'}
                         className={'w-100'}
-                        onClick={this.onRegisterButtonClick}>
+                        onClick={this.onRegisterButtonClick}
+                        disabled={this.state.locked}>
                         {this.state.locked ? (
                             littleLoadingSpan
                         ) : (
