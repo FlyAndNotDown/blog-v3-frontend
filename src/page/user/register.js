@@ -47,6 +47,7 @@ export class UserRegisterPage extends React.Component {
     static __VALIDATE_HELP__NICKNAME__TEXT = '昵称必须是4-20字符内中英文、数字的组合';
     static __VALIDATE_HELP__PASSWORD__TEXT = '密码必须为6-16字符内英文、数字、@#的组合';
     static __VALIDATE_HELP__CONFIRM_PASSWORD__TEXT = '两次输入的密码不同';
+    static __VALIDATE_HELP__CAPTCHA__TEXT = '验证码错误';
 
     /**
      * constructor of react component
@@ -74,6 +75,7 @@ export class UserRegisterPage extends React.Component {
             nicknameValidated: true,
             passwordValidated: true,
             confirmPasswordValidated: true,
+            captchaValidated: true,
 
             // captcha
             captchaGetReady: true,
@@ -292,7 +294,10 @@ export class UserRegisterPage extends React.Component {
                         onChange={this.onConfirmPasswordChange}
                         disabled={this.state.locked}/>
                 </Item>
-                <Item>
+                <Item
+                    hasFeedback
+                    validateStatus={this.state.captchaValidated ? null : 'error'}
+                    help={this.state.captchaValidated ? '' : UserRegisterPage.__VALIDATE_HELP__CAPTCHA__TEXT}>
                     <Input
                         placeholder={UserRegisterPage.__FORM__CAPTCHA_INPUT__PLACEHOLDER}
                         prefix={<Icon type={'key'}/>}
