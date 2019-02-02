@@ -7,7 +7,7 @@
 
 import React from 'react';
 import { KLayout } from '../../component/tool/k-layout';
-import { Row, Col, Form, Input, Icon, Button, message, Spin, Checkbox } from 'antd';
+import { Row, Col, Form, Input, Icon, Button, message, Spin, Modal } from 'antd';
 import axios from 'axios';
 import requestConfig from '../../config/request';
 import { Log } from '../../tool/log';
@@ -31,8 +31,10 @@ export class UserRegisterPage extends React.Component {
     static __FORM__NICKNAME_INPUT__PLACEHOLDER = '昵称';
     static __FORM__PASSWORD_INPUT__PLACEHOLDER = '密码';
     static __FORM__CONFIRM_PASSWORD_INPUT__PLACEHOLDER = '确认密码';
+    static __FORM__CAPTCHA_INPUT__PLACEHOLDER = '邮箱验证码';
     // button text
     static __FORM__REGISTER_BUTTON__TEXT = '注册';
+    static __FORM__GET_CAPTCHA_BUTTON__TEXT = '获取';
     // title text
     static __TITLE__TEXT = '注册';
     static __TITLE__EMOJI = '🎉';
@@ -59,6 +61,7 @@ export class UserRegisterPage extends React.Component {
             nickname: '',
             password: '',
             confirmPassword: '',
+            captcha: '',
 
             // form locked
             locked: false,
@@ -70,7 +73,11 @@ export class UserRegisterPage extends React.Component {
             emailValidated: true,
             nicknameValidated: true,
             passwordValidated: true,
-            confirmPasswordValidated: true
+            confirmPasswordValidated: true,
+
+            // captcha
+            captchaGetReady: true,
+            captchaTimeToReady: 119
         };
     }
 
@@ -128,6 +135,31 @@ export class UserRegisterPage extends React.Component {
     };
 
     /**
+     * handle called when form's value 'captcha' change
+     * @param {Object} e react event object
+     */
+    onCaptchaChange = (e) => {
+        this.setState({ captcha: e.target.value });
+    };
+
+    /**
+     * handle called when get captcha button clicked
+     */
+    onGetCaptchaButtonClick = () => {
+        this.setState({
+            captchaGetReady: false,
+            captchaTimeToReady: 119
+        });
+        let interval = setInterval(() => {
+            this.setState(prevState => ({ captchaTimeToReady: prevState.captchaTimeToReady - 1 }));
+        }, 1000);
+        setTimeout(() => {
+            this.setState({ captchaGetReady: true });
+            clearInterval(interval);
+        }, 119 * 1000);
+    };
+
+    /**
      * validate form values
      * @returns {boolean} validate success
      */
@@ -137,7 +169,6 @@ export class UserRegisterPage extends React.Component {
         // check email input value
         if (this.state.email.match(userRegex.email)) {
             this.setState({ emailValidated: true });
-            success = true;
         } else {
             this.setState({ emailValidated: false });
             success = false;
@@ -146,7 +177,6 @@ export class UserRegisterPage extends React.Component {
         // check username input value
         if (this.state.nickname.match(userRegex.nickname)) {
             this.setState({ nicknameValidated: true });
-            success = true;
         } else {
             this.setState({ nicknameValidated: false });
             success = false;
@@ -155,7 +185,6 @@ export class UserRegisterPage extends React.Component {
         // password
         if (this.state.password.match(userRegex.password)) {
             this.setState({ passwordValidated: true });
-            success = true;
         } else {
             this.setState({ passwordValidated: false });
             success = false;
@@ -164,7 +193,6 @@ export class UserRegisterPage extends React.Component {
         // confirm password
         if (this.state.confirmPassword === this.state.password) {
             this.setState({ confirmPasswordValidated: true });
-            success = true;
         } else {
             this.setState({ confirmPasswordValidated: false });
             success = false;
@@ -184,6 +212,8 @@ export class UserRegisterPage extends React.Component {
         if (!this.validateFormValues()) {
             this.unlock();
         }
+
+        // TODO
     };
 
     /**
@@ -261,6 +291,22 @@ export class UserRegisterPage extends React.Component {
                         value={this.state.confirmPassword}
                         onChange={this.onConfirmPasswordChange}
                         disabled={this.state.locked}/>
+                </Item>
+                <Item>
+                    <Input
+                        placeholder={UserRegisterPage.__FORM__CAPTCHA_INPUT__PLACEHOLDER}
+                        prefix={<Icon type={'key'}/>}
+                        addonAfter={
+                            this.state.captchaGetReady ? (
+                                <a onClick={this.onGetCaptchaButtonClick}>
+                                    {UserRegisterPage.__FORM__GET_CAPTCHA_BUTTON__TEXT}
+                                </a>
+                            ) : (
+                                <span>
+                                    {this.state.captchaTimeToReady}
+                                </span>
+                            )
+                        }/>
                 </Item>
                 <Item>
                     <Button
