@@ -270,7 +270,7 @@ export class UserRegisterPage extends React.Component {
         data = response.data || {};
 
         // get info from data object
-        let exist = data.exist || true;
+        let exist = !!data.exist;
 
         // if the email has exist
         if (exist) {
