@@ -425,6 +425,8 @@ export class UserRegisterPage extends React.Component {
                                 </span>
                             )
                         }
+                        value={this.state.captcha}
+                        onChange={this.onCaptchaChange}
                         disabled={this.state.locked}/>
                 </Item>
                 <Item>
