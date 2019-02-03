@@ -43,7 +43,8 @@ export class UserRegisterPage extends React.Component {
     static __HAVE_ACCOUNT_HINT__TEXT = '已有账号?直接';
     static __LOGIN_LINK__TEXT = '登录';
     // validator help text
-    static __VALIDATE_HELP__EMAIL__TEXT = '不正确的邮箱地址';
+    static __VALIDATE_HELP__EMAIL_ADDRESS_INCORRECT__TEXT = '不正确的邮箱地址';
+    static __VALIDATE_HELP__EMAIL_HAVE_BEEN_USED__TEXT = '邮箱地址已经被使用';
     static __VALIDATE_HELP__NICKNAME__TEXT = '昵称必须是4-20字符内中英文、数字的组合';
     static __VALIDATE_HELP__PASSWORD__TEXT = '密码必须为6-16字符内英文、数字、@#的组合';
     static __VALIDATE_HELP__CONFIRM_PASSWORD__TEXT = '两次输入的密码不同';
@@ -72,6 +73,7 @@ export class UserRegisterPage extends React.Component {
 
             // validate status
             emailValidated: true,
+            emailHelpTypeIsAddressIncorrect: true,
             nicknameValidated: true,
             passwordValidated: true,
             confirmPasswordValidated: true,
@@ -165,37 +167,38 @@ export class UserRegisterPage extends React.Component {
      * validate form values
      * @returns {boolean} validate success
      */
-    validateFormValues = () => {
+    basicValidateFormValues = () => {
+        // init states
         let success = true;
+        this.setState({
+            emailValidated: true,
+            emailHelpTypeIsAddressIncorrect: true,
+            nicknameValidated: true,
+            passwordValidated: true,
+            confirmPasswordValidated: true,
+            captchaValidated: true
+        });
 
         // check email input value
-        if (this.state.email.match(userRegex.email)) {
-            this.setState({ emailValidated: true });
-        } else {
+        if (!this.state.email.match(userRegex.email)) {
             this.setState({ emailValidated: false });
             success = false;
         }
 
         // check username input value
-        if (this.state.nickname.match(userRegex.nickname)) {
-            this.setState({ nicknameValidated: true });
-        } else {
+        if (!this.state.nickname.match(userRegex.nickname)) {
             this.setState({ nicknameValidated: false });
             success = false;
         }
 
         // password
-        if (this.state.password.match(userRegex.password)) {
-            this.setState({ passwordValidated: true });
-        } else {
+        if (!this.state.password.match(userRegex.password)) {
             this.setState({ passwordValidated: false });
             success = false;
         }
 
         // confirm password
-        if (this.state.confirmPassword === this.state.password) {
-            this.setState({ confirmPasswordValidated: true });
-        } else {
+        if (this.state.confirmPassword !== this.state.password) {
             this.setState({ confirmPasswordValidated: false });
             success = false;
         }
@@ -211,7 +214,7 @@ export class UserRegisterPage extends React.Component {
         this.lock();
 
         // form validate
-        if (!this.validateFormValues()) {
+        if (!this.basicValidateFormValues()) {
             this.unlock();
         }
 
@@ -251,7 +254,14 @@ export class UserRegisterPage extends React.Component {
                 <Item
                     hasFeedback
                     validateStatus={this.state.emailValidated ? null : 'error'}
-                    help={this.state.emailValidated ? '' : UserRegisterPage.__VALIDATE_HELP__EMAIL__TEXT}>
+                    help={
+                        this.state.emailValidated ?
+                            '' : (
+                                this.state.emailHelpTypeIsAddressIncorrect ?
+                                    UserRegisterPage.__VALIDATE_HELP__EMAIL_ADDRESS_INCORRECT__TEXT :
+                                    UserRegisterPage.__VALIDATE_HELP__EMAIL_HAVE_BEEN_USED__TEXT
+                            )
+                    }>
                     <Input
                         placeholder={UserRegisterPage.__FORM__EMAIL_INPUT__PLACEHOLDER}
                         prefix={<Icon type={'user'}/>}
@@ -311,7 +321,8 @@ export class UserRegisterPage extends React.Component {
                                     {this.state.captchaTimeToReady}
                                 </span>
                             )
-                        }/>
+                        }
+                        disabled={this.state.locked}/>
                 </Item>
                 <Item>
                     <Button

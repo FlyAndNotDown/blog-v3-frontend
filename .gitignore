@@ -25,3 +25,6 @@ yarn.lock
 
 # JetBrain
 /.idea
+
+# VS Code
+/.vscode
