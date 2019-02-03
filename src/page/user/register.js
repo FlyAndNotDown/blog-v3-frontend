@@ -149,7 +149,35 @@ export class UserRegisterPage extends React.Component {
     /**
      * handle called when get captcha button clicked
      */
-    onGetCaptchaButtonClick = () => {
+    onGetCaptchaButtonClick = async () => {
+        // send request to get captcha
+        let response, data;
+        try {
+            response = await axios.get(requestConfig.userLocal, {
+                params: {
+                    type: 'captcha',
+                    email: this.state.email
+                }
+            });
+        } catch (e) {
+            Log.devError(`get ${requestConfig.userLocal}`, e);
+            return message.error('服务器错误');
+        }
+
+        // if request success
+        Log.dev(`get ${requestConfig.userLocal} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        // get info in data object
+        let success = !!data.success;
+
+        // if failed
+        if (!success) {
+            return message.error('获取验证码失败');
+        }
+
+        // if success
         this.setState({
             captchaGetReady: false,
             captchaTimeToReady: 119
@@ -212,7 +240,7 @@ export class UserRegisterPage extends React.Component {
     /**
      * handle called when register button clicked
      */
-    onRegisterButtonClick = () => {
+    onRegisterButtonClick = async () => {
         // lock
         this.lock();
 
@@ -242,7 +270,7 @@ export class UserRegisterPage extends React.Component {
         data = response.data || {};
 
         // get info from data object
-        exist = data.exist || true;
+        let exist = data.exist || true;
 
         // if the email has exist
         if (exist) {
