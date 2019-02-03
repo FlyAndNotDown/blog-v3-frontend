@@ -14,7 +14,7 @@ export class PasswordTool {
      * 获取盐矩阵
      * @returns {Object} 获取盐矩阵
      */
-    static getSaltVertex() {
+    static __getSaltVertex() {
         return [
             '0', '1', '2', '3',
             '4', '5', '6', '7',
@@ -29,7 +29,7 @@ export class PasswordTool {
      */
     static getSalt() {
         let salt = '';
-        const saltVertex = PasswordTool.getSaltVertex();
+        const saltVertex = PasswordTool.__getSaltVertex();
         for (let i = 0; i < 12; i++) {
             salt += saltVertex[Math.floor(Math.random() * 16)]
         }

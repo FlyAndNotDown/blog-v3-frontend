@@ -282,7 +282,46 @@ export class UserRegisterPage extends React.Component {
         }
 
         // if the email is not exist in database
-        // TODO
+        // get a random code
+        let salt = PasswordTool.getSalt();
+        // encode the password
+        let passwordHash = PasswordTool.encode(this.state.password, salt);
+
+        // send a request to register a local user account
+        response = null;
+        data = null;
+        try {
+            response = await axios.post(requestConfig.userLocal, {
+                email: this.state.email,
+                captcha: this.state.captcha.toUpperCase(),
+                nickname: this.state.nickname,
+                salt: salt,
+                password: passwordHash
+            });
+        } catch (e) {
+            Log.devError(`post ${requestConfig.userLocal}`, e);
+            this.unlock();
+            return message.error('服务器错误');
+        }
+
+        // if request success
+        Log.dev(`post ${requestConfig.userLocal} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        // get info from data object
+        let success = !!data.success;
+        let reason = data.reason || '';
+
+        // if register failed
+        if (!success) {
+            this.unlock();
+            return message.error(`注册失败，${reason}`);
+        }
+
+        // if register success
+        // jump to index page
+        this.props.history.push('/');
     };
 
     /**
