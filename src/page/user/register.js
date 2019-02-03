@@ -9,7 +9,7 @@ import React from 'react';
 import { KLayout } from '../../component/tool/k-layout';
 import { Row, Col, Form, Input, Icon, Button, message, Spin, Modal } from 'antd';
 import axios from 'axios';
-import requestConfig from '../../config/request';
+import requestConfig, { commonUrlPrefix } from '../../config/request';
 import { Log } from '../../tool/log';
 import { PasswordTool } from '../../tool/password';
 import regexConfig from '../../config/regex';
@@ -181,7 +181,10 @@ export class UserRegisterPage extends React.Component {
 
         // check email input value
         if (!this.state.email.match(userRegex.email)) {
-            this.setState({ emailValidated: false });
+            this.setState({
+                emailValidated: false,
+                emailHelpTypeIsAddressIncorrect: true
+            });
             success = false;
         }
 
@@ -215,9 +218,42 @@ export class UserRegisterPage extends React.Component {
 
         // form validate
         if (!this.basicValidateFormValues()) {
-            this.unlock();
+            return this.unlock();
         }
 
+        // send a request to get email usage status
+        let response, data;
+        try {
+            response = await axios.get(requestConfig.userLocal, {
+                params: {
+                    type: 'emailUsage',
+                    email: this.state.email
+                }
+            });
+        } catch (e) {
+            Log.devError(`get ${requestConfig.userLocal}`, e);
+            this.unlock();
+            return message.error('服务器错误');
+        }
+
+        // if success
+        Log.dev(`get ${requestConfig.userLocal} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        // get info from data object
+        exist = data.exist || true;
+
+        // if the email has exist
+        if (exist) {
+            this.setState({
+                emailValidated: false,
+                emailHelpTypeIsAddressIncorrect: false
+            });
+            return this.unlock();
+        }
+
+        // if the email is not exist in database
         // TODO
     };
 
