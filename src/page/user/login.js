@@ -152,9 +152,9 @@ export class UserLoginPage extends React.Component {
         // send a request to get salt of user
         let response, data;
         try {
-            response = await axios.get({
+            response = await axios.get(requestConfig.userLogin, {
                 params: {
-                    type: 'local',
+                    type: 'salt',
                     email: email
                 }
             });
@@ -187,7 +187,7 @@ export class UserLoginPage extends React.Component {
         response = null;
         data = null;
         try {
-            response = await axios.post({
+            response = await axios.post(requestConfig.userLogin, {
                 type: 'local',
                 email: email,
                 password: passwordHash
