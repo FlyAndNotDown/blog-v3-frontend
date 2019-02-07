@@ -193,7 +193,7 @@ export class UserRegisterPage extends React.Component {
 
     /**
      * validate form values
-     * @returns {boolean} validate success
+     * @returns {boolean} validate success status
      */
     basicValidateFormValues = () => {
         // init states

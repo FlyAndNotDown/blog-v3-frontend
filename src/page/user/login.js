@@ -38,6 +38,10 @@ export class UserLoginPage extends React.Component {
     static __REMEMBER_ME_CHECKBOX__TEXT = '记住我30天';
     static __REGISTER_LINK__TEXT = '注册';
     static __FORGET_PASSWORD_LINK__TEXT = '忘记密码';
+    // validator help
+    static __VALIDATOR_HELP__EMAIL = '邮箱格式不正确';
+    // validator help
+    static __VALIDATOR_HELP__PASSWORD = '密码必须为6-16字符内英文、数字、@#的组合';
 
     /**
      * constructor of react component
@@ -55,7 +59,11 @@ export class UserLoginPage extends React.Component {
             locked: false,
 
             // loading status
-            loading: true
+            loading: true,
+
+            // validated
+            emailValidated: true,
+            passwordValidated: true
         };
     }
 
@@ -98,10 +106,46 @@ export class UserLoginPage extends React.Component {
     };
 
     /**
+     * validate all form values and return result
+     * @returns {boolean} validate success status
+     */
+    formValidate = () => {
+        // init states
+        let success = true;
+        this.setState({
+            emailValidated: true,
+            passwordValidated: true
+        });
+
+        // check email input value
+        if (!this.state.email.match(userRegex.email)) {
+            this.setState({ emailValidated: false });
+            success = false;
+        }
+
+        // check password input value
+        if (!this.state.password.match(userRegex.password)) {
+            this.setState({ passwordValidated: false });
+            success = false;
+        }
+
+        // return result
+        return success;
+    };
+
+    /**
      * handle called when login button clicked
      */
     onLoginButtonClick = async () => {
         
+        // lock form
+        this.lock();
+        
+        // validate form values
+        if (!this.formValidate()) {
+            return this.unlock();
+        }
+
         // TODO
         
     };
@@ -136,7 +180,10 @@ export class UserLoginPage extends React.Component {
         // form
         const form = (
             <Form className={'mt-lg'}>
-                <Item>
+                <Item
+                    hasFeedback
+                    validateStatus={this.state.emailValidated ? null : 'error'}
+                    help={this.state.emailValidated ? '' : UserLoginPage.__VALIDATOR_HELP__EMAIL}>
                     <Input
                         placeholder={UserLoginPage.__FORM__EMAIL_INPUT__PLACEHOLDER}
                         prefix={<Icon type={'user'}/>}
@@ -144,7 +191,10 @@ export class UserLoginPage extends React.Component {
                         onChange={this.onEmailChange}
                         disabled={this.state.locked}/>
                 </Item>
-                <Item>
+                <Item
+                    hasFeedback
+                    validateStatus={this.state.passwordValidated ? null : 'error'}
+                    help={this.state.passwordValidated ? '' : UserLoginPage.__VALIDATOR_HELP__PASSWORD}>
                     <Input
                         type={'password'}
                         placeholder={UserLoginPage.__FORM__PASSWORD_INPUT__PLACEHOLDER}
