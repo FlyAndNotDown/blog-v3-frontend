@@ -146,7 +146,77 @@ export class UserLoginPage extends React.Component {
             return this.unlock();
         }
 
-        // TODO
+        // get values from state object
+        let { email, password } = this.state;
+
+        // send a request to get salt of user
+        let response, data;
+        try {
+            response = await axios.get({
+                params: {
+                    type: 'local',
+                    email: email
+                }
+            });
+        } catch (e) {
+            Log.devError(`get ${requestConfig.userLogin}`, e);
+            this.unlock();
+            return message.error('服务器错误');
+        }
+
+        // if success, log it
+        Log.dev(`get ${requestConfig.userLogin} OK`);
+
+        // unpack response object
+        response = response || {};
+        data = response.data || {};
+
+        // get info in data object
+        let salt = data.salt || null;
+
+        // if got nothing
+        if (!salt) {
+            this.unlock();
+            return message.error('用户不存在');
+        }
+
+        // encode password
+        let passwordHash = PasswordTool.encode(password, salt);
+        
+        // send a request to do login check
+        response = null;
+        data = null;
+        try {
+            response = await axios.post({
+                type: 'local',
+                email: email,
+                password: passwordHash
+            });
+        } catch (e) {
+            Log.devError(`post ${requestConfig.userLogin}`, e);
+            this.unlock();
+            return message.error('服务器错误');
+        }
+
+        // if success, log it
+        Log.dev(`post ${requestConfig.userLogin} OK`);
+
+        // unpack response object
+        response = response || {};
+        data = response.data || {};
+
+        // get infos in data object
+        let success = !!data.success;
+
+        // if login failed
+        if (!success) {
+            this.unlock();
+            return message.error('用户名或密码错误');
+        }
+
+        // if login success, jump to index page
+        message.info('登录成功，正在为您跳转');
+        setTimeout(() => { this.props.history.push('/'); }, 1000);
         
     };
 
