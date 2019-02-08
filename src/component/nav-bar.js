@@ -6,8 +6,11 @@
  */
 
 import React from 'react';
-import { Row, Col, Dropdown, Menu, Icon, Avatar, Button } from 'antd';
+import { Row, Col, Dropdown, Menu, Icon, Avatar, Button, message } from 'antd';
 import { Link } from 'react-router-dom';
+import { Log } from '../tool/log';
+import requestConfig from '../config/request';
+import axios from 'axios';
 
 /**
  * 导航栏组件
@@ -44,11 +47,39 @@ export class NavBar extends React.Component {
     };
 
     /**
-     * 渲染函数
-     * @returns {*} 渲染结果
+     * handle when logout button clicked
+     */
+    onLogoutButtonClick = async () => {
+        // send a request to logout
+        let response, data;
+        try {
+            response = await axios.delete(requestConfig.userLogin);
+        } catch (e) {
+            Log.devError(`delete ${requestConfig.userLogin}`, e);
+            return message.error('注销失败');
+        }
+
+        // if success
+        Log.dev(`delete ${requestConfig.userLogin} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        // get info in data object
+        let success = !!data.success;
+
+        if (success) {
+            return window.location.reload();
+        } else {
+            return message.error('注销失败');
+        }
+    };
+
+    /**
+     * render function
+     * @returns {*} render result
      */
     render() {
-        // 响应式下拉框
+        // overlay when device tpye is phone or tablet
         const overlay = (
             <Menu>
                 {this.props.login && (
@@ -84,7 +115,7 @@ export class NavBar extends React.Component {
             </Menu>
         );
 
-        // 主站链接 div
+        // links div
         const siteLinkDiv = (
             <div>
                 <Link className={'font-size-md color-white float-left color-white-a'} to={'/'}>
@@ -96,9 +127,10 @@ export class NavBar extends React.Component {
         // user status dropdown
         const userStatusMenu = (
             <Menu className={'mt-md'}>
-                <Menu.Item key={'logout'} disabled={true}>欢迎您 {this.props.user.nickname}</Menu.Item>
+                <Menu.Item key={'welcome'} disabled={true}>欢迎您 {this.props.user.nickname}</Menu.Item>
                 <Menu.Item
-                    key={'logout'}>
+                    key={'logout'}
+                    onClick={this.onLogoutButtonClick}>
                     注销
                 </Menu.Item>
             </Menu>
@@ -116,7 +148,7 @@ export class NavBar extends React.Component {
             <Button type={'primary'} onClick={this.onLoginButtonClick}>加入</Button>
         );
 
-        // 导航 div
+        // nav div
         const navDiv = (
             <div className={'lh-nav-bar float-right'}>
                 <Link className={'color-white-a font-size-xs'} to={'/archive'}>归档</Link>
@@ -135,7 +167,7 @@ export class NavBar extends React.Component {
             </div>
         );
 
-        // 移动端导航 div
+        // mobile device nav div
         const mobileNavDiv = (
             <div className={'lh-nav-bar float-right'}>
                 <Dropdown
@@ -148,6 +180,7 @@ export class NavBar extends React.Component {
             </div>
         );
 
+        // render
         return (
             <Row className={`h-nav-bar ${this.props.active ? 'bg-color-nav-bar' : 'bg-color-none'}`}>
                 <Col
