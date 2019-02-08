@@ -437,7 +437,9 @@ export class PostPage extends React.Component {
                     lg={{ offset: 2, span: 14 }}>
                     {postDescriptionRow}
                     {postBody}
-                    <CommentBlock/>
+                    <CommentBlock
+                        login={this.state.userLogin}
+                        user={this.state.userInfo}/>
                 </Col>
                 <Col
                     xs={{ offset: 0, span: 0 }}

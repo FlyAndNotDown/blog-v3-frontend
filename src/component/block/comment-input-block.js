@@ -22,8 +22,10 @@ const { TextArea } = Input;
 export class CommentInputBlock extends React.Component {
 
     // comment button text
-    static COMMENT_INPUT_BLOCK__COMMENT_BUTTON_TEXT = '我也来说一句';
-    static COMMENT_INPUT_BLOCK__COMMENT_BUTTON_DISABLED_TEXT = '登录参与评论';
+    static __COMMENT_INPUT_BLOCK__COMMENT_BUTTON_TEXT = '我也来说一句';
+    static __COMMENT_INPUT_BLOCK__COMMENT_BUTTON_DISABLED_TEXT = '登录参与评论';
+    // comment input block - new comment text area placeholder
+    static __COMMENT_INPUT_BLOCK__NEW_COMMENT_TEXT_AREA__PLACEHOLDER = '部分支持Markdown哦';
 
     /**
      * constructor of component
@@ -50,18 +52,23 @@ export class CommentInputBlock extends React.Component {
         // input textarea row
         const inputRow = (
             <div>
-                <TextArea rows={4} onChange={this.props.onChange} value={this.props.value}/>
+                <TextArea
+                    placeholder={CommentInputBlock.__COMMENT_INPUT_BLOCK__NEW_COMMENT_TEXT_AREA__PLACEHOLDER}
+                    rows={4}
+                    onChange={this.props.onChange}
+                    value={this.props.value}/>
             </div>
         );
 
         // submit button row
         const submitButtonRow = (
             <div>
+                <br/>
                 <Button
                     loading={this.props.submitting}
                     onClick={this.props.onClick}
                     type={'primary'}>
-                    {CommentInputBlock.COMMENT_INPUT_BLOCK__COMMENT_BUTTON_TEXT}
+                    {CommentInputBlock.__COMMENT_INPUT_BLOCK__COMMENT_BUTTON_TEXT}
                 </Button>
             </div>
         );
@@ -72,7 +79,7 @@ export class CommentInputBlock extends React.Component {
                 <Button
                     onClick={this.onLoginButtonClick}
                     type={'primary'}>
-                    {CommentInputBlock.COMMENT_INPUT_BLOCK__COMMENT_BUTTON_DISABLED_TEXT}
+                    {CommentInputBlock.__COMMENT_INPUT_BLOCK__COMMENT_BUTTON_DISABLED_TEXT}
                 </Button>
             </div>
         );

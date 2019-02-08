@@ -11,7 +11,8 @@ import { CommentInputBlock } from './comment-input-block';
 /**
  * comment block
  * @constructor
- * @property {{ login: boolean }} user user info
+ * @property {boolean} login user login status
+ * @property {Object} user user info object
  * @property {function} onNewCommentSubmit handle when new comment submit button click
  */
 export class CommentBlock extends React.Component {
@@ -82,7 +83,7 @@ export class CommentBlock extends React.Component {
                         onSubmit={this.onNewCommentSubmit}
                         submitting={this.state.submitting}
                         value={this.state.newCommentContent}
-                        disabled={!this.props.user.login}/>
+                        disabled={!this.props.login}/>
                 }/>
         );
 
