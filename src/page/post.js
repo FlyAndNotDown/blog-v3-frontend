@@ -104,6 +104,9 @@ export class PostPage extends React.Component {
      * @param {Object} nextProps new props
      */
     async componentWillReceiveProps(nextProps) {
+        // init laod down status
+        this.setState({ loadDown: false });
+
         // get postId
         this.postId = parseInt(nextProps.match.params.postId, 10);
 
