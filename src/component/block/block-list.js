@@ -11,13 +11,6 @@ import { PostBlock } from "./post-block";
  * 块列表组件
  * @constructor
  * @property {Array} posts 文章数组
- * * @member {Object} post 文章块对象
- * * * @member {string} type 块对象类型
- * * * @member {string} title 标题
- * * * @member {string} description 描述
- * * * @member {number} key 文章键
- * * * @member {string} date 日期
- * * * @member {Array} labels 标签
  * @property {number} page total page
  * @property {boolean} loading loading state
  */

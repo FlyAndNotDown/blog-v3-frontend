@@ -18,9 +18,6 @@ import { BlankLink } from '../tool/blank-link';
  * @property {string} description 描述
  * @property {string} date 日期
  * @property {Array} labels 标签
- * * @member {Object} label 标签对象
- * * @member {string} name 标签名
- * * @member {string} key 标签键
  */
 export class PostBlock extends React.Component {
 
@@ -75,7 +72,7 @@ export class PostBlock extends React.Component {
         const titleDiv = (
             <div>
                 <BlankLink
-                    className={'font-size-lg color-black text-decoration-none'}
+                    className={'font-size-md color-black text-decoration-none'}
                     to={`/post/key/${this.props.postKey}`}>
                     {this.props.title}
                 </BlankLink>
