@@ -16,6 +16,7 @@ import requestConfig from '../config/request';
 import { Log } from '../tool/log';
 import { LoadingLayout } from '../component/gadget/loading-layout';
 import chinese2pinyin from 'chinese2pinyin';
+import { CommentBlockList } from '../component/block/comment-block-list';
 
 /**
  * 文章页面
@@ -436,6 +437,7 @@ export class PostPage extends React.Component {
                     lg={{ offset: 2, span: 14 }}>
                     {postDescriptionRow}
                     {postBody}
+                    <CommentBlockList/>
                 </Col>
                 <Col
                     xs={{ offset: 0, span: 0 }}
