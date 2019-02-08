@@ -84,7 +84,7 @@ export class NavBar extends React.Component {
             <Menu>
                 {this.props.login && (
                     <Menu.Item disabled>
-                        欢迎，xxxx
+                        欢迎您 {this.props.user.nickname}
                     </Menu.Item>
                 )}
                 {this.props.login && (
