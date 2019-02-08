@@ -16,6 +16,7 @@ import requestConfig from '../config/request';
 import { Log } from '../tool/log';
 import { CommentBlock } from '../component/block/comment-block';
 import { LoadingLayout } from '../component/gadget/loading-layout';
+import chinese2pinyin from 'chinese2pinyin';
 
 /**
  * 文章页面
@@ -39,7 +40,11 @@ export class PostPage extends React.Component {
             labels: [],
             body: '',
 
-            loadDown: false
+            loadDown: false,
+
+            // user info
+            userLogin: false,
+            userInfo: {}
         };
 
         // url
@@ -59,6 +64,7 @@ export class PostPage extends React.Component {
         let response;
         let data;
 
+        // get post detail
         try {
             response = await axios.get(requestConfig.post, {
                 params: {
@@ -105,7 +111,11 @@ export class PostPage extends React.Component {
      */
     async componentWillReceiveProps(nextProps) {
         // init laod down status
-        this.setState({ loadDown: false });
+        this.setState({
+            loadDown: false,
+            userLogin: false,
+            userInfo: {}
+        });
 
         // get postId
         this.postId = parseInt(nextProps.match.params.postId, 10);
@@ -159,12 +169,37 @@ export class PostPage extends React.Component {
      */
     markdownHeadingRender = object => {
         let level = object.level;
-        let value = object.children[0];
+        let children = [];
 
+        for (let i = 0; i < object.children.length; i++) {
+            if (typeof object.children[i] === 'string') {
+                debugger;
+                children.push({
+                    value: object.children[i],
+                    render: (<span>{object.children[i]}</span>)
+                });
+            } else if (object.children[i].$$typeof.toString() === 'Symbol(react.element)') {
+                debugger;
+                children.push({
+                    value: object.children[i].props.children,
+                    render: (<code>{object.children[i].props.children}</code>)
+                });
+            }
+        }
+
+        let originValue = '';
+        for (let i = 0; i < children.length; i++) {
+            originValue += children[i].value;
+        }
+        let value = originValue;
+        // change '.' to '-'
+        value = value.replace('.', '-');
         // 将多个空格全部变成一个空格
         value = value.replace(/[ ]+/, ' ');
         // 将空格转换成 -
         value = value.replace(' ', '-');
+        // change chinese to pin yin
+        value = chinese2pinyin({ cn: value, result: 'F', remainSpecial: true });
         // 全部转换成小写
         value = value.toLowerCase();
 
@@ -175,7 +210,7 @@ export class PostPage extends React.Component {
 
         // 设置锚点
         if (!this.state.anchorsLock) this.anchors.push({
-            value: object.children[0],
+            value: originValue,
             to: id,
             level: level
         });
@@ -184,17 +219,17 @@ export class PostPage extends React.Component {
         switch (level) {
             default:
             case 1:
-                return (<h1 id={id}>{object.children[0]}</h1>);
+                return (<h1 id={id}>{children.map(child => child.render)}</h1>);
             case 2:
-                return (<h2 id={id}>{object.children[0]}</h2>);
+                return (<h2 id={id}>{children.map(child => child.render)}</h2>);
             case 3:
-                return (<h3 id={id}>{object.children[0]}</h3>);
+                return (<h3 id={id}>{children.map(child => child.render)}</h3>);
             case 4:
-                return (<h4 id={id}>{object.children[0]}</h4>);
+                return (<h4 id={id}>{children.map(child => child.render)}</h4>);
             case 5:
-                return (<h5 id={id}>{object.children[0]}</h5>);
+                return (<h5 id={id}>{children.map(child => child.render)}</h5>);
             case 6:
-                return (<h6 id={id}>{object.children[0]}</h6>);
+                return (<h6 id={id}>{children.map(child => child.render)}</h6>);
         }
     };
 
@@ -274,7 +309,11 @@ export class PostPage extends React.Component {
         const headerLayout = (
             <KLayout colorMode={KLayout.COLOR_MODE_NONE}>
                 <Affix offsetTop={0}>
-                    <NavBar active={true} history={this.props.history}/>
+                    <NavBar
+                        active={true}
+                        history={this.props.history}
+                        login={this.state.userLogin}
+                        user={this.state.userInfo}/>
                 </Affix>
             </KLayout>
         );
