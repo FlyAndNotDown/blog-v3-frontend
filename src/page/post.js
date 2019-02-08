@@ -110,13 +110,6 @@ export class PostPage extends React.Component {
      * @param {Object} nextProps new props
      */
     async componentWillReceiveProps(nextProps) {
-        // init laod down status
-        this.setState({
-            loadDown: false,
-            userLogin: false,
-            userInfo: {}
-        });
-
         // get postId
         this.postId = parseInt(nextProps.match.params.postId, 10);
 
@@ -171,15 +164,14 @@ export class PostPage extends React.Component {
         let level = object.level;
         let children = [];
 
+        // unpack object's children
         for (let i = 0; i < object.children.length; i++) {
             if (typeof object.children[i] === 'string') {
-                debugger;
                 children.push({
                     value: object.children[i],
                     render: (<span>{object.children[i]}</span>)
                 });
             } else if (object.children[i].$$typeof.toString() === 'Symbol(react.element)') {
-                debugger;
                 children.push({
                     value: object.children[i].props.children,
                     render: (<code>{object.children[i].props.children}</code>)
@@ -187,6 +179,7 @@ export class PostPage extends React.Component {
             }
         }
 
+        // calculate value
         let originValue = '';
         for (let i = 0; i < children.length; i++) {
             originValue += children[i].value;
@@ -194,28 +187,29 @@ export class PostPage extends React.Component {
         let value = originValue;
         // change '.' to '-'
         value = value.replace('.', '-');
-        // 将多个空格全部变成一个空格
+        // remove spaces whick are too more
         value = value.replace(/[ ]+/, ' ');
-        // 将空格转换成 -
+        // replace space with '-'
         value = value.replace(' ', '-');
         // change chinese to pin yin
         value = chinese2pinyin({ cn: value, result: 'F', remainSpecial: true });
-        // 全部转换成小写
+        // change all the characters to lower case
         value = value.toLowerCase();
 
+        // calculate id
         let id = `h${level}-`;
         for (let i = 0; i < value.length; i++) {
             if (value[i].match(/[0-9a-zA-Z-]/)) id += value[i];
         }
 
-        // 设置锚点
+        // set anchors
         if (!this.state.anchorsLock) this.anchors.push({
             value: originValue,
             to: id,
             level: level
         });
 
-        // 返回渲染结果
+        // return render result
         switch (level) {
             default:
             case 1:
