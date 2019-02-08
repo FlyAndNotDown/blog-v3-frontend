@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { KLayout } from '../component/tool/k-layout';
-import { Row, Col, Spin, Tag, Divider } from 'antd';
+import { Row, Col, Spin, Tag, Divider, message } from 'antd';
 import { NavHeader } from '../component/nav-header';
 import { Footer } from '../component/footer';
 import navHeaderBgImg from '../img/header-bg-3.jpg';
@@ -44,7 +44,11 @@ export class LabelPage extends React.Component {
 
             selectedLabel: null,
             labelPostsLoading: false,
-            labelPosts: null
+            labelPosts: null,
+
+            // user info
+            userLogin: false,
+            userInfo: {}
         };
 
         this.__lastLabelColor = null;
@@ -60,7 +64,30 @@ export class LabelPage extends React.Component {
         // get the page params
         let labelId = this.props.match.params.labelId;
 
+        // get user info
+        try {
+            response = await axios.get(requestConfig.userLogin, {
+                params: {
+                    type: 'info'
+                }
+            });
+        } catch (e) {
+            Log.devError(`get ${requestConfig.userLogin}`, e);
+            return message.error('尝试获取用户信息时出错，新刷新重试');
+        }
+
+        // if success
+        Log.dev(`get ${requestConfig.userLogin} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        // get info in data object
+        this.state.userLogin = !!data.login;
+        this.state.userInfo = data.info || {};
+
         // do the request to get all the label info
+        response = null;
+        data = null;
         try {
             response = await axios.get(requestConfig.label, {
                 params: {
@@ -164,6 +191,27 @@ export class LabelPage extends React.Component {
 
         // get the new page params
         let labelId = nextProps.match.params.labelId;
+
+        // get user info
+        try {
+            response = await axios.get(requestConfig.userLogin, {
+                params: {
+                    type: 'info'
+                }
+            });
+        } catch (e) {
+            Log.devError(`get ${requestConfig.userLogin}`, e);
+            return message.error('尝试获取用户信息时出错，新刷新重试');
+        }
+
+        // if success
+        Log.dev(`get ${requestConfig.userLogin} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        // get info in data object
+        this.state.userLogin = !!data.login;
+        this.state.userInfo = data.info || {};
 
         // check if there is new selectedLabel
         if (labelId.match(regexConfig.normal.naturalNumber)) {
@@ -354,7 +402,14 @@ export class LabelPage extends React.Component {
         return (
             <KLayout
                 colorMode={KLayout.COLOR_MODE_MAIN}>
-                {!this.state.labelsLoading && (<NavHeader bgImg={navHeaderBgImg} content={navHeaderContent} history={this.props.history}/>)}
+                {!this.state.labelsLoading && (
+                    <NavHeader
+                        bgImg={navHeaderBgImg}
+                        content={navHeaderContent}
+                        history={this.props.history}
+                        user={this.state.userInfo}
+                        login={this.state.userLogin}/>
+                )}
                 {!this.state.labelsLoading ? mainLayout : (<LoadingLayout/>)}
                 {!this.state.labelsLoading && (<Footer/>)}
             </KLayout>
