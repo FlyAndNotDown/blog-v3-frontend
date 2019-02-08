@@ -14,7 +14,6 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import axios from 'axios';
 import requestConfig from '../config/request';
 import { Log } from '../tool/log';
-import { CommentBlock } from '../component/block/comment-block';
 import { LoadingLayout } from '../component/gadget/loading-layout';
 import chinese2pinyin from 'chinese2pinyin';
 
@@ -437,9 +436,6 @@ export class PostPage extends React.Component {
                     lg={{ offset: 2, span: 14 }}>
                     {postDescriptionRow}
                     {postBody}
-                    <CommentBlock
-                        login={this.state.userLogin}
-                        user={this.state.userInfo}/>
                 </Col>
                 <Col
                     xs={{ offset: 0, span: 0 }}
