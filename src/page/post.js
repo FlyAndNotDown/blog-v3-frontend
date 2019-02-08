@@ -7,7 +7,7 @@ import React from 'react';
 import { KLayout } from '../component/tool/k-layout';
 import { NavBar } from '../component/nav-bar';
 import { Footer } from '../component/footer';
-import { Row, Col, Affix, Divider, Icon, Anchor, BackTop } from 'antd';
+import { Row, Col, Affix, Divider, Icon, Anchor, BackTop, message } from 'antd';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import SyntaxHighlighter from 'react-syntax-highlighter';
@@ -64,7 +64,29 @@ export class PostPage extends React.Component {
         let response;
         let data;
 
+        // get user info
+        try {
+            response = await axios.get(requestConfig.userLogin, {
+                params: {
+                    type: 'info'
+                }
+            });
+        } catch (e) {
+            Log.devError(`get ${requestConfig.userLogin}`, e);
+            message.error('获取用户信息失败');
+        }
+
+        // if success
+        Log.dev(`get ${requestConfig.userLogin} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        this.state.userLogin = !!data.login;
+        this.state.userInfo = data.info || {};
+
         // get post detail
+        response = null;
+        data = null;
         try {
             response = await axios.get(requestConfig.post, {
                 params: {
@@ -116,6 +138,29 @@ export class PostPage extends React.Component {
         let response;
         let data;
 
+        // get user info
+        response = null;
+        data = null;
+        try {
+            response = await axios.get(requestConfig.userLogin, {
+                params: {
+                    type: 'info'
+                }
+            });
+        } catch (e) {
+            Log.devError(`get ${requestConfig.userLogin}`, e);
+            message.error('获取用户信息失败');
+        }
+
+        // if success
+        Log.dev(`get ${requestConfig.userLogin} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        this.state.userLogin = !!data.login;
+        this.state.userInfo = data.info || {};
+
+        // get post detail
         try {
             response = await axios.get(requestConfig.post, {
                 params: {
@@ -169,12 +214,12 @@ export class PostPage extends React.Component {
             if (typeof object.children[i] === 'string') {
                 children.push({
                     value: object.children[i],
-                    render: (<span>{object.children[i]}</span>)
+                    render: (<span key={i}>{object.children[i]}</span>)
                 });
             } else if (object.children[i].$$typeof.toString() === 'Symbol(react.element)') {
                 children.push({
                     value: object.children[i].props.children,
-                    render: (<code>{object.children[i].props.children}</code>)
+                    render: (<code key={i}>{object.children[i].props.children}</code>)
                 });
             }
         }
