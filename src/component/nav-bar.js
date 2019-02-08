@@ -96,8 +96,11 @@ export class NavBar extends React.Component {
         // user status dropdown
         const userStatusMenu = (
             <Menu className={'mt-md'}>
-                <Menu.Item key={'logout'} disabled={true}>欢迎您，xxx</Menu.Item>
-                <Menu.Item key={'logout'}>注销</Menu.Item>
+                <Menu.Item key={'logout'} disabled={true}>欢迎您 {this.props.user.nickname}</Menu.Item>
+                <Menu.Item
+                    key={'logout'}>
+                    注销
+                </Menu.Item>
             </Menu>
         );
         const userStatus = (

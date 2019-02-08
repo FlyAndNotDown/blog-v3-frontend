@@ -60,7 +60,8 @@ export class NavHeader extends React.Component {
                 <NavBar
                     active={this.state.navBarToggled}
                     history={this.props.history}
-                    user={this.props.user}/>
+                    user={this.props.user}
+                    login={this.props.login}/>
             </Affix>
         );
 

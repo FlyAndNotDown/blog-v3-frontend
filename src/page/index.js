@@ -42,7 +42,11 @@ export class IndexPage extends React.Component {
             currentPage: 1,
 
             loadDown: false,
-            postsLoading: false
+            postsLoading: false,
+
+            // user info
+            userLogin: false,
+            userInfo: {}
         };
     }
 
@@ -50,10 +54,32 @@ export class IndexPage extends React.Component {
      * 组件加载生命周期函数
      */
     async componentDidMount() {
-        // 发送请求获取文章
+        // send request to get user login info
         let response;
         let data;
+        try {
+            response = await axios.get(requestConfig.userLogin, {
+                params: {
+                    type: 'info'
+                }
+            });
+        } catch (e) {
+            Log.devError(`get ${requestConfig.userLogin}`, e);
+            return message.error('尝试获取用户信息时出错，新刷新重试');
+        }
 
+        // if success
+        Log.dev(`get ${requestConfig.userLogin} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        // get info in data object
+        this.state.userLogin = !!data.login;
+        this.state.userInfo = data.info || {};
+
+        // 发送请求获取文章
+        response = null;
+        data = null;
         try {
             response = await axios.get(requestConfig.post, {
                 params: {
@@ -190,7 +216,14 @@ export class IndexPage extends React.Component {
         return (
             <KLayout
                 colorMode={KLayout.COLOR_MODE_NONE}>
-                {this.state.loadDown && (<NavHeader bgImg={navHeaderBgImg} content={navHeaderContent} history={this.props.history}/>)}
+                {this.state.loadDown && (
+                    <NavHeader
+                        bgImg={navHeaderBgImg}
+                        content={navHeaderContent}
+                        history={this.props.history}
+                        login={this.state.userLogin}
+                        user={this.state.userInfo}/>
+                )}
                 {this.state.loadDown ? (bodyLayout) : (<LoadingLayout/>)}
                 {this.state.loadDown && (<Footer/>)}
             </KLayout>
