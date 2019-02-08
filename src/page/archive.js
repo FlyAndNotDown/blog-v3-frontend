@@ -31,7 +31,11 @@ export class ArchivePage extends React.Component {
 
         this.state = {
             posts: [],
-            loadDown: false
+            loadDown: false,
+
+            // user info
+            userLogin: false,
+            userInfo: {}
         };
     }
 
@@ -43,7 +47,30 @@ export class ArchivePage extends React.Component {
         let response;
         let data;
 
+        // get login info
+        try {
+            response = await axios.get(requestConfig.userLogin, {
+                params: {
+                    type: 'info'
+                }
+            });
+        } catch (e) {
+            Log.devError(`get ${requestConfig.userLogin}`, e);
+            message.error('获取用户信息失败');
+        }
+
+        // if success
+        Log.dev(`get ${requestConfig.userLogin} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        // get info in data object
+        this.state.userLogin = !!data.login;
+        this.state.userInfo = data.info || {};
+
         // try to do the request
+        response = null;
+        data = null;
         try {
             response = await axios.get(requestConfig.post, {
                 params: {
@@ -113,7 +140,14 @@ export class ArchivePage extends React.Component {
         return (
             <KLayout
                 colorMode={KLayout.COLOR_MODE_MAIN}>
-                {this.state.loadDown && (<NavHeader bgImg={navHeaderBgImg} content={navHeaderContent} history={this.props.history}/>)}
+                {this.state.loadDown && (
+                    <NavHeader
+                        bgImg={navHeaderBgImg}
+                        content={navHeaderContent}
+                        history={this.props.history}
+                        user={this.state.userInfo}
+                        login={this.state.userLogin}/>
+                )}
                 {this.state.loadDown ? mainLayout : (<LoadingLayout/>)}
                 {this.state.loadDown && (<Footer/>)}
             </KLayout>
