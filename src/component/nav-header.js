@@ -1,6 +1,8 @@
 /**
  * /component/nav-header.js
  * @author John Kindem
+ * @description source file for NavHeader component
+ * @version v1.0
  */
 
 import React from 'react';
@@ -14,6 +16,8 @@ import { NavBar } from './nav-bar';
  * @property {string} bgImg background image's source in nav header
  * @property {*} content the content of nav header
  * @property {Object} history react history object
+ * @property {Object} user user info object
+ * @property {boolean} login if user login
  */
 export class NavHeader extends React.Component {
 
@@ -53,7 +57,10 @@ export class NavHeader extends React.Component {
                         navBarToggled: affixed
                     });
                 }}>
-                <NavBar active={this.state.navBarToggled} history={this.props.history}/>
+                <NavBar
+                    active={this.state.navBarToggled}
+                    history={this.props.history}
+                    user={this.props.user}/>
             </Affix>
         );
 

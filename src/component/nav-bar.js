@@ -1,6 +1,8 @@
 /**
  * /component/nav-bar.js
  * @author John Kindem
+ * @description source file for NavBar object
+ * @version v1.0
  */
 
 import React from 'react';
@@ -11,7 +13,8 @@ import { Link } from 'react-router-dom';
  * 导航栏组件
  * @constructor
  * @property {boolean} active 是否激活
- * @property {{ login: boolean }} user user info
+ * @property {boolean} login if user login
+ * @property {Object} user user info object
  * @property {Object} history react history object
  */
 export class NavBar extends React.Component {
@@ -23,20 +26,14 @@ export class NavBar extends React.Component {
     constructor(props) {
         super(props);
 
-        // 是否登录
-        this.state = {
-            user: {
-                login: false
-            }
-        };
+        this.state = {};
     }
 
     /**
      * a life function of React component
      */
     componentDidMount() {
-        // TODO login status
-        // TODO if get a user props, don't get user info by itself, if not, get user info by itself
+        // TODO
     }
 
     /**
@@ -54,17 +51,17 @@ export class NavBar extends React.Component {
         // 响应式下拉框
         const overlay = (
             <Menu>
-                {this.state.user.login && (
+                {this.props.login && (
                     <Menu.Item disabled>
                         欢迎，xxxx
                     </Menu.Item>
                 )}
-                {this.state.user.login && (
+                {this.props.login && (
                     <Menu.Item>
                         <Link to={'#'} className={'font-size-xs'}>注销</Link>
                     </Menu.Item>
                 )}
-                {!this.state.user.login && (
+                {!this.props.login && (
                     <Menu.Item>
                         <Link to={'#'} className={'font-size-xs'}>登录</Link>
                     </Menu.Item>
@@ -129,7 +126,7 @@ export class NavBar extends React.Component {
                 &nbsp;&nbsp;
                 <Link className={'color-white-a font-size-xs'} to={'/about'}>关于</Link>
                 &nbsp;&nbsp;
-                {this.state.user.login ?
+                {this.props.login ?
                     (userStatus) : (loginButton)
                 }
             </div>
