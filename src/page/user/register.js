@@ -7,14 +7,13 @@
 
 import React from 'react';
 import { KLayout } from '../../component/tool/k-layout';
-import { Row, Col, Form, Input, Icon, Button, message, Spin, Modal } from 'antd';
+import { Row, Col, Form, Input, Icon, Button, message, Spin } from 'antd';
 import axios from 'axios';
-import requestConfig, { commonUrlPrefix } from '../../config/request';
+import requestConfig from '../../config/request';
 import { Log } from '../../tool/log';
 import { PasswordTool } from '../../tool/password';
 import regexConfig from '../../config/regex';
 import { LoadingLayout } from '../../component/gadget/loading-layout';
-import { KIcon } from '../../component/tool/k-icon';
 import { Link } from 'react-router-dom';
 
 const { Item } = Form;
