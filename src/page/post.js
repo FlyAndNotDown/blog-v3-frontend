@@ -114,12 +114,36 @@ export class PostPage extends React.Component {
             return this.props.history.push('/err/404');
         }
 
+        // get comments
+        response = null;
+        data = null;
+        try {
+            response = await axios.get(requestConfig.comment, {
+                params: {
+                    type: 'post',
+                    postId: this.postId
+                }
+            });
+        } catch (e) {
+            Log.devError(`get ${requestConfig.comment}`, e);
+            message.error('服务器错误');
+        }
+
+        // if success
+        Log.dev(`get ${requestConfig.comment} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        // get info in data object
+        let comments = data.comments || [];
+
         this.setState({
             title: post.title,
             date: post.date,
             labels: post.labels,
             body: post.body,
-            loadDown: true
+            loadDown: true,
+            comments: comments
         });
 
         // 延迟加载锚点，防止超出 state 更新最大深度
@@ -139,6 +163,9 @@ export class PostPage extends React.Component {
         let postId = parseInt(nextProps.match.params.postId, 10);
 
         if (postId !== this.postId) {
+            // set postId
+            this.postId = postId;
+
             let response;
             let data;
 
@@ -189,12 +216,36 @@ export class PostPage extends React.Component {
                 return this.props.history.push('/err/404');
             }
 
+            // get comments
+            response = null;
+            data = null;
+            try {
+                response = await axios.get(requestConfig.comment, {
+                    params: {
+                        type: 'post',
+                        postId: this.postId
+                    }
+                });
+            } catch (e) {
+                Log.devError(`get ${requestConfig.comment}`, e);
+                message.error('服务器错误');
+            }
+
+            // if success
+            Log.dev(`get ${requestConfig.comment} OK`);
+            response = response || {};
+            data = response.data || {};
+
+            // get info in data object
+            let comments = data.comments || [];
+
             this.setState({
                 title: post.title,
                 date: post.date,
                 labels: post.labels,
                 body: post.body,
-                loadDown: true
+                loadDown: true,
+                comments: comments
             });
 
             // 延迟加载锚点，防止超出 state 更新最大深度

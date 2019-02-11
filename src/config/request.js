@@ -20,6 +20,7 @@ export default {
     adminLogin: `${commonUrlPrefix}/admin/login`,
     archive: `${commonUrlPrefix}/archive`,
     label: `${commonUrlPrefix}/label`,
+    comment: `${commonUrlPrefix}/comment`,
     userLocal: `${commonUrlPrefix}/user/local`,
     userLogin: `${commonUrlPrefix}/user/login`
 };
