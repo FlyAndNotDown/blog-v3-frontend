@@ -44,7 +44,10 @@ export class PostPage extends React.Component {
 
             // user info
             userLogin: false,
-            userInfo: {}
+            userInfo: {},
+
+            // comments
+            comments: []
         };
 
         // url
@@ -442,29 +445,7 @@ export class PostPage extends React.Component {
                     <CommentBlockList
                         login={this.state.userLogin}
                         user={this.state.userInfo}
-                        comments={[{
-                            user: {
-                                type: 'local',
-                                nickname: 'Kindem'
-                            },
-                            datetime: '2017-02-11 17:20:30',
-                            body: '测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论',
-                            children: [{
-                                user: {
-                                    type: 'local',
-                                    nickname: 'Kindem'
-                                },
-                                datetime: '2017-02-11 17:20:30',
-                                body: '测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论'
-                            }, {
-                                user: {
-                                    type: 'local',
-                                    nickname: 'Kindem'
-                                },
-                                datetime: '2017-02-11 17:20:30',
-                                body: '测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论'
-                            }]
-                        }]}/>
+                        comments={this.state.comments}/>
                 </Col>
                 <Col
                     xs={{ offset: 0, span: 0 }}
