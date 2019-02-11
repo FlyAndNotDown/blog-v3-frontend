@@ -133,71 +133,73 @@ export class PostPage extends React.Component {
      */
     async componentWillReceiveProps(nextProps) {
         // get postId
-        this.postId = parseInt(nextProps.match.params.postId, 10);
+        let postId = parseInt(nextProps.match.params.postId, 10);
 
-        let response;
-        let data;
+        if (postId !== this.postId) {
+            let response;
+            let data;
 
-        // get user info
-        response = null;
-        data = null;
-        try {
-            response = await axios.get(requestConfig.userLogin, {
-                params: {
-                    type: 'info'
-                }
+            // get user info
+            response = null;
+            data = null;
+            try {
+                response = await axios.get(requestConfig.userLogin, {
+                    params: {
+                        type: 'info'
+                    }
+                });
+            } catch (e) {
+                Log.devError(`get ${requestConfig.userLogin}`, e);
+                message.error('获取用户信息失败');
+            }
+
+            // if success
+            Log.dev(`get ${requestConfig.userLogin} OK`);
+            response = response || {};
+            data = response.data || {};
+
+            this.state.userLogin = !!data.login;
+            this.state.userInfo = data.info || {};
+
+            // get post detail
+            try {
+                response = await axios.get(requestConfig.post, {
+                    params: {
+                        type: 'detail',
+                        id: this.postId
+                    }
+                });
+            } catch (e) {
+                Log.devError(`get ${requestConfig.post}`, e);
+                return this.props.history.push('/err/404');
+            }
+
+            // 如果请求成功
+            Log.dev(`get ${requestConfig.post} OK`);
+            response = response || {};
+            data = response.data || {};
+
+            let post = data.post || null;
+
+            // 如果没有查到文章内容， 404
+            if (!post) {
+                return this.props.history.push('/err/404');
+            }
+
+            this.setState({
+                title: post.title,
+                date: post.date,
+                labels: post.labels,
+                body: post.body,
+                loadDown: true
             });
-        } catch (e) {
-            Log.devError(`get ${requestConfig.userLogin}`, e);
-            message.error('获取用户信息失败');
-        }
 
-        // if success
-        Log.dev(`get ${requestConfig.userLogin} OK`);
-        response = response || {};
-        data = response.data || {};
-
-        this.state.userLogin = !!data.login;
-        this.state.userInfo = data.info || {};
-
-        // get post detail
-        try {
-            response = await axios.get(requestConfig.post, {
-                params: {
-                    type: 'detail',
-                    id: this.postId
-                }
+            // 延迟加载锚点，防止超出 state 更新最大深度
+            this.setState({
+                anchors: this.anchors,
+                anchorsLock: true
             });
-        } catch (e) {
-            Log.devError(`get ${requestConfig.post}`, e);
-            return this.props.history.push('/err/404');
         }
-
-        // 如果请求成功
-        Log.dev(`get ${requestConfig.post} OK`);
-        response = response || {};
-        data = response.data || {};
-
-        let post = data.post || null;
-
-        // 如果没有查到文章内容， 404
-        if (!post) {
-            return this.props.history.push('/err/404');
-        }
-
-        this.setState({
-            title: post.title,
-            date: post.date,
-            labels: post.labels,
-            body: post.body,
-            loadDown: true
-        });
-
-        // 延迟加载锚点，防止超出 state 更新最大深度
-        this.setState({
-            anchors: this.anchors,
-            anchorsLock: true
-        });
     }
 
     /**
