@@ -139,7 +139,11 @@ export class NavBar extends React.Component {
             <Dropdown
                 placement={'bottomCenter'}
                 overlay={userStatusMenu}>
-                <Avatar icon={'user'}/>
+                {this.props.user.type === 'local' ? (
+                    <Avatar>{this.props.user.nickname[0]}</Avatar>
+                ) : (
+                    <Avatar src={this.props.user.avatar}/>
+                )}
             </Dropdown>
         );
 
