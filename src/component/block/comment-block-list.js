@@ -44,11 +44,42 @@ export class CommentBlockList extends React.Component {
     };
 
     /**
-     * comment render function
-     * @param {Object} comment comment object
+     * parent comment render function
+     * @param {Object} comment parent comment object
      * @returns {*} render result
      */
-    commentsRenderFunction = (comment) => {
+    parentCommentsRenderFunction = (comment) => {
+        // return render result
+        return (
+            <Comment
+                actions={[(<a className={'color-second'}>回复</a>)]}
+                author={comment.user.nickname}
+                datetime={
+                    <Tooltip title={comment.datetime}>
+                        <span>{moment(comment.datetime, optionConfig.dateFormat).fromNow()}</span>
+                    </Tooltip>
+                }
+                avatar={
+                    comment.user.type === 'local' ? (
+                        <Avatar>{comment.user.nickname[0]}</Avatar>
+                    ) : (
+                        <Avatar src={comment.user.avatar}/>
+                    )
+                }
+                content={
+                    <div>{comment.body}</div>
+                }>
+                {comment.children && comment.children.map(this.childCommentsRenderFunction)}
+            </Comment>
+        );
+    };
+
+    /**
+     * child comment render function
+     * @param {Object} comment child comment object
+     * @returns {*} render result
+     */
+    childCommentsRenderFunction = (comment) => {
         // return render result
         return (
             <Comment
@@ -116,7 +147,7 @@ export class CommentBlockList extends React.Component {
             <Row>
                 <Col>
                     {this.props.login ? newCommentInputTextarea : loginTip}
-                    {this.props.comments && this.props.comments.map(this.commentsRenderFunction)}
+                    {this.props.comments && this.props.comments.map(this.parentCommentsRenderFunction)}
                 </Col>
             </Row>
         );

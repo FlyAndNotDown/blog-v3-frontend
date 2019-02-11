@@ -448,7 +448,22 @@ export class PostPage extends React.Component {
                                 nickname: 'Kindem'
                             },
                             datetime: '2017-02-11 17:20:30',
-                            body: '测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论'
+                            body: '测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论',
+                            children: [{
+                                user: {
+                                    type: 'local',
+                                    nickname: 'Kindem'
+                                },
+                                datetime: '2017-02-11 17:20:30',
+                                body: '测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论'
+                            }, {
+                                user: {
+                                    type: 'local',
+                                    nickname: 'Kindem'
+                                },
+                                datetime: '2017-02-11 17:20:30',
+                                body: '测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论'
+                            }]
                         }]}/>
                 </Col>
                 <Col
