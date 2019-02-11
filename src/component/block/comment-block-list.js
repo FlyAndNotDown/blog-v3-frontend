@@ -8,6 +8,7 @@
 import React from 'react';
 import { Row, Col, Comment, Avatar, Input, Button, Tooltip } from 'antd';
 import moment from 'moment';
+import optionConfig from '../../config/option';
 
 /**
  * CommentBlockList component
@@ -51,10 +52,11 @@ export class CommentBlockList extends React.Component {
         // return render result
         return (
             <Comment
+                actions={[(<a className={'color-second'}>回复</a>)]}
                 author={comment.user.nickname}
                 datetime={
-                    <Tooltip title={moment().format('YYYY-MM-DD HH:mm:ss')}>
-                        <span>{moment().fromNow()}</span>
+                    <Tooltip title={comment.datetime}>
+                        <span>{moment(comment.datetime, optionConfig.dateFormat).fromNow()}</span>
                     </Tooltip>
                 }
                 avatar={

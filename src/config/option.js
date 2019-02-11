@@ -34,7 +34,8 @@ export default mainConfig.devMode ? {
         '#66CD00',
         '#48D1CC',
         '#1C86EE'
-    ]
+    ],
+    dateFormat: 'YYYY-MM-DD HH:mm:ss'
 } : {
     postPerPage: 10,
     labelColors: [
@@ -60,5 +61,6 @@ export default mainConfig.devMode ? {
         '#66CD00',
         '#48D1CC',
         '#1C86EE'
-    ]
+    ],
+    dateFormat: 'YYYY-MM-DD HH:mm:ss'
 };
