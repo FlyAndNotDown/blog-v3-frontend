@@ -31,7 +31,12 @@ export class CommentBlockList extends React.Component {
         super(props);
 
         this.state = {
-            newCommentValue: ''
+            // new comment textarea value
+            newCommentValue: '',
+
+            // selected comment key
+            replyToParentCommentKey: null,
+            replyToChildCommentKey: null
         };
     }
 
@@ -45,61 +50,80 @@ export class CommentBlockList extends React.Component {
 
     /**
      * parent comment render function
-     * @param {Object} comment parent comment object
+     * @param {Object} parentComment parent comment object
+     * @param {number} parentKey key of iteration object
      * @returns {*} render result
      */
-    parentCommentsRenderFunction = (comment) => {
-        // return render result
-        return (
-            <Comment
-                actions={[(<a className={'color-second'}>回复</a>)]}
-                author={comment.user.nickname}
-                datetime={
-                    <Tooltip title={comment.datetime}>
-                        <span>{moment(comment.datetime, optionConfig.dateFormat).fromNow()}</span>
-                    </Tooltip>
-                }
-                avatar={
-                    comment.user.type === 'local' ? (
-                        <Avatar>{comment.user.nickname[0]}</Avatar>
-                    ) : (
-                        <Avatar src={comment.user.avatar}/>
-                    )
-                }
-                content={
-                    <div>{comment.body}</div>
-                }>
-                {comment.children && comment.children.map(this.childCommentsRenderFunction)}
-            </Comment>
-        );
-    };
+    parentCommentsRenderFunction = (parentComment, parentKey) => {
+        /**
+         * handle called when parent reply button clicked
+         */
+        let onParentReplyButtonClick = () => { this.setState({ replyToParentCommentKey: parentKey }); };
 
-    /**
-     * child comment render function
-     * @param {Object} comment child comment object
-     * @returns {*} render result
-     */
-    childCommentsRenderFunction = (comment) => {
+        /**
+         * child comment render function
+         * @param {Object} childComment child comment object
+         * @param {number} childKey key of iteration object
+         * @returns {*} render result
+         */
+        let childCommentsRenderFunction = (childComment, childKey) => {
+            /**
+             * handle called when child reply button clicked
+             */
+            let onChildReplyButtonClick = () => {
+                this.setState({
+                    replyToParentCommentKey: parentKey,
+                    replyToChildCommentKey: childKey
+                });
+            };
+
+            // return render result
+            return (
+                <Comment
+                    key={childKey}
+                    actions={[(<a className={'color-second'} onClick={onChildReplyButtonClick}>回复</a>)]}
+                    author={childComment.user.nickname}
+                    datetime={
+                        <Tooltip title={childComment.datetime}>
+                            <span>{moment(childComment.datetime, optionConfig.dateFormat).fromNow()}</span>
+                        </Tooltip>
+                    }
+                    avatar={
+                        childComment.user.type === 'local' ? (
+                            <Avatar>{childComment.user.nickname[0]}</Avatar>
+                        ) : (
+                            <Avatar src={childComment.user.avatar}/>
+                        )
+                    }
+                    content={
+                        <div>{childComment.body}</div>
+                    }/>
+            );
+        };
+
         // return render result
         return (
             <Comment
-                actions={[(<a className={'color-second'}>回复</a>)]}
-                author={comment.user.nickname}
+                key={parentKey}
+                actions={[(<a className={'color-second'} onClick={onParentReplyButtonClick}>回复</a>)]}
+                author={parentComment.user.nickname}
                 datetime={
-                    <Tooltip title={comment.datetime}>
-                        <span>{moment(comment.datetime, optionConfig.dateFormat).fromNow()}</span>
+                    <Tooltip title={parentComment.datetime}>
+                        <span>{moment(parentComment.datetime, optionConfig.dateFormat).fromNow()}</span>
                     </Tooltip>
                 }
                 avatar={
-                    comment.user.type === 'local' ? (
-                        <Avatar>{comment.user.nickname[0]}</Avatar>
+                    parentComment.user.type === 'local' ? (
+                        <Avatar>{parentComment.user.nickname[0]}</Avatar>
                     ) : (
-                        <Avatar src={comment.user.avatar}/>
+                        <Avatar src={parentComment.user.avatar}/>
                     )
                 }
                 content={
-                    <div>{comment.body}</div>
-                }/>
+                    <div>{parentComment.body}</div>
+                }>
+                {parentComment.children && parentComment.children.map(childCommentsRenderFunction)}
+            </Comment>
         );
     };
 
