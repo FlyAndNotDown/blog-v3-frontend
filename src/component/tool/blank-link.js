@@ -9,10 +9,10 @@ import React from 'react';
 /**
  * BlankLink
  * @description the packing of '<a href='...' target='__blank'></a>'
- * @property {string} className the CSS class names of component
- * @property {Object} style the inline CSS style of component
- * @property {string} to href of the link
- * @property {Object} children children between two labels
+ * @param {string} className the CSS class names of component
+ * @param {Object} style the inline CSS style of component
+ * @param {string} to href of the link
+ * @param {Object} children children between two labels
  */
 export class BlankLink extends React.Component {
 

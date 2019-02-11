@@ -13,11 +13,11 @@ import { BlankLink } from '../tool/blank-link';
 /**
  * 文章块组件
  * @constructor
- * @property {number} postKey 文章键
- * @property {string} title 标题
- * @property {string} description 描述
- * @property {string} date 日期
- * @property {Array} labels 标签
+ * @param {number} postKey 文章键
+ * @param {string} title 标题
+ * @param {string} description 描述
+ * @param {string} date 日期
+ * @param {Array} labels 标签
  */
 export class PostBlock extends React.Component {
 

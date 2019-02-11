@@ -15,10 +15,10 @@ import axios from 'axios';
 /**
  * 导航栏组件
  * @constructor
- * @property {boolean} active 是否激活
- * @property {boolean} login if user login
- * @property {Object} user user info object
- * @property {Object} history react history object
+ * @param {boolean} active 是否激活
+ * @param {boolean} login if user login
+ * @param {Object} user user info object
+ * @param {Object} history react history object
  */
 export class NavBar extends React.Component {
 

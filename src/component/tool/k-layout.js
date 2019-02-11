@@ -10,9 +10,9 @@ import { CssTool } from "../../tool/css";
 /**
  * 自定义布局
  * @constructor
- * @property {number} colorMode 颜色
- * @property {number} widthMode 长度
- * @property {number} fixedWidth
+ * @param {number} colorMode 颜色
+ * @param {number} widthMode 长度
+ * @param {number} fixedWidth
  */
 export class KLayout extends React.Component {
 

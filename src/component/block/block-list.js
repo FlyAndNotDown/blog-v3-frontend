@@ -10,9 +10,9 @@ import { PostBlock } from "./post-block";
 /**
  * 块列表组件
  * @constructor
- * @property {Array} posts 文章数组
- * @property {number} page total page
- * @property {boolean} loading loading state
+ * @param {Array} posts 文章数组
+ * @param {number} page total page
+ * @param {boolean} loading loading state
  */
 export class BlockList extends React.Component {
 

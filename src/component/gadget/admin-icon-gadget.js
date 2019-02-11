@@ -9,10 +9,10 @@ import { Icon, Row, Col } from 'antd';
 /**
  * 管理员小图标挂件
  * @constructor
- * @property {string} iconType 图标类型
- * @property {string} iconColor 图标颜色
- * @property {string} title 标题
- * @property {string} content 内容
+ * @param {string} iconType 图标类型
+ * @param {string} iconColor 图标颜色
+ * @param {string} title 标题
+ * @param {string} content 内容
  */
 export class AdminIconGadget extends React.Component {
 

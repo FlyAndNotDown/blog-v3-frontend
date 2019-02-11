@@ -13,11 +13,11 @@ import { NavBar } from './nav-bar';
 /**
  * 导航页头
  * @constructor
- * @property {string} bgImg background image's source in nav header
- * @property {*} content the content of nav header
- * @property {Object} history react history object
- * @property {Object} user user info object
- * @property {boolean} login if user login
+ * @param {string} bgImg background image's source in nav header
+ * @param {*} content the content of nav header
+ * @param {Object} history react history object
+ * @param {Object} user user info object
+ * @param {boolean} login if user login
  */
 export class NavHeader extends React.Component {
 

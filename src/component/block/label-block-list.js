@@ -12,7 +12,7 @@ import { BlankLink } from '../tool/blank-link';
 /**
  * LabelBlockList
  * @description the posts block list of label page
- * @property {[]} posts the data of posts block list
+ * @param {[]} posts the data of posts block list
  */
 export class LabelBlockList extends React.Component {
 
