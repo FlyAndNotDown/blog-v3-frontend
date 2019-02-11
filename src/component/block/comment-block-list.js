@@ -21,6 +21,7 @@ export class CommentBlockList extends React.Component {
 
     // static text
     static __PUBLISH_NEW_COMMENT_BUTTON__TEXT = '我也说一句';
+    static __PUBLISH_NEW_REPLY_BUTTON__TEXT = '回复';
     static __LOGIN_BUTTON__TEXT = '登录以参与评论';
 
     /**
@@ -33,6 +34,9 @@ export class CommentBlockList extends React.Component {
         this.state = {
             // new comment textarea value
             newCommentValue: '',
+
+            // new reply value
+            newReplyValue: '',
 
             // selected comment key
             replyToParentCommentKey: null,
@@ -56,9 +60,40 @@ export class CommentBlockList extends React.Component {
      */
     parentCommentsRenderFunction = (parentComment, parentKey) => {
         /**
+         * handle called when new reply value changed
+         * @param {Object} e react event object
+         */
+        let onNewReplyValueChange = (e) => { this.setState({ newReplyValue: e.target.value }); };
+
+        // new reply block
+        let newReplyBlock = (
+            <div>
+                <Input.TextArea
+                    value={this.state.newReplyValue}
+                    onChange={onNewReplyValueChange}
+                    autosize={{ minRows: 4 }}/>
+                <Button type={'primary'} className={'mt-sm'}>
+                    {CommentBlockList.__PUBLISH_NEW_REPLY_BUTTON__TEXT}
+                </Button>
+            </div>
+        );
+
+        // login tip
+        let replyLoginTip = (
+            <div>
+                <Button type={'primary'}>{CommentBlockList.__LOGIN_BUTTON__TEXT}</Button>
+            </div>
+        );
+
+        /**
          * handle called when parent reply button clicked
          */
-        let onParentReplyButtonClick = () => { this.setState({ replyToParentCommentKey: parentKey }); };
+        let onParentReplyButtonClick = () => {
+            this.setState({
+                replyToParentCommentKey: parentKey,
+                replyToChildCommentKey: null
+            });
+        };
 
         /**
          * child comment render function
@@ -97,7 +132,12 @@ export class CommentBlockList extends React.Component {
                     }
                     content={
                         <div>{childComment.body}</div>
-                    }/>
+                    }>
+                    {this.state.replyToParentCommentKey === parentKey &&
+                        this.state.replyToChildCommentKey === childKey &&
+                            (this.props.login ? newReplyBlock : replyLoginTip)
+                    }
+                </Comment>
             );
         };
 
@@ -122,6 +162,10 @@ export class CommentBlockList extends React.Component {
                 content={
                     <div>{parentComment.body}</div>
                 }>
+                {this.state.replyToParentCommentKey === parentKey &&
+                    this.state.replyToChildCommentKey === null &&
+                        (this.props.login ? newReplyBlock : replyLoginTip)
+                }
                 {parentComment.children && parentComment.children.map(childCommentsRenderFunction)}
             </Comment>
         );
