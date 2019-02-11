@@ -441,7 +441,32 @@ export class PostPage extends React.Component {
                     {postBody}
                     <CommentBlockList
                         login={this.state.userLogin}
-                        user={this.state.userInfo}/>
+                        user={this.state.userInfo}
+                        comments={[{
+                            user: {
+                                type: 'local',
+                                nickname: 'Kindem'
+                            },
+                            body: '测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论'
+                        }, {
+                            user: {
+                                type: 'local',
+                                nickname: 'Kindem'
+                            },
+                            body: '测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论'
+                        }, {
+                            user: {
+                                type: 'local',
+                                nickname: 'Kindem'
+                            },
+                            body: '测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论'
+                        }, {
+                            user: {
+                                type: 'local',
+                                nickname: 'Kindem'
+                            },
+                            body: '测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论测试评论'
+                        }]}/>
                 </Col>
                 <Col
                     xs={{ offset: 0, span: 0 }}

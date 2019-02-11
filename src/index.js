@@ -9,25 +9,30 @@ import { MainRouter } from "./router";
 import { MockTool } from "./tool/mock";
 import mainConfig from './config/main';
 import { Log } from './tool/log';
+import moment from 'moment';
+import axios from 'axios';
+import commentJSChinesePackage from './config/moment-zh';
 
-// 导入全局 css
+// import all css
 import './css/css';
 
-// 设置 axios 全局自动带 cookies
-import axios from 'axios';
+// set cookies function in axios
 axios.defaults.withCredentials = true;
 
-// 开发模式
+// judge dev mode
 if (mainConfig.devMode) {
     Log.dev('dev mode toggled', `mock status: ${mainConfig.mock}`);
     if (mainConfig.mock) {
-        // 开启 Mock
+        // start mock
         MockTool.start();
     }
 }
 
+// set moment language to chinese
+moment.locale('zh', commentJSChinesePackage);
+
 /**
- * 渲染主路由，构成单页应用
+ * render main router component
  */
 ReactDom.render(
     <MainRouter/>,

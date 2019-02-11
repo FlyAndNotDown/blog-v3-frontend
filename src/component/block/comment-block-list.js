@@ -6,13 +6,15 @@
  */
 
 import React from 'react';
-import { Row, Col, Comment, Avatar, Input, Button } from 'antd';
+import { Row, Col, Comment, Avatar, Input, Button, Tooltip } from 'antd';
+import moment from 'moment';
 
 /**
  * CommentBlockList component
  * @constructor
  * @param {boolean} login user login status
  * @param {Object} user user info object
+ * @param {[Object]} comments comment objects list
  */
 export class CommentBlockList extends React.Component {
 
@@ -38,6 +40,34 @@ export class CommentBlockList extends React.Component {
      */
     onNewCommentValueChange = (e) => {
         this.setState({ newCommentValue: e.target.value });
+    };
+
+    /**
+     * comment render function
+     * @param {Object} comment comment object
+     * @returns {*} render result
+     */
+    commentsRenderFunction = (comment) => {
+        // return render result
+        return (
+            <Comment
+                author={comment.user.nickname}
+                datetime={
+                    <Tooltip title={moment().format('YYYY-MM-DD HH:mm:ss')}>
+                        <span>{moment().fromNow()}</span>
+                    </Tooltip>
+                }
+                avatar={
+                    comment.user.type === 'local' ? (
+                        <Avatar>{comment.user.nickname[0]}</Avatar>
+                    ) : (
+                        <Avatar src={comment.user.avatar}/>
+                    )
+                }
+                content={
+                    <div>{comment.body}</div>
+                }/>
+        );
     };
 
     /**
@@ -84,6 +114,7 @@ export class CommentBlockList extends React.Component {
             <Row>
                 <Col>
                     {this.props.login ? newCommentInputTextarea : loginTip}
+                    {this.props.comments && this.props.comments.map(this.commentsRenderFunction)}
                 </Col>
             </Row>
         );
