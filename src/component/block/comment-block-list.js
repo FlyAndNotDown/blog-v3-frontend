@@ -11,8 +11,14 @@ import { Row, Col, Comment, Avatar, Input, Button } from 'antd';
 /**
  * CommentBlockList component
  * @constructor
+ * @param {boolean} login user login status
+ * @param {Object} user user info object
  */
 export class CommentBlockList extends React.Component {
+
+    // static text
+    static __PUBLISH_NEW_COMMENT_BUTTON__TEXT = '我也说一句';
+    static __LOGIN_BUTTON__TEXT = '登录以参与评论';
 
     /**
      * constructor of react component
@@ -40,11 +46,9 @@ export class CommentBlockList extends React.Component {
      */
     render() {
         // comment input textarea
-        const commentInputTextarea = (
+        const newCommentInputTextarea = (
             <Comment
-                avatar={
-                    <Avatar>K</Avatar>
-                }
+                avatar={<Avatar>{this.props.user.nickname[0]}</Avatar>}
                 content={
                     <div>
                         <div>
@@ -56,19 +60,30 @@ export class CommentBlockList extends React.Component {
                         <div className={'mt-sm'}>
                             <Button
                                 type={'primary'}>
-                                我也说一句
+                                {CommentBlockList.__PUBLISH_NEW_COMMENT_BUTTON__TEXT}
                             </Button>
                         </div>
                     </div>
                 }
-                author={'Kindem'}/>
+                author={this.props.user.nickname}/>
+        );
+
+        // login tip
+        const loginTip = (
+            <Comment
+                avatar={<Avatar icon={'user'}/>}
+                content={
+                    <div>
+                        <Button type={'primary'}>{CommentBlockList.__LOGIN_BUTTON__TEXT}</Button>
+                    </div>
+                }/>
         );
 
         // return render result
         return (
             <Row>
                 <Col>
-                    {commentInputTextarea}
+                    {this.props.login ? newCommentInputTextarea : loginTip}
                 </Col>
             </Row>
         );
