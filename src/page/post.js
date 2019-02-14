@@ -414,7 +414,7 @@ export class PostPage extends React.Component {
      * handle called when a new comment publish
      * @param {string} value new comment value
      */
-    onNewCommentPublish = (value) => {
+    onNewCommentPublish = async (value) => {
         // lock comments block at first
         this.commentsLock();
 
@@ -433,11 +433,29 @@ export class PostPage extends React.Component {
                 body: value
             });
         } catch (e) {
+            this.commentsUnlock();
             Log.devError(`post ${requestConfig.comment}`, e);
             return message.error('服务器错误');
         }
 
-        // TODO
+        // if success
+        Log.dev(`post ${requestConfig.comment} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        // get data in data object
+        let success = !!data.success;
+        let comment = data.comment || null;
+
+        // if failed
+        if (!success) {
+            this.commentsUnlock();
+            return message.error('发表失败');
+        }
+        
+        this.commentsUnlock();
+        if (comment) this.state.comments.push(comment);
+        return message.info('发表成功');
     };
 
     /**
