@@ -454,7 +454,18 @@ export class PostPage extends React.Component {
         }
         
         this.commentsUnlock();
-        if (comment) this.state.comments.push(comment);
+        if (comment) {
+            this.setState(prevState => {
+                let newComments = [];
+                for (let i = 0; i < prevState.comments.length; i++) {
+                    newComments.push(prevState.comments[i]);
+                }
+                newComments.push(comment);
+                return {
+                    comments: newComments
+                };
+            });
+        };
         return message.info('发表成功');
     };
 
