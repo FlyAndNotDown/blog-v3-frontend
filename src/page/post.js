@@ -457,6 +457,7 @@ export class PostPage extends React.Component {
             return false;
         }
         
+        // if success
         this.commentsUnlock();
         if (comment) {
             this.setState(prevState => {
@@ -481,8 +482,76 @@ export class PostPage extends React.Component {
      * @param {number} childKey child comment key
      * @returns {boolean} success or failed
      */
-    onNewReplyPublish = (value, parentKey, childKey) => {
-        // TODO
+    onNewReplyPublish = async (value, parentKey, childKey) => {
+        // lock comments block at first
+        this.commentsLock();
+
+        // check params
+        if (!value) {
+            this.commentsUnlock();
+            message.error('您什么都没输入');
+            return false;
+        }
+
+        // get params
+        const postId = this.postId;
+        const parentId = this.state.comments[parentKey].id;
+        const mentionId = childKey ?
+            this.state.comments[parentKey].children[childKey].creator.id :
+            this.state.comments[parentKey].creator.id;
+        
+        // send request to publish a new reply
+        let response, data;
+        try {
+            response = await axios.post(requestConfig.comment, {
+                type: 'reply',
+                postId: postId,
+                body: value,
+                parentId: parentId,
+                mentionId: mentionId
+            });
+        } catch (e) {
+            this.commentsUnlock();
+            Log.devError(`post ${requestConfig.comment}`, e);
+            message.error('服务器错误');
+            return false;
+        }
+
+        // if success
+        Log.dev(`post ${requestConfig.comment} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        // get data in data object
+        let success = !!data.success;
+        let reply = data.reply || null;
+
+        // if failed
+        if (!success) {
+            this.commentsUnlock();
+            message.error('发表失败');
+            return false;
+        }
+
+        // if success
+        this.commentsUnlock();
+        if (reply) {
+            this.setState(prevState => {
+                let newComments = [];
+                for (let i = 0; i < prevState.comments.length; i++) {
+                    let temp = prevState.comments[i];
+                    if (parentKey === i) {
+                        temp.children.push(reply);
+                    }
+                    newComments.push(temp);
+                }
+                return {
+                    comments: newComments
+                };
+            });
+        };
+        message.info('发表成功');
+        return true;
     };
 
     /**
