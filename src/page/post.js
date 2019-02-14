@@ -571,8 +571,8 @@ export class PostPage extends React.Component {
                         user={this.state.userInfo}
                         comments={this.state.comments}
                         locked={this.state.commentsLocked}
-                        onNewComment={this.state.onNewCommentPublish}
-                        onNewReply={this.state.onNewReplyPublish}/>
+                        onNewComment={this.onNewCommentPublish}
+                        onNewReply={this.onNewReplyPublish}/>
                 </Col>
                 <Col
                     xs={{ offset: 0, span: 0 }}
