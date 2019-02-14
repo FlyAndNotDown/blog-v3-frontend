@@ -178,7 +178,10 @@ export class CommentBlockList extends React.Component {
                         )
                     }
                     content={
-                        <div>{childComment.body}</div>
+                        <div>
+                            <a className={'color-second'}>@{childComment.mention.nickname}</a>&nbsp;
+                            {childComment.body}
+                        </div>
                     }>
                     {this.state.replyToParentCommentKey === parentKey &&
                         this.state.replyToChildCommentKey === childKey &&
