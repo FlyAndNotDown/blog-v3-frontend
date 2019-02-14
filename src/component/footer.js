@@ -88,9 +88,11 @@ export class Footer extends React.Component {
         // div of copyright info
         const copyrightDiv = (
             <div className={'font-size-xs'}>
-                ©2017-2019&nbsp;
-                <span role={'img'} aria-labelledby={'star'}>✨</span>&nbsp;
-                Copyright kindemh.cn
+                ©2017-2019&nbsp;Copyright
+                <a className={'color-text'}>
+                    <span role={'img'} aria-labelledby={'star'}>✨</span>
+                    kindemh.cn
+                </a>
             </div>
         );
 
