@@ -156,21 +156,21 @@ export class CommentBlockList extends React.Component {
                 <Comment
                     key={childKey}
                     actions={[(<a className={'color-second'} onClick={onChildReplyButtonClick}>回复</a>)]}
-                    author={this.props.login ? childComment.user.nickname : ''}
+                    author={this.props.login ? childComment.creator.nickname : ''}
                     datetime={
                         <Tooltip title={childComment.datetime}>
                             <span>{moment(childComment.datetime, optionConfig.dateFormat).fromNow()}</span>
                         </Tooltip>
                     }
                     avatar={
-                        childComment.user.type === 'local' ? (
+                        childComment.creator.type === 'local' ? (
                             this.props.login ? (
-                                <Avatar>{childComment.user.nickname[0]}</Avatar>
+                                <Avatar>{childComment.creator.nickname[0]}</Avatar>
                             ) : (
                                 <Avatar icon={'user'}/>
                             )
                         ) : (
-                            <Avatar src={childComment.user.avatar}/>
+                            <Avatar src={childComment.creator.avatar}/>
                         )
                     }
                     content={
@@ -189,21 +189,21 @@ export class CommentBlockList extends React.Component {
             <Comment
                 key={parentKey}
                 actions={[(<a className={'color-second'} onClick={onParentReplyButtonClick}>回复</a>)]}
-                author={this.props.login ? parentComment.user.nickname : ''}
+                author={this.props.login ? parentComment.creator.nickname : ''}
                 datetime={
                     <Tooltip title={parentComment.datetime}>
                         <span>{moment(parentComment.datetime, optionConfig.dateFormat).fromNow()}</span>
                     </Tooltip>
                 }
                 avatar={
-                    parentComment.user.type === 'local' ? (
+                    parentComment.creator.type === 'local' ? (
                         this.props.login ? (
-                            <Avatar>{parentComment.user.nickname[0]}</Avatar>
+                            <Avatar>{parentComment.creator.nickname[0]}</Avatar>
                         ) : (
                             <Avatar icon={'user'}/>
                         )
                     ) : (
-                        <Avatar src={parentComment.user.avatar}/>
+                        <Avatar src={parentComment.creator.avatar}/>
                     )
                 }
                 content={
