@@ -87,7 +87,7 @@ export class Footer extends React.Component {
 
         // div of copyright info
         const copyrightDiv = (
-            <div>@2017 Copyright kindemh.cn</div>
+            <div className={'font-size-xs'}>©2017-2019 ✨ Copyright kindemh.cn</div>
         );
 
         // render
