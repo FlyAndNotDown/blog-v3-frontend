@@ -397,10 +397,46 @@ export class PostPage extends React.Component {
     };
 
     /**
+     * lock comments block
+     */
+    commentsLock = () => {
+        this.setState({ commentsLock: true });
+    };
+
+    /**
+     * unlock comments block
+     */
+    commentsUnlock = () => {
+        this.setState({ commentsLock: false });
+    };
+
+    /**
      * handle called when a new comment publish
      * @param {string} value new comment value
      */
     onNewCommentPublish = (value) => {
+        // lock comments block at first
+        this.commentsLock();
+
+        // check params
+        if (!value) {
+            this.commentsUnlock();
+            return message.error('您什么都没输入');
+        }
+
+        // send request to publish a new comment
+        let response, data;
+        try {
+            response = await axios.post(requestConfig.comment, {
+                type: 'comment',
+                postId: this.postId,
+                body: value
+            });
+        } catch (e) {
+            Log.devError(`post ${requestConfig.comment}`, e);
+            return message.error('服务器错误');
+        }
+
         // TODO
     };
 
