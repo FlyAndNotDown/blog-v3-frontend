@@ -15,6 +15,7 @@ import { ArchivePage } from './page/archive';
 import { LabelPage } from './page/label';
 import { UserLoginPage } from './page/user/login';
 import { UserRegisterPage } from './page/user/register';
+import { MessagePage } from './page/message';
 
 /**
  * 主路由组件
@@ -32,6 +33,7 @@ export class MainRouter extends React.Component {
                     <Route exact path={'/'} component={IndexPage}/>
                     <Route exact path={'/archive'} component={ArchivePage}/>
                     <Route exact path={'/label'} component={LabelPage}/>
+                    <Route exact paht={'/message'} component={MessagePage}/>
                     <Route exact path={'/label/:labelId'} component={LabelPage}/>
                     <Route exact path={'/admin'} component={AdminIndexPage}/>
                     <Route exact path={'/admin/general'} component={AdminGeneralPage}/>
