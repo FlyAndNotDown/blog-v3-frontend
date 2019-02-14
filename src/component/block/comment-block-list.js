@@ -25,7 +25,9 @@ export class CommentBlockList extends React.Component {
     // static text
     static __PUBLISH_NEW_COMMENT_BUTTON__TEXT = '我也说一句';
     static __PUBLISH_NEW_REPLY_BUTTON__TEXT = '回复';
+    static __CANCEL_BUTTON__TEXT = '取消';
     static __LOGIN_BUTTON__TEXT = '登录以参与评论';
+    static __TEXTAREA__PLACEHOLDER = '说点什么吧😝';
 
     /**
      * constructor of react component
@@ -43,7 +45,10 @@ export class CommentBlockList extends React.Component {
 
             // selected comment key
             replyToParentCommentKey: null,
-            replyToChildCommentKey: null
+            replyToChildCommentKey: null,
+
+            // reply block shown
+            replyBlockShown: false
         };
     }
 
@@ -91,6 +96,13 @@ export class CommentBlockList extends React.Component {
         };
 
         /**
+         * handle called when cancel button clicked
+         */
+        let onCancelButtonClick = () => {
+            this.setState({ replyBlockShown: false });
+        };
+
+        /**
          * handle called when new reply value changed
          * @param {Object} e react event object
          */
@@ -104,17 +116,27 @@ export class CommentBlockList extends React.Component {
         let newReplyBlockGenerator = (parentKey, childKey) => {
             return (
                 <div>
-                    <Input.TextArea
-                        value={this.state.newReplyValue}
-                        onChange={onNewReplyValueChange}
-                        autosize={{ minRows: 4 }}/>
-                    <Button
-                        disabled={!!this.props.lcoked}
-                        type={'primary'}
-                        className={'mt-sm'}
-                        onClick={() => { return onNewReplyButtonClick(parentKey, childKey); }}>
-                        {CommentBlockList.__PUBLISH_NEW_REPLY_BUTTON__TEXT}
-                    </Button>
+                    <div>
+                        <Input.TextArea
+                            value={this.state.newReplyValue}
+                            onChange={onNewReplyValueChange}
+                            autosize={{ minRows: 4 }}
+                            placeholder={CommentBlockList.__TEXTAREA__PLACEHOLDER}/>
+                    </div>
+                    <div className={'mt-sm'}>
+                        <Button
+                            disabled={!!this.props.lcoked}
+                            type={'primary'}
+                            onClick={() => { return onNewReplyButtonClick(parentKey, childKey); }}>
+                            {CommentBlockList.__PUBLISH_NEW_REPLY_BUTTON__TEXT}
+                        </Button>
+                        <Button className={'ml-sm'}
+                            disabled={!!this.props.lcoked}
+                            type={'danger'}
+                            onClick={onCancelButtonClick}>
+                            {CommentBlockList.__CANCEL_BUTTON__TEXT}
+                        </Button>
+                    </div>
                 </div>
             );
         };
@@ -133,7 +155,8 @@ export class CommentBlockList extends React.Component {
             this.setState({
                 replyToParentCommentKey: parentKey,
                 replyToChildCommentKey: null,
-                newReplyValue: ''
+                newReplyValue: '',
+                replyBlockShown: true
             });
         };
 
@@ -151,7 +174,8 @@ export class CommentBlockList extends React.Component {
                 this.setState({
                     replyToParentCommentKey: parentKey,
                     replyToChildCommentKey: childKey,
-                    newReplyValue: ''
+                    newReplyValue: '',
+                    replyBlockShown: true
                 });
             };
 
@@ -185,7 +209,7 @@ export class CommentBlockList extends React.Component {
                     }>
                     {this.state.replyToParentCommentKey === parentKey &&
                         this.state.replyToChildCommentKey === childKey &&
-                            (this.props.login ? newReplyBlockGenerator(parentKey, childKey) : replyLoginTip)
+                            (this.props.login ? (this.state.replyBlockShown && newReplyBlockGenerator(parentKey, childKey)) : replyLoginTip)
                     }
                 </Comment>
             );
@@ -218,7 +242,7 @@ export class CommentBlockList extends React.Component {
                 }>
                 {this.state.replyToParentCommentKey === parentKey &&
                     this.state.replyToChildCommentKey === null &&
-                        (this.props.login ? newReplyBlockGenerator(parentKey, null) : replyLoginTip)
+                        (this.props.login ? (this.state.replyBlockShown && newReplyBlockGenerator(parentKey, null)) : replyLoginTip)
                 }
                 {parentComment.children && parentComment.children.map(childCommentsRenderFunction)}
             </Comment>
@@ -246,7 +270,8 @@ export class CommentBlockList extends React.Component {
                             <Input.TextArea
                                 value={this.state.newCommentValue}
                                 onChange={this.onNewCommentValueChange}
-                                autosize={{ minRows: 4 }}/>
+                                autosize={{ minRows: 4 }}
+                                placeholder={CommentBlockList.__TEXTAREA__PLACEHOLDER}/>
                         </div>
                         <div className={'mt-sm'}>
                             <Button
