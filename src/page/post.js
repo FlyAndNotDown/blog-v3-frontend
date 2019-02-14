@@ -413,6 +413,7 @@ export class PostPage extends React.Component {
     /**
      * handle called when a new comment publish
      * @param {string} value new comment value
+     * @returns {boolean} success or failed
      */
     onNewCommentPublish = async (value) => {
         // lock comments block at first
@@ -421,7 +422,8 @@ export class PostPage extends React.Component {
         // check params
         if (!value) {
             this.commentsUnlock();
-            return message.error('您什么都没输入');
+            message.error('您什么都没输入');
+            return false;
         }
 
         // send request to publish a new comment
@@ -435,7 +437,8 @@ export class PostPage extends React.Component {
         } catch (e) {
             this.commentsUnlock();
             Log.devError(`post ${requestConfig.comment}`, e);
-            return message.error('服务器错误');
+            message.error('服务器错误');
+            return false;
         }
 
         // if success
@@ -450,7 +453,8 @@ export class PostPage extends React.Component {
         // if failed
         if (!success) {
             this.commentsUnlock();
-            return message.error('发表失败');
+            message.error('发表失败');
+            return false;
         }
         
         this.commentsUnlock();
@@ -466,7 +470,8 @@ export class PostPage extends React.Component {
                 };
             });
         };
-        return message.info('发表成功');
+        message.info('发表成功');
+        return true;
     };
 
     /**
@@ -474,6 +479,7 @@ export class PostPage extends React.Component {
      * @param {string} value new reply value
      * @param {number} parentKey parent comment key
      * @param {number} childKey child comment key
+     * @returns {boolean} success or failed
      */
     onNewReplyPublish = (value, parentKey, childKey) => {
         // TODO

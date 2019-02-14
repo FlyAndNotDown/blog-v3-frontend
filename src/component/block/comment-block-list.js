@@ -63,7 +63,9 @@ export class CommentBlockList extends React.Component {
          * called handle from props
          * @param {string} value value of new comment textarea
          */
-        return this.props.onNewComment && this.props.onNewComment(this.state.newCommentValue);
+        if (this.props.onNewComment && this.props.onNewComment(this.state.newCommentValue)) {
+            this.setState({ newCommentValue: '' });
+        }
     };
 
     /**
@@ -83,7 +85,9 @@ export class CommentBlockList extends React.Component {
              * @param {number} parentKey parent comment object key
              * @param {number} childKey child comment object key
              */
-            return this.props.onNewReply && this.props.onNewReply(this.state.newReplyValue, parentKey, childKey);
+            if (this.props.onNewReply && this.props.onNewReply(this.state.newReplyValue, parentKey, childKey)) {
+                this.setState({ newReplyValue: '' });
+            }
         };
 
         /**
