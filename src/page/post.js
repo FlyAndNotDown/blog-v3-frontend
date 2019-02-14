@@ -47,7 +47,8 @@ export class PostPage extends React.Component {
             userInfo: {},
 
             // comments
-            comments: []
+            comments: [],
+            commentsLocked: false
         };
 
         // url
@@ -396,6 +397,24 @@ export class PostPage extends React.Component {
     };
 
     /**
+     * handle called when a new comment publish
+     * @param {string} value new comment value
+     */
+    onNewCommentPublish = (value) => {
+        // TODO
+    };
+
+    /**
+     * handle called when a new reply publish
+     * @param {string} value new reply value
+     * @param {number} parentKey parent comment key
+     * @param {number} childKey child comment key
+     */
+    onNewReplyPublish = (value, parentKey, childKey) => {
+        // TODO
+    };
+
+    /**
      * 渲染函数
      * @returns {*} 渲染结果
      */
@@ -496,7 +515,10 @@ export class PostPage extends React.Component {
                     <CommentBlockList
                         login={this.state.userLogin}
                         user={this.state.userInfo}
-                        comments={this.state.comments}/>
+                        comments={this.state.comments}
+                        locked={this.state.commentsLocked}
+                        onNewComment={this.state.onNewCommentPublish}
+                        onNewReply={this.state.onNewReplyPublish}/>
                 </Col>
                 <Col
                     xs={{ offset: 0, span: 0 }}

@@ -16,6 +16,7 @@ import optionConfig from '../../config/option';
  * @param {boolean} login user login status
  * @param {Object} user user info object
  * @param {[Object]} comments comment objects list
+ * @param {boolean} lcoked locked status
  * @param {Function} onNewComment handle called when publish a new comment
  * @param {Function} onNewReply handle called when publish a new reply
  */
@@ -104,6 +105,7 @@ export class CommentBlockList extends React.Component {
                         onChange={onNewReplyValueChange}
                         autosize={{ minRows: 4 }}/>
                     <Button
+                        disabled={!!this.props.lcoked}
                         type={'primary'}
                         className={'mt-sm'}
                         onClick={() => { return onNewReplyButtonClick(parentKey, childKey); }}>
@@ -227,6 +229,7 @@ export class CommentBlockList extends React.Component {
                         </div>
                         <div className={'mt-sm'}>
                             <Button
+                                disabled={!!this.props.lcoked}
                                 type={'primary'}
                                 onClick={this.onNewCommentButtonClick}>
                                 {CommentBlockList.__PUBLISH_NEW_COMMENT_BUTTON__TEXT}
