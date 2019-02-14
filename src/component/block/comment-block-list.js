@@ -156,7 +156,7 @@ export class CommentBlockList extends React.Component {
                 <Comment
                     key={childKey}
                     actions={[(<a className={'color-second'} onClick={onChildReplyButtonClick}>回复</a>)]}
-                    author={childComment.user.nickname}
+                    author={this.props.login ? childComment.user.nickname : ''}
                     datetime={
                         <Tooltip title={childComment.datetime}>
                             <span>{moment(childComment.datetime, optionConfig.dateFormat).fromNow()}</span>
@@ -164,7 +164,11 @@ export class CommentBlockList extends React.Component {
                     }
                     avatar={
                         childComment.user.type === 'local' ? (
-                            <Avatar>{childComment.user.nickname[0]}</Avatar>
+                            this.props.login ? (
+                                <Avatar>{childComment.user.nickname[0]}</Avatar>
+                            ) : (
+                                <Avatar icon={'user'}/>
+                            )
                         ) : (
                             <Avatar src={childComment.user.avatar}/>
                         )
@@ -185,7 +189,7 @@ export class CommentBlockList extends React.Component {
             <Comment
                 key={parentKey}
                 actions={[(<a className={'color-second'} onClick={onParentReplyButtonClick}>回复</a>)]}
-                author={parentComment.user.nickname}
+                author={this.props.login ? parentComment.user.nickname : ''}
                 datetime={
                     <Tooltip title={parentComment.datetime}>
                         <span>{moment(parentComment.datetime, optionConfig.dateFormat).fromNow()}</span>
@@ -193,7 +197,11 @@ export class CommentBlockList extends React.Component {
                 }
                 avatar={
                     parentComment.user.type === 'local' ? (
-                        <Avatar>{parentComment.user.nickname[0]}</Avatar>
+                        this.props.login ? (
+                            <Avatar>{parentComment.user.nickname[0]}</Avatar>
+                        ) : (
+                            <Avatar icon={'user'}/>
+                        )
                     ) : (
                         <Avatar src={parentComment.user.avatar}/>
                     )
@@ -218,7 +226,13 @@ export class CommentBlockList extends React.Component {
         // comment input textarea
         const newCommentInputTextarea = (
             <Comment
-                avatar={<Avatar>{this.props.user.nickname[0]}</Avatar>}
+                avatar={
+                    this.props.login ? (
+                        <Avatar>{this.props.user.nickname[0]}</Avatar>
+                    ) : (
+                        <Avatar icon={'user'}/>
+                    )
+                }
                 content={
                     <div>
                         <div>
@@ -237,7 +251,7 @@ export class CommentBlockList extends React.Component {
                         </div>
                     </div>
                 }
-                author={this.props.user.nickname}/>
+                author={this.props.login ? this.props.user.nickname : ''}/>
         );
 
         // login tip
