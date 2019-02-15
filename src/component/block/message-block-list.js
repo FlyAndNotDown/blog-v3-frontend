@@ -50,14 +50,43 @@ export class MessageBlockList extends React.Component {
     /**
      * messages list render function
      * @param {Object} message message object
+     * @param {number} key key of message object in list
      * @returns {*} render result
      */
-    messagesRenderFunction = (message) => {
+    messagesRenderFunction = (message, key) => {
         // return render result
         return (
-            <div>
-
-            </div>
+            <Comment
+                key={key}
+                author={this.props.login ? message.creator.nickname : ''}
+                datetime={
+                    <Tooltip title={message.datetime}>
+                        <span>{moment(message.datetime, optionConfig.dateFormat).fromNow()}</span>
+                    </Tooltip>
+                }
+                avatar={
+                    message.creator.type === 'local' ? (
+                        this.props.login ? (
+                            <Avatar>{message.creator.nickname[0]}</Avatar>
+                        ) : (
+                            <Avatar icon={'user'}/>
+                        )
+                    ) : (
+                        <Avatar src={message.creator.avatar}/>
+                    )
+                }
+                content={
+                    <div>{message.body}</div>
+                }>
+                {message.reply && (
+                    <Comment
+                        author={'Kindem'}
+                        avatar={<Avatar>K</Avatar>}
+                        content={
+                            <div>{message.reply}</div>
+                        }/>
+                )}
+            </Comment>
         );
     };
 
