@@ -57,7 +57,7 @@ export class MessagePage extends React.Component {
                 }
             });
         } catch (e) {
-            Log.devError(`get ${requestConfig.userLogin}`);
+            Log.devError(`get ${requestConfig.userLogin}`, e);
             message.error('获取用户信息失败');
         }
 
@@ -70,7 +70,26 @@ export class MessagePage extends React.Component {
         this.state.userLogin = !!data.login;
         this.state.userInfo = data.info || {};
 
-        // TODO
+        // get messages info
+        response = null;
+        data = null;
+        try {
+            response = await axios.get(requestConfig.message);
+        } catch (e) {
+            Log.devError(`get ${requestConfig.message}`, e);
+            return message.error('获取留言信息失败');
+        }
+
+        // if success
+        Log.dev(`get ${requestConfig.message} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        // get info in data object
+        let messages = data.messages || [];
+
+        // set data in state
+        this.setState({ messages: messages });
 
         // set load down status
         this.setState({ loadDown: true });        

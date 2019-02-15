@@ -102,10 +102,12 @@ export class MessageBlockList extends React.Component {
                     懒博主の留言板
                 </div>
                 <div className={'color-second font-size-md'}>
-                    🤔觉察看天命
+                    <span role={'img'} aria-labelledby={'think'}>🤔</span>
+                    觉察看天命
                 </div>
                 <div className={'color-second font-size-md'}>
-                    😜回复靠缘分
+                    <span role={'img'} aria-labelledby={'grimace'}>😜</span>
+                    回复靠缘分
                 </div>
                 <Divider/>
             </div>
