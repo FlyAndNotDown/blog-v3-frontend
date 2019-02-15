@@ -89,10 +89,10 @@ export class MessagePage extends React.Component {
         let messages = data.messages || [];
 
         // set data in state
-        this.setState({ messages: messages });
-
-        // set load down status
-        this.setState({ loadDown: true });        
+        this.setState({
+            messages: messages,
+            loadDown: true
+        });
     }
 
     /**
@@ -100,8 +100,58 @@ export class MessagePage extends React.Component {
      * @param {string} value new message value
      * @returns {boolean} success or failed status
      */
-    onNewMessage = (value) => {
-        // TODO
+    onNewMessage = async (value) => {
+        // lock at first
+        this.setState({ messageBlockLocked: true });
+        
+        // check value
+        if (!value) {
+            this.setState({ messageBlockLocked: false });
+            message.error('您什么都没输入');
+            return false;
+        }
+
+        // send request to publish a new message
+        let response, data;
+        try {
+            response = await axios.post(requestConfig.message, {
+                body: value
+            });
+        } catch (e) {
+            Log.error(`post ${requestConfig.message}`, e);
+            this.setState({ messageBlockLocked: false });
+            message.error('服务器错误');
+            return false;
+        }
+
+        // if request success
+        Log.dev(`post ${requestConfig.message} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        // get info in data obejct
+        let success = !!data.success;
+        let message = data.message || null;
+
+        // if failed
+        if (!success || !message) {
+            this.setState({ messageBlockLocked: false });
+            message.error('发表失败');
+            return false;
+        }
+
+        // if publish success
+        this.setState(prevState => {
+            let newMessages = [];
+            for (let i = 0; i < prevState.messages.length; i++) {
+                newMessages.push(prevState.message[i]);
+            }
+            newMessages.unshift(message);
+            return {
+                messageBlockLocked: false,
+                messages: newMessages
+            };
+        });
     };
 
     /**
@@ -135,8 +185,9 @@ export class MessagePage extends React.Component {
                     <MessageBlockList
                         login={this.state.userLogin}
                         user={this.state.userInfo}
-                        message={this.state.messages}
-                        locked={this.state.messageBlockLocked}/>
+                        messages={this.state.messages}
+                        locked={this.state.messageBlockLocked}
+                        onNewMessage={this.onNewMessage}/>
                 </Col>
             </Row>
         );

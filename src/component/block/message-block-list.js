@@ -44,7 +44,13 @@ export class MessageBlockList extends React.Component {
      * handle called when new message button clicked
      */
     onNewMessageButtonClick = () => {
-        // TODO
+        /**
+         * called handle from props
+         * @param {string} value new message value
+         */
+        if (this.props.onNewMessage && this.props.onNewMessage(this.state.newMessageValue)) {
+            this.setState({ newMessageValue: '' });
+        }
     };
 
     /**
