@@ -144,7 +144,7 @@ export class MessagePage extends React.Component {
         this.setState(prevState => {
             let newMessages = [];
             for (let i = 0; i < prevState.messages.length; i++) {
-                newMessages.push(prevState.message[i]);
+                newMessages.push(prevState.messages[i]);
             }
             newMessages.unshift(message);
             return {
