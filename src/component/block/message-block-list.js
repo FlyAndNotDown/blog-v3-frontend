@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Comment, Avatar, Input, Button, Tooltip } from 'antd';
+import { Row, Col, Comment, Avatar, Input, Button, Tooltip, Divider } from 'antd';
 import moment from 'moment';
 import optionConfig from '../../config/option';
 
@@ -48,60 +48,98 @@ export class MessageBlockList extends React.Component {
     };
 
     /**
-     * render function
+     * messages list render function
+     * @param {Object} message message object
      * @returns {*} render result
      */
-    render() {
-        // message input textarea
-        const newMessageInputTextarea = (
-            <Comment
-                avatar={
-                    this.props.login ? (
-                        <Avatar>{this.props.user.nickname[0]}</Avatar>
-                    ) : (
-                        <Avatar icon={'user'}/>
-                    )
-                }
-                content={
-                    <div>
-                        <div>
-                            <Input.TextArea
-                                value={this.state.newMessageValue}
-                                onChange={this.onNewMessageValueChange}
-                                autosize={{ minRows: 4 }}
-                                placeholder={MessageBlockList.__TEXTAREA__PLACEHOLDER}/>
-                        </div>
-                        <div className={'mt-sm'}>
-                            <Button
-                                disabled={!!this.props.locked}
-                                type={'primary'}
-                                onClick={this.onNewMessageButtonClick}>
-                                {MessageBlockList.__PUBLISH_NEW_MESSAGE_BUTTON__TEXT}
-                            </Button>
-                        </div>
-                    </div>
-                }
-                author={this.props.login ? this.props.user.nickname : ''}/>
-        );
-
-        // login tip
-        const loginTip = (
-            <Comment
-                avatar={<Avatar icon={'user'}/>}
-                content={
-                    <div>
-                        <Button type={'primary'}>
-                            {MessageBlockList.__LOGIN_BUTTON__TEXT}
-                        </Button>
-                    </div>
-                }/>
-        );
-
+    messagesRenderFunction = (message) => {
         // return render result
         return (
             <div>
 
             </div>
+        );
+    };
+
+    /**
+     * render function
+     * @returns {*} render result
+     */
+    render() {
+        // title row
+        const titleRow = (
+            <div>
+                <div className={'color-black font-size-lg'}>
+                    懒博主の留言板
+                </div>
+                <div className={'color-second font-size-md'}>
+                    🤔觉察看天命
+                </div>
+                <div className={'color-second font-size-md'}>
+                    😜回复靠缘分
+                </div>
+                <Divider/>
+            </div>
+        );
+
+        // message input textarea
+        const newMessageInputTextarea = (
+            <div>
+                <Comment
+                    avatar={
+                        this.props.login ? (
+                            <Avatar>{this.props.user.nickname[0]}</Avatar>
+                        ) : (
+                            <Avatar icon={'user'}/>
+                        )
+                    }
+                    content={
+                        <div>
+                            <div>
+                                <Input.TextArea
+                                    value={this.state.newMessageValue}
+                                    onChange={this.onNewMessageValueChange}
+                                    autosize={{ minRows: 4 }}
+                                    placeholder={MessageBlockList.__TEXTAREA__PLACEHOLDER}/>
+                            </div>
+                            <div className={'mt-sm'}>
+                                <Button
+                                    disabled={!!this.props.locked}
+                                    type={'primary'}
+                                    onClick={this.onNewMessageButtonClick}>
+                                    {MessageBlockList.__PUBLISH_NEW_MESSAGE_BUTTON__TEXT}
+                                </Button>
+                            </div>
+                        </div>
+                    }
+                    author={this.props.login ? this.props.user.nickname : ''}/>
+            </div>
+        );
+
+        // login tip
+        const loginTip = (
+            <div>
+                <Comment
+                    avatar={<Avatar icon={'user'}/>}
+                    content={
+                        <div>
+                            <Button type={'primary'}>
+                                {MessageBlockList.__LOGIN_BUTTON__TEXT}
+                            </Button>
+                        </div>
+                    }/>
+            </div>
+        );
+
+        // return render result
+        return (
+            <Row>
+                <Col>
+                    {titleRow}
+                    {this.props.login ? newMessageInputTextarea : loginTip}
+                    {this.props.messages && this.props.messages.map(this.messagesRenderFunction)}
+                </Col>
+            </Row>
         );
     }
 
