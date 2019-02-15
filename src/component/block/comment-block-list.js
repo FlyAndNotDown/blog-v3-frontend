@@ -16,7 +16,7 @@ import optionConfig from '../../config/option';
  * @param {boolean} login user login status
  * @param {Object} user user info object
  * @param {[Object]} comments comment objects list
- * @param {boolean} lcoked locked status
+ * @param {boolean} locked locked status
  * @param {Function} onNewComment handle called when publish a new comment
  * @param {Function} onNewReply handle called when publish a new reply
  */
@@ -31,7 +31,7 @@ export class CommentBlockList extends React.Component {
 
     /**
      * constructor of react component
-     * @param {*} props 
+     * @param {*} props properties
      */
     constructor(props) {
         super(props);
