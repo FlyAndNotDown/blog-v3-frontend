@@ -37,10 +37,10 @@ export class MainRouter extends React.Component {
                     <Route exact path={'/admin/post/new'} component={AdminNewPostPage}/>
                     <Route exact path={'/user/login'} component={UserLoginPage}/>
                     <Route exact path={'/user/register'} component={UserRegisterPage}/>
-                    <Route exact paht={'/message'} component={MessagePage}/>
                     <Route exact path={'/archive'} component={ArchivePage}/>
                     <Route exact path={'/label'} component={LabelPage}/>
                     <Route exact path={'/admin'} component={AdminIndexPage}/>
+                    <Route exact paht={'/message'} component={MessagePage}/>
                     <Route paht={'*'} component={Error404Page}/>
                 </Switch>
             </BrowserRouter>
