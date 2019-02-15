@@ -31,6 +31,7 @@ export class MainRouter extends React.Component {
             <BrowserRouter>
                 <Switch>
                     <Route exact path={'/'} component={IndexPage}/>
+                    <Route exact path={'/post/key/:postId'} component={PostPage}/>
                     <Route exact path={'/archive'} component={ArchivePage}/>
                     <Route exact path={'/label'} component={LabelPage}/>
                     <Route exact paht={'/message'} component={MessagePage}/>
@@ -38,7 +39,6 @@ export class MainRouter extends React.Component {
                     <Route exact path={'/admin'} component={AdminIndexPage}/>
                     <Route exact path={'/admin/general'} component={AdminGeneralPage}/>
                     <Route exact path={'/admin/post/new'} component={AdminNewPostPage}/>
-                    <Route exact path={'/post/key/:postId'} component={PostPage}/>
                     <Route exact path={'/user/login'} component={UserLoginPage}/>
                     <Route exact path={'/user/register'} component={UserRegisterPage}/>
                     <Route paht={'*'} component={Error404Page}/>

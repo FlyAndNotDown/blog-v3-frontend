@@ -465,7 +465,7 @@ export class PostPage extends React.Component {
                 for (let i = 0; i < prevState.comments.length; i++) {
                     newComments.push(prevState.comments[i]);
                 }
-                newComments.push(comment);
+                newComments.unshift(comment);
                 return {
                     comments: newComments
                 };
@@ -541,7 +541,7 @@ export class PostPage extends React.Component {
                 for (let i = 0; i < prevState.comments.length; i++) {
                     let temp = prevState.comments[i];
                     if (parentKey === i) {
-                        temp.children.push(reply);
+                        temp.children.unshift(reply);
                     }
                     newComments.push(temp);
                 }

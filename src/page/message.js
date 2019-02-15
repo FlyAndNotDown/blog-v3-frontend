@@ -69,13 +69,6 @@ export class MessagePage extends React.Component {
                     md={{ offset: 0, span: 24 }}
                     lg={{ offset: 2, span: 14 }}>
                     <br/>
-
-                </Col>
-                <Col
-                    xs={{ offset: 0, span: 0 }}
-                    sm={{ offset: 0, span: 0 }}
-                    md={{ offset: 0, span: 0 }}
-                    lg={{ offset: 2, span: 4 }}>
                     
                 </Col>
             </Row>
