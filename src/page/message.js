@@ -7,10 +7,14 @@
 
 import React from 'react';
 import { KLayout } from '../component/tool/k-layout';
-import { Affix, Row, Col, BackTop } from 'antd';
+import { Affix, Row, Col, BackTop, message } from 'antd';
 import { NavBar } from '../component/nav-bar';
 import { Footer } from '../component/footer';
 import { LoadingLayout } from '../component/gadget/loading-layout';
+import { MessageBlockList } from '../component/block/message-block-list';
+import axios from 'axios';
+import requestConfig from '../config/request';
+import { Log } from '../tool/log';
 
 /**
  * message page component
@@ -28,6 +32,12 @@ export class MessagePage extends React.Component {
         this.state = {
             loadDown: false,
 
+            // message value list
+            messages: [],
+
+            // message block locked
+            messageBlockLocked: false,
+
             // user info
             userLogin: false,
             userInfo: {}
@@ -38,9 +48,42 @@ export class MessagePage extends React.Component {
      * component did mount
      */
     async componentDidMount() {
+        // get user info
+        let response, data;
+        try {
+            response = await axios.get(requestConfig.userLogin, {
+                params: {
+                    type: 'info'
+                }
+            });
+        } catch (e) {
+            Log.devError(`get ${requestConfig.userLogin}`);
+            message.error('获取用户信息失败');
+        }
+
+        // if success
+        Log.dev(`get ${requestConfig.userLogin} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        // save user info
+        this.state.userLogin = !!data.login;
+        this.state.userInfo = data.info || {};
+
         // TODO
-        setTimeout(() => { this.setState({ loadDown: true }); }, 1000);
+
+        // set load down status
+        this.setState({ loadDown: true });        
     }
+
+    /**
+     * handle called when a new message publish
+     * @param {string} value new message value
+     * @returns {boolean} success or failed status
+     */
+    onNewMessage = (value) => {
+        // TODO
+    };
 
     /**
      * render function
@@ -55,7 +98,8 @@ export class MessagePage extends React.Component {
                         active={true}
                         history={this.props.history}
                         login={this.state.userLogin}
-                        user={this.state.userInfo}/>
+                        user={this.state.userInfo}
+                        onNewMessage={this.onNewMessage}/>
                 </Affix>
             </KLayout>
         );
@@ -69,7 +113,11 @@ export class MessagePage extends React.Component {
                     md={{ offset: 0, span: 24 }}
                     lg={{ offset: 2, span: 14 }}>
                     <br/>
-                    
+                    <MessageBlockList
+                        login={this.state.userLogin}
+                        user={this.state.userInfo}
+                        message={this.state.messages}
+                        locked={this.state.messageBlockLocked}/>
                 </Col>
             </Row>
         );

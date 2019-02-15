@@ -22,5 +22,6 @@ export default {
     label: `${commonUrlPrefix}/label`,
     comment: `${commonUrlPrefix}/comment`,
     userLocal: `${commonUrlPrefix}/user/local`,
-    userLogin: `${commonUrlPrefix}/user/login`
+    userLogin: `${commonUrlPrefix}/user/login`,
+    message: `${commonUrlPrefix}/message`
 };
