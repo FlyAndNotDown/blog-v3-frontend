@@ -7,7 +7,7 @@
 
 import React from 'react';
 import { KLayout } from '../component/tool/k-layout';
-import { Affix, Row, Col, BackTop, message } from 'antd';
+import { Affix, Row, Col, BackTop, message, Divider } from 'antd';
 import { NavBar } from '../component/nav-bar';
 import { Footer } from '../component/footer';
 import { LoadingLayout } from '../component/gadget/loading-layout';
@@ -21,6 +21,10 @@ import { Log } from '../tool/log';
  * @constructor
  */
 export class MessagePage extends React.Component {
+
+    // static text
+    static __TITLE = '懒博主の留言板';
+    static __SLOGAN = '😜回复靠缘分';
 
     /**
      * constructor of React component
@@ -172,6 +176,20 @@ export class MessagePage extends React.Component {
             </KLayout>
         );
 
+        // title row
+        const titleRow = (
+            // title row
+            <div>
+                <div className={'color-black font-size-lg'}>
+                    {MessagePage.__TITLE}
+                </div>
+                <div className={'color-second font-size-md'}>
+                    {MessagePage.__SLOGAN}
+                </div>
+                <Divider/>
+            </div>
+        );
+
         // main context row
         const mainContextRow = (
             <Row>
@@ -181,6 +199,7 @@ export class MessagePage extends React.Component {
                     md={{ offset: 0, span: 24 }}
                     lg={{ offset: 2, span: 14 }}>
                     <br/>
+                    {titleRow}
                     <MessageBlockList
                         login={this.state.userLogin}
                         user={this.state.userInfo}

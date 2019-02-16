@@ -101,24 +101,6 @@ export class MessageBlockList extends React.Component {
      * @returns {*} render result
      */
     render() {
-        // title row
-        const titleRow = (
-            <div>
-                <div className={'color-black font-size-lg'}>
-                    懒博主の留言板
-                </div>
-                <div className={'color-second font-size-md'}>
-                    <span role={'img'} aria-labelledby={'think'}>🤔</span>
-                    觉察看天命
-                </div>
-                <div className={'color-second font-size-md'}>
-                    <span role={'img'} aria-labelledby={'grimace'}>😜</span>
-                    回复靠缘分
-                </div>
-                <Divider/>
-            </div>
-        );
-
         // message input textarea
         const newMessageInputTextarea = (
             <div>
@@ -172,7 +154,6 @@ export class MessageBlockList extends React.Component {
         return (
             <Row>
                 <Col>
-                    {titleRow}
                     {this.props.login ? newMessageInputTextarea : loginTip}
                     {this.props.messages && this.props.messages.map(this.messagesRenderFunction)}
                 </Col>
