@@ -131,10 +131,10 @@ export class MessagePage extends React.Component {
 
         // get info in data obejct
         let success = !!data.success;
-        let message = data.message || null;
+        let dataMessage = data.message || null;
 
         // if failed
-        if (!success || !message) {
+        if (!success || !dataMessage) {
             this.setState({ messageBlockLocked: false });
             message.error('发表失败');
             return false;
@@ -146,7 +146,7 @@ export class MessagePage extends React.Component {
             for (let i = 0; i < prevState.messages.length; i++) {
                 newMessages.push(prevState.messages[i]);
             }
-            newMessages.unshift(message);
+            newMessages.unshift(dataMessage);
             return {
                 messageBlockLocked: false,
                 messages: newMessages
