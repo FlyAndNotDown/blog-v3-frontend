@@ -21,6 +21,7 @@ export default {
     archive: `${commonUrlPrefix}/archive`,
     label: `${commonUrlPrefix}/label`,
     comment: `${commonUrlPrefix}/comment`,
+    friend: `${commonUrlPrefix}/friend`,
     userLocal: `${commonUrlPrefix}/user/local`,
     userLogin: `${commonUrlPrefix}/user/login`,
     message: `${commonUrlPrefix}/message`

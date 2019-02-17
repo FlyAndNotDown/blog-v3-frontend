@@ -8,19 +8,24 @@
 import React from 'react';
 import axios from 'axios';
 import { KLayout } from '../component/tool/k-layout';
-import { Affix } from 'antd';
+import { Affix, Divider } from 'antd';
 import { NavBar } from '../component/nav-bar';
 import { Footer } from '../component/footer';
 import { LoadingLayout } from '../component/gadget/loading-layout';
 import requestConfig from '../config/request';
 import { Row, Col, message, BackTop } from 'antd';
 import { Log } from '../tool/log';
+import { BlankLink } from '../component/tool/blank-link';
 
 /**
  * friend page component
  * @constructor
  */
 export class FriendPage extends React.Component {
+
+    // static text
+    static __TITLE = '友情链接';
+    static __SLOGAN = '🧐快到碗里来';
 
     /**
      * constructor of React component
@@ -34,7 +39,10 @@ export class FriendPage extends React.Component {
 
             // user info
             userLogin: false,
-            userInfo: {}
+            userInfo: {},
+
+            // friend chains info
+            friends: []
         };
     }
 
@@ -64,9 +72,45 @@ export class FriendPage extends React.Component {
         this.state.userLogin = !!data.login;
         this.state.userInfo = data.info || {};
 
-        // set load down status
-        this.setState({ loadDown: true });
+        // get friens chain info
+        response = null;
+        data = null;
+        try {
+            response = await axios.get(requestConfig.friend);
+        } catch (e) {
+            Log.devError(`get ${requestConfig.friend}`, e);
+            return message.error('获取友链信息失败');
+        }
+
+        // if success
+        Log.dev(`get ${requestConfig.friend} OK`);
+        response = response || {};
+        data = response.data || {};
+
+        // get info in data object
+        let friends = data.friends || [];
+
+        // set status
+        this.setState({
+            loadDown: true,
+            friends: friends
+        });
     }
+
+    /**
+     * friend chain block list render function
+     * @param {Object} item friend chain object
+     * @param {number} key object key in list
+     * @returns {*} render result
+     */
+    friendBlockListRenderFunction = (item, key) => {
+        // return render result
+        return (
+            <div className={'font-size-sm'}>
+                <BlankLink to={item.to}>{item.name}</BlankLink>
+            </div>
+        );
+    };
 
     /**
      * render function
@@ -86,6 +130,19 @@ export class FriendPage extends React.Component {
             </KLayout>
         );
 
+        // title row
+        const titleRow = (
+            <div>
+                <div className={'color-black font-size-lg'}>
+                    {FriendPage.__TITLE}
+                </div>
+                <div className={'color-second font-size-md'}>
+                    {FriendPage.__SLOGAN}
+                </div>
+                <Divider/>
+            </div>
+        );
+
         // main context row
         const mainContextRow = (
             <Row>
@@ -95,7 +152,7 @@ export class FriendPage extends React.Component {
                     md={{ offset: 0, span: 24 }}
                     lg={{ offset: 2, span: 14 }}>
                     <br/>
-                    
+                    {titleRow}
                 </Col>
             </Row>
         );

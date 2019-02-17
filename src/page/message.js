@@ -178,7 +178,6 @@ export class MessagePage extends React.Component {
 
         // title row
         const titleRow = (
-            // title row
             <div>
                 <div className={'color-black font-size-lg'}>
                     {MessagePage.__TITLE}
