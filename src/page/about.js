@@ -9,7 +9,11 @@ import React from 'react';
 import axios from 'axios';
 import requestConfig from '../config/request';
 import { Log } from '../tool/log';
-import { message } from 'antd';
+import { message, Affix, BackTop, Row, Col } from 'antd';
+import { KLayout } from '../component/tool/k-layout';
+import { NavBar } from '../component/nav-bar';
+import { LoadingLayout } from '../component/gadget/loading-layout';
+import { Footer } from '../component/footer';
 
 /**
  * AboutPage
@@ -39,31 +43,7 @@ export class AboutPage extends React.Component {
      * life function when component did mount
      */
     async componentDidMount() {
-        // do the request to get user info
-        let response, data;
-        try {
-            response = await axios.get(requestConfig.userLogin, {
-                params: {
-                    type: 'info'
-                }
-            });
-        } catch (e) {
-            Log.devError(`get ${requestConfig.userLogin}`, e);
-            this.setState({ loadDown: true });
-            return message.error('获取用户信息失败');
-        }
-
-        // if success
-        Log.dev(`get ${requestConfig.userLogin} OK`);
-        response = response || {};
-        data = response.data || {};
-
-        // save info to state
-        this.setState({
-            loadDown: true,
-            userLogin: !!data.login,
-            userInfo: data.info || {}
-        });
+        
     }
 
     /**
@@ -71,7 +51,7 @@ export class AboutPage extends React.Component {
      * @returns {*} render result
      */
     render() {
-        // return render result
+        // render result
         return (
             <div></div>
         );
