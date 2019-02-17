@@ -99,15 +99,25 @@ export class FriendPage extends React.Component {
 
     /**
      * friend chain block list render function
-     * @param {Object} item friend chain object
+     * @param {Object} friend friend chain object
      * @param {number} key object key in list
      * @returns {*} render result
      */
-    friendBlockListRenderFunction = (item, key) => {
+    friendBlockListRenderFunction = (friend, key) => {
         // return render result
         return (
-            <div className={'font-size-sm'}>
-                <BlankLink to={item.to}>{item.name}</BlankLink>
+            <div>
+                <div className={'font-size-sm'} key={key}>
+                    <BlankLink
+                        className={'color-second'}
+                        to={friend.to}>
+                        {friend.name}
+                    </BlankLink>
+                </div>
+                <div className={'color-grey font-size-xs'}>
+                    {friend.description}
+                </div>
+                <Divider/>
             </div>
         );
     };
@@ -153,6 +163,7 @@ export class FriendPage extends React.Component {
                     lg={{ offset: 2, span: 14 }}>
                     <br/>
                     {titleRow}
+                    {this.state.friends.map(this.friendBlockListRenderFunction)}
                 </Col>
             </Row>
         );
