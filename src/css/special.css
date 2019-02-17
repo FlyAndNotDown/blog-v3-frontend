@@ -30,3 +30,7 @@ body {
     max-height: 430px;
     overflow-y: auto;
 }
+
+.font-size-about {
+    font-size: 16px;
+}
