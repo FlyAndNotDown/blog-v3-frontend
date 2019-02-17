@@ -82,8 +82,10 @@ export class LabelPage extends React.Component {
         data = response.data || {};
 
         // get info in data object
-        this.state.userLogin = !!data.login;
-        this.state.userInfo = data.info || {};
+        this.setState({
+            userLogin: !!data.login,
+            userInfo: data.info || {}
+        });
 
         // do the request to get all the label info
         response = null;
@@ -210,8 +212,10 @@ export class LabelPage extends React.Component {
         data = response.data || {};
 
         // get info in data object
-        this.state.userLogin = !!data.login;
-        this.state.userInfo = data.info || {};
+        this.setState({
+            userLogin: !!data.login,
+            userInfo: data.info || {}
+        });
 
         // check if there is new selectedLabel
         if (labelId.match(regexConfig.normal.naturalNumber)) {

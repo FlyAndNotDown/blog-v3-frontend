@@ -65,8 +65,10 @@ export class ArchivePage extends React.Component {
         data = response.data || {};
 
         // get info in data object
-        this.state.userLogin = !!data.login;
-        this.state.userInfo = data.info || {};
+        this.setState({
+            userLogin: !!data.login,
+            userInfo: data.info || {}
+        });
 
         // try to do the request
         response = null;

@@ -74,8 +74,10 @@ export class IndexPage extends React.Component {
         data = response.data || {};
 
         // get info in data object
-        this.state.userLogin = !!data.login;
-        this.state.userInfo = data.info || {};
+        this.setState({
+            userLogin: !!data.login,
+            userInfo: data.info || {}
+        });
 
         // 发送请求获取文章
         response = null;

@@ -85,8 +85,10 @@ export class PostPage extends React.Component {
         response = response || {};
         data = response.data || {};
 
-        this.state.userLogin = !!data.login;
-        this.state.userInfo = data.info || {};
+        this.setState({
+            userLogin: !!data.login,
+            userInfo: data.info || {}
+        });
 
         // get post detail
         response = null;
@@ -189,8 +191,10 @@ export class PostPage extends React.Component {
             response = response || {};
             data = response.data || {};
 
-            this.state.userLogin = !!data.login;
-            this.state.userInfo = data.info || {};
+            this.setState({
+                userLogin: !!data.login,
+                userInfo: data.info || {}
+            });
 
             // get post detail
             try {

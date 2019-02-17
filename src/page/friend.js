@@ -69,8 +69,10 @@ export class FriendPage extends React.Component {
         data = response.data || {};
 
         // save user info
-        this.state.userLogin = !!data.login;
-        this.state.userInfo = data.info || {};
+        this.setState({
+            userLogin: !!data.login,
+            userInfo: data.info || {}
+        });
 
         // get friens chain info
         response = null;

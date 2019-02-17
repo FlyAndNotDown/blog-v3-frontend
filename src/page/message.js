@@ -71,8 +71,10 @@ export class MessagePage extends React.Component {
         data = response.data || {};
 
         // save user info
-        this.state.userLogin = !!data.login;
-        this.state.userInfo = data.info || {};
+        this.setState({
+            userLogin: !!data.login,
+            userInfo: data.info || {}
+        });
 
         // get messages info
         response = null;
