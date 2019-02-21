@@ -23,5 +23,8 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "react-app-rewire-uglifyjs": "^0.1.1"
   }
 }
