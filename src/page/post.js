@@ -15,7 +15,7 @@ import axios from 'axios';
 import requestConfig from '../config/request';
 import { Log } from '../tool/log';
 import { LoadingLayout } from '../component/gadget/loading-layout';
-import chinese2pinyin from 'chinese2pinyin';
+import pinyin from 'pinyin';
 import { CommentBlockList } from '../component/block/comment-block-list';
 
 /**
@@ -298,7 +298,7 @@ export class PostPage extends React.Component {
         // replace space with '-'
         value = value.replace(' ', '-');
         // change chinese to pin yin
-        value = chinese2pinyin({ cn: value, result: 'F', remainSpecial: true });
+        value = pinyin(value, { style: pinyin.STYLE_NORMAL }).join();
         // change all the characters to lower case
         value = value.toLowerCase();
 
