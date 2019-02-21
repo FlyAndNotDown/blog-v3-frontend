@@ -93,7 +93,8 @@ export class AboutPage extends React.Component {
         const aboutBlogBlock = (
             <div>
                 <div className={'font-size-lg'}>
-                    ✨关于博客
+                    <span role={'img'} aria-labelledby={'star'}>✨</span>
+                    关于博客
                 </div>
                 <Divider/>
                 <div className={'p-xl font-size-about color-grey'}>
@@ -133,7 +134,8 @@ export class AboutPage extends React.Component {
         const aboutMeBlock = (
             <div>
                 <div className={'font-size-lg'}>
-                    😆关于我
+                    <span role={'img'} aria-labelledby={'smile'}>😆</span>
+                    关于我
                 </div>
                 <Divider/>
                 <div className={'p-xl font-size-about color-grey'}>
