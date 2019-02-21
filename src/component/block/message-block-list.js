@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Comment, Avatar, Input, Button, Tooltip, Divider } from 'antd';
+import { Row, Col, Comment, Avatar, Input, Button, Tooltip } from 'antd';
 import moment from 'moment';
 import optionConfig from '../../config/option';
 

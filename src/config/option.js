@@ -4,8 +4,6 @@
  * @version v1.0
  */
 
-import mainConfig from './main';
-
 /**
  * 导出选项
  */
