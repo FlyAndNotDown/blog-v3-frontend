@@ -657,6 +657,7 @@ export class PostPage extends React.Component {
                     {postDescriptionRow}
                     {postBody}
                     <CommentBlockList
+                        history={this.props.history}
                         login={this.state.userLogin}
                         user={this.state.userInfo}
                         comments={this.state.comments}

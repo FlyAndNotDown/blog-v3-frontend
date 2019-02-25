@@ -11,6 +11,7 @@ import optionConfig from '../../config/option';
  * @param {[Object]} messages message objects list
  * @param {boolean} locked locked status
  * @param {Function} onNewMessage handle called when publish a new message
+ * @param {Object} history React router history object
  */
 export class MessageBlockList extends React.Component {
 
@@ -97,6 +98,13 @@ export class MessageBlockList extends React.Component {
     };
 
     /**
+     * handle called when login button clicked
+     */
+    onLoginButtonClick = () => {
+        this.props.history.push('/user/login');
+    };
+
+    /**
      * render function
      * @returns {*} render result
      */
@@ -142,7 +150,9 @@ export class MessageBlockList extends React.Component {
                     avatar={<Avatar icon={'user'}/>}
                     content={
                         <div>
-                            <Button type={'primary'}>
+                            <Button
+                                type={'primary'}
+                                onClick={this.onLoginButtonClick}>
                                 {MessageBlockList.__LOGIN_BUTTON__TEXT}
                             </Button>
                         </div>

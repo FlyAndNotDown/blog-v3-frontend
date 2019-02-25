@@ -19,6 +19,7 @@ import optionConfig from '../../config/option';
  * @param {boolean} locked locked status
  * @param {Function} onNewComment handle called when publish a new comment
  * @param {Function} onNewReply handle called when publish a new reply
+ * @param {Object} history React router history object
  */
 export class CommentBlockList extends React.Component {
 
@@ -71,6 +72,13 @@ export class CommentBlockList extends React.Component {
         if (this.props.onNewComment && this.props.onNewComment(this.state.newCommentValue)) {
             this.setState({ newCommentValue: '' });
         }
+    };
+
+    /**
+     * handle called when login button clicked
+     */
+    onLoginButtonClick = () => {
+        this.props.history.push('/user/login');
     };
 
     /**
@@ -292,7 +300,11 @@ export class CommentBlockList extends React.Component {
                 avatar={<Avatar icon={'user'}/>}
                 content={
                     <div>
-                        <Button type={'primary'}>{CommentBlockList.__LOGIN_BUTTON__TEXT}</Button>
+                        <Button
+                            type={'primary'}
+                            onClick={this.onLoginButtonClick}>
+                            {CommentBlockList.__LOGIN_BUTTON__TEXT}
+                        </Button>
                     </div>
                 }/>
         );
