@@ -202,6 +202,7 @@ export class MessagePage extends React.Component {
                     <br/>
                     {titleRow}
                     <MessageBlockList
+                        history={this.props.history}
                         login={this.state.userLogin}
                         user={this.state.userInfo}
                         messages={this.state.messages}
