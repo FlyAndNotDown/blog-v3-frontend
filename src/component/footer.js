@@ -49,6 +49,10 @@ export class Footer extends React.Component {
                     <KIcon type={'k-juejin'}/>
                 </BlankLink>
                 &nbsp;
+                <BlankLink to={'https://www.npmjs.com/settings/kindem/packages'}>
+                    <KIcon type={'k-npm'}/>
+                </BlankLink>
+                &nbsp;
                 <BlankLink to={'https://segmentfault.com/u/liuweimeng'}>
                     <KIcon type={'k-sf'}/>
                 </BlankLink>
