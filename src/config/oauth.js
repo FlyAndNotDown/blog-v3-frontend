@@ -8,6 +8,7 @@ export default {
     // github login config
     github: {
         clientId: '111e1c113b24af541e82',
-        clientSecret: 'b0cd2063ab60ef06cda2a29ab95dbf8036da45ef'
+        clientSecret: 'b0cd2063ab60ef06cda2a29ab95dbf8036da45ef',
+        authorizePage: `https://github.com/login/oauth/authorize`
     }
 };

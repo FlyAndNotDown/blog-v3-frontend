@@ -15,9 +15,13 @@ import { PasswordTool } from '../../tool/password';
 import regexConfig from '../../config/regex';
 import { LoadingLayout } from '../../component/gadget/loading-layout';
 import { Link } from 'react-router-dom';
+import oauthConfig from '../../config/oauth';
 
 const { Item } = Form;
 const userRegex = regexConfig.user;
+const githubOauthConfig = oauthConfig.github;
+
+const githubAuthorizeLink = `${githubOauthConfig.authorizePage}?client_id=${githubOauthConfig.clientId}`;
 
 /**
  * page component - /user/login
@@ -294,7 +298,7 @@ export class UserLoginPage extends React.Component {
                     </Button>
                     <span>
                         或使用&nbsp;
-                        <Link to={'#'}>GitHub</Link>&nbsp;
+                        <a href={githubAuthorizeLink}>GitHub</a>&nbsp;
                         登录
                     </span>
                 </Item>
