@@ -24,5 +24,6 @@ export default {
     friend: `${commonUrlPrefix}/friend`,
     userLocal: `${commonUrlPrefix}/user/local`,
     userLogin: `${commonUrlPrefix}/user/login`,
+    userGithub: `${commonUrlPrefix}/user/github`,
     message: `${commonUrlPrefix}/message`
 };
