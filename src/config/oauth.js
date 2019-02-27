@@ -1,6 +1,7 @@
 /**
  * /config/oauth.js
  * @author John Kindem
+ * @description config file for OAuth
  * @version v1.0
  */
 
