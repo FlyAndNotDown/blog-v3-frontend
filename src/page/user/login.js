@@ -295,7 +295,6 @@ export class UserLoginPage extends React.Component {
                     <span>
                         或使用&nbsp;
                         <Link to={'#'}>GitHub</Link>&nbsp;
-                        <Link to={'#'}>QQ</Link>&nbsp;
                         登录
                     </span>
                 </Item>
