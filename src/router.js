@@ -16,6 +16,8 @@ import { MessagePage } from './page/message';
 import { FriendPage } from './page/friend';
 import { AboutPage } from './page/about';
 import { UserGithubPage } from './page/user/github';
+import { AdminIndexPage } from './page/admin';
+import { AdminLoginPage } from './page/admin/login';
 
 /**
  * 主路由组件
@@ -36,6 +38,8 @@ export class MainRouter extends React.Component {
                     <Route exact path={'/user/login'} component={UserLoginPage}/>
                     <Route exact path={'/user/register'} component={UserRegisterPage}/>
                     <Route exact path={'/user/github'} component={UserGithubPage}/>
+                    <Route exact path={'/admin'} component={AdminIndexPage}/>
+                    <Route exact path={'/admin/login'} component={AdminLoginPage}/>
                     <Route exact path={'/archive'} component={ArchivePage}/>
                     <Route exact path={'/label'} component={LabelPage}/>
                     <Route exact path={'/friend'} component={FriendPage}/>
