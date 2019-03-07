@@ -44,8 +44,8 @@ export class MainRouter extends React.Component {
                     <Route exact path={'/label'} component={LabelPage}/>
                     <Route exact path={'/friend'} component={FriendPage}/>
                     <Route exact path={'/about'} component={AboutPage}/>
-                    <Route exact paht={'/message'} component={MessagePage}/>
-                    <Route paht={'*'} component={Error404Page}/>
+                    <Route exact path={'/message'} component={MessagePage}/>
+                    <Route path={'*'} component={Error404Page}/>
                 </Switch>
             </BrowserRouter>
         );
