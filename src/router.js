@@ -7,9 +7,6 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { IndexPage } from './page/index';
 import { PostPage } from './page/post';
-import { AdminIndexPage } from './page/admin/index';
-import { AdminGeneralPage } from './page/admin/general';
-import { AdminNewPostPage } from './page/admin/post/new';
 import { Error404Page } from './page/error-404';
 import { ArchivePage } from './page/archive';
 import { LabelPage } from './page/label';
@@ -36,14 +33,11 @@ export class MainRouter extends React.Component {
                     <Route exact path={'/'} component={IndexPage}/>
                     <Route exact path={'/post/key/:postId'} component={PostPage}/>
                     <Route exact path={'/label/:labelId'} component={LabelPage}/>
-                    <Route exact path={'/admin/general'} component={AdminGeneralPage}/>
-                    <Route exact path={'/admin/post/new'} component={AdminNewPostPage}/>
                     <Route exact path={'/user/login'} component={UserLoginPage}/>
                     <Route exact path={'/user/register'} component={UserRegisterPage}/>
                     <Route exact path={'/user/github'} component={UserGithubPage}/>
                     <Route exact path={'/archive'} component={ArchivePage}/>
                     <Route exact path={'/label'} component={LabelPage}/>
-                    <Route exact path={'/admin'} component={AdminIndexPage}/>
                     <Route exact path={'/friend'} component={FriendPage}/>
                     <Route exact path={'/about'} component={AboutPage}/>
                     <Route exact paht={'/message'} component={MessagePage}/>
