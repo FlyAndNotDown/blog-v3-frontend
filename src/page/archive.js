@@ -125,6 +125,7 @@ export class ArchivePage extends React.Component {
                         xxl={{ offset: 5, span: 14 }}>
                         <ArchiveBlockList
                             posts={this.state.posts}/>
+                        <br/><br/><br/><br/>
                     </Col>
                 </Row>
             </KLayout>
