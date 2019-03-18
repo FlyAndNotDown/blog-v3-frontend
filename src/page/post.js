@@ -598,9 +598,14 @@ export class PostPage extends React.Component {
                     sm={{ offset: 0, span: 24 }}
                     md={{ offset: 0, span: 24 }}
                     lg={{ offset: 0, span: 0 }}>
-                    <div className={'font-size-xl mt-md text-align-center'}>let和const</div>
+                    <div className={'font-size-xl mt-md text-align-center'}>{this.state.title}</div>
                     <div className={'font-size-xs mt-sm color-grey text-align-center'}>
-                        <span><Icon type={'clock-circle-o'}/>&nbsp;2018-10-2</span>
+                        <span><Icon type={'clock-circle-o'}/>&nbsp;{this.state.date}</span>
+                    </div>
+                    <div className={'font-size-xs mt-sm color-grey text-align-center'}>
+                        <span className={'ml-md'}>
+                            {this.state.labels.map(this.descriptionLabelsMapFunc)}
+                        </span>
                     </div>
                     <Divider/>
                 </Col>
