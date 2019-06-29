@@ -9,7 +9,7 @@ import { NavBar } from '../component/nav-bar';
 import { Footer } from '../component/footer';
 import { Row, Col, Affix, Divider, Icon, Anchor, BackTop, message } from 'antd';
 import { Link } from 'react-router-dom';
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from 'react-markdown/with-html';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import axios from 'axios';
 import requestConfig from '../config/request';
