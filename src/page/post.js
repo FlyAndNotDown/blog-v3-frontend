@@ -9,7 +9,7 @@ import { NavBar } from '../component/nav-bar';
 import { Footer } from '../component/footer';
 import { Row, Col, Affix, Divider, Icon, Anchor, BackTop, message } from 'antd';
 import { Link } from 'react-router-dom';
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from 'react-markdown/with-html';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import axios from 'axios';
 import requestConfig from '../config/request';
@@ -266,72 +266,72 @@ export class PostPage extends React.Component {
      * @param {Object} object 解析对象
      * @returns {*} 渲染结果
      */
-    markdownHeadingRender = object => {
-        let level = object.level;
-        let children = [];
+    // markdownHeadingRender = object => {
+    //     let level = object.level;
+    //     let children = [];
 
-        // unpack object's children
-        for (let i = 0; i < object.children.length; i++) {
-            if (typeof object.children[i] === 'string') {
-                children.push({
-                    value: object.children[i],
-                    render: (<span key={i}>{object.children[i]}</span>)
-                });
-            } else if (object.children[i].$$typeof.toString() === 'Symbol(react.element)') {
-                children.push({
-                    value: object.children[i].props.children,
-                    render: (<code key={i}>{object.children[i].props.children}</code>)
-                });
-            }
-        }
+    //     // unpack object's children
+    //     for (let i = 0; i < object.children.length; i++) {
+    //         if (typeof object.children[i] === 'string') {
+    //             children.push({
+    //                 value: object.children[i],
+    //                 render: (<span key={i}>{object.children[i]}</span>)
+    //             });
+    //         } else if (object.children[i].$$typeof.toString() === 'Symbol(react.element)') {
+    //             children.push({
+    //                 value: object.children[i].props.children,
+    //                 render: (<code key={i}>{object.children[i].props.children}</code>)
+    //             });
+    //         }
+    //     }
 
-        // calculate value
-        let originValue = '';
-        for (let i = 0; i < children.length; i++) {
-            originValue += children[i].value;
-        }
-        let value = originValue;
-        // change '.' to '-'
-        value = value.replace('.', '-');
-        // remove spaces whick are too more
-        value = value.replace(/[ ]+/, ' ');
-        // replace space with '-'
-        value = value.replace(' ', '-');
-        // change chinese to pin yin
-        value = pinyin(value, { style: pinyin.STYLE_NORMAL }).join();
-        // change all the characters to lower case
-        value = value.toLowerCase();
+    //     // calculate value
+    //     let originValue = '';
+    //     for (let i = 0; i < children.length; i++) {
+    //         originValue += children[i].value;
+    //     }
+    //     let value = originValue;
+    //     // change '.' to '-'
+    //     value = value.replace('.', '-');
+    //     // remove spaces whick are too more
+    //     value = value.replace(/[ ]+/, ' ');
+    //     // replace space with '-'
+    //     value = value.replace(' ', '-');
+    //     // change chinese to pin yin
+    //     value = pinyin(value, { style: pinyin.STYLE_NORMAL }).join();
+    //     // change all the characters to lower case
+    //     value = value.toLowerCase();
 
-        // calculate id
-        let id = `h${level}-`;
-        for (let i = 0; i < value.length; i++) {
-            if (value[i].match(/[0-9a-zA-Z-]/)) id += value[i];
-        }
+    //     // calculate id
+    //     let id = `h${level}-`;
+    //     for (let i = 0; i < value.length; i++) {
+    //         if (value[i].match(/[0-9a-zA-Z-]/)) id += value[i];
+    //     }
 
-        // set anchors
-        if (!this.state.anchorsLock) this.anchors.push({
-            value: originValue,
-            to: id,
-            level: level
-        });
+    //     // set anchors
+    //     if (!this.state.anchorsLock) this.anchors.push({
+    //         value: originValue,
+    //         to: id,
+    //         level: level
+    //     });
 
-        // return render result
-        switch (level) {
-            default:
-            case 1:
-                return (<h1 id={id}>{children.map(child => child.render)}</h1>);
-            case 2:
-                return (<h2 id={id}>{children.map(child => child.render)}</h2>);
-            case 3:
-                return (<h3 id={id}>{children.map(child => child.render)}</h3>);
-            case 4:
-                return (<h4 id={id}>{children.map(child => child.render)}</h4>);
-            case 5:
-                return (<h5 id={id}>{children.map(child => child.render)}</h5>);
-            case 6:
-                return (<h6 id={id}>{children.map(child => child.render)}</h6>);
-        }
-    };
+    //     // return render result
+    //     switch (level) {
+    //         default:
+    //         case 1:
+    //             return (<h1 id={id}>{children.map(child => child.render)}</h1>);
+    //         case 2:
+    //             return (<h2 id={id}>{children.map(child => child.render)}</h2>);
+    //         case 3:
+    //             return (<h3 id={id}>{children.map(child => child.render)}</h3>);
+    //         case 4:
+    //             return (<h4 id={id}>{children.map(child => child.render)}</h4>);
+    //         case 5:
+    //             return (<h5 id={id}>{children.map(child => child.render)}</h5>);
+    //         case 6:
+    //             return (<h6 id={id}>{children.map(child => child.render)}</h6>);
+    //     }
+    // };
 
     /**
      * Markdown 代码渲染函数
@@ -350,16 +350,16 @@ export class PostPage extends React.Component {
         );
     };
 
-    /**
-     * Markdown 链接渲染
-     * @param {Object} object 渲染节点对象
-     * @returns {*} 渲染结果
-     */
-    markdownLinkRender = object => {
-        return (
-            <a href={object.href} target={'__blank'}>{object.children[0]}</a>
-        );
-    };
+    // /**
+    //  * Markdown 链接渲染
+    //  * @param {Object} object 渲染节点对象
+    //  * @returns {*} 渲染结果
+    //  */
+    // markdownLinkRender = object => {
+    //     return (
+    //         <a href={object.href} target={'__blank'}>{object.children[0]}</a>
+    //     );
+    // };
 
     /**
      * 空格迭代映射行数
@@ -616,13 +616,14 @@ export class PostPage extends React.Component {
         const postBody = (
             <div>
                 <ReactMarkdown
+                    escapeHtml={false}
                     className={'markdown-body mt-lg'}
                     source={this.state.body}
                     renderers={{
-                        heading: this.markdownHeadingRender,
+                        // heading: this.markdownHeadingRender,
                         code: this.markdownCodeRender,
-                        link: this.markdownLinkRender,
-                        linkReference: this.markdownLinkRender
+                        // link: this.markdownLinkRender,
+                        // linkReference: this.markdownLinkRender
                     }}/>
                 <Divider/>
             </div>
