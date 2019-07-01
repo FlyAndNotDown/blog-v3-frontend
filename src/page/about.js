@@ -168,7 +168,7 @@ export class AboutPage extends React.Component {
                     <div>
                         联系方式:
                         <ul>
-                            <li>常年不在线的邮箱: <BlankLink to={'mailto:hwq2525775@gmail.com'}>hwq2525775@gmail.com</BlankLink></li>
+                            <li>常年不在线的邮箱: <BlankLink to={'mailto:johnkindem@qq.com'}></BlankLink></li>
                         </ul>
                     </div>
                 </div>

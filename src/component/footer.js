@@ -57,7 +57,7 @@ export class Footer extends React.Component {
                     <KIcon type={'k-sf'}/>
                 </BlankLink>
                 &nbsp;
-                <a href={'mailto:hwq2525775@gmail.com'}>
+                <a href={'mailto:johnkindem@qq.com'}>
                     <KIcon type={'k-email'}/>
                 </a>
                 &nbsp;
