@@ -55,7 +55,7 @@ export class ArchiveBlockList extends React.Component {
      */
     postsListMapFunc = (list) => {
         return (
-            <div>
+            <div className={'mt-lg'}>
                 <h1>{list.year}年{list.month}月</h1>
                 <List
                     bordered
