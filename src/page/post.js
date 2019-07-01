@@ -280,7 +280,7 @@ export class PostPage extends React.Component {
             } else if (object.children[i].$$typeof.toString() === 'Symbol(react.element)') {
                 children.push({
                     value: object.children[i].props.children,
-                    render: (<code key={i}>{object.children[i].props.children}</code>)
+                    render: (<span key={i}>{object.children[i].props.children}</span>)
                 });
             }
         }
