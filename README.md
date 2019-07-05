@@ -4,8 +4,6 @@
 
 现在看到的这部分为前端代码仓库，要让博客完全运行，需要同时运行这个仓库和伴生的后端仓库: [FlyAndNotDown/blog-v3-bakcend](https://github.com/FlyAndNotDown/blog-v3-backend)
 
-博客将会在新域名备案完成后部署：[Kindem的新博客](http://www.kindem.xyz)
-
 如果你要基于我的博客系统搭建自己的博客，在后面会提及部署及私有化指北
 
 # 📦技术栈
