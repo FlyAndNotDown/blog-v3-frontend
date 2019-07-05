@@ -7,6 +7,6 @@
  * 主配置
  */
 export default {
-    devMode: true,
+    devMode: false,
     mock: false
 };
