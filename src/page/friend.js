@@ -108,8 +108,8 @@ export class FriendPage extends React.Component {
     friendBlockListRenderFunction = (friend, key) => {
         // return render result
         return (
-            <div>
-                <div className={'font-size-sm'} key={key}>
+            <div key={key}>
+                <div className={'font-size-sm'}>
                     <BlankLink
                         className={'color-second'}
                         to={friend.to}>

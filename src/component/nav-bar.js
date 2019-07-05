@@ -79,7 +79,7 @@ export class NavBar extends React.Component {
      * @returns {*} render result
      */
     render() {
-        // overlay when device tpye is phone or tablet
+        // overlay when device type is phone or tablet
         const overlay = (
             <Menu>
                 {this.props.login && (
@@ -175,7 +175,8 @@ export class NavBar extends React.Component {
         const mobileNavDiv = (
             <div className={'lh-nav-bar float-right'}>
                 <Dropdown
-                    overlay={overlay}>
+                    overlay={overlay}
+                    trigger={['click']}>
                     <Link to={'#'} className={'color-white-a font-size-xs'}>
                         Menu&nbsp;&nbsp;
                         <Icon type={'down'}/>
