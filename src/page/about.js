@@ -9,12 +9,14 @@ import React from 'react';
 import axios from 'axios';
 import requestConfig from '../config/request';
 import { Log } from '../tool/log';
-import { message, Affix, BackTop, Row, Col, Divider } from 'antd';
+import { message, Affix, BackTop, Row, Col } from 'antd';
 import { KLayout } from '../component/tool/k-layout';
 import { NavBar } from '../component/nav-bar';
 import { LoadingLayout } from '../component/gadget/loading-layout';
 import { Footer } from '../component/footer';
-import { BlankLink } from '../component/tool/blank-link';
+import ReactMarkdown from 'react-markdown/with-html';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import aboutMarkdownSourceFile from '../resources/about.md';
 
 /**
  * AboutPage
@@ -36,7 +38,10 @@ export class AboutPage extends React.Component {
 
             // user info
             userLogin: false,
-            userInfo: {}
+            userInfo: {},
+
+            // body
+            body: ''
         };
     }
 
@@ -44,8 +49,20 @@ export class AboutPage extends React.Component {
      * life function when component did mount
      */
     async componentDidMount() {
-        // do the request to get user info
+        // fetch markdown source content
         let response, data;
+        try {
+            response = await fetch(aboutMarkdownSourceFile);
+            data = await response.text();
+        } catch (e) {
+            Log.devError('fail to get about markdown source');
+            return message.error('获取页面数据失败');
+        }
+        this.setState({ body: data });
+
+        // do the request to get user info
+        response = null;
+        data = null;
         try {
             response = await axios.get(requestConfig.userLogin, {
                 params: {
@@ -72,6 +89,34 @@ export class AboutPage extends React.Component {
     }
 
     /**
+     * Markdown 代码渲染函数
+     * @param {Object} object 解析对象
+     * @returns {*} 渲染结果
+     */
+    markdownCodeRender = object => {
+        return (
+            <div className={'highlight'}>
+                <SyntaxHighlighter
+                    customStyle={{ padding: '20px' }}
+                    language={object.language}>
+                    {object.value}
+                </SyntaxHighlighter>
+            </div>
+        );
+    };
+
+    /**
+     * Markdown 链接渲染
+     * @param {Object} object 渲染节点对象
+     * @returns {*} 渲染结果
+     */
+    markdownLinkRender = object => {
+        return (
+            <a href={object.href} target={'__blank'}>{object.children[0]}</a>
+        );
+    };
+
+    /**
      * render function
      * @returns {*} render result
      */
@@ -89,92 +134,6 @@ export class AboutPage extends React.Component {
             </KLayout>
         );
 
-        // about blog page
-        const aboutBlogBlock = (
-            <div>
-                <div className={'font-size-lg'}>
-                    <span role={'img'} aria-labelledby={'star'}>✨</span>
-                    关于博客
-                </div>
-                <Divider/>
-                <div className={'p-xl font-size-about color-grey'}>
-                    <div>
-                        始于 <code>2017</code>，近期抽空重制了一哈(没什么时间投入，感觉做的更垃圾了😅)，现有版本: <code>Version 3.0</code>
-                    </div>
-                    <br/>
-                    <div>
-                        博客内容:
-                        <ul>
-                            <li>日常扯淡</li>
-                            <li>日常与bug斗智斗勇</li>
-                            <li>坑人教程</li>
-                        </ul>
-                    </div>
-                    <br/>
-                    <div>
-                        技术栈:
-                        <ul>
-                            <li>前端: <code>React + Ant.Design + Webpack + Axios ...</code></li>
-                            <li>后端: <code>Koa.js + Sequelize</code></li>
-                        </ul>
-                    </div>
-                    <br/>
-                    <div>
-                        垃圾存放处:
-                        <ul>
-                            <li>前端: <BlankLink to={'https://github.com/FlyAndNotDown/blog-v3-frontend'}>github-FlyAndNotDown--blog-v3-frontend</BlankLink></li>
-                            <li>后端: <BlankLink to={'https://github.com/FlyAndNotDown/blog-v3-backend'}>github-FlyAndNotDown--blog-v3-backend</BlankLink></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        );
-
-        // about me block
-        const aboutMeBlock = (
-            <div>
-                <div className={'font-size-lg'}>
-                    <span role={'img'} aria-labelledby={'smile'}>😆</span>
-                    关于我
-                </div>
-                <Divider/>
-                <div className={'p-xl font-size-about color-grey'}>
-                    <div>
-                        目前大四，马上毕业，工作找好了，混日子中，暂时不想读研
-                    </div>
-                    <br/>
-                    <div>
-                        我是什么样子的:
-                        <ul>
-                            <li>前端嗜好者</li>
-                            <li>啥都会做一点</li>
-                            <li><code>Emoji</code>嗜好者</li>
-                            <li>铁头娃</li>
-                            <li>热爱乱七八糟的技术</li>
-                        </ul>
-                    </div>
-                    <br/>
-                    <div>
-                        我喜欢什么:
-                        <ul>
-                            <li>前端</li>
-                            <li><code>Game</code></li>
-                            <li>挖坑(不填)</li>
-                            <li>与bug斗智斗勇</li>
-                            <li>厨房</li>
-                        </ul>
-                    </div>
-                    <br/>
-                    <div>
-                        联系方式:
-                        <ul>
-                            <li>常年不在线的邮箱: <a href={'mailto:johnkindem@qq.com'}>johnkindem@qq.com</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        );
-
         // main context row
         const mainContextRow = (
             <Row>
@@ -184,8 +143,15 @@ export class AboutPage extends React.Component {
                     md={{ offset: 0, span: 24 }}
                     lg={{ offset: 2, span: 14 }}>
                     <br/>
-                    {aboutBlogBlock}
-                    {aboutMeBlock}
+                    <ReactMarkdown
+                        escapeHtml={false}
+                        className={'markdown-body mt-lg'}
+                        source={this.state.body}
+                        renderers={{
+                            code: this.markdownCodeRender,
+                            link: this.markdownLinkRender,
+                            linkReference: this.markdownLinkRender
+                        }}/>
                 </Col>
             </Row>
         );
