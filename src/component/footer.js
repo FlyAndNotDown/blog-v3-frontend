@@ -89,6 +89,13 @@ export class Footer extends React.Component {
             </div>
         );
 
+        // police info
+        const policeInfoDiv = (
+            <div className={'font-size-xs'}>
+                备案号：湘ICP备17018771号-1
+            </div>
+        );
+
         // div of copyright info
         const copyrightDiv = (
             <div className={'font-size-xs'}>
@@ -110,6 +117,7 @@ export class Footer extends React.Component {
                         {linkDiv}
                         {themeDiv}
                         {frameworkDiv}
+                        {policeInfoDiv}
                         {copyrightDiv}
                     </Col>
                 </Row>

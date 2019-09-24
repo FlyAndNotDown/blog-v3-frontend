@@ -119,7 +119,7 @@ export class NavBar extends React.Component {
         const siteLinkDiv = (
             <div>
                 <Link className={'font-size-md color-white float-left color-white-a'} to={'/'}>
-                    Kindem
+                    IT 小站
                 </Link>
             </div>
         );
