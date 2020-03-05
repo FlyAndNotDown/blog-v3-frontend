@@ -92,7 +92,10 @@ export class Footer extends React.Component {
         // police info
         const policeInfoDiv = (
             <div className={'font-size-xs'}>
-                备案号：湘ICP备17018771号-1
+                备案号：
+                <BlankLink to={'http://www.beian.miit.gov.cn/'} className={'color-text'}>
+                    湘ICP备17018771号-1
+                </BlankLink>
             </div>
         );
 
