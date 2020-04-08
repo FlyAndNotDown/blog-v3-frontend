@@ -37,33 +37,17 @@ export class Footer extends React.Component {
                     <KIcon type={'k-github'}/>
                 </BlankLink>
                 &nbsp;
-                <BlankLink to={'https://www.zhihu.com/people/kindem/activities'}>
-                    <KIcon type={'k-zhihu'}/>
-                </BlankLink>
-                &nbsp;
                 <BlankLink to={'https://www.jianshu.com/u/d498ebae7b21'}>
                     <KIcon type={'k-jianshu'}/>
-                </BlankLink>
-                &nbsp;
-                <BlankLink to={'https://juejin.im/user/5b3a3d53f265da62d21e14fe'}>
-                    <KIcon type={'k-juejin'}/>
                 </BlankLink>
                 &nbsp;
                 <BlankLink to={'https://www.npmjs.com/~kindem'}>
                     <KIcon type={'k-npm'}/>
                 </BlankLink>
                 &nbsp;
-                <BlankLink to={'https://segmentfault.com/u/liuweimeng'}>
-                    <KIcon type={'k-sf'}/>
-                </BlankLink>
-                &nbsp;
                 <a href={'mailto:johnkindem@qq.com'}>
                     <KIcon type={'k-email'}/>
                 </a>
-                &nbsp;
-                <BlankLink to={'#'}>
-                    <KIcon type={'k-money'}/>
-                </BlankLink>
             </div>
         );
 
