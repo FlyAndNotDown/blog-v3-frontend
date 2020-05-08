@@ -51,8 +51,8 @@
     * `C#`
     * `Java/Kotlin`
     * `Python`
-    * `HTML/CSS`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~~( 你俩不配与我最爱的 `JavaScript` 站一起~~
-    * `JavaScript`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;~~( 我永远喜欢 `JavaScript`~~
+    * `HTML/CSS`
+    * `JavaScript`
 * 方向
     * `Web` 前端
         * `React`
