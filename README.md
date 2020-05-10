@@ -1,5 +1,7 @@
 # ☕Kindem's Blog Version 3.0 Frontend
 
+![Preview](./doc/img/preview.png)
+
 ---
 
 现在看到的这部分为前端代码仓库，要让博客完全运行，需要同时运行这个仓库和伴生的后端仓库: [FlyAndNotDown/blog-v3-bakcend](https://github.com/FlyAndNotDown/blog-v3-backend)
