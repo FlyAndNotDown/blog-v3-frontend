@@ -78,7 +78,7 @@ export class Footer extends React.Component {
             <div className={'font-size-xs'}>
                 备案号：
                 <BlankLink to={'http://www.beian.miit.gov.cn/'} className={'color-text'}>
-                    湘ICP备17018771号-1
+                    湘ICP备17018771号-2
                 </BlankLink>
             </div>
         );
